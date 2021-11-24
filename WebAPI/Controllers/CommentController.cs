@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using Application.UseCases.Comment;
 using Application.UseCases.Comment.Dtos;
+using Application.UseCases.Comment.Get;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ScrumOrganisationSuccessAPI.Controllers
+namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("api/comments")]

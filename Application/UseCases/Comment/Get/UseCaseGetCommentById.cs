@@ -2,9 +2,9 @@
 using Application.UseCases.Utils;
 using Infrastructure.SqlServer.Repositories.Comment;
 
-namespace Application.UseCases.Comment
+namespace Application.UseCases.Comment.Get
 {
-    public class UseCaseGetCommentById : IQuery<OutputDtoComment>
+    public class UseCaseGetCommentById : IQueryFiltering<OutputDtoComment, int>
     {
         private readonly ICommentRepository _commentRepository;
         
@@ -12,10 +12,10 @@ namespace Application.UseCases.Comment
         {
             _commentRepository = commentRepository;
         }
-        
-        public OutputDtoComment Execute()
+
+        public OutputDtoComment Execute(int filter)
         {
-            var comment = _commentRepository.GetById();
+            var comment = _commentRepository.GetById(filter);
             
             return Mapper.GetInstance().Map<OutputDtoComment>(comment);
         }

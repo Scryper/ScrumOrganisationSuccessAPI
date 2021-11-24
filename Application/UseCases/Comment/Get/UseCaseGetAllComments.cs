@@ -3,7 +3,7 @@ using Application.UseCases.Comment.Dtos;
 using Application.UseCases.Utils;
 using Infrastructure.SqlServer.Repositories.Comment;
 
-namespace Application.UseCases.Comment
+namespace Application.UseCases.Comment.Get
 {
     public class UseCaseGetAllComments : IQuery<List<OutputDtoComment>>
     {

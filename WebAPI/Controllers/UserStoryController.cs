@@ -4,7 +4,7 @@ using Application.UseCases.UserStory;
 using Application.UseCases.UserStory.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ScrumOrganisationSuccessAPI.Controllers
+namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("api/userStories")]

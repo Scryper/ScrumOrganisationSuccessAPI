@@ -5,6 +5,7 @@ using Application.Services.Sprint;
 using Application.Services.User;
 using Application.Services.UserStory;
 using Application.UseCases.Comment;
+using Application.UseCases.Comment.Get;
 using Application.UseCases.Meeting;
 using Application.UseCases.Project;
 using Application.UseCases.Sprint;

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 
-namespace ScrumOrganisationSuccessAPI.Controllers
+namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("api/database")]

@@ -4,7 +4,7 @@ using Application.UseCases.User;
 using Application.UseCases.User.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ScrumOrganisationSuccessAPI.Controllers
+namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("api/users")]
