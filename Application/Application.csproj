@@ -16,6 +16,17 @@
     <ItemGroup>
       <Folder Include="UseCases\Comment\Delete" />
       <Folder Include="UseCases\Comment\Put" />
+      <Folder Include="UseCases\Meeting\Delete" />
+      <Folder Include="UseCases\Meeting\Put" />
+      <Folder Include="UseCases\Project\Delete" />
+      <Folder Include="UseCases\Project\Put" />
+      <Folder Include="UseCases\Sprint\Delete" />
+      <Folder Include="UseCases\Sprint\Put" />
+      <Folder Include="UseCases\UserStory\Delete" />
+      <Folder Include="UseCases\UserStory\Post" />
+      <Folder Include="UseCases\UserStory\Put" />
+      <Folder Include="UseCases\User\Delete" />
+      <Folder Include="UseCases\User\Put" />
     </ItemGroup>
 
 </Project>
