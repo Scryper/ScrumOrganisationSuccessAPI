@@ -62,6 +62,7 @@ namespace WebAPI
             // Comments use cases
             services.AddSingleton<UseCaseGetAllComments>();
             services.AddSingleton<UseCaseCreateComment>();
+            services.AddSingleton<UseCaseGetCommentById>();
             
             // Meetings use cases
             services.AddSingleton<UseCaseGetAllMeetings>();
