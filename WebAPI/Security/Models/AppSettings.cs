@@ -1,4 +1,4 @@
-﻿namespace WebAPI.Security
+﻿namespace WebAPI.Security.Models
 {
     public class AppSettings
     {
