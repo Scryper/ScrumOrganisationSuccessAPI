@@ -77,12 +77,12 @@ namespace Infrastructure.SqlServer.Repositories.Comment
         }
 
         // Put requests
-        public bool UpdateContent(int id, Domain.Comment newComment)
+        public bool UpdateContent(int id, string newComment)
         {
             var command = Database.GetCommand(ReqUpdateContent);
             
             // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColContent, newComment.Content);
+            command.Parameters.AddWithValue("@" + ColContent, newComment);
             command.Parameters.AddWithValue("@" + ColId, id);
 
             return command.ExecuteNonQuery() > 0; // Non-query because we don't ask for data
