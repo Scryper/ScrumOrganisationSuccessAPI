@@ -9,6 +9,7 @@ using Application.UseCases.Comment.Delete;
 using Application.UseCases.Comment.Get;
 using Application.UseCases.Comment.Put;
 using Application.UseCases.Meeting;
+using Application.UseCases.Meeting.Get;
 using Application.UseCases.Project;
 using Application.UseCases.Sprint;
 using Application.UseCases.User;
@@ -64,15 +65,20 @@ namespace WebAPI
             // Add use cases
             // Comments use cases
             services.AddSingleton<UseCaseGetAllComments>();
-            services.AddSingleton<UseCaseCreateComment>();
             services.AddSingleton<UseCaseGetCommentById>();
+            services.AddSingleton<UseCaseGetCommentsByIdUserStory>();
 
-            services.AddSingleton<UseCaseUpdateContentOfComment>();
+            services.AddSingleton<UseCaseCreateComment>();
+            
+            services.AddSingleton<UseCaseUpdateCommentContent>();
             
             services.AddSingleton<UseCaseDeleteComment>();
             
             // Meetings use cases
             services.AddSingleton<UseCaseGetAllMeetings>();
+            services.AddSingleton<UseCaseGetMeetingById>();
+            services.AddSingleton<UseCaseGetMeetingsByIdSprint>();
+            
             services.AddSingleton<UseCaseCreateMeeting>();
             
             // Projects use cases

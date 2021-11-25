@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
         
         private readonly UseCaseCreateComment _useCaseCreateComment;
 
-        private readonly UseCaseUpdateContentOfComment _useCaseUpdateContentOfComment;
+        private readonly UseCaseUpdateCommentContent _useCaseUpdateCommentContent;
 
         private readonly UseCaseDeleteComment _useCaseDeleteComment;
 
@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
             UseCaseGetCommentById useCaseGetCommentById,
             UseCaseGetCommentsByIdUserStory useCaseGetCommentsByIdUserStory,
             UseCaseCreateComment useCaseCreateComment,
-            UseCaseUpdateContentOfComment useCaseUpdateContentOfComment,
+            UseCaseUpdateCommentContent useCaseUpdateCommentContent,
             UseCaseDeleteComment useCaseDeleteComment)
         {
             _useCaseGetAllComments = useCaseGetAllComments;
@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
             
             _useCaseCreateComment = useCaseCreateComment;
             
-            _useCaseUpdateContentOfComment = useCaseUpdateContentOfComment;
+            _useCaseUpdateCommentContent = useCaseUpdateCommentContent;
             
             _useCaseDeleteComment = useCaseDeleteComment;
         }
@@ -87,7 +87,7 @@ namespace WebAPI.Controllers
                     Content = newComment.Content
                 }
             };
-            var result = _useCaseUpdateContentOfComment.Execute(inputDtoUpdate);
+            var result = _useCaseUpdateCommentContent.Execute(inputDtoUpdate);
 
             if (result) return Ok();
             return BadRequest();
