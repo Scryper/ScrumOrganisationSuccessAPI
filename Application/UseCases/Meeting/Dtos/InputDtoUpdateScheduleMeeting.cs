@@ -2,7 +2,7 @@
 
 namespace Application.UseCases.Meeting.Dtos
 {
-    public class InputDtoUpdateMeeting
+    public class InputDtoUpdateScheduleMeeting
     {
         public int Id { get; set; }
         public Meeting InternMeeting { get; set; }

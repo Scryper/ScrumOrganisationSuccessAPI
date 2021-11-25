@@ -14,7 +14,7 @@ namespace Infrastructure.SqlServer.Repositories.Project
         Domain.Project Create(Domain.Project project);
         
         // Put requests
-        bool UpdateRepositoryUrl(int id, Domain.Project newProject);
+        bool UpdateRepositoryUrl(int id, string newRepositoryUrl);
 
         // Delete requests
         bool Delete(int id);

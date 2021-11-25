@@ -88,10 +88,10 @@ namespace WebAPI.Controllers
         [Route("{id:int}")]
         public ActionResult UpdateSchedule(int id, InputDtoMeeting newMeeting)
         {
-            var inputDtoUpdate = new InputDtoUpdateMeeting
+            var inputDtoUpdate = new InputDtoUpdateScheduleMeeting
             {
                 Id = id,
-                InternMeeting = new InputDtoUpdateMeeting.Meeting
+                InternMeeting = new InputDtoUpdateScheduleMeeting.Meeting
                 {
                     Schedule = newMeeting.Schedule
                 }

@@ -1,6 +1,6 @@
 ﻿namespace Application.UseCases.Comment.Dtos
 {
-    public class InputDtoUpdateComment
+    public class InputDtoUpdateCommentContent
     {
         public int Id { get; set; }
         public Comment InternComment { get; set; }

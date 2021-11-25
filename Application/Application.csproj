@@ -15,7 +15,6 @@
 
     <ItemGroup>
       <Folder Include="UseCases\Project\Delete" />
-      <Folder Include="UseCases\Project\Put" />
       <Folder Include="UseCases\Sprint\Delete" />
       <Folder Include="UseCases\Sprint\Put" />
       <Folder Include="UseCases\UserStory\Delete" />

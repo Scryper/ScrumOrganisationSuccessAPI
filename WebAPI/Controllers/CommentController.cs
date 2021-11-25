@@ -79,10 +79,10 @@ namespace WebAPI.Controllers
         [Route("{id:int}")]
         public ActionResult UpdateContent(int id, InputDtoComment newComment)
         {
-            var inputDtoUpdate = new InputDtoUpdateComment
+            var inputDtoUpdate = new InputDtoUpdateCommentContent
             {
                 Id = id,
-                InternComment = new InputDtoUpdateComment.Comment
+                InternComment = new InputDtoUpdateCommentContent.Comment
                 {
                     Content = newComment.Content
                 }

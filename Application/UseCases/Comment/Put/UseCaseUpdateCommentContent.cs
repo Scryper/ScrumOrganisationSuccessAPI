@@ -4,7 +4,7 @@ using Infrastructure.SqlServer.Repositories.Comment;
 
 namespace Application.UseCases.Comment.Put
 {
-    public class UseCaseUpdateCommentContent : IWriting<bool, InputDtoUpdateComment>
+    public class UseCaseUpdateCommentContent : IWriting<bool, InputDtoUpdateCommentContent>
     {
         private readonly ICommentRepository _commentRepository;
 
@@ -13,7 +13,7 @@ namespace Application.UseCases.Comment.Put
             _commentRepository = commentRepository;
         }
         
-        public bool Execute(InputDtoUpdateComment dto)
+        public bool Execute(InputDtoUpdateCommentContent dto)
         {
             return _commentRepository.UpdateContent(dto.Id, dto.InternComment.Content);
         }
