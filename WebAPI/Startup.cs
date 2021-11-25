@@ -9,7 +9,9 @@ using Application.UseCases.Comment.Delete;
 using Application.UseCases.Comment.Get;
 using Application.UseCases.Comment.Put;
 using Application.UseCases.Meeting;
+using Application.UseCases.Meeting.Delete;
 using Application.UseCases.Meeting.Get;
+using Application.UseCases.Meeting.Put;
 using Application.UseCases.Project;
 using Application.UseCases.Sprint;
 using Application.UseCases.User;
@@ -78,9 +80,14 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetAllMeetings>();
             services.AddSingleton<UseCaseGetMeetingById>();
             services.AddSingleton<UseCaseGetMeetingsByIdSprint>();
+            services.AddSingleton<UseCaseGetMeetingsByIdUser>();
             
             services.AddSingleton<UseCaseCreateMeeting>();
             
+            services.AddSingleton<UseCaseUpdateMeetingSchedule>();
+            
+            services.AddSingleton<UseCaseDeleteMeeting>();
+
             // Projects use cases
             services.AddSingleton<UseCaseGetAllProjects>();
             services.AddSingleton<UseCaseCreateProject>();

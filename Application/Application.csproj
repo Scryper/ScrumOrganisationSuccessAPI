@@ -14,7 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="UseCases\Meeting\Delete" />
       <Folder Include="UseCases\Project\Delete" />
       <Folder Include="UseCases\Project\Put" />
       <Folder Include="UseCases\Sprint\Delete" />

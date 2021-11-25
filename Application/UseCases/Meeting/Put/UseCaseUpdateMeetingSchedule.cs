@@ -15,7 +15,7 @@ namespace Application.UseCases.Meeting.Put
 
         public bool Execute(InputDtoUpdateMeeting data)
         {
-            throw new System.NotImplementedException();
+            return _meetingRepository.UpdateSchedule(data.Id, data.InternMeeting.Schedule);
         }
     }
 }
