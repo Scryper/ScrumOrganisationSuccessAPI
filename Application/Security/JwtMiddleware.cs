@@ -3,13 +3,13 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Security.Models;
 using Application.Services.User;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using WebAPI.Security.Models;
 
-namespace WebAPI.Security
+namespace Application.Security
 {
     public class JwtMiddleware
     {

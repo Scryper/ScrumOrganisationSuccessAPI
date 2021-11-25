@@ -1,4 +1,7 @@
-﻿namespace Application.Services.User
+﻿using Application.Security.Models;
+using WebAPI.Security.Models;
+
+namespace Application.Services.User
 {
     public interface IUserService
     {

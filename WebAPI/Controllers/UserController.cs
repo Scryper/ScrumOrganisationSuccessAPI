@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using Application.Security.Models;
 using Application.UseCases.User;
 using Application.UseCases.User.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ScrumOrganisationSuccessAPI.Controllers
+namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("api/users")]
@@ -13,16 +14,19 @@ namespace ScrumOrganisationSuccessAPI.Controllers
         // Use cases
         private readonly UseCaseGetAllUsers _useCaseGetAllUsers;
         private readonly UseCaseCreateUser _useCaseCreateUser;
+        private readonly UseCaseAuthenticateUser _useCaseAuthenticateUser;
         
         // Constructor
         public UserController(
             UseCaseGetAllUsers useCaseGetAllUsers,
-            UseCaseCreateUser useCaseCreateUser)
+            UseCaseCreateUser useCaseCreateUser,
+            UseCaseAuthenticateUser useCaseAuthenticateUser)
         {
             _useCaseGetAllUsers = useCaseGetAllUsers;
             _useCaseCreateUser = useCaseCreateUser;
+            _useCaseAuthenticateUser = useCaseAuthenticateUser;
         }
-        
+
         // Get requests
         [HttpGet]
         public ActionResult<List<OutputDtoUser>> GetAll()
@@ -61,6 +65,19 @@ namespace ScrumOrganisationSuccessAPI.Controllers
         public ActionResult<OutputDtoUser> Create([FromBody] InputDtoUser inputDtoUser)
         {
             return StatusCode(201, _useCaseCreateUser.Execute(inputDtoUser));
+        }
+        
+        // Post requests : authentication
+        [HttpPost]
+        [Route("authenticate")]
+        public IActionResult Authenticate(AuthenticateRequest model)
+        {
+            var response = _useCaseAuthenticateUser.Execute(model);
+
+            if (response == null)
+                return BadRequest(new { message = "Username or password is incorrect" });
+
+            return Ok(response);
         }
 
         // Put requests

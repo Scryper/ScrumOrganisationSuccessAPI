@@ -4,7 +4,7 @@ using Application.UseCases.Sprint;
 using Application.UseCases.Sprint.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ScrumOrganisationSuccessAPI.Controllers
+namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("api/sprints")]

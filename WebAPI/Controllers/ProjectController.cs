@@ -4,7 +4,7 @@ using Application.UseCases.Project;
 using Application.UseCases.Project.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ScrumOrganisationSuccessAPI.Controllers
+namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("api/projects")]

@@ -1,8 +1,9 @@
 ﻿using Infrastructure.SqlServer.System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
+using WebAPI.Security.Attributes;
 
-namespace ScrumOrganisationSuccessAPI.Controllers
+namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("api/database")]
@@ -19,6 +20,7 @@ namespace ScrumOrganisationSuccessAPI.Controllers
 
         [HttpGet]
         [Route("init")]
+        [Authorize]
         public IActionResult CreateDatabaseAndTables()
         {
             if (_hostEnvironment.IsProduction()) return BadRequest("Only in development");
@@ -29,6 +31,7 @@ namespace ScrumOrganisationSuccessAPI.Controllers
 
         [HttpGet]
         [Route("route")]
+        [Authorize]
         public IActionResult FillTables()
         {
             if (_hostEnvironment.IsProduction()) return BadRequest("Only in development");

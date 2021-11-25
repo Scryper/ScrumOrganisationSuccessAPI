@@ -72,6 +72,19 @@ namespace Infrastructure.SqlServer.Repositories.User
             return reader.Read() ? _userFactory.CreateFromSqlReader(reader) : null;
         }
 
+        public Domain.User GetByEmail(string email)
+        {
+            var command = Database.GetCommand(ReqByEmail);
+            
+            // Parametrize the command
+            command.Parameters.AddWithValue("@" + ColEmail, email);
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            // Return user if found, null if not
+            return reader.Read() ? _userFactory.CreateFromSqlReader(reader) : null;
+        }
+
         // Post requests
         public Domain.User Create(Domain.User user)
         {

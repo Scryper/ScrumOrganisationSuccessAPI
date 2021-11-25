@@ -21,8 +21,8 @@
         private static readonly string ReqGetAll = $"select * from {TableName}";
         
         private static readonly string ReqGetById = $"select * from {TableName} " + 
-                                                    $"where {ColId} = @{ColId}"; 
-        
+                                                    $"where {ColId} = @{ColId}";
+
         private static readonly string ReqGetByIdProject = 
                                     $"select * from {TableName} " +
                                     $"left join {SprintUserStoryTableName} on {ColId} = {SprintUserColIdUserStory} " +

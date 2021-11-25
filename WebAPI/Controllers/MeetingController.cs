@@ -4,7 +4,7 @@ using Application.UseCases.Meeting;
 using Application.UseCases.Meeting.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ScrumOrganisationSuccessAPI.Controllers
+namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("api/meetings")]

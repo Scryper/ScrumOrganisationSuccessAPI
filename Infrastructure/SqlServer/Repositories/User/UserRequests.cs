@@ -26,17 +26,18 @@
         
         private static readonly string ReqGetById = $"select * from {TableName} " +
                                                     $"where {ColId} = @{ColId}";
+        
+        private static readonly string ReqByEmail = $"select * from {TableName} " +
+                                                    $"where {ColEmail} = @{ColEmail}";
 
         private static readonly string ReqGetByIdProject = 
-                                        $"select * " +
-                                        $"from {TableName} " +
+                                        $"select * from {TableName} " +
                                         $"left join {ProjectUserTableName} on {ColId} = {ProjectUserColIdUser} " +
                                         $"left join {ProjectTableName} on {ProjectUserColIdProject} = {ProjectColId} "+
                                         $"where {ProjectColId} = @{ProjectColId}";
         
         private static readonly string ReqGetByIdMeeting = 
-                                    $"select * " +
-                                    $"from {TableName} " +
+                                    $"select * from {TableName} " +
                                     $"left join {ParticipationTableName} on {ColId} = {ParticipationColIdUser} " +
                                     $"left join {MeetingTableName} on {ParticipationColIdMeeting} = {MeetingColId} "+
                                     $"where {MeetingColId} = @{MeetingColId}";

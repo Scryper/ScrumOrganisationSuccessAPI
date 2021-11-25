@@ -4,7 +4,7 @@ using Application.UseCases.Comment;
 using Application.UseCases.Comment.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ScrumOrganisationSuccessAPI.Controllers
+namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("api/comments")]

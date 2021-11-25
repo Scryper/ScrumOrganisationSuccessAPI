@@ -1,3 +1,5 @@
+using Application.Security;
+using Application.Security.Models;
 using Application.Services.Comment;
 using Application.Services.Meeting;
 using Application.Services.Project;
@@ -38,6 +40,9 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Security
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            
             // Add repositories
             // services.AddSingleton<Interface, Implementation>();
             services.AddSingleton<ICommentRepository, CommentRepository>();
@@ -78,6 +83,7 @@ namespace WebAPI
             // Users use cases
             services.AddSingleton<UseCaseGetAllUsers>();
             services.AddSingleton<UseCaseCreateUser>();
+            services.AddSingleton<UseCaseAuthenticateUser>();
             
             // User stories use cases
             services.AddSingleton<UseCaseGetAllUserStories>();
@@ -109,6 +115,8 @@ namespace WebAPI
             app.UseRouting();
 
             app.UseAuthorization();
+            
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
