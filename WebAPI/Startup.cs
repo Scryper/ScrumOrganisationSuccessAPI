@@ -13,7 +13,9 @@ using Application.UseCases.Meeting.Delete;
 using Application.UseCases.Meeting.Get;
 using Application.UseCases.Meeting.Put;
 using Application.UseCases.Project;
+using Application.UseCases.Project.Delete;
 using Application.UseCases.Project.Get;
+using Application.UseCases.Project.Put;
 using Application.UseCases.Sprint;
 using Application.UseCases.User;
 using Application.UseCases.UserStory;
@@ -96,6 +98,10 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetProjectsByIdScrumMaster>();
             
             services.AddSingleton<UseCaseCreateProject>();
+            
+            services.AddSingleton<UseCaseUpdateProjectRepositoryUrl>();
+            
+            services.AddSingleton<UseCaseDeleteProject>();
             
             // Sprints use cases
             services.AddSingleton<UseCaseGetAllSprints>();
