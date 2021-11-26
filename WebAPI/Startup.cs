@@ -17,6 +17,9 @@ using Application.UseCases.Project.Delete;
 using Application.UseCases.Project.Get;
 using Application.UseCases.Project.Put;
 using Application.UseCases.Sprint;
+using Application.UseCases.Sprint.Delete;
+using Application.UseCases.Sprint.Get;
+using Application.UseCases.Sprint.Put;
 using Application.UseCases.User;
 using Application.UseCases.UserStory;
 using Infrastructure.SqlServer.Repositories.Comment;
@@ -105,7 +108,14 @@ namespace WebAPI
             
             // Sprints use cases
             services.AddSingleton<UseCaseGetAllSprints>();
+            services.AddSingleton<UseCaseGetSprintsByIdProject>();
+            services.AddSingleton<UseCaseGetSprintById>();
+            
             services.AddSingleton<UseCaseCreateSprint>();
+            
+            services.AddSingleton<UseCaseUpdateSprintProgression>();
+            
+            services.AddSingleton<UseCaseDeleteSprint>();
             
             // Users use cases
             services.AddSingleton<UseCaseGetAllUsers>();

@@ -57,7 +57,7 @@ namespace Infrastructure.SqlServer.Repositories.Sprint
         // Post requests
         public Domain.Sprint Create(Domain.Sprint sprint)
         {
-            SqlCommand command = Database.GetCommand(ReqCreate);
+            var command = Database.GetCommand(ReqCreate);
 
             command.Parameters.AddWithValue("@" + ColSprintNumber, sprint.SprintNumber);
             command.Parameters.AddWithValue("@" + ColIdProject, sprint.IdProject);
@@ -77,12 +77,12 @@ namespace Infrastructure.SqlServer.Repositories.Sprint
         }
 
         // Put requests
-        public bool UpdateProgression(int id, Domain.Sprint newSprint)
+        public bool UpdateProgression(int id, int newSprintProgression)
         {
             var command = Database.GetCommand(ReqUpdateProgression);
             
             // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColProgression, newSprint.Progression);
+            command.Parameters.AddWithValue("@" + ColProgression, newSprintProgression);
             command.Parameters.AddWithValue("@" + ColId, id);
 
             return command.ExecuteNonQuery() > 0;

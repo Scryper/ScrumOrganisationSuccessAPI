@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Application.UseCases.Sprint;
+using Application.UseCases.Sprint.Delete;
 using Application.UseCases.Sprint.Dtos;
+using Application.UseCases.Sprint.Get;
+using Application.UseCases.Sprint.Put;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -12,15 +14,33 @@ namespace WebAPI.Controllers
     {
         // Use cases
         private readonly UseCaseGetAllSprints _useCaseGetAllSprints;
+        private readonly UseCaseGetSprintById _useCaseGetSprintById;
+        private readonly UseCaseGetSprintsByIdProject _useCaseGetSprintsByIdProject;
+        
         private readonly UseCaseCreateSprint _useCaseCreateSprint;
+
+        private readonly UseCaseUpdateSprintProgression _useCaseUpdateSprintProgression;
+
+        private readonly UseCaseDeleteSprint _useCaseDeleteSprint;
         
         // Constructor
         public SprintController(
             UseCaseGetAllSprints useCaseGetAllSprints,
-            UseCaseCreateSprint useCaseCreateSprint)
+            UseCaseGetSprintById useCaseGetSprintById,
+            UseCaseGetSprintsByIdProject useCaseGetSprintsByIdProject,
+            UseCaseCreateSprint useCaseCreateSprint,
+            UseCaseUpdateSprintProgression useCaseUpdateSprintProgression,
+            UseCaseDeleteSprint useCaseDeleteSprint)
         {
             _useCaseGetAllSprints = useCaseGetAllSprints;
+            _useCaseGetSprintById = useCaseGetSprintById;
+            _useCaseGetSprintsByIdProject = useCaseGetSprintsByIdProject;
+            
             _useCaseCreateSprint = useCaseCreateSprint;
+
+            _useCaseUpdateSprintProgression = useCaseUpdateSprintProgression;
+
+            _useCaseDeleteSprint = useCaseDeleteSprint;
         }
         
         // Get requests
@@ -30,20 +50,18 @@ namespace WebAPI.Controllers
             return _useCaseGetAllSprints.Execute();
         }
 
-        // TODO : implement
         [HttpGet]
         [Route("{id:int}")]
         public OutputDtoSprint GetById(int id)
         {
-            throw new NotImplementedException();
+            return _useCaseGetSprintById.Execute(id);
         }
         
-        // TODO : implement
         [HttpGet]
         [Route("{idProject:int}")]
-        public OutputDtoSprint GetByIdProject(int idProject)
+        public List<OutputDtoSprint> GetByIdProject(int idProject)
         {
-            throw new NotImplementedException();
+            return _useCaseGetSprintsByIdProject.Execute(idProject);
         }
         
         // Post requests
@@ -56,21 +74,34 @@ namespace WebAPI.Controllers
         }
         
         // Put requests
-        // TODO : implement
         [HttpPut]
         [Route("{id:int}")]
         public ActionResult UpdateProgression(int id, InputDtoSprint inputDtoSprint)
         {
-            throw new NotImplementedException();
+            var inputDtoUpdate = new InputDtoUpdateSprintProgression
+            {
+                Id = id,
+                InternSprint = new InputDtoUpdateSprintProgression.Sprint
+                {
+                    Progression = inputDtoSprint.Progression
+                }
+            };
+
+            var result = _useCaseUpdateSprintProgression.Execute(inputDtoUpdate);
+
+            if (result) return Ok();
+            return NotFound();
         }
 
         //  Delete requests
-        // TODO : implement
         [HttpDelete]
         [Route("{id:int}")]
         public ActionResult Delete(int id)
         {
-            throw new NotImplementedException();
+            var result = _useCaseDeleteSprint.Execute(id);
+
+            if (result) return Ok();
+            return NotFound();
         }
     }
 }

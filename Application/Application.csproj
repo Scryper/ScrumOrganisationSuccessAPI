@@ -14,8 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="UseCases\Sprint\Delete" />
-      <Folder Include="UseCases\Sprint\Put" />
       <Folder Include="UseCases\UserStory\Delete" />
       <Folder Include="UseCases\UserStory\Post" />
       <Folder Include="UseCases\UserStory\Put" />
