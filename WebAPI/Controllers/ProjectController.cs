@@ -36,7 +36,15 @@ namespace WebAPI.Controllers
             UseCaseDeleteProject useCaseDeleteProject)
         {
             _useCaseGetAllProjects = useCaseGetAllProjects;
+            _useCaseGetProjectsByIdProductOwner = useCaseGetProjectsByIdProductOwner;
+            _useCaseGetProjectsByIdScrumMaster = useCaseGetProjectsByIdScrumMaster;
+            _useCaseGetProjectById = useCaseGetProjectById;
+            
             _useCaseCreateProject = useCaseCreateProject;
+
+            _useCaseUpdateProjectRepositoryUrl = useCaseUpdateProjectRepositoryUrl;
+
+            _useCaseDeleteProject = useCaseDeleteProject;
         }
         
         // Get requests

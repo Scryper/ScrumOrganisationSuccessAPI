@@ -141,6 +141,8 @@ namespace WebAPI
             // User stories use cases
             services.AddSingleton<UseCaseGetAllUserStories>();
             services.AddSingleton<UseCaseGetUserStoriesByIdProject>();
+            services.AddSingleton<UseCaseGetUserStoriesByIdSprint>();
+            services.AddSingleton<UseCaseGetUserStoryById>();
             
             services.AddSingleton<UseCaseCreateUserStory>();
             
