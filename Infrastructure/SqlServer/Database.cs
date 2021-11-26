@@ -14,7 +14,7 @@ namespace Infrastructure.SqlServer
         // Create a SqlCommand with the right request
         public static SqlCommand GetCommand(string request)
         {
-            using var connection = GetConnection();
+            var connection = GetConnection();
             connection.Open();
 
             return new SqlCommand

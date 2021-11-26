@@ -9,7 +9,7 @@ namespace Infrastructure.SqlServer.Repositories.Comment
     public partial class CommentRepository : ICommentRepository
     {
         private readonly IDomainFactory<Domain.Comment> _commentFactory = new CommentFactory();
-        
+
         // Get requests
         public List<Domain.Comment> GetAll()
         {
