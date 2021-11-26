@@ -91,13 +91,13 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
         }
         
         // Put requests
-        public bool UpdateIsDone(int id, Domain.UserStory newUserStory)
+        public bool UpdateIsDone(int id, bool isDone)
         {
             var command = Database.GetCommand(ReqUpdateIsDone);
             
             // Parametrize the command
             command.Parameters.AddWithValue("@" + ColId, id);
-            command.Parameters.AddWithValue("@" + ColIsDone, newUserStory.IsDone);
+            command.Parameters.AddWithValue("@" + ColIsDone, isDone);
             
             return command.ExecuteNonQuery() > 0;
         }
