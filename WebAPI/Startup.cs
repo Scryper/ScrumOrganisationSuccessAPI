@@ -21,6 +21,9 @@ using Application.UseCases.Sprint.Delete;
 using Application.UseCases.Sprint.Get;
 using Application.UseCases.Sprint.Put;
 using Application.UseCases.User;
+using Application.UseCases.User.Delete;
+using Application.UseCases.User.Get;
+using Application.UseCases.User.Put;
 using Application.UseCases.UserStory;
 using Infrastructure.SqlServer.Repositories.Comment;
 using Infrastructure.SqlServer.Repositories.Meeting;
@@ -119,7 +122,18 @@ namespace WebAPI
             
             // Users use cases
             services.AddSingleton<UseCaseGetAllUsers>();
+            services.AddSingleton<UseCaseGetUserById>();
+            services.AddSingleton<UseCaseGetUsersByIdProject>();
+            services.AddSingleton<UseCaseGetUsersByIdMeeting>();
+
             services.AddSingleton<UseCaseCreateUser>();
+            
+            services.AddSingleton<UseCaseUpdateUserPseudo>();
+            services.AddSingleton<UseCaseUpdateUserEmail>();
+            services.AddSingleton<UseCaseUpdateUserPassword>();
+            services.AddSingleton<UseCaseUpdateUserRole>();
+            
+            services.AddSingleton<UseCaseDeleteUser>();
             
             // User stories use cases
             services.AddSingleton<UseCaseGetAllUserStories>();

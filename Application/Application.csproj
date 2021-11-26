@@ -17,8 +17,6 @@
       <Folder Include="UseCases\UserStory\Delete" />
       <Folder Include="UseCases\UserStory\Post" />
       <Folder Include="UseCases\UserStory\Put" />
-      <Folder Include="UseCases\User\Delete" />
-      <Folder Include="UseCases\User\Put" />
     </ItemGroup>
 
 </Project>
