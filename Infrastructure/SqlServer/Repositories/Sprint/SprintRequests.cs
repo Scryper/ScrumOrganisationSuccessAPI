@@ -3,6 +3,7 @@
     public partial class SprintRepository
     {
         public const string TableName = "sprint";
+        
         public const string ColId = "id";
         public const string ColSprintNumber = "sprint_number";
         public const string ColIdProject = "id_project";

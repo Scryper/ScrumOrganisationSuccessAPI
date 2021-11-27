@@ -3,7 +3,7 @@
     public partial class ProjectRepository
     {
         public const string TableName = "project";
-        public const string UserTableName = "user";
+        public const string UserTableName = "sos_user";
         
         public const string ColId = "id";
         public const string ColName = "name";
@@ -13,7 +13,7 @@
         public const string ColIdProductOwner = "id_product_owner";
         public const string ColIdScrumMaster = "id_scrum_master";
         
-        public const string UserColId = "user.id";
+        public const string UserColId = "sos_user.id";
 
         // Get requests
         private static readonly string ReqGetAll = $"select * from {TableName}"; 

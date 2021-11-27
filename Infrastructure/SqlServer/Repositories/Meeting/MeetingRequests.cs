@@ -4,7 +4,7 @@
     {
         public const string TableName = "meeting";
         public const string ParticipationTableName = "participation";
-        public const string UserTableName = "user";
+        public const string UserTableName = "sos_user";
         
         public const string ColId = "id";
         public const string ColIdSprint = "id_sprint";
@@ -13,7 +13,7 @@
 
         public const string ParticipationColIdMeeting = "participation.id_meeting";
         public const string ParticipationColIdUser = "participation.id_user";
-        public const string UserColId = "user.id";
+        public const string UserColId = "sos_user.id";
 
         // Get requests
         private static readonly string ReqGetAll = $"select * from {TableName}";
@@ -26,7 +26,7 @@
                                                           $"order by convert(date, {ColSchedule}) asc"; 
         
         private static readonly string ReqGetByIdUser = 
-                                $"select {ColId}, {ColIdSprint}, {ColSchedule}, {ColDescription} from {TableName} " +
+                                $"select * from {TableName} " +
                                 $"left join {ParticipationTableName} on {ColId} = {ParticipationColIdMeeting} " +
                                 $"left join {UserTableName} on {ParticipationColIdUser} = {UserColId} " +
                                 $"where {UserColId} = @{UserColId}";
