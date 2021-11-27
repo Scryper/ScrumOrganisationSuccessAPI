@@ -79,7 +79,7 @@ namespace WebAPI.Controllers
         }
         
         [HttpGet]
-        [Route("byId{id:int}")]
+        [Route("byId/{id:int}")]
         public ActionResult<OutputDtoUser> GetById(int id)
         {
             return _useCaseGetUserById.Execute(id);
@@ -137,7 +137,7 @@ namespace WebAPI.Controllers
         }
         
         [HttpPut]
-        [Route("emailUpdate{idForEmailUpdate:int}")]
+        [Route("emailUpdate/{idForEmailUpdate:int}")]
         public ActionResult UpdateEmail(int idForEmailUpdate, InputDtoUser inputDtoUser)
         {
             var inputDtoUpdate = new InputDtoUpdateUserEmail
@@ -156,7 +156,7 @@ namespace WebAPI.Controllers
         }
         
         [HttpPut]
-        [Route("pseudoUpdate{idForPseudoUpdate:int}")]
+        [Route("pseudoUpdate/{idForPseudoUpdate:int}")]
         public ActionResult UpdatePseudo(int idForPseudoUpdate, InputDtoUser inputDtoUser)
         {
             var inputDtoUpdate = new InputDtoUpdateUserPseudo

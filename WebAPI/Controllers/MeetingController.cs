@@ -63,14 +63,14 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("byUser{idUser:int}")]
+        [Route("byUser/{idUser:int}")]
         public ActionResult<List<OutputDtoMeeting>> GetByIdUser(int idUser)
         {
             return _useCaseGetMeetingsByIdUser.Execute(idUser);
         }
 
         [HttpGet]
-        [Route("bySprint{idSprint:int}")]
+        [Route("bySprint/{idSprint:int}")]
         public ActionResult<List<OutputDtoMeeting>> GetByIdSprint(int idSprint)
         {
             return _useCaseGetMeetingsByIdSprint.Execute(idSprint);
