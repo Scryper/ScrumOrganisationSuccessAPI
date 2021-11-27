@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Application.UseCases.Comment;
 using Application.UseCases.Comment.Delete;
 using Application.UseCases.Comment.Dtos;
@@ -51,15 +50,17 @@ namespace WebAPI.Controllers
             return _useCaseGetAllComments.Execute();
         }
 
+        // If routes would only have {id:int}, even if the name would change, the url would be for both :
+        // swagger/data/xxx -> so multiple endpoints matches
         [HttpGet]
-        [Route("{id:int}")]
+        [Route("byId/{id:int}")]
         public ActionResult<OutputDtoComment> GetById(int id)
         {
             return _useCaseGetCommentById.Execute(id);
         }
         
         [HttpGet]
-        [Route("{idUserStory:int}")]
+        [Route("byUserStory/{idUserStory:int}")]
         public ActionResult<List<OutputDtoComment>> GetByIdUserStory(int idUserStory)
         {
             return _useCaseGetCommentsByIdUserStory.Execute(idUserStory);

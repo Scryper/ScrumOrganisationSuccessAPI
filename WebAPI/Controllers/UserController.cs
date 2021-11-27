@@ -62,22 +62,24 @@ namespace WebAPI.Controllers
             return _useCaseGetAllUsers.Execute();
         }
 
+        // If routes would only have {id:int}, even if the name would change, the url would be for both :
+        // swagger/data/xxx -> so multiple endpoints matches
         [HttpGet]
-        [Route("{idProject:int}")]
+        [Route("byProject/{idProject:int}")]
         public ActionResult<List<OutputDtoUser>> GetByIdProject(int idProject)
         {
             return _useCaseGetUsersByIdProject.Execute(idProject);
         }
         
         [HttpGet]
-        [Route("{idMeeting:int}")]
+        [Route("byMeeting/{idMeeting:int}")]
         public ActionResult<List<OutputDtoUser>> GetByIdMeeting(int idMeeting)
         {
             return _useCaseGetUsersByIdMeeting.Execute(idMeeting);
         }
         
         [HttpGet]
-        [Route("{id:int}")]
+        [Route("byId{id:int}")]
         public ActionResult<OutputDtoUser> GetById(int id)
         {
             return _useCaseGetUserById.Execute(id);
@@ -94,8 +96,10 @@ namespace WebAPI.Controllers
 
         // Put requests
         // ids have different name because same name for same request type produces api load error
+        // If routes would only have {id:int}, even if the name would change, the url would be for both :
+        // swagger/data/xxx -> so multiple endpoints matches
         [HttpPut]
-        [Route("{idForRoleUpdate:int}")]
+        [Route("roleUpdate/{idForRoleUpdate:int}")]
         public ActionResult UpdateRole(int idForRoleUpdate, InputDtoUser inputDtoUser)
         {
             var inputDtoUpdate = new InputDtoUpdateUserRole
@@ -114,7 +118,7 @@ namespace WebAPI.Controllers
         }
         
         [HttpPut]
-        [Route("{idForPasswordUpdate:int}")]
+        [Route("passwordUpdate/{idForPasswordUpdate:int}")]
         public ActionResult UpdatePassword(int idForPasswordUpdate, InputDtoUser inputDtoUser)
         {
             var inputDtoUpdate = new InputDtoUpdateUserPassword
@@ -133,7 +137,7 @@ namespace WebAPI.Controllers
         }
         
         [HttpPut]
-        [Route("{idForEmailUpdate:int}")]
+        [Route("emailUpdate{idForEmailUpdate:int}")]
         public ActionResult UpdateEmail(int idForEmailUpdate, InputDtoUser inputDtoUser)
         {
             var inputDtoUpdate = new InputDtoUpdateUserEmail
@@ -152,7 +156,7 @@ namespace WebAPI.Controllers
         }
         
         [HttpPut]
-        [Route("{idForPseudoUpdate:int}")]
+        [Route("pseudoUpdate{idForPseudoUpdate:int}")]
         public ActionResult UpdatePseudo(int idForPseudoUpdate, InputDtoUser inputDtoUser)
         {
             var inputDtoUpdate = new InputDtoUpdateUserPseudo

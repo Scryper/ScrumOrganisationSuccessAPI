@@ -54,22 +54,24 @@ namespace WebAPI.Controllers
             return _useCaseGetAllProjects.Execute();
         }
 
+        // If routes would only have {id:int}, even if the name would change, the url would be for both :
+        // swagger/data/xxx -> so multiple endpoints matches
         [HttpGet]
-        [Route("{id:int}")]
+        [Route("byId/{id:int}")]
         public ActionResult<OutputDtoProject> GetById(int id)
         {
             return _useCaseGetProjectById.Execute(id);
         }
         
         [HttpGet]
-        [Route("{idProductOwner:int}")]
+        [Route("byProductOwner/{idProductOwner:int}")]
         public ActionResult<List<OutputDtoProject>> GetByIdProductOwner(int idProductOwner)
         {
             return _useCaseGetProjectsByIdProductOwner.Execute(idProductOwner);
         }
         
         [HttpGet]
-        [Route("{idScrumMaster:int}")]
+        [Route("byScrumMaster/{idScrumMaster:int}")]
         public ActionResult<List<OutputDtoProject>> GetByIdScrumMaster(int idScrumMaster)
         {
             return _useCaseGetProjectsByIdScrumMaster.Execute(idScrumMaster);
