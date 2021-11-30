@@ -44,7 +44,7 @@ namespace Infrastructure.SqlServer.Repositories.Meeting
             var command = Database.GetCommand(ReqGetByIdUser);
             
             // Parametrize the command
-            command.Parameters.AddWithValue("@" + UserColId, idUser);
+            command.Parameters.AddWithValue("@" + ColId, idUser);
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             

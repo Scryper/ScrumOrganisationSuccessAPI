@@ -30,7 +30,7 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
             var command = Database.GetCommand(ReqGetByIdSprint);
             
             // Parametrize the command
-            command.Parameters.AddWithValue("@" + SprintColId, idSprint);
+            command.Parameters.AddWithValue("@" + ColId, idSprint);
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
@@ -47,7 +47,7 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
             var command = Database.GetCommand(ReqGetByIdProject);
             
             // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
+            command.Parameters.AddWithValue("@" + ColId, idProject);
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             

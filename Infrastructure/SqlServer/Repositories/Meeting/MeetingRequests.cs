@@ -29,7 +29,7 @@
                                 $@"select * from {TableName} 
                                 left join {ParticipationTableName} on {ColId} = {ParticipationColIdMeeting} 
                                 left join {UserTableName} on {ParticipationColIdUser} = {UserColId} 
-                                where {UserColId} = @{UserColId}";
+                                where {UserColId} = @{ColId}";
         
         // Post requests
         private static readonly string ReqCreate = 
