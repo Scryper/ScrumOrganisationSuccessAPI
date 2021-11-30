@@ -24,48 +24,46 @@
         // Get requests
         private static readonly string ReqGetAll = $"select * from {TableName}";
         
-        private static readonly string ReqGetById = $"select * from {TableName} " +
-                                                    $"where {ColId} = @{ColId}";
+        private static readonly string ReqGetById = $@"select * from {TableName} 
+                                                    where {ColId} = @{ColId}";
 
         private static readonly string ReqGetByIdProject = 
-                                        $"select * " +
-                                        $"from {TableName} " +
-                                        $"left join {ProjectUserTableName} on {ColId} = {ProjectUserColIdUser} " +
-                                        $"left join {ProjectTableName} on {ProjectUserColIdProject} = {ProjectColId} "+
-                                        $"where {ProjectColId} = @{ProjectColId}";
+                                        $@"select * from {TableName} 
+                                        left join {ProjectUserTableName} on {ColId} = {ProjectUserColIdUser} 
+                                        left join {ProjectTableName} on {ProjectUserColIdProject} = {ProjectColId} 
+                                        where {ProjectColId} = @{ColId}";
         
         private static readonly string ReqGetByIdMeeting = 
-                                    $"select * " +
-                                    $"from {TableName} " +
-                                    $"left join {ParticipationTableName} on {ColId} = {ParticipationColIdUser} " +
-                                    $"left join {MeetingTableName} on {ParticipationColIdMeeting} = {MeetingColId} "+
-                                    $"where {MeetingColId} = @{MeetingColId}";
+                                    $@"select * from {TableName} 
+                                    left join {ParticipationTableName} on {ColId} = {ParticipationColIdUser} 
+                                    left join {MeetingTableName} on {ParticipationColIdMeeting} = {MeetingColId} 
+                                    where {MeetingColId} = @{ColId}";
 
         // Post requests
         private static readonly string ReqCreate = 
-                                    $"insert into {TableName}({ColPseudo}, {ColPassword}, {ColEmail}, {ColRole}) " + 
-                                    $"output inserted.{ColId} " +
-                                    $"values(@{ColPseudo}, @{ColPassword}, @{ColEmail}, @{ColRole})";
+                                    $@"insert into {TableName}({ColPseudo}, {ColPassword}, {ColEmail}, {ColRole}) 
+                                    output inserted.{ColId} 
+                                    values(@{ColPseudo}, @{ColPassword}, @{ColEmail}, @{ColRole})";
         
         // Put requests
-        private static readonly string ReqUpdateRole = $"update {TableName} " +
-                                                       $"set {ColRole} = @{ColRole} " +
-                                                       $"where {ColId} = @{ColId}";
+        private static readonly string ReqUpdateRole = $@"update {TableName} 
+                                                       set {ColRole} = @{ColRole} 
+                                                       where {ColId} = @{ColId}";
         
-        private static readonly string ReqUpdatePassword = $"update {TableName} " +
-                                                           $"set {ColPassword} = @{ColPassword} " +
-                                                           $"where {ColId} = @{ColId}";
+        private static readonly string ReqUpdatePassword = $@"update {TableName} 
+                                                           set {ColPassword} = @{ColPassword} 
+                                                           where {ColId} = @{ColId}";
         
-        private static readonly string ReqUpdateEmail = $"update {TableName} " +
-                                                        $"set {ColEmail} = @{ColEmail} " +
-                                                        $"where {ColId} = @{ColId}";
+        private static readonly string ReqUpdateEmail = $@"update {TableName} 
+                                                        set {ColEmail} = @{ColEmail} 
+                                                        where {ColId} = @{ColId}";
         
-        private static readonly string ReqUpdatePseudo = $"update {TableName} " +
-                                                         $"set {ColPseudo} = @{ColPseudo} " +
-                                                         $"where {ColId} = @{ColId}";
+        private static readonly string ReqUpdatePseudo = $@"update {TableName} 
+                                                         set {ColPseudo} = @{ColPseudo} 
+                                                         where {ColId} = @{ColId}";
         
         // Delete Requests
-        private static readonly string ReqDeleteById = $"delete from {TableName} " +
-                                                       $"where {ColId} = @{ColId}";
+        private static readonly string ReqDeleteById = $@"delete from {TableName} 
+                                                       where {ColId} = @{ColId}";
     }
 }

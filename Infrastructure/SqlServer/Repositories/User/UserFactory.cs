@@ -13,7 +13,7 @@ namespace Infrastructure.SqlServer.Repositories.User
                 Pseudo = reader.GetString(reader.GetOrdinal(UserRepository.ColPseudo)),
                 Password = reader.GetString(reader.GetOrdinal(UserRepository.ColPassword)),
                 Email = reader.GetString(reader.GetOrdinal(UserRepository.ColEmail)),
-                Role = reader.GetInt32(reader.GetOrdinal(UserRepository.ColRole))
+                Role = reader.GetInt16(reader.GetOrdinal(UserRepository.ColRole))
             };
         }
     }

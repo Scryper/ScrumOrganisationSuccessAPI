@@ -31,7 +31,7 @@ namespace Infrastructure.SqlServer.Repositories.User
             var command = Database.GetCommand(ReqGetByIdProject);
             
             // Parametrize the command
-            command.Parameters.AddWithValue("@" + ProjectColId, idProject);
+            command.Parameters.AddWithValue("@" + ColId, idProject);
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
@@ -49,7 +49,7 @@ namespace Infrastructure.SqlServer.Repositories.User
             var command = Database.GetCommand(ReqGetByIdMeeting);
             
             // Parametrize the command
-            command.Parameters.AddWithValue("@" + MeetingColId, idMeeting);
+            command.Parameters.AddWithValue("@" + ColId, idMeeting);
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             

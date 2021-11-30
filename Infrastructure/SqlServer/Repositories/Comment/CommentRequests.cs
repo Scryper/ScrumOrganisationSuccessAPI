@@ -12,26 +12,26 @@
         // Get requests
         private static readonly string ReqGetAll = $"select * from {TableName}"; 
         
-        private static readonly string ReqGetById = $"select * from {TableName} " +
-                                                    $"where {ColId} = @{ColId}";
+        private static readonly string ReqGetById = $@"select * from {TableName} 
+                                                    where {ColId} = @{ColId}";
         
-        private static readonly string ReqGetByIdUserStory = $"select * from {TableName} " +
-                                                             $"where {ColIdUserStory} = @{ColIdUserStory} " +
-                                                             $"order by convert(date, {ColPostedAt}) desc";
+        private static readonly string ReqGetByIdUserStory = $@"select * from {TableName} 
+                                                             where {ColIdUserStory} = @{ColIdUserStory} 
+                                                             order by convert(date, {ColPostedAt}) desc";
 
         // Post requests
         private static readonly string ReqCreate = 
-                            $"insert into {TableName}({ColIdUserStory}, {ColIdUser}, {ColPostedAt}, {ColContent}) " + 
-                            $"output inserted.{ColId} " +
-                            $"values(@{ColIdUserStory}, @{ColIdUser}, convert(datetime, @{ColPostedAt}, 131), @{ColContent})";
+                            $@"insert into {TableName}({ColIdUserStory}, {ColIdUser}, {ColPostedAt}, {ColContent}) 
+                            output inserted.{ColId} 
+                            values(@{ColIdUserStory}, @{ColIdUser}, convert(datetime, @{ColPostedAt}, 131), @{ColContent})";
         
         // Put requests
-        private static readonly string ReqUpdateContent = $"update {TableName} " +
-                                                          $"set {ColContent} = @{ColContent} " +
-                                                          $"where {ColId} = @{ColId}";
+        private static readonly string ReqUpdateContent = $@"update {TableName} 
+                                                          set {ColContent} = @{ColContent} 
+                                                          where {ColId} = @{ColId}";
         
         // Delete Requests
-        private static readonly string ReqDeleteById = $"delete from {TableName} " +
-                                                       $"where {ColId} = @{ColId}";
+        private static readonly string ReqDeleteById = $@"delete from {TableName} 
+                                                       where {ColId} = @{ColId}";
     }
 }

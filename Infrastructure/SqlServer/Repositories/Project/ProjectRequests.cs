@@ -18,34 +18,34 @@
         // Get requests
         private static readonly string ReqGetAll = $"select * from {TableName}"; 
         
-        private static readonly string ReqGetById = $"select * from {TableName} " + 
-                                                    $"where {ColId} = @{ColId}";
+        private static readonly string ReqGetById = $@"select * from {TableName} 
+                                                    where {ColId} = @{ColId}";
         
         private static readonly string ReqGetByIdProductOwner = 
-                                                    $"select * from {TableName} " +
-                                                    $"left join {UserTableName} on {UserColId} = {ColIdProductOwner} " +
-                                                    $"where {UserColId} = @{ColIdProductOwner}";
+                                                    $@"select * from {TableName} 
+                                                    left join {UserTableName} on {UserColId} = {ColIdProductOwner} 
+                                                    where {UserColId} = @{ColIdProductOwner}";
         
         private static readonly string ReqGetByIdScrumMaster = 
-                                                    $"select * from {TableName} " +
-                                                    $"left join {UserTableName} on {UserColId} = {ColIdScrumMaster} "+
-                                                    $"where {UserColId} = @{ColIdScrumMaster}";
+                                                    $@"select * from {TableName} 
+                                                    left join {UserTableName} on {UserColId} = {ColIdScrumMaster} 
+                                                    where {UserColId} = @{ColIdScrumMaster}";
         
         // Post requests
         private static readonly string ReqCreate = 
-                    $"insert into {TableName}({ColName}, {ColDeadline}, {ColDescription}, " + 
-                    $"{ColRepositoryUrl}, {ColIdProductOwner}, {ColIdScrumMaster}) " + // Second part of insert
-                    $"output inserted.{ColId} " +
-                    $"values(@{ColName}, @{ColDeadline}, @{ColDescription}, " +
-                    $"@{ColRepositoryUrl}, @{ColIdProductOwner}, @{ColIdScrumMaster})"; // Second part of values
+                    $@"insert into {TableName}({ColName}, {ColDeadline}, {ColDescription}, 
+                    {ColRepositoryUrl}, {ColIdProductOwner}, {ColIdScrumMaster})  // Second part of insert
+                    output inserted.{ColId} 
+                    values(@{ColName}, @{ColDeadline}, @{ColDescription}, 
+                    @{ColRepositoryUrl}, @{ColIdProductOwner}, @{ColIdScrumMaster})"; // Second part of values
         
         // Put requests
-        private static readonly string ReqUpdateRepositoryUrl = $"update {TableName} " +
-                                                                $"set {ColRepositoryUrl} = @{ColRepositoryUrl} " +
-                                                                $"where {ColId} = @{ColId}";
+        private static readonly string ReqUpdateRepositoryUrl = $@"update {TableName} 
+                                                                set {ColRepositoryUrl} = @{ColRepositoryUrl} 
+                                                                where {ColId} = @{ColId}";
         
         // Delete Requests
-        private static readonly string ReqDeleteById = $"delete from {TableName} " +
-                                                       $"where {ColId} = @{ColId}";
+        private static readonly string ReqDeleteById = $@"delete from {TableName} 
+                                                       where {ColId} = @{ColId}";
     }
 }
