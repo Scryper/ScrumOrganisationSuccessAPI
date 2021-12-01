@@ -1,21 +1,21 @@
-﻿using Application.UseCases.User.Dtos;
+﻿using Application.Services.User;
+using Application.UseCases.User.Dtos;
 using Application.UseCases.Utils;
-using Infrastructure.SqlServer.Repositories.User;
 
 namespace Application.UseCases.User.Get
 {
     public class UseCaseGetUserById : IQueryFiltering<OutputDtoUser, int>
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
 
-        public UseCaseGetUserById(IUserRepository userRepository)
+        public UseCaseGetUserById(IUserService userService)
         {
-            _userRepository = userRepository;
+            _userService = userService;
         }
 
         public OutputDtoUser Execute(int filter)
         {
-            var user = _userRepository.GetById(filter);
+            var user = _userService.GetById(filter);
 
             return Mapper.GetInstance().Map<OutputDtoUser>(user);
         }
