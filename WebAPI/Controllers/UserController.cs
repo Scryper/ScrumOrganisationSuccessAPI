@@ -18,6 +18,7 @@ namespace WebAPI.Controllers
         // Use cases
         private readonly UseCaseGetAllUsers _useCaseGetAllUsers;
         private readonly UseCaseGetUserById _useCaseGetUserById;
+        private readonly UseCaseGetUserByEmail _useCaseGetUserByEmail;
         private readonly UseCaseGetUsersByIdMeeting _useCaseGetUsersByIdMeeting;
         private readonly UseCaseGetUsersByIdProject _useCaseGetUsersByIdProject;
 
@@ -36,6 +37,7 @@ namespace WebAPI.Controllers
         public UserController(
             UseCaseGetAllUsers useCaseGetAllUsers,
             UseCaseGetUserById useCaseGetUserById,
+            UseCaseGetUserByEmail useCaseGetUserByEmail,
             UseCaseGetUsersByIdMeeting useCaseGetUsersByIdMeeting,
             UseCaseGetUsersByIdProject useCaseGetUsersByIdProject,
             UseCaseCreateUser useCaseCreateUser,
@@ -44,10 +46,11 @@ namespace WebAPI.Controllers
             UseCaseUpdateUserPseudo useCaseUpdateUserPseudo,
             UseCaseUpdateUserRole useCaseUpdateUserRole,
             UseCaseDeleteUser useCaseDeleteUser,
-                UseCaseAuthenticateUser useCaseAuthenticateUser)
+            UseCaseAuthenticateUser useCaseAuthenticateUser)
         {
             _useCaseGetAllUsers = useCaseGetAllUsers;
             _useCaseGetUserById = useCaseGetUserById;
+            _useCaseGetUserByEmail = useCaseGetUserByEmail;
             _useCaseGetUsersByIdMeeting = useCaseGetUsersByIdMeeting;
             _useCaseGetUsersByIdProject = useCaseGetUsersByIdProject;
             
@@ -91,6 +94,13 @@ namespace WebAPI.Controllers
         public ActionResult<OutputDtoUser> GetById(int id)
         {
             return _useCaseGetUserById.Execute(id);
+        }
+
+        [HttpGet]
+        [Route("byEmail/{email:alpha}")]
+        public ActionResult<OutputDtoUser> GetByEmail(string email)
+        {
+            return _useCaseGetUserByEmail.Execute(email);
         }
 
         // Post requests

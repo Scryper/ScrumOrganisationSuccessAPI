@@ -131,6 +131,7 @@ namespace WebAPI
             // Users use cases
             services.AddSingleton<UseCaseGetAllUsers>();
             services.AddSingleton<UseCaseGetUserById>();
+            services.AddSingleton<UseCaseGetUserByEmail>();
             services.AddSingleton<UseCaseGetUsersByIdProject>();
             services.AddSingleton<UseCaseGetUsersByIdMeeting>();
 
