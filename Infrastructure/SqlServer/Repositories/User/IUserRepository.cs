@@ -15,10 +15,10 @@ namespace Infrastructure.SqlServer.Repositories.User
         Domain.User Create(Domain.User user);
         
         // Put requests
-        bool UpdateRole(int id, Domain.User newUser);
-        bool UpdatePassword(int id, Domain.User newUser);
-        bool UpdateEmail(int id, Domain.User newUser);
-        bool UpdatePseudo(int id, Domain.User newUser);
+        bool UpdateRole(int id, int newRole);
+        bool UpdatePassword(int id, string newPassword);
+        bool UpdateEmail(int id, string newEmail);
+        bool UpdatePseudo(int id, string newPseudo);
 
         // Delete requests
         bool Delete(int id);

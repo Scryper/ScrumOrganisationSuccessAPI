@@ -31,7 +31,7 @@ namespace Infrastructure.SqlServer.Repositories.User
             var command = Database.GetCommand(ReqGetByIdProject);
             
             // Parametrize the command
-            command.Parameters.AddWithValue("@" + ProjectColId, idProject);
+            command.Parameters.AddWithValue("@" + ColId, idProject);
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
@@ -49,7 +49,7 @@ namespace Infrastructure.SqlServer.Repositories.User
             var command = Database.GetCommand(ReqGetByIdMeeting);
             
             // Parametrize the command
-            command.Parameters.AddWithValue("@" + MeetingColId, idMeeting);
+            command.Parameters.AddWithValue("@" + ColId, idMeeting);
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
@@ -107,49 +107,49 @@ namespace Infrastructure.SqlServer.Repositories.User
 
         // Put requests
         // TODO : factorisation
-        public bool UpdateRole(int id, Domain.User newUser)
+        public bool UpdateRole(int id, int newRole)
         {
             var command = Database.GetCommand(ReqUpdateRole);
             
             // Parametrize the command
             command.Parameters.AddWithValue("@" + ColId, id);
-            command.Parameters.AddWithValue("@" + ColRole, newUser.Role);
+            command.Parameters.AddWithValue("@" + ColRole, newRole);
 
             return command.ExecuteNonQuery() > 0;
         }
 
         // TODO : factorisation
-        public bool UpdatePassword(int id, Domain.User newUser)
+        public bool UpdatePassword(int id, string newPassword)
         {
             var command = Database.GetCommand(ReqUpdatePassword);
             
             // Parametrize the command
             command.Parameters.AddWithValue("@" + ColId, id);
-            command.Parameters.AddWithValue("@" + ColPassword, newUser.Password);
+            command.Parameters.AddWithValue("@" + ColPassword, newPassword);
 
             return command.ExecuteNonQuery() > 0;
         }
 
         // TODO : factorisation
-        public bool UpdateEmail(int id, Domain.User newUser)
+        public bool UpdateEmail(int id, string newEmail)
         {
             var command = Database.GetCommand(ReqUpdateEmail);
             
             // Parametrize the command
             command.Parameters.AddWithValue("@" + ColId, id);
-            command.Parameters.AddWithValue("@" + ColEmail, newUser.Email);
+            command.Parameters.AddWithValue("@" + ColEmail, newEmail);
 
             return command.ExecuteNonQuery() > 0;
         }
 
         // TODO : factorisation
-        public bool UpdatePseudo(int id, Domain.User newUser)
+        public bool UpdatePseudo(int id, string newPseudo)
         {
             var command = Database.GetCommand(ReqUpdatePseudo);
             
             // Parametrize the command
             command.Parameters.AddWithValue("@" + ColId, id);
-            command.Parameters.AddWithValue("@" + ColPseudo, newUser.Pseudo);
+            command.Parameters.AddWithValue("@" + ColPseudo, newPseudo);
 
             return command.ExecuteNonQuery() > 0;
         }

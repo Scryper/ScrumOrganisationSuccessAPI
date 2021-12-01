@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using Infrastructure.SqlServer.Utils;
 
 namespace Infrastructure.SqlServer.Repositories.Meeting
@@ -23,7 +23,7 @@ namespace Infrastructure.SqlServer.Repositories.Meeting
 
             return comments;
         }
-
+        
         public Domain.Meeting GetById(int id)
         {
             var command = Database.GetCommand(ReqGetById);
@@ -36,7 +36,24 @@ namespace Infrastructure.SqlServer.Repositories.Meeting
             // Return the meeting if found, null if not
             return reader.Read() ? _meetingFactory.CreateFromSqlReader(reader) : null;
         }
-        
+
+        public List<Domain.Meeting> GetByIdUser(int idUser)
+        {
+            var meetings = new List<Domain.Meeting>();
+
+            var command = Database.GetCommand(ReqGetByIdUser);
+            
+            // Parametrize the command
+            command.Parameters.AddWithValue("@" + ColId, idUser);
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            
+            // Add all meetings
+            while(reader.Read()) meetings.Add(_meetingFactory.CreateFromSqlReader(reader));
+
+            return meetings;
+        }
+
         // TODO : factorisation with get by id user
         public List<Domain.Meeting> GetByIdSprint(int idSprint)
         {
@@ -55,22 +72,7 @@ namespace Infrastructure.SqlServer.Repositories.Meeting
             return meetings;
         }
 
-        public List<Domain.Meeting> GetByIdUser(int idUser)
-        {
-            var meetings = new List<Domain.Meeting>();
-
-            var command = Database.GetCommand(ReqGetByIdUser);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + UserColId, idUser);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all meetings
-            while(reader.Read()) meetings.Add(_meetingFactory.CreateFromSqlReader(reader));
-
-            return meetings;
-        }
+        
 
         // Post requests
         public Domain.Meeting Create(Domain.Meeting meeting)
@@ -92,13 +94,13 @@ namespace Infrastructure.SqlServer.Repositories.Meeting
         }
 
         // Put requests
-        public bool UpdateSchedule(int id, Domain.Meeting meeting)
+        public bool UpdateSchedule(int id, DateTime newSchedule)
         {
             var command = Database.GetCommand(ReqUpdateSchedule);
             
             // Parametrize the command
             command.Parameters.AddWithValue("@" + ColId, id);
-            command.Parameters.AddWithValue("@" + ColSchedule, meeting.Schedule);
+            command.Parameters.AddWithValue("@" + ColSchedule, newSchedule);
 
             return command.ExecuteNonQuery() > 0;
         }

@@ -1,8 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Application.Security.Models;
+using System.Collections.Generic;
 using Application.UseCases.User;
+using Application.UseCases.User.Delete;
 using Application.UseCases.User.Dtos;
+using Application.UseCases.User.Get;
+using Application.UseCases.User.Put;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -13,17 +17,49 @@ namespace WebAPI.Controllers
     {
         // Use cases
         private readonly UseCaseGetAllUsers _useCaseGetAllUsers;
+        private readonly UseCaseGetUserById _useCaseGetUserById;
+        private readonly UseCaseGetUsersByIdMeeting _useCaseGetUsersByIdMeeting;
+        private readonly UseCaseGetUsersByIdProject _useCaseGetUsersByIdProject;
+
         private readonly UseCaseCreateUser _useCaseCreateUser;
+
+        private readonly UseCaseUpdateUserRole _useCaseUpdateUserRole;
+        private readonly UseCaseUpdateUserEmail _useCaseUpdateUserEmail;
+        private readonly UseCaseUpdateUserPassword _useCaseUpdateUserPassword;
+        private readonly UseCaseUpdateUserPseudo _useCaseUpdateUserPseudo;
+        
+        private readonly UseCaseDeleteUser _useCaseDeleteUser;
+        
         private readonly UseCaseAuthenticateUser _useCaseAuthenticateUser;
         
         // Constructor
         public UserController(
             UseCaseGetAllUsers useCaseGetAllUsers,
+            UseCaseGetUserById useCaseGetUserById,
+            UseCaseGetUsersByIdMeeting useCaseGetUsersByIdMeeting,
+            UseCaseGetUsersByIdProject useCaseGetUsersByIdProject,
             UseCaseCreateUser useCaseCreateUser,
-            UseCaseAuthenticateUser useCaseAuthenticateUser)
+            UseCaseUpdateUserEmail useCaseUpdateUserEmail,
+            UseCaseUpdateUserPassword useCaseUpdateUserPassword,
+            UseCaseUpdateUserPseudo useCaseUpdateUserPseudo,
+            UseCaseUpdateUserRole useCaseUpdateUserRole,
+            UseCaseDeleteUser useCaseDeleteUser,
+                UseCaseAuthenticateUser useCaseAuthenticateUser)
         {
             _useCaseGetAllUsers = useCaseGetAllUsers;
+            _useCaseGetUserById = useCaseGetUserById;
+            _useCaseGetUsersByIdMeeting = useCaseGetUsersByIdMeeting;
+            _useCaseGetUsersByIdProject = useCaseGetUsersByIdProject;
+            
             _useCaseCreateUser = useCaseCreateUser;
+
+            _useCaseUpdateUserEmail = useCaseUpdateUserEmail;
+            _useCaseUpdateUserPassword = useCaseUpdateUserPassword;
+            _useCaseUpdateUserPseudo = useCaseUpdateUserPseudo;
+            _useCaseUpdateUserRole = useCaseUpdateUserRole;
+            
+            _useCaseDeleteUser = useCaseDeleteUser;
+            
             _useCaseAuthenticateUser = useCaseAuthenticateUser;
         }
 
@@ -34,28 +70,27 @@ namespace WebAPI.Controllers
             return _useCaseGetAllUsers.Execute();
         }
 
-        // TODO : implement
+        // If routes would only have {id:int}, even if the name would change, the url would be for both :
+        // swagger/data/xxx -> so multiple endpoints matches
         [HttpGet]
-        [Route("{idProject:int}")]
+        [Route("byProject/{idProject:int}")]
         public ActionResult<List<OutputDtoUser>> GetByIdProject(int idProject)
         {
-            throw new NotImplementedException();
+            return _useCaseGetUsersByIdProject.Execute(idProject);
         }
         
-        // TODO : implement
         [HttpGet]
-        [Route("{idMeeting:int}")]
+        [Route("byMeeting/{idMeeting:int}")]
         public ActionResult<List<OutputDtoUser>> GetByIdMeeting(int idMeeting)
         {
-            throw new NotImplementedException();
+            return _useCaseGetUsersByIdMeeting.Execute(idMeeting);
         }
         
-        // TODO : implement
         [HttpGet]
-        [Route("{id:int}")]
+        [Route("byId/{id:int}")]
         public ActionResult<OutputDtoUser> GetById(int id)
         {
-            throw new NotImplementedException();
+            return _useCaseGetUserById.Execute(id);
         }
 
         // Post requests
@@ -82,45 +117,93 @@ namespace WebAPI.Controllers
 
         // Put requests
         // ids have different name because same name for same request type produces api load error
-        // TODO : implement
+        // If routes would only have {id:int}, even if the name would change, the url would be for both :
+        // swagger/data/xxx -> so multiple endpoints matches
         [HttpPut]
-        [Route("{idForRoleUpdate:int}")]
-        public ActionResult UpdateRole(int idForRoleUpdate, InputDtoUser inInputDtoUser)
+        [Route("roleUpdate/{idForRoleUpdate:int}")]
+        public ActionResult UpdateRole(int idForRoleUpdate, InputDtoUser inputDtoUser)
         {
-            throw new NotImplementedException();
+            var inputDtoUpdate = new InputDtoUpdateUserRole
+            {
+                Id = idForRoleUpdate,
+                InternUser = new InputDtoUpdateUserRole.User
+                {
+                    Role = inputDtoUser.Role
+                }
+            };
+            
+            var result = _useCaseUpdateUserRole.Execute(inputDtoUpdate);
+
+            if (result) return Ok();
+            return NotFound();
         }
         
-        // TODO : implement
         [HttpPut]
-        [Route("{idForPasswordUpdate:int}")]
-        public ActionResult UpdatePassword(int idForPasswordUpdate, InputDtoUser inInputDtoUser)
+        [Route("passwordUpdate/{idForPasswordUpdate:int}")]
+        public ActionResult UpdatePassword(int idForPasswordUpdate, InputDtoUser inputDtoUser)
         {
-            throw new NotImplementedException();
+            var inputDtoUpdate = new InputDtoUpdateUserPassword
+            {
+                Id = idForPasswordUpdate,
+                InternUser = new InputDtoUpdateUserPassword.User
+                {
+                    Password = inputDtoUser.Password
+                }
+            };
+            
+            var result = _useCaseUpdateUserPassword.Execute(inputDtoUpdate);
+
+            if (result) return Ok();
+            return NotFound();
         }
         
-        // TODO : implement
         [HttpPut]
-        [Route("{idForEmailUpdate:int}")]
-        public ActionResult UpdateEmail(int idForEmailUpdate, InputDtoUser inInputDtoUser)
+        [Route("emailUpdate/{idForEmailUpdate:int}")]
+        public ActionResult UpdateEmail(int idForEmailUpdate, InputDtoUser inputDtoUser)
         {
-            throw new NotImplementedException();
+            var inputDtoUpdate = new InputDtoUpdateUserEmail
+            {
+                Id = idForEmailUpdate,
+                InternUser = new InputDtoUpdateUserEmail.User
+                {
+                    Email = inputDtoUser.Email
+                }
+            };
+            
+            var result = _useCaseUpdateUserEmail.Execute(inputDtoUpdate);
+
+            if (result) return Ok();
+            return NotFound();
         }
         
-        // TODO : implement
         [HttpPut]
-        [Route("{idForPseudoUpdate:int}")]
-        public ActionResult UpdatePseudo(int idForPseudoUpdate, InputDtoUser inInputDtoUser)
+        [Route("pseudoUpdate/{idForPseudoUpdate:int}")]
+        public ActionResult UpdatePseudo(int idForPseudoUpdate, InputDtoUser inputDtoUser)
         {
-            throw new NotImplementedException();
+            var inputDtoUpdate = new InputDtoUpdateUserPseudo
+            {
+                Id = idForPseudoUpdate,
+                InternUser = new InputDtoUpdateUserPseudo.User
+                {
+                    Pseudo = inputDtoUser.Pseudo
+                }
+            };
+            
+            var result = _useCaseUpdateUserPseudo.Execute(inputDtoUpdate);
+
+            if (result) return Ok();
+            return NotFound();
         }
 
         //  Delete requests
-        // TODO : implement
         [HttpDelete]
         [Route("{id:int}")]
         public ActionResult Delete(int id)
         {
-            throw new NotImplementedException();
+            var result = _useCaseDeleteUser.Execute(id);
+            
+            if (result) return Ok();
+            return NotFound();
         }
     }
 }

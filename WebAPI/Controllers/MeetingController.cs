@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Application.UseCases.Meeting;
+using Application.UseCases.Meeting.Delete;
 using Application.UseCases.Meeting.Dtos;
+using Application.UseCases.Meeting.Get;
+using Application.UseCases.Meeting.Put;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -12,15 +14,36 @@ namespace WebAPI.Controllers
     {
         // Use cases
         private readonly UseCaseGetAllMeetings _useCaseGetAllMeetings;
+        private readonly UseCaseGetMeetingById _useCaseGetMeetingById;
+        private readonly UseCaseGetMeetingsByIdSprint _useCaseGetMeetingsByIdSprint;
+        private readonly UseCaseGetMeetingsByIdUser _useCaseGetMeetingsByIdUser;
+        
         private readonly UseCaseCreateMeeting _useCaseCreateMeeting;
+
+        private readonly UseCaseUpdateMeetingSchedule _useCaseUpdateMeetingSchedule;
+
+        private readonly UseCaseDeleteMeeting _useCaseDeleteMeeting;
 
         // Constructor
         public MeetingController(
             UseCaseGetAllMeetings useCaseGetAllMeetings,
-            UseCaseCreateMeeting useCaseCreateMeeting)
+            UseCaseGetMeetingById useCaseGetMeetingById,
+            UseCaseGetMeetingsByIdSprint useCaseGetMeetingsByIdSprint,
+            UseCaseGetMeetingsByIdUser useCaseGetMeetingsByIdUser,
+            UseCaseCreateMeeting useCaseCreateMeeting,
+            UseCaseUpdateMeetingSchedule useCaseUpdateMeetingSchedule,
+            UseCaseDeleteMeeting useCaseDeleteMeeting)
         {
             _useCaseGetAllMeetings = useCaseGetAllMeetings;
+            _useCaseGetMeetingById = useCaseGetMeetingById;
+            _useCaseGetMeetingsByIdSprint = useCaseGetMeetingsByIdSprint;
+            _useCaseGetMeetingsByIdUser = useCaseGetMeetingsByIdUser;
+            
             _useCaseCreateMeeting = useCaseCreateMeeting;
+
+            _useCaseUpdateMeetingSchedule = useCaseUpdateMeetingSchedule;
+            
+            _useCaseDeleteMeeting = useCaseDeleteMeeting;
         }
 
         // Get requests
@@ -30,28 +53,27 @@ namespace WebAPI.Controllers
             return _useCaseGetAllMeetings.Execute();
         }
 
-        // TODO : implement
+        // If routes would only have {id:int}, even if the name would change, the url would be for both :
+        // swagger/data/xxx -> so multiple endpoints matches
         [HttpGet]
-        [Route("{id:int}")]
-        public ActionResult<List<OutputDtoMeeting>> GetById(int id)
+        [Route("byId/{id:int}")]
+        public ActionResult<OutputDtoMeeting> GetById(int id)
         {
-            throw new NotImplementedException();
+            return _useCaseGetMeetingById.Execute(id);
         }
 
-        // TODO : implement
         [HttpGet]
-        [Route("{idUser:int}")]
+        [Route("byUser/{idUser:int}")]
         public ActionResult<List<OutputDtoMeeting>> GetByIdUser(int idUser)
         {
-            throw new NotImplementedException();
+            return _useCaseGetMeetingsByIdUser.Execute(idUser);
         }
 
-        // TODO : implement
         [HttpGet]
-        [Route("{idSprint:int}")]
+        [Route("bySprint/{idSprint:int}")]
         public ActionResult<List<OutputDtoMeeting>> GetByIdSprint(int idSprint)
         {
-            throw new NotImplementedException();
+            return _useCaseGetMeetingsByIdSprint.Execute(idSprint);
         }
 
         // Post requests
@@ -64,21 +86,34 @@ namespace WebAPI.Controllers
         }
 
         // Put requests
-        // TODO : implement
         [HttpPut]
         [Route("{id:int}")]
         public ActionResult UpdateSchedule(int id, InputDtoMeeting newMeeting)
         {
-            throw new NotImplementedException();
+            var inputDtoUpdate = new InputDtoUpdateScheduleMeeting
+            {
+                Id = id,
+                InternMeeting = new InputDtoUpdateScheduleMeeting.Meeting
+                {
+                    Schedule = newMeeting.Schedule
+                }
+            };
+            
+            var result = _useCaseUpdateMeetingSchedule.Execute(inputDtoUpdate);
+
+            if (result) return Ok();
+            return NotFound();
         }
 
         //  Delete requests
-        // TODO : implement
         [HttpDelete]
         [Route("{id:int}")]
         public ActionResult Delete(int id)
         {
-            throw new NotImplementedException();
+            var result = _useCaseDeleteMeeting.Execute(id);
+
+            if (result) return Ok();
+            return NotFound();
         }
     }
 }

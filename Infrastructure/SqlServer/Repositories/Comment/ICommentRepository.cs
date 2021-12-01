@@ -13,7 +13,7 @@ namespace Infrastructure.SqlServer.Repositories.Comment
         Domain.Comment Create(Domain.Comment comment);
         
         // Put requests
-        bool UpdateContent(int id, Domain.Comment comment);
+        bool UpdateContent(int id, string content);
 
         // Delete requests
         bool Delete(int id);

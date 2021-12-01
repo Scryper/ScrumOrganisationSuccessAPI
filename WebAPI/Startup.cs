@@ -7,11 +7,29 @@ using Application.Services.Sprint;
 using Application.Services.User;
 using Application.Services.UserStory;
 using Application.UseCases.Comment;
+using Application.UseCases.Comment.Delete;
+using Application.UseCases.Comment.Get;
+using Application.UseCases.Comment.Put;
 using Application.UseCases.Meeting;
+using Application.UseCases.Meeting.Delete;
+using Application.UseCases.Meeting.Get;
+using Application.UseCases.Meeting.Put;
 using Application.UseCases.Project;
+using Application.UseCases.Project.Delete;
+using Application.UseCases.Project.Get;
+using Application.UseCases.Project.Put;
 using Application.UseCases.Sprint;
+using Application.UseCases.Sprint.Delete;
+using Application.UseCases.Sprint.Get;
+using Application.UseCases.Sprint.Put;
 using Application.UseCases.User;
+using Application.UseCases.User.Delete;
+using Application.UseCases.User.Get;
+using Application.UseCases.User.Put;
 using Application.UseCases.UserStory;
+using Application.UseCases.UserStory.Delete;
+using Application.UseCases.UserStory.Get;
+using Application.UseCases.UserStory.Put;
 using Infrastructure.SqlServer.Repositories.Comment;
 using Infrastructure.SqlServer.Repositories.Meeting;
 using Infrastructure.SqlServer.Repositories.Project;
@@ -66,28 +84,77 @@ namespace WebAPI
             // Add use cases
             // Comments use cases
             services.AddSingleton<UseCaseGetAllComments>();
+            services.AddSingleton<UseCaseGetCommentById>();
+            services.AddSingleton<UseCaseGetCommentsByIdUserStory>();
+
             services.AddSingleton<UseCaseCreateComment>();
+            
+            services.AddSingleton<UseCaseUpdateCommentContent>();
+            
+            services.AddSingleton<UseCaseDeleteComment>();
             
             // Meetings use cases
             services.AddSingleton<UseCaseGetAllMeetings>();
+            services.AddSingleton<UseCaseGetMeetingById>();
+            services.AddSingleton<UseCaseGetMeetingsByIdSprint>();
+            services.AddSingleton<UseCaseGetMeetingsByIdUser>();
+            
             services.AddSingleton<UseCaseCreateMeeting>();
             
+            services.AddSingleton<UseCaseUpdateMeetingSchedule>();
+            
+            services.AddSingleton<UseCaseDeleteMeeting>();
+
             // Projects use cases
             services.AddSingleton<UseCaseGetAllProjects>();
+            services.AddSingleton<UseCaseGetProjectById>();
+            services.AddSingleton<UseCaseGetProjectsByIdProductOwner>();
+            services.AddSingleton<UseCaseGetProjectsByIdScrumMaster>();
+            
             services.AddSingleton<UseCaseCreateProject>();
+            
+            services.AddSingleton<UseCaseUpdateProjectRepositoryUrl>();
+            
+            services.AddSingleton<UseCaseDeleteProject>();
             
             // Sprints use cases
             services.AddSingleton<UseCaseGetAllSprints>();
+            services.AddSingleton<UseCaseGetSprintsByIdProject>();
+            services.AddSingleton<UseCaseGetSprintById>();
+            
             services.AddSingleton<UseCaseCreateSprint>();
+            
+            services.AddSingleton<UseCaseUpdateSprintProgression>();
+            
+            services.AddSingleton<UseCaseDeleteSprint>();
             
             // Users use cases
             services.AddSingleton<UseCaseGetAllUsers>();
+            services.AddSingleton<UseCaseGetUserById>();
+            services.AddSingleton<UseCaseGetUsersByIdProject>();
+            services.AddSingleton<UseCaseGetUsersByIdMeeting>();
+
             services.AddSingleton<UseCaseCreateUser>();
             services.AddSingleton<UseCaseAuthenticateUser>();
             
+            services.AddSingleton<UseCaseUpdateUserPseudo>();
+            services.AddSingleton<UseCaseUpdateUserEmail>();
+            services.AddSingleton<UseCaseUpdateUserPassword>();
+            services.AddSingleton<UseCaseUpdateUserRole>();
+            
+            services.AddSingleton<UseCaseDeleteUser>();
+            
             // User stories use cases
             services.AddSingleton<UseCaseGetAllUserStories>();
+            services.AddSingleton<UseCaseGetUserStoriesByIdProject>();
+            services.AddSingleton<UseCaseGetUserStoriesByIdSprint>();
+            services.AddSingleton<UseCaseGetUserStoryById>();
+            
             services.AddSingleton<UseCaseCreateUserStory>();
+            
+            services.AddSingleton<UseCaseUpdateUserStoryIsDone>();
+            
+            services.AddSingleton<UseCaseDeleteUserStory>();
             
             services.AddControllers();
             

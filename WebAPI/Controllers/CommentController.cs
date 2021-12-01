@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Application.UseCases.Comment;
+using Application.UseCases.Comment.Delete;
 using Application.UseCases.Comment.Dtos;
+using Application.UseCases.Comment.Get;
+using Application.UseCases.Comment.Put;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -12,15 +14,33 @@ namespace WebAPI.Controllers
     {
         // Use cases
         private readonly UseCaseGetAllComments _useCaseGetAllComments;
+        private readonly UseCaseGetCommentById _useCaseGetCommentById;
+        private readonly UseCaseGetCommentsByIdUserStory _useCaseGetCommentsByIdUserStory;
+        
         private readonly UseCaseCreateComment _useCaseCreateComment;
+
+        private readonly UseCaseUpdateCommentContent _useCaseUpdateCommentContent;
+
+        private readonly UseCaseDeleteComment _useCaseDeleteComment;
 
         // Constructor
         public CommentController(
             UseCaseGetAllComments useCaseGetAllComments,
-            UseCaseCreateComment useCaseCreateComment)
+            UseCaseGetCommentById useCaseGetCommentById,
+            UseCaseGetCommentsByIdUserStory useCaseGetCommentsByIdUserStory,
+            UseCaseCreateComment useCaseCreateComment,
+            UseCaseUpdateCommentContent useCaseUpdateCommentContent,
+            UseCaseDeleteComment useCaseDeleteComment)
         {
             _useCaseGetAllComments = useCaseGetAllComments;
+            _useCaseGetCommentById = useCaseGetCommentById;
+            _useCaseGetCommentsByIdUserStory = useCaseGetCommentsByIdUserStory;
+            
             _useCaseCreateComment = useCaseCreateComment;
+            
+            _useCaseUpdateCommentContent = useCaseUpdateCommentContent;
+            
+            _useCaseDeleteComment = useCaseDeleteComment;
         }
 
         // Get requests
@@ -30,20 +50,20 @@ namespace WebAPI.Controllers
             return _useCaseGetAllComments.Execute();
         }
 
-        // TODO : implement
+        // If routes would only have {id:int}, even if the name would change, the url would be for both :
+        // swagger/data/xxx -> so multiple endpoints matches
         [HttpGet]
-        [Route("{id:int}")]
+        [Route("byId/{id:int}")]
         public ActionResult<OutputDtoComment> GetById(int id)
         {
-            throw new NotImplementedException();
+            return _useCaseGetCommentById.Execute(id);
         }
         
-        // TODO : implement
         [HttpGet]
-        [Route("{idUserStory:int}")]
+        [Route("byUserStory/{idUserStory:int}")]
         public ActionResult<List<OutputDtoComment>> GetByIdUserStory(int idUserStory)
         {
-            throw new NotImplementedException();
+            return _useCaseGetCommentsByIdUserStory.Execute(idUserStory);
         }
 
         // Post requests
@@ -56,21 +76,33 @@ namespace WebAPI.Controllers
         }
 
         // Put requests
-        // TODO : implement
         [HttpPut]
         [Route("{id:int}")]
         public ActionResult UpdateContent(int id, InputDtoComment newComment)
         {
-            throw new NotImplementedException();
+            var inputDtoUpdate = new InputDtoUpdateCommentContent
+            {
+                Id = id,
+                InternComment = new InputDtoUpdateCommentContent.Comment
+                {
+                    Content = newComment.Content
+                }
+            };
+            var result = _useCaseUpdateCommentContent.Execute(inputDtoUpdate);
+
+            if (result) return Ok();
+            return BadRequest();
         }
 
         //  Delete requests
-        // TODO : implement
         [HttpDelete]
         [Route("{id:int}")]
         public ActionResult Delete(int id)
         {
-            throw new NotImplementedException();
+            var result = _useCaseDeleteComment.Execute(id);
+
+            if (result) return Ok();
+            return NotFound();
         }
     }
 }
