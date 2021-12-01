@@ -25,6 +25,7 @@ using Application.UseCases.Sprint.Put;
 using Application.UseCases.User;
 using Application.UseCases.User.Delete;
 using Application.UseCases.User.Get;
+using Application.UseCases.User.Post;
 using Application.UseCases.User.Put;
 using Application.UseCases.UserStory;
 using Application.UseCases.UserStory.Delete;
@@ -74,12 +75,7 @@ namespace WebAPI
             
             // Add services
             // services.AddSingleton<Interface, Implementation>();
-            services.AddSingleton<ICommentService, CommentService>();
-            services.AddSingleton<IMeetingService, MeetingService>();
-            services.AddSingleton<IProjectService, ProjectService>();
-            services.AddSingleton<ISprintService, SprintService>();
             services.AddSingleton<IUserService, UserService>();
-            services.AddSingleton<IUserStoryService, UserStoryService>();
             
             // Add use cases
             // Comments use cases

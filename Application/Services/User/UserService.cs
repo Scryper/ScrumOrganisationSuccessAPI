@@ -6,7 +6,6 @@ using Application.Security.Models;
 using Infrastructure.SqlServer.Repositories.User;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using WebAPI.Security.Models;
 
 namespace Application.Services.User
 {
@@ -27,7 +26,7 @@ namespace Application.Services.User
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
             var user = _userRepository.GetByEmail(model.Email);
-
+            
             // Return null if user not found
             if (user == null) return null;
 

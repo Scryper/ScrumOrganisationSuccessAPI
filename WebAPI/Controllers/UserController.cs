@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using Application.Security.Models;
-using System.Collections.Generic;
 using Application.UseCases.User;
 using Application.UseCases.User.Delete;
 using Application.UseCases.User.Dtos;
 using Application.UseCases.User.Get;
+using Application.UseCases.User.Post;
 using Application.UseCases.User.Put;
 using Microsoft.AspNetCore.Mvc;
 

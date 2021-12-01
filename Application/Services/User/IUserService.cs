@@ -1,5 +1,4 @@
 ﻿using Application.Security.Models;
-using WebAPI.Security.Models;
 
 namespace Application.Services.User
 {

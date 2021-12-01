@@ -1,8 +1,7 @@
 ﻿using Application.Security.Models;
 using Application.Services.User;
-using WebAPI.Security.Models;
 
-namespace Application.UseCases.User
+namespace Application.UseCases.User.Post
 {
     public class UseCaseAuthenticateUser
     {
