@@ -1,11 +1,6 @@
 using Application.Security;
 using Application.Security.Models;
-using Application.Services.Comment;
-using Application.Services.Meeting;
-using Application.Services.Project;
-using Application.Services.Sprint;
 using Application.Services.User;
-using Application.Services.UserStory;
 using Application.UseCases.Comment;
 using Application.UseCases.Comment.Delete;
 using Application.UseCases.Comment.Get;
