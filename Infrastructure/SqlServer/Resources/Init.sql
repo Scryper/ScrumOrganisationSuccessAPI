@@ -5,6 +5,9 @@ if exists (select * from sysobjects where name='sos_user' and xtype='U')
 
 if exists (select * from sysobjects where name='project' and xtype='U')
     drop table project;
+    
+if exists (select * from sysobjects where name='technology' and xtype='U')
+    drop table technology;
 
 if exists (select * from sysobjects where name='sprint' and xtype='U')
     drop table sprint;
@@ -18,14 +21,20 @@ if exists (select * from sysobjects where name='meeting' and xtype='U')
 if exists (select * from sysobjects where name='comment' and xtype='U')
     drop table comment;
 
-if exists (select * from sysobjects where name='project_user' and xtype='U')
-    drop table project_user;
+if exists (select * from sysobjects where name='developer_project' and xtype='U')
+    drop table developer_project;
 
 if exists (select * from sysobjects where name='participation' and xtype='U')
     drop table participation;
 
 if exists (select * from sysobjects where name='sprint_user_story' and xtype='U')
     drop table sprint_user_story;
+    
+if exists (select * from sysobjects where name='user_technology' and xtype='U')
+    drop table user_technology;
+    
+if exists (select * from sysobjects where name='project_technology' and xtype='U')
+    drop table project_technology;
 
 /*roles :
   1 -> dev
@@ -36,10 +45,16 @@ create table sos_user (
     pseudo varchar(50) not null,
     password varchar(100) not null,
     email varchar(100) not null,
-    /*profile_picture varchar(200) not null,*/
-    role smallint not null
+    profile_picture varchar(200),
+    role smallint not null,
+    birthdate date not null,
+    description varchar(500),
+    portfolio varchar(100)
 );
 
+/*1 -> inactive
+  2 -> active
+  3 -> finished*/
 create table project (
     id int identity primary key,
     name varchar(100) not null,
@@ -47,7 +62,13 @@ create table project (
     description varchar(1000) not null,
     repository_url varchar(200) not null,
     id_product_owner int not null,
-    id_scrum_master int not null
+    id_scrum_master int not null,
+    status smallint not null default 1
+);
+
+create table technology (
+    id int identity primary key,
+    name varchar(50) not null
 );
 
 create table sprint (
@@ -63,7 +84,8 @@ create table user_story (
     id int identity primary key,
     name varchar(200) not null,
     description varchar(1000) not null,
-    is_done bit not null,
+    priority smallint not null,
+    is_done bit not null default 0,
     id_project int not null
 );
 
@@ -82,9 +104,9 @@ create table comment (
     content varchar(1000) not null
 );
 
-create table project_user (
+create table developer_project (
     id_project int not null,
-    id_user int not null
+    id_developer int not null
 );
 
 create table participation (
@@ -95,4 +117,14 @@ create table participation (
 create table sprint_user_story (
     id_sprint int not null,
     id_user_story int not null
+);
+
+create table user_technology (
+    id_user int not null,
+    id_technology int not null
+);
+
+create table project_technology (
+    id_project int not null,
+    id_technology int not null
 );
