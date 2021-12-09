@@ -26,9 +26,11 @@ namespace Application.Services.User
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
             var user = _userRepository.GetByEmail(model.Email);
-            
+
             // Return null if user not found
             if (user == null) return null;
+
+            if (!user.Password.Equals(model.Password)) return null;
 
             // Authentication successful so generate jwt token
             var token = GenerateJwtToken(user);
