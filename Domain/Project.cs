@@ -11,5 +11,6 @@ namespace Domain
         public string RepositoryUrl { get; set; }
         public int IdProductOwner { get; set; }
         public int IdScrumMaster { get; set; }
+        public int Status { get; set; }
     }
 }

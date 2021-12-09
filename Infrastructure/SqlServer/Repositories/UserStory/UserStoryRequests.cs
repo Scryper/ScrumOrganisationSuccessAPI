@@ -10,6 +10,7 @@
         public const string ColName = "name";
         public const string ColDescription = "description";
         public const string ColIsDone = "is_done";
+        public const string ColPriority = "priority";
         public const string ColIdProject = "id_project";
         
         public const string UserStoryColIdProject = "user_story.id_project";
@@ -37,9 +38,9 @@
         
         // Post requests
         private static readonly string ReqCreate = 
-                                $@"insert into {TableName}({ColName}, {ColDescription}, {ColIsDone}, {ColIdProject})  
+                                $@"insert into {TableName}({ColName}, {ColDescription}, {ColPriority}, {ColIdProject})  
                                 output inserted.{ColId} 
-                                values(@{ColName}, @{ColDescription}, @{ColIsDone}, @{ColIdProject})";
+                                values(@{ColName}, @{ColDescription}, @{ColPriority}, @{ColIdProject})";
         
         // Put requests
         private static readonly string ReqUpdateIsDone = $@"update {TableName} 

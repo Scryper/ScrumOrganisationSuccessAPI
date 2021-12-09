@@ -23,7 +23,7 @@
         
         private static readonly string ReqGetByIdSprint = $@"select * from {TableName} 
                                                           where {ColIdSprint} = @{ColIdSprint} 
-                                                          order by convert(date, {ColSchedule}) asc"; 
+                                                          order by convert(date, {ColSchedule})"; 
         
         private static readonly string ReqGetByIdUser = 
                                 $@"select * from {TableName} 

@@ -13,7 +13,8 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
                 Name = reader.GetString(reader.GetOrdinal(UserStoryRepository.ColName)),
                 Description = reader.GetString(reader.GetOrdinal(UserStoryRepository.ColDescription)),
                 IsDone = reader.GetBoolean(reader.GetOrdinal(UserStoryRepository.ColIsDone)),
-                IdProject = reader.GetInt32(reader.GetOrdinal(UserStoryRepository.ColIdProject))
+                IdProject = reader.GetInt32(reader.GetOrdinal(UserStoryRepository.ColIdProject)),
+                Priority = reader.GetInt16(reader.GetOrdinal(UserStoryRepository.ColPriority))
             };
         }
     }

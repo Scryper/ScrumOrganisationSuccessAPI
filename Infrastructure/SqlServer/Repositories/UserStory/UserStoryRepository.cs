@@ -77,7 +77,7 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
 
             command.Parameters.AddWithValue("@" + ColName, userStory.Name);
             command.Parameters.AddWithValue("@" + ColDescription, userStory.Description);
-            command.Parameters.AddWithValue("@" + ColIsDone, userStory.IsDone);
+            command.Parameters.AddWithValue("@" + ColPriority, userStory.Priority);
             command.Parameters.AddWithValue("@" + ColIdProject, userStory.IdProject);
             
             return new Domain.UserStory
@@ -86,7 +86,8 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
                 Name = userStory.Name,
                 Description = userStory.Description,
                 IsDone = userStory.IsDone,
-                IdProject = userStory.IdProject
+                IdProject = userStory.IdProject,
+                Priority = userStory.Priority
             };
         }
         

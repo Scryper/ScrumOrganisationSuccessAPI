@@ -94,6 +94,7 @@ namespace Infrastructure.SqlServer.Repositories.User
             command.Parameters.AddWithValue("@" + ColPassword, user.Password);
             command.Parameters.AddWithValue("@" + ColEmail, user.Email);
             command.Parameters.AddWithValue("@" + ColRole, user.Role);
+            command.Parameters.AddWithValue("@" + ColBirthdate, user.Birthdate);
 
             return new Domain.User
             {
@@ -101,7 +102,8 @@ namespace Infrastructure.SqlServer.Repositories.User
                 Pseudo = user.Pseudo,
                 Password = user.Password,
                 Email = user.Email,
-                Role = user.Role
+                Role = user.Role,
+                Birthdate = user.Birthdate
             };
         }
 

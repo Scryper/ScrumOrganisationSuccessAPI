@@ -12,6 +12,7 @@
         public const string ColRepositoryUrl = "repository_url";
         public const string ColIdProductOwner = "id_product_owner";
         public const string ColIdScrumMaster = "id_scrum_master";
+        public const string ColStatus = "status";
         
         public const string UserColId = "sos_user.id";
 
@@ -34,10 +35,10 @@
         // Post requests
         private static readonly string ReqCreate = 
                     $@"insert into {TableName}({ColName}, {ColDeadline}, {ColDescription}, 
-                    {ColRepositoryUrl}, {ColIdProductOwner}, {ColIdScrumMaster})  // Second part of insert
+                    {ColRepositoryUrl}, {ColIdProductOwner}, {ColIdScrumMaster})
                     output inserted.{ColId} 
                     values(@{ColName}, @{ColDeadline}, @{ColDescription}, 
-                    @{ColRepositoryUrl}, @{ColIdProductOwner}, @{ColIdScrumMaster})"; // Second part of values
+                    @{ColRepositoryUrl}, @{ColIdProductOwner}, @{ColIdScrumMaster})";
         
         // Put requests
         private static readonly string ReqUpdateRepositoryUrl = $@"update {TableName} 

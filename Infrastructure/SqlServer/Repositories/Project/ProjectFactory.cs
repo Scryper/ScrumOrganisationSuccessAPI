@@ -15,7 +15,8 @@ namespace Infrastructure.SqlServer.Repositories.Project
                 Description = reader.GetString(reader.GetOrdinal(ProjectRepository.ColDescription)),
                 RepositoryUrl = reader.GetString(reader.GetOrdinal(ProjectRepository.ColRepositoryUrl)),
                 IdProductOwner = reader.GetInt32(reader.GetOrdinal(ProjectRepository.ColIdProductOwner)),
-                IdScrumMaster = reader.GetInt32(reader.GetOrdinal(ProjectRepository.ColIdScrumMaster))
+                IdScrumMaster = reader.GetInt32(reader.GetOrdinal(ProjectRepository.ColIdScrumMaster)),
+                Status = reader.GetInt16(reader.GetOrdinal(ProjectRepository.ColStatus))
             };
         }
     }

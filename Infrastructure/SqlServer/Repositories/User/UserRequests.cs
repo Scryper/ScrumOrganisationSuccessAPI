@@ -13,6 +13,7 @@
         public const string ColPassword = "password";
         public const string ColEmail = "email";
         public const string ColRole = "role";
+        public const string ColBirthdate = "birthdate";
         
         public const string ProjectUserColIdUser = "project_user.id_user";
         public const string ProjectUserColIdProject = "project_user.id_project";
@@ -44,9 +45,9 @@
 
         // Post requests
         private static readonly string ReqCreate = 
-                                    $@"insert into {TableName}({ColPseudo}, {ColPassword}, {ColEmail}, {ColRole}) 
+                                    $@"insert into {TableName}({ColPseudo}, {ColPassword}, {ColEmail}, {ColRole}, {ColBirthdate}) 
                                     output inserted.{ColId} 
-                                    values(@{ColPseudo}, @{ColPassword}, @{ColEmail}, @{ColRole})";
+                                    values(@{ColPseudo}, @{ColPassword}, @{ColEmail}, @{ColRole}, @{ColBirthdate})";
         
         // Put requests
         private static readonly string ReqUpdateRole = $@"update {TableName} 

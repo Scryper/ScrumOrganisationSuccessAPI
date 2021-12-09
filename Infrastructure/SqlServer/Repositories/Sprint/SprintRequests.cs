@@ -24,10 +24,10 @@
         // Post requests
         private static readonly string ReqCreate = 
                         $@"insert into {TableName}({ColSprintNumber}, {ColIdProject}, {ColDeadline},  
-                        {ColDescription}, {ColProgression})  // Second part of insert
+                        {ColDescription}, {ColProgression}) 
                         output inserted.{ColId} 
                         values(@{ColSprintNumber}, @{ColIdProject}, @{ColDeadline}, 
-                        @{ColDescription}, @{ColProgression})"; // Second part of values
+                        @{ColDescription}, @{ColProgression})";
 
         // Put requests
         private static readonly string ReqUpdateProgression = $@"update {TableName} 

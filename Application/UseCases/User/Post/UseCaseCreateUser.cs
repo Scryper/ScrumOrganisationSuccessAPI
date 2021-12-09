@@ -2,7 +2,7 @@
 using Application.UseCases.Utils;
 using Infrastructure.SqlServer.Repositories.User;
 
-namespace Application.UseCases.User
+namespace Application.UseCases.User.Post
 {
     public class UseCaseCreateUser : IWriting<OutputDtoUser, InputDtoUser>
     {
