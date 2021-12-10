@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using Application.Security.Models;
-using Application.UseCases.User;
 using Application.UseCases.User.Delete;
 using Application.UseCases.User.Dtos;
 using Application.UseCases.User.Get;
 using Application.UseCases.User.Post;
 using Application.UseCases.User.Put;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Security.Attributes;
 
 namespace WebAPI.Controllers
 {
@@ -66,6 +66,7 @@ namespace WebAPI.Controllers
         }
 
         // Get requests
+        [Authorize]
         [HttpGet]
         public ActionResult<List<OutputDtoUser>> GetAll()
         {

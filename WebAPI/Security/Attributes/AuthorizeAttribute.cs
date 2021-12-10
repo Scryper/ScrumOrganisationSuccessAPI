@@ -9,6 +9,7 @@ namespace WebAPI.Security.Attributes
     // Creating a custom attribute, the attribute name is "Authorize"
     // In every custom attributes -> <Name>Attribute, <Name> will be used [<Name>]
     // In our case : [Authorize]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class AuthorizeAttribute : Attribute, IAuthorizationFilter
     {
         public void OnAuthorization(AuthorizationFilterContext context)
