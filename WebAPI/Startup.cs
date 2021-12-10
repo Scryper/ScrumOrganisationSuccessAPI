@@ -47,24 +47,13 @@ namespace WebAPI
         {
             Configuration = configuration;
         }
-        
-        public static readonly string MyOrigins = "MyOrigins";
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddCors(options =>
-            // {
-            //     options.AddPolicy(MyOrigins, builder =>
-            //     {
-            //         builder.WithOrigins("http://localhost:4200")
-            //             .AllowAnyMethod()
-            //             .AllowAnyHeader();
-            //     });
-            // });
-            
+            services.AddCors();
             // Security
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             
@@ -170,6 +159,11 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -189,11 +183,6 @@ namespace WebAPI
             app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-            
-            app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
         }
     }
 }

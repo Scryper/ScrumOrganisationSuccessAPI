@@ -115,7 +115,7 @@ namespace WebAPI.Controllers
         // Post requests : authentication
         [HttpPost]
         [Route("authenticate")]
-        public IActionResult Authenticate(AuthenticateRequest model)
+        public IActionResult Authenticate([FromBody] AuthenticateRequest model)
         {
             var response = _useCaseAuthenticateUser.Execute(model);
 
