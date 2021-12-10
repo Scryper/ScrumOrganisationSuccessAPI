@@ -17,7 +17,6 @@ using Application.UseCases.Sprint;
 using Application.UseCases.Sprint.Delete;
 using Application.UseCases.Sprint.Get;
 using Application.UseCases.Sprint.Put;
-using Application.UseCases.User;
 using Application.UseCases.User.Delete;
 using Application.UseCases.User.Get;
 using Application.UseCases.User.Post;
@@ -56,7 +55,6 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-        
             services.AddCors(options =>
             {
                 options.AddPolicy(MyOrigins, builder =>
@@ -66,6 +64,7 @@ namespace WebAPI
                         .AllowAnyHeader();
                 });
             });
+            
             // Security
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             
