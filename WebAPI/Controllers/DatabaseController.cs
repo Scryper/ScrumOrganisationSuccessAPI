@@ -26,18 +26,18 @@ namespace WebAPI.Controllers
             if (_hostEnvironment.IsProduction()) return BadRequest("Only in development");
             
             _databaseManager.CreateDatabaseAndTables();
-            return Ok("Database and tables created successfully");
+            return Ok("Database and tables created successfully.");
         }
 
         [HttpGet]
-        [Route("route")]
+        [Route("fill")]
         //[Authorize]
         public IActionResult FillTables()
         {
             if (_hostEnvironment.IsProduction()) return BadRequest("Only in development");
             
             _databaseManager.FillTables();
-            return Ok("tables have been filled");
+            return Ok("Tables have been filled.");
         }
     }
 }

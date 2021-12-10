@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 using System.IO;
 
 namespace Infrastructure.SqlServer.System
@@ -8,8 +9,9 @@ namespace Infrastructure.SqlServer.System
         private void ExecuteScript(string file)
         {
             // Get the path of the Init.sql file. Allows to use it from different PCs
-            var path = Path.Combine(Directory.GetCurrentDirectory()
-                                    + "\\Infrastructure\\SqlServer\\Resources\\" + file);
+            var rawPath = Directory.GetCurrentDirectory();
+            rawPath = rawPath.Replace("WebAPI", "");
+            var path = Path.Combine(rawPath + "\\Infrastructure\\SqlServer\\Resources\\" + file);
             var script = File.ReadAllText(path); // Get the script
 
             // Connect to database
