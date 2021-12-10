@@ -10,7 +10,8 @@ namespace Infrastructure.SqlServer.Repositories.User
             return new Domain.User
             {
                 Id = reader.GetInt32(reader.GetOrdinal(UserRepository.ColId)),
-                Pseudo = reader.GetString(reader.GetOrdinal(UserRepository.ColPseudo)),
+                Firstname = reader.GetString(reader.GetOrdinal(UserRepository.ColFirstName)),
+                Lastname = reader.GetString(reader.GetOrdinal(UserRepository.ColLastName)),
                 Password = reader.GetString(reader.GetOrdinal(UserRepository.ColPassword)),
                 Email = reader.GetString(reader.GetOrdinal(UserRepository.ColEmail)),
                 Role = reader.GetInt16(reader.GetOrdinal(UserRepository.ColRole)),

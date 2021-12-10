@@ -42,7 +42,8 @@ if exists (select * from sysobjects where name='project_technology' and xtype='U
   3 -> product owner*/
 create table sos_user (
     id int identity primary key,
-    pseudo varchar(50) not null,
+    firstname varchar(50) not null,
+    lastname varchar(50) not null,
     password varchar(100) not null,
     email varchar(100) not null,
     profile_picture varchar(200),

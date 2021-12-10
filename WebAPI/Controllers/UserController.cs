@@ -26,7 +26,6 @@ namespace WebAPI.Controllers
         private readonly UseCaseUpdateUserRole _useCaseUpdateUserRole;
         private readonly UseCaseUpdateUserEmail _useCaseUpdateUserEmail;
         private readonly UseCaseUpdateUserPassword _useCaseUpdateUserPassword;
-        private readonly UseCaseUpdateUserPseudo _useCaseUpdateUserPseudo;
         
         private readonly UseCaseDeleteUser _useCaseDeleteUser;
         
@@ -42,7 +41,6 @@ namespace WebAPI.Controllers
             UseCaseCreateUser useCaseCreateUser,
             UseCaseUpdateUserEmail useCaseUpdateUserEmail,
             UseCaseUpdateUserPassword useCaseUpdateUserPassword,
-            UseCaseUpdateUserPseudo useCaseUpdateUserPseudo,
             UseCaseUpdateUserRole useCaseUpdateUserRole,
             UseCaseDeleteUser useCaseDeleteUser,
             UseCaseAuthenticateUser useCaseAuthenticateUser)
@@ -57,7 +55,6 @@ namespace WebAPI.Controllers
 
             _useCaseUpdateUserEmail = useCaseUpdateUserEmail;
             _useCaseUpdateUserPassword = useCaseUpdateUserPassword;
-            _useCaseUpdateUserPseudo = useCaseUpdateUserPseudo;
             _useCaseUpdateUserRole = useCaseUpdateUserRole;
             
             _useCaseDeleteUser = useCaseDeleteUser;
@@ -181,25 +178,6 @@ namespace WebAPI.Controllers
             };
             
             var result = _useCaseUpdateUserEmail.Execute(inputDtoUpdate);
-
-            if (result) return Ok();
-            return NotFound();
-        }
-        
-        [HttpPut]
-        [Route("pseudoUpdate/{idForPseudoUpdate:int}")]
-        public ActionResult UpdatePseudo(int idForPseudoUpdate, InputDtoUser inputDtoUser)
-        {
-            var inputDtoUpdate = new InputDtoUpdateUserPseudo
-            {
-                Id = idForPseudoUpdate,
-                InternUser = new InputDtoUpdateUserPseudo.User
-                {
-                    Pseudo = inputDtoUser.Pseudo
-                }
-            };
-            
-            var result = _useCaseUpdateUserPseudo.Execute(inputDtoUpdate);
 
             if (result) return Ok();
             return NotFound();

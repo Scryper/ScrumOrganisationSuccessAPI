@@ -129,7 +129,6 @@ namespace WebAPI
             services.AddSingleton<UseCaseCreateUser>();
             services.AddSingleton<UseCaseAuthenticateUser>();
             
-            services.AddSingleton<UseCaseUpdateUserPseudo>();
             services.AddSingleton<UseCaseUpdateUserEmail>();
             services.AddSingleton<UseCaseUpdateUserPassword>();
             services.AddSingleton<UseCaseUpdateUserRole>();

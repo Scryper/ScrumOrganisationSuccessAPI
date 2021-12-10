@@ -1,15 +1,15 @@
 /*Init users*/
-insert into sos_user(pseudo, password, email, role, birthdate)
-    values('Scryper', 'scryper', 'florian.mazzeo@gmail.com', 1, convert(date, '20-12-2001', 103));
+insert into sos_user(firstname, lastname, password, email, role, birthdate)
+    values('Florian', 'Mazzeo', 'scryper', 'florian.mazzeo@gmail.com', 1, convert(date, '20-12-2001', 103));
 
-insert into sos_user(pseudo, password, email, role, birthdate)
-    values('Damsover', 'damien97', 'damsover@gmail.com', 2, convert(date, '23-07-1997', 103));
+insert into sos_user(firstname, lastname, password, email, role, birthdate)
+    values('Damien', 'Auversack', 'damien97', 'damsover@gmail.com', 2, convert(date, '23-07-1997', 103));
 
-insert into sos_user(pseudo, password, email, role, birthdate)
-    values('Dotni', 'dotni', 'martin.maes100.000@gmail.com', 3, convert(date, '26-11-1998', 103));
+insert into sos_user(firstname, lastname, password, email, role, birthdate)
+    values('Martin', 'Maes', 'dotni', 'martin.maes100.000@gmail.com', 3, convert(date, '26-11-1998', 103));
 
-insert into sos_user(pseudo, password, email, role, birthdate)
-    values('Myneck', 'myneck', 'la199788@student.helha.be', 1, convert(date, '11-01-2001', 103));
+insert into sos_user(firstname, lastname, password, email, role, birthdate)
+    values('Floran', 'Houdart', 'myneck', 'la199788@student.helha.be', 1, convert(date, '11-01-2001', 103));
 
 /*Init projects*/
 insert into project(name, deadline, description, repository_url, id_product_owner, id_scrum_master)
