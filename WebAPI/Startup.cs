@@ -159,10 +159,7 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
+            
             
             if (env.IsDevelopment())
             {
@@ -181,6 +178,14 @@ namespace WebAPI
             app.UseAuthorization();
             
             app.UseMiddleware<JwtMiddleware>();
+            
+            app.UseCors(builder =>
+            {
+                builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
