@@ -90,7 +90,8 @@ namespace Infrastructure.SqlServer.Repositories.User
         {
             var command = Database.GetCommand(ReqCreate);
 
-            command.Parameters.AddWithValue("@" + ColPseudo, user.Pseudo);
+            command.Parameters.AddWithValue("@" + ColFirstName, user.Firstname);
+            command.Parameters.AddWithValue("@" + ColLastName, user.Lastname);
             command.Parameters.AddWithValue("@" + ColPassword, user.Password);
             command.Parameters.AddWithValue("@" + ColEmail, user.Email);
             command.Parameters.AddWithValue("@" + ColRole, user.Role);
@@ -99,7 +100,8 @@ namespace Infrastructure.SqlServer.Repositories.User
             return new Domain.User
             {
                 Id = (int) command.ExecuteScalar(),
-                Pseudo = user.Pseudo,
+                Firstname = user.Firstname,
+                Lastname = user.Lastname,
                 Password = user.Password,
                 Email = user.Email,
                 Role = user.Role,
@@ -140,18 +142,6 @@ namespace Infrastructure.SqlServer.Repositories.User
             // Parametrize the command
             command.Parameters.AddWithValue("@" + ColId, id);
             command.Parameters.AddWithValue("@" + ColEmail, newEmail);
-
-            return command.ExecuteNonQuery() > 0;
-        }
-
-        // TODO : factorisation
-        public bool UpdatePseudo(int id, string newPseudo)
-        {
-            var command = Database.GetCommand(ReqUpdatePseudo);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColId, id);
-            command.Parameters.AddWithValue("@" + ColPseudo, newPseudo);
 
             return command.ExecuteNonQuery() > 0;
         }

@@ -9,7 +9,8 @@
         public const string MeetingTableName = "meeting";
         
         public const string ColId = "id";
-        public const string ColPseudo = "pseudo";
+        public const string ColFirstName = "firstname";
+        public const string ColLastName = "lastname";
         public const string ColPassword = "password";
         public const string ColEmail = "email";
         public const string ColRole = "role";
@@ -45,9 +46,9 @@
 
         // Post requests
         private static readonly string ReqCreate = 
-                                    $@"insert into {TableName}({ColPseudo}, {ColPassword}, {ColEmail}, {ColRole}, {ColBirthdate}) 
+                                    $@"insert into {TableName}({ColFirstName}, {ColLastName}, {ColPassword}, {ColEmail}, {ColRole}, {ColBirthdate}) 
                                     output inserted.{ColId} 
-                                    values(@{ColPseudo}, @{ColPassword}, @{ColEmail}, @{ColRole}, @{ColBirthdate})";
+                                    values(@{ColFirstName}, @{ColLastName}, @{ColPassword}, @{ColEmail}, @{ColRole}, @{ColBirthdate})";
         
         // Put requests
         private static readonly string ReqUpdateRole = $@"update {TableName} 
@@ -61,11 +62,7 @@
         private static readonly string ReqUpdateEmail = $@"update {TableName} 
                                                         set {ColEmail} = @{ColEmail} 
                                                         where {ColId} = @{ColId}";
-        
-        private static readonly string ReqUpdatePseudo = $@"update {TableName} 
-                                                         set {ColPseudo} = @{ColPseudo} 
-                                                         where {ColId} = @{ColId}";
-        
+
         // Delete Requests
         private static readonly string ReqDeleteById = $@"delete from {TableName} 
                                                        where {ColId} = @{ColId}";
