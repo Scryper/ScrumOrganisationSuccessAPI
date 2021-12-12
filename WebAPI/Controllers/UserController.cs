@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Web;
 using Application.Security.Models;
 using Application.UseCases.User.Delete;
 using Application.UseCases.User.Dtos;
@@ -6,7 +7,6 @@ using Application.UseCases.User.Get;
 using Application.UseCases.User.Post;
 using Application.UseCases.User.Put;
 using Microsoft.AspNetCore.Mvc;
-using WebAPI.Security.Attributes;
 
 namespace WebAPI.Controllers
 {
@@ -63,7 +63,7 @@ namespace WebAPI.Controllers
         }
 
         // Get requests
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public ActionResult<List<OutputDtoUser>> GetAll()
         {
@@ -94,10 +94,11 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("byEmail/{email:alpha}")]
+        [Route("byEmail/{email:required}")]
         public ActionResult<OutputDtoUser> GetByEmail(string email)
         {
-            return _useCaseGetUserByEmail.Execute(email);
+            var correctEmail = HttpUtility.UrlDecode(email);
+            return _useCaseGetUserByEmail.Execute(correctEmail);
         }
 
         // Post requests
@@ -119,7 +120,7 @@ namespace WebAPI.Controllers
             if (response == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
 
-            return Ok(response);
+            return Ok();
         }
 
         // Put requests

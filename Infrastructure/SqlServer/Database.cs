@@ -4,7 +4,7 @@ namespace Infrastructure.SqlServer
 {
     public class Database
     {
-        private const string ConnectionString = "Server=LAPTOP-T5LUSKJ3;Database=db_scrum_organisation_success;Integrated Security=SSPI";
+        private const string ConnectionString = "Server=DESKTOP-07R0R5P;Database=db_scrum_organisation_success;Integrated Security=SSPI";
 
         public static SqlConnection GetConnection()
         {

@@ -75,7 +75,7 @@ namespace Infrastructure.SqlServer.Repositories.User
         public Domain.User GetByEmail(string email)
         {
             var command = Database.GetCommand(ReqByEmail);
-            
+
             // Parametrize the command
             command.Parameters.AddWithValue("@" + ColEmail, email);
 
