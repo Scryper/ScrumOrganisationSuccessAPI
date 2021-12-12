@@ -5,12 +5,12 @@ namespace Application.UseCases.Project.Dtos
     // Input file : what we need to add in the database
     public class InputDtoProject
     {
+        public int IdProductOwner { get; set; }
+        public int IdScrumMaster { get; set; }
         public string Name { get; set; }
         public DateTime Deadline { get; set; }
         public string Description { get; set; }
         public string RepositoryUrl { get; set; }
-        public int IdProductOwner { get; set; }
-        public int IdScrumMaster { get; set; }
         public int Status { get; set; }
     }
 }

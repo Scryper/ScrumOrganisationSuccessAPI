@@ -34,11 +34,11 @@
         
         // Post requests
         private static readonly string ReqCreate = 
-                    $@"insert into {TableName}({ColName}, {ColDeadline}, {ColDescription}, 
-                    {ColRepositoryUrl}, {ColIdProductOwner}, {ColIdScrumMaster})
+                    $@"insert into {TableName}({ColIdProductOwner}, {ColIdScrumMaster}, {ColName}, {ColDeadline}, {ColDescription}, 
+                    {ColRepositoryUrl})
                     output inserted.{ColId} 
-                    values(@{ColName}, @{ColDeadline}, @{ColDescription}, 
-                    @{ColRepositoryUrl}, @{ColIdProductOwner}, @{ColIdScrumMaster})";
+                    values(@{ColIdProductOwner}, @{ColIdScrumMaster}, @{ColName}, @{ColDeadline}, @{ColDescription}, 
+                    @{ColRepositoryUrl})";
         
         // Put requests
         private static readonly string ReqUpdateRepositoryUrl = $@"update {TableName} 

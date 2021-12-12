@@ -12,9 +12,9 @@ insert into sos_user(firstname, lastname, password, email, role, birthdate)
     values('Floran', 'Houdart', 'myneck', 'la199788@student.helha.be', 1, convert(date, '11-01-2001', 103));
 
 /*Init projects*/
-insert into project(name, deadline, description, repository_url, id_product_owner, id_scrum_master)
-    values('ScrumOrganisationSuccess', convert(datetime, '24-12-2021 12:00:00', 103), 'Serveur pour réussir son année',
-    'https://github.com/Scryper/ScrumOrganisationSuccessAPI', 3, 2);
+insert into project(id_product_owner, id_scrum_master, name, deadline, description, repository_url)
+    values(3, 2, 'ScrumOrganisationSuccess', convert(datetime, '24-12-2021 12:00:00', 103), 'Serveur pour réussir son année',
+    'https://github.com/Scryper/ScrumOrganisationSuccessAPI');
 
 /*Init technology*/
 insert into technology(name)
@@ -33,12 +33,12 @@ insert into technology(name)
     values('Android');
 
 /*Init sprints*/
-insert into sprint(sprint_number, id_project, deadline, description, progression)
+insert into sprint(id_project, sprint_number, deadline, description, progression)
     values(1, 1, convert(date, '01-12-2021', 103), 'Sprint pour réussir son année', 0);
 
 /*Init user stories*/
-insert into user_story(name, description, priority, id_project)
-    values('User story pour réussir son année', 'On va réussir wola', 1, 1);
+insert into user_story(id_project, name, description, priority)
+    values(1, 'User story pour réussir son année', 'On va réussir wola', 1);
 
 /*Init meetings*/
 insert into meeting(id_sprint, schedule, description)
