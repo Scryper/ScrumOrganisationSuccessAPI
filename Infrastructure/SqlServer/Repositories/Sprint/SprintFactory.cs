@@ -10,8 +10,8 @@ namespace Infrastructure.SqlServer.Repositories.Sprint
             return new Domain.Sprint
             {
                 Id = reader.GetInt32(reader.GetOrdinal(SprintRepository.ColId)),
-                SprintNumber = reader.GetInt32(reader.GetOrdinal(SprintRepository.ColSprintNumber)),
                 IdProject = reader.GetInt32(reader.GetOrdinal(SprintRepository.ColIdProject)),
+                SprintNumber = reader.GetInt32(reader.GetOrdinal(SprintRepository.ColSprintNumber)),
                 Deadline = reader.GetDateTime(reader.GetOrdinal(SprintRepository.ColDeadline)),
                 Description = reader.GetString(reader.GetOrdinal(SprintRepository.ColDescription)),
                 Progression = reader.GetInt32(reader.GetOrdinal(SprintRepository.ColProgression))

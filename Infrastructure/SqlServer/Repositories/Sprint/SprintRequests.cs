@@ -23,10 +23,10 @@
         
         // Post requests
         private static readonly string ReqCreate = 
-                        $@"insert into {TableName}({ColSprintNumber}, {ColIdProject}, {ColDeadline},  
+                        $@"insert into {TableName}({ColIdProject}, {ColSprintNumber}, {ColDeadline},  
                         {ColDescription}, {ColProgression}) 
                         output inserted.{ColId} 
-                        values(@{ColSprintNumber}, @{ColIdProject}, @{ColDeadline}, 
+                        values(@{ColIdProject}, @{ColSprintNumber}, @{ColDeadline}, 
                         @{ColDescription}, @{ColProgression})";
 
         // Put requests

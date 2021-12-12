@@ -76,12 +76,12 @@ namespace Infrastructure.SqlServer.Repositories.Project
             var command = Database.GetCommand(ReqCreate);
             
             // Parametrize the command
+            command.Parameters.AddWithValue("@" + ColIdProductOwner, project.IdProductOwner);
+            command.Parameters.AddWithValue("@" + ColIdScrumMaster, project.IdScrumMaster);
             command.Parameters.AddWithValue("@" + ColName, project.Name);
             command.Parameters.AddWithValue("@" + ColDeadline, project.Deadline);
             command.Parameters.AddWithValue("@" + ColDescription, project.Description);
             command.Parameters.AddWithValue("@" + ColRepositoryUrl, project.RepositoryUrl);
-            command.Parameters.AddWithValue("@" + ColIdProductOwner, project.IdProductOwner);
-            command.Parameters.AddWithValue("@" + ColIdScrumMaster, project.IdScrumMaster);
 
             return new Domain.Project
             {

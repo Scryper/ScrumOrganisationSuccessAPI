@@ -58,12 +58,12 @@ create table sos_user (
   3 -> finished*/
 create table project (
     id int identity primary key,
+    id_product_owner int not null,
+    id_scrum_master int not null,
     name varchar(100) not null,
     deadline date not null,
     description varchar(1000) not null,
     repository_url varchar(200) not null,
-    id_product_owner int not null,
-    id_scrum_master int not null,
     status smallint not null default 1
 );
 
@@ -74,8 +74,8 @@ create table technology (
 
 create table sprint (
     id int identity primary key,
-    sprint_number int not null,
     id_project int not null,
+    sprint_number int not null,
     deadline datetime not null,
     description varchar(1000) not null,
     progression int not null
@@ -83,11 +83,11 @@ create table sprint (
 
 create table user_story (
     id int identity primary key,
+    id_project int not null,
     name varchar(200) not null,
     description varchar(1000) not null,
     priority smallint not null,
-    is_done bit not null default 0,
-    id_project int not null
+    is_done bit not null default 0
 );
 
 create table meeting (

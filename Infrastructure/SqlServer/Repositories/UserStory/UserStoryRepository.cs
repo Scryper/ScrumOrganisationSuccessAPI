@@ -75,10 +75,10 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
         {
             var command = Database.GetCommand(ReqCreate);
 
+            command.Parameters.AddWithValue("@" + ColIdProject, userStory.IdProject);
             command.Parameters.AddWithValue("@" + ColName, userStory.Name);
             command.Parameters.AddWithValue("@" + ColDescription, userStory.Description);
             command.Parameters.AddWithValue("@" + ColPriority, userStory.Priority);
-            command.Parameters.AddWithValue("@" + ColIdProject, userStory.IdProject);
             
             return new Domain.UserStory
             {

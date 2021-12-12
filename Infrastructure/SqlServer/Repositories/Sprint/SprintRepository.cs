@@ -59,8 +59,8 @@ namespace Infrastructure.SqlServer.Repositories.Sprint
         {
             var command = Database.GetCommand(ReqCreate);
 
-            command.Parameters.AddWithValue("@" + ColSprintNumber, sprint.SprintNumber);
             command.Parameters.AddWithValue("@" + ColIdProject, sprint.IdProject);
+            command.Parameters.AddWithValue("@" + ColSprintNumber, sprint.SprintNumber);
             command.Parameters.AddWithValue("@" + ColDeadline, sprint.Deadline);
             command.Parameters.AddWithValue("@" + ColDescription, sprint.Description);
             command.Parameters.AddWithValue("@" + ColProgression, sprint.Progression);
