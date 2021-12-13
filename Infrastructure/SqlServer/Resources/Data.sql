@@ -11,10 +11,37 @@ insert into sos_user(firstname, lastname, password, email, role, birthdate)
 insert into sos_user(firstname, lastname, password, email, role, birthdate)
     values('Floran', 'Houdart', 'myneck', 'la199788@student.helha.be', 1, convert(date, '11-01-2001', 103));
 
+insert into sos_user(firstname, lastname, password, email, role, birthdate)
+    values('Mark', 'Zuckerberg', 'zuck', 'zuck@facebook.com', 3, convert(date, '14-05-1984', 103));
+
+insert into sos_user(firstname, lastname, password, email, role, birthdate)
+    values('Elon', 'Musk', 'tesla', 'elon.musk@tesla.com', 1, convert(date, '28-06-1971', 103));
+
+insert into sos_user(firstname, lastname, password, email, role, birthdate)
+    values('Patrick', 'Onatenpa', 'laref', 'onatenpa.patrick@camping.fr', 1, convert(date, '24-10-1994', 103));
+
+insert into sos_user(firstname, lastname, password, email, role, birthdate)
+    values('Vouza', 'Vaibien', 'choisi', 'techniquecellela@vandenborre.be', 2, convert(date, '14-08-2000', 103));
+
+insert into sos_user(firstname, lastname, password, email, role, birthdate)
+    values('Lucas', 'Hauchard', 'squeezie', 'lucas.hauchard@squeezie.industries.fr', 2, convert(date, '27-01-1996', 103));
+
 /*Init projects*/
+insert into project(id_product_owner, id_scrum_master, name, deadline, description, repository_url, sos_status)
+    values(3, 2, 'ScrumOrganisationSuccess API', convert(datetime, '24-12-2021 12:00:00', 103), 'Serveur pour réussir son année',
+    'https://github.com/Scryper/ScrumOrganisationSuccessAPI', 2);
+
+insert into project(id_product_owner, id_scrum_master, name, deadline, description, repository_url, sos_status)
+    values(5, 8, 'ScrumOrganisationSuccess Web App', convert(datetime, '24-12-2021 12:00:00', 103), 'Site pour réussir son année',
+    'https://github.com/Scryper/ScrumOrganisationSuccessWebApp', 2);
+
+insert into project(id_product_owner, id_scrum_master, name, deadline, description, repository_url, sos_status)
+    values(3, 9, 'Skydda', convert(datetime, '08-12-2021 12:00:00', 103), 'Jeu vidéo pour réussir son année',
+    'https://github.com/Scryper/Skydda', 3);
+
 insert into project(id_product_owner, id_scrum_master, name, deadline, description, repository_url)
-    values(3, 2, 'ScrumOrganisationSuccess', convert(datetime, '24-12-2021 12:00:00', 103), 'Serveur pour réussir son année',
-    'https://github.com/Scryper/ScrumOrganisationSuccessAPI');
+    values(5, 9, 'Labo TCP/IP', convert(datetime, '08-12-2021 12:00:00', 103), 'Labo pour réussir son année',
+    'https://github.com/Scryper/Labo01_TCP_IP');
 
 /*Init technology*/
 insert into technology(name)
@@ -32,9 +59,27 @@ insert into technology(name)
 insert into technology(name)
     values('Android');
 
+insert into technology(name)
+    values('.NET')
+
+insert into technology(name)
+    values('SFML')
+
+insert into technology(name)
+    values('C++')
+
+insert into technology(name)
+    values('C')
+
+insert into technology(name)
+    values('PHP')
+
+insert into technology(name)
+    values('Javascript')
+
 /*Init sprints*/
 insert into sprint(id_project, sprint_number, deadline, description, progression)
-    values(1, 1, convert(date, '01-12-2021', 103), 'Sprint pour réussir son année', 0);
+    values(1, 1, convert(date, '01-12-2021', 103), 'Création basique du serveur', 100);
 
 /*Init user stories*/
 insert into user_story(id_project, name, description, priority)

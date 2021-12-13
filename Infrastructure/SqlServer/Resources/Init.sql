@@ -64,7 +64,7 @@ create table project (
     deadline date not null,
     description varchar(1000) not null,
     repository_url varchar(200) not null,
-    status smallint not null default 1
+    sos_status smallint not null default 1
 );
 
 create table technology (
