@@ -120,7 +120,7 @@ namespace WebAPI.Controllers
             if (response == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
 
-            return Ok();
+            return Ok(response);
         }
 
         // Put requests
