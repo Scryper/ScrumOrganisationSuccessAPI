@@ -60,38 +60,152 @@ insert into technology(name)
     values('Android');
 
 insert into technology(name)
-    values('.NET')
+    values('.NET');
 
 insert into technology(name)
-    values('SFML')
+    values('SFML');
 
 insert into technology(name)
-    values('C++')
+    values('C++');
 
 insert into technology(name)
-    values('C')
+    values('C');
 
 insert into technology(name)
-    values('PHP')
+    values('PHP');
 
 insert into technology(name)
-    values('Javascript')
+    values('Javascript');
+    
+insert into technology(name)
+    values('Typescript');
+    
+insert into technology(name)
+    values('HTML');
 
 /*Init sprints*/
-insert into sprint(id_project, sprint_number, deadline, description, progression)
-    values(1, 1, convert(date, '01-12-2021', 103), 'Création basique du serveur', 100);
+insert into sprint(id_project, sprint_number, deadline, description)
+    values(1, 1, convert(date, '01-12-2021', 103), 'Création basique du serveur');
+   
+insert into sprint(id_project, sprint_number, deadline, description)
+    values(1, 2, convert(date, '15-12-2021', 103), 'Ajout des dernières fonctionnalités nécessaires');
+    
+insert into sprint(id_project, sprint_number, deadline, description)
+    values(2, 1, convert(date, '06-12-2021', 103), 'Premier jet des pages du site');
+    
+insert into sprint(id_project, sprint_number, deadline, description)
+    values(2, 2, convert(date, '20-12-2021', 103), 'Deuxième jet des pages du site');
+    
+insert into sprint(id_project, sprint_number, deadline, description)
+    values(3, 1, convert(date, '10-10-2021', 103), 'Ajout des premiers mouvements');
+    
+insert into sprint(id_project, sprint_number, deadline, description)
+    values(3, 2, convert(date, '10-11-2021', 103), 'Ajout des personnages et maps');
+    
+insert into sprint(id_project, sprint_number, deadline, description)
+    values(3, 3, convert(date, '06-12-2021', 103), 'Finitions, améliorations, factorisation');
+    
+insert into sprint(id_project, sprint_number, deadline, description)
+    values(4, 1, convert(date, '10-11-2021', 103), 'Création du visuel des pages');
+    
+insert into sprint(id_project, sprint_number, deadline, description)
+    values(4, 2, convert(date, '24-11-2021', 103), 'Création du back-end des pages');
 
 /*Init user stories*/
 insert into user_story(id_project, name, description, priority)
-    values(1, 'User story pour réussir son année', 'On va réussir wola', 1);
+    values(1, 'User story pour réussir son année.', 'On va réussir wola.', 1);
+    
+insert into user_story(id_project, name, description, priority)
+    values(1, 'Encore une user story.', 'On va réussir vraiment.', 2);
+    
+insert into user_story(id_project, name, description, priority)
+    values(2, 'En  tant que visiteur, je peux m\'inscrire.', 'Un visiteur sur le site peut s\'inscrire si son adresse mail n\'est pas déjà présente dans la base de donnée.', 1);
+    
+insert into user_story(id_project, name, description, priority)
+    values(2, 'En tant qu\'utilisateur inscrit, je peux me connecter.', 'L\'utilisateur qui s\'est inscrit peut se connecter à son compte.', 2);
+    
+insert into user_story(id_project, name, description, priority)
+    values(2, 'En tant qu\'utilisateur, je peux consulter ma liste de meetings prévus.', 'L\'utilisateur de n\'importe quel type, peut consulter un calendrier contenant tout les meetings auquel il est convié.', 3);
+
+insert into user_story(id_project, name, description, priority)
+    values(2, 'En tant que scrum master, je peux ajouter des meetings.', 'Le scrum master peut créer des meetings auquel il convie les développeurs et/ou le product owner.', 4);
+
+insert into user_story(id_project, name, description, priority)
+    values(3, 'En tant que joueur, je peux sauter.', 'Le joueur peut sauter grâce aux touches affectées.', 1);
+    
+insert into user_story(id_project, name, description, priority)
+    values(3, 'En tant que joueur, je peux attaquer mon adversaire.', 'Le joueur peut ataquer l\'adversaire et lui faire subir des dégâts grâce aux touches affectées.', 2);
+    
+insert into user_story(id_project, name, description, priority)
+    values(3, 'En tant qu\'utilisateur, je peux modifier le voolume de la musique de fond.', 'L\'utilisateur peut modifier le volume de la musique de fond. La valeur varie entre 0 et 100.', 3);
+
+insert into user_story(id_project, name, description, priority)
+    values(4, 'En tant qu\'utilisateur je peux naviguer sur le site.', 'L\'utilisateur peut choisir sur quel page il veut aller.', 1);
+    
+insert into user_story(id_project, name, description, priority)
+    values(4, 'En tant qu\'utilisateur je peux revenir sur la page d\'acceuil.', 'L\'utilisateur peut revenir sur la page d\'accueil, et ce depuis n\'importe quel autre page du site.', 2);
 
 /*Init meetings*/
 insert into meeting(id_sprint, schedule, description)
-    values(1, convert(datetime, '06-12-2021 12:00:00',131), 'Meeting pour réussir son année');
+    values(1, convert(datetime, '06-12-2021 12:00:00', 131), 'Meeting pour réussir son année.');
+    
+insert into meeting(id_sprint, schedule, description)
+    values(1, convert(datetime, '15-12-2021 12:00:00', 131), 'Mise en commun des branches.');
+    
+insert into meeting(id_sprint, schedule, description)
+    values(1, convert(datetime, '16-12-2021 12:00:00', 131), 'Partage des tâches restantes.');
+    
+insert into meeting(id_sprint, schedule, description)
+    values(2, convert(datetime, '14-12-2021 12:00:00', 131), 'Mise en commun des branches.');
+    
+insert into meeting(id_sprint, schedule, description)
+    values(2, convert(datetime, '14-12-2021 15:00:00', 131), 'Partage des tâches restantes.');
+    
+insert into meeting(id_sprint, schedule, description)
+    values(3, convert(datetime, '14-11-2021 15:00:00', 131), 'Mise en commun des branches.');
+    
+insert into meeting(id_sprint, schedule, description)
+    values(3, convert(datetime, '01-12-2021 15:00:00', 131), 'Partage des tâches restantes.');
+    
+insert into meeting(id_sprint, schedule, description)
+    values(3, convert(datetime, '07-12-2021 15:00:00', 131), 'Organisation de la présentation orale.');
+    
+insert into meeting(id_sprint, schedule, description)
+    values(4, convert(datetime, '10-10-2021 15:00:00', 131), 'Partage des tâches.');
+    
+insert into meeting(id_sprint, schedule, description)
+    values(4, convert(datetime, '20-10-2021 15:00:00', 131), 'Mise en commun des branches.');
 
 /*Init comments*/
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(1, 1, convert(datetime, '26-11-2021 12:00:00', 131), 'Commentaire pour réussir son année');
+    values(1, 1, convert(datetime, '26-11-2021 12:00:00', 131), 'Commentaire pour réussir son année.');
+    
+insert into comment(id_user_story, id_user, posted_at, content)
+    values(1, 2, convert(datetime, '26-11-2021 12:30:00', 131), 'Tu as raison.');
+    
+insert into comment(id_user_story, id_user, posted_at, content)
+    values(1, 6, convert(datetime, '26-11-2021 12:30:00', 131), 'Tu es embauché.');
+    
+insert into comment(id_user_story, id_user, posted_at, content)
+    values(3, 6, convert(datetime, '02-12-2021 12:30:00', 131), 'Eeeeh vous me copiez la.');
+    
+insert into comment(id_user_story, id_user, posted_at, content)
+    values(3, 2, convert(datetime, '02-12-2021 13:30:00', 131), 'Mais pas du tout ????!!!! C\'est quand même normal de pouvoir s\'inscrire sur un site!!!');
+    
+insert into comment(id_user_story, id_user, posted_at, content)
+    values(3, 3, convert(datetime, '03-12-2021 13:34:00', 131), 'De fou détends toi le zuck.');
+    
+insert into comment(id_user_story, id_user, posted_at, content)
+    values(10, 3, convert(datetime, '10-10-2021 13:34:00', 131), 'Le bateeeauuu naviiiigueeeee.');
+    
+insert into comment(id_user_story, id_user, posted_at, content)
+    values(10, 1, convert(datetime, '10-10-2021 13:35:00', 131), 'T\'es ravagé toi.');
+    
+insert into comment(id_user_story, id_user, posted_at, content)
+    values(7, 8, convert(datetime, '10-12-2021 13:35:00', 131), 'Je veux voir vos têtes vous dateeeeeez!');
+
+insert into comment(id_user_story, id_user, posted_at, content)
+    values(7, 9, convert(datetime, '10-12-2021 13:35:00', 131), 'Oh non pas lui....');
 
 /*Init project_user link table*/
 insert into developer_project(id_project, id_developer)
@@ -99,6 +213,12 @@ insert into developer_project(id_project, id_developer)
 
 insert into developer_project(id_project, id_developer)
     values(1, 4);
+    
+insert into developer_project(id_project, id_developer)
+    values(4, 1);
+    
+insert into developer_project(id_project, id_developer)
+    values(1, 7);
 
 /*Init participation link table*/
 insert into participation(id_meeting, id_user)
