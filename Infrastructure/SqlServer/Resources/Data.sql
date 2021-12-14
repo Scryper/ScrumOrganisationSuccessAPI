@@ -119,13 +119,13 @@ insert into user_story(id_project, name, description, priority)
     values(1, 'Encore une user story.', 'On va réussir vraiment.', 2);
     
 insert into user_story(id_project, name, description, priority)
-    values(2, 'En  tant que visiteur, je peux m\'inscrire.', 'Un visiteur sur le site peut s\'inscrire si son adresse mail n\'est pas déjà présente dans la base de donnée.', 1);
+    values(2, 'En  tant que visiteur, je peux m''inscrire.', 'Un visiteur sur le site peut s''inscrire si son adresse mail n''est pas déjà présente dans la base de donnée.', 1);
     
 insert into user_story(id_project, name, description, priority)
-    values(2, 'En tant qu\'utilisateur inscrit, je peux me connecter.', 'L\'utilisateur qui s\'est inscrit peut se connecter à son compte.', 2);
+    values(2, 'En tant qu''utilisateur inscrit, je peux me connecter.', 'L''utilisateur qui s''est inscrit peut se connecter à son compte.', 2);
     
 insert into user_story(id_project, name, description, priority)
-    values(2, 'En tant qu\'utilisateur, je peux consulter ma liste de meetings prévus.', 'L\'utilisateur de n\'importe quel type, peut consulter un calendrier contenant tout les meetings auquel il est convié.', 3);
+    values(2, 'En tant qu''utilisateur, je peux consulter ma liste de meetings prévus.', 'L''utilisateur de n''importe quel type, peut consulter un calendrier contenant tout les meetings auquel il est convié.', 3);
 
 insert into user_story(id_project, name, description, priority)
     values(2, 'En tant que scrum master, je peux ajouter des meetings.', 'Le scrum master peut créer des meetings auquel il convie les développeurs et/ou le product owner.', 4);
@@ -134,16 +134,16 @@ insert into user_story(id_project, name, description, priority)
     values(3, 'En tant que joueur, je peux sauter.', 'Le joueur peut sauter grâce aux touches affectées.', 1);
     
 insert into user_story(id_project, name, description, priority)
-    values(3, 'En tant que joueur, je peux attaquer mon adversaire.', 'Le joueur peut ataquer l\'adversaire et lui faire subir des dégâts grâce aux touches affectées.', 2);
+    values(3, 'En tant que joueur, je peux attaquer mon adversaire.', 'Le joueur peut ataquer l''adversaire et lui faire subir des dégâts grâce aux touches affectées.', 2);
     
 insert into user_story(id_project, name, description, priority)
-    values(3, 'En tant qu\'utilisateur, je peux modifier le voolume de la musique de fond.', 'L\'utilisateur peut modifier le volume de la musique de fond. La valeur varie entre 0 et 100.', 3);
+    values(3, 'En tant qu''utilisateur, je peux modifier le voolume de la musique de fond.', 'L''utilisateur peut modifier le volume de la musique de fond. La valeur varie entre 0 et 100.', 3);
 
 insert into user_story(id_project, name, description, priority)
-    values(4, 'En tant qu\'utilisateur je peux naviguer sur le site.', 'L\'utilisateur peut choisir sur quel page il veut aller.', 1);
+    values(4, 'En tant qu''utilisateur je peux naviguer sur le site.', 'L''utilisateur peut choisir sur quel page il veut aller.', 1);
     
 insert into user_story(id_project, name, description, priority)
-    values(4, 'En tant qu\'utilisateur je peux revenir sur la page d\'acceuil.', 'L\'utilisateur peut revenir sur la page d\'accueil, et ce depuis n\'importe quel autre page du site.', 2);
+    values(4, 'En tant qu''utilisateur je peux revenir sur la page d''acceuil.', 'L''utilisateur peut revenir sur la page d''accueil, et ce depuis n''importe quel autre page du site.', 2);
 
 /*Init meetings*/
 insert into meeting(id_sprint, schedule, description)
@@ -190,7 +190,7 @@ insert into comment(id_user_story, id_user, posted_at, content)
     values(3, 6, convert(datetime, '02-12-2021 12:30:00', 131), 'Eeeeh vous me copiez la.');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(3, 2, convert(datetime, '02-12-2021 13:30:00', 131), 'Mais pas du tout ????!!!! C\'est quand même normal de pouvoir s\'inscrire sur un site!!!');
+    values(3, 2, convert(datetime, '02-12-2021 13:30:00', 131), 'Mais pas du tout ????!!!! C''est quand même normal de pouvoir s''inscrire sur un site!!!');
     
 insert into comment(id_user_story, id_user, posted_at, content)
     values(3, 3, convert(datetime, '03-12-2021 13:34:00', 131), 'De fou détends toi le zuck.');
@@ -199,7 +199,7 @@ insert into comment(id_user_story, id_user, posted_at, content)
     values(10, 3, convert(datetime, '10-10-2021 13:34:00', 131), 'Le bateeeauuu naviiiigueeeee.');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(10, 1, convert(datetime, '10-10-2021 13:35:00', 131), 'T\'es ravagé toi.');
+    values(10, 1, convert(datetime, '10-10-2021 13:35:00', 131), 'T''es ravagé toi.');
     
 insert into comment(id_user_story, id_user, posted_at, content)
     values(7, 8, convert(datetime, '10-12-2021 13:35:00', 131), 'Je veux voir vos têtes vous dateeeeeez!');
