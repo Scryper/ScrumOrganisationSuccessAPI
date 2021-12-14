@@ -296,6 +296,33 @@ insert into sprint_user_story(id_sprint, id_user_story)
     
 insert into sprint_user_story(id_sprint, id_user_story)
     values(2, 2);
+    
+insert into sprint_user_story(id_sprint, id_user_story)
+    values(3, 3);
+ 
+insert into sprint_user_story(id_sprint, id_user_story)
+    values(3, 4);
+    
+insert into sprint_user_story(id_sprint, id_user_story)
+    values(4, 5);
+
+insert into sprint_user_story(id_sprint, id_user_story)
+    values(4, 6);
+    
+insert into sprint_user_story(id_sprint, id_user_story)
+    values(5, 7);
+    
+insert into sprint_user_story(id_sprint, id_user_story)
+    values(6, 8);
+    
+insert into sprint_user_story(id_sprint, id_user_story)
+    values(7, 9);
+    
+insert into sprint_user_story(id_sprint, id_user_story)
+    values(8, 10);
+    
+insert into sprint_user_story(id_sprint, id_user_story)
+    values(9, 11);
 
 /*Init user technologies link table*/
 insert into user_technology(id_user, id_technology)
