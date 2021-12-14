@@ -219,6 +219,15 @@ insert into developer_project(id_project, id_developer)
     
 insert into developer_project(id_project, id_developer)
     values(1, 7);
+    
+insert into developer_project(id_project, id_developer)
+    values(4, 7);
+    
+insert into developer_project(id_project, id_developer)
+    values(1, 6);
+    
+insert into developer_project(id_project, id_developer)
+    values(4, 6);
 
 /*Init participation link table*/
 insert into participation(id_meeting, id_user)
@@ -232,27 +241,237 @@ insert into participation(id_meeting, id_user)
 
 insert into participation(id_meeting, id_user)
     values(1, 4);
+    
+insert into participation(id_meeting, id_user)
+    values(2, 1);
+
+insert into participation(id_meeting, id_user)
+    values(2, 2);
+
+insert into participation(id_meeting, id_user)
+    values(2, 3);
+
+insert into participation(id_meeting, id_user)
+    values(2, 4);
+    
+insert into participation(id_meeting, id_user)
+    values(3, 1);
+
+insert into participation(id_meeting, id_user)
+    values(3, 2);
+
+insert into participation(id_meeting, id_user)
+    values(3, 3);
+
+insert into participation(id_meeting, id_user)
+    values(3, 4);
+    
+insert into participation(id_meeting, id_user)
+    values(4, 1);
+
+insert into participation(id_meeting, id_user)
+    values(4, 2);
+
+insert into participation(id_meeting, id_user)
+    values(4, 3);
+
+insert into participation(id_meeting, id_user)
+    values(4, 4);
+    
+insert into participation(id_meeting, id_user)
+    values(5, 1);
+
+insert into participation(id_meeting, id_user)
+    values(5, 2);
+
+insert into participation(id_meeting, id_user)
+    values(5, 3);
+
+insert into participation(id_meeting, id_user)
+    values(5, 4);
 
 /*Init sprint user stories link table*/
 insert into sprint_user_story(id_sprint, id_user_story)
     values(1, 1);
 
 /*Init user technologies link table*/
-insert into user_technology(id_user , id_technology)
+insert into user_technology(id_user, id_technology)
     values(1, 1);
+    
+insert into user_technology(id_user, id_technology)
+    values(1, 2);
 
-insert into user_technology(id_user , id_technology)
+insert into user_technology(id_user, id_technology)
     values(1, 3);
 
-insert into user_technology(id_user , id_technology)
+insert into user_technology(id_user, id_technology)
     values(1, 4);
 
-insert into user_technology(id_user , id_technology)
-    values(1, 3);
-
-insert into user_technology(id_user , id_technology)
+insert into user_technology(id_user, id_technology)
     values(1, 5);
+    
+insert into user_technology(id_user, id_technology)
+    values(1, 6);
+    
+insert into user_technology(id_user, id_technology)
+    values(1, 7);
+    
+insert into user_technology(id_user, id_technology)
+    values(1, 8);
+    
+insert into user_technology(id_user, id_technology)
+    values(1, 9);
+    
+insert into user_technology(id_user, id_technology)
+    values(1, 10);
+    
+insert into user_technology(id_user, id_technology)
+    values(1, 11);
+    
+insert into user_technology(id_user, id_technology)
+    values(1, 12);
+    
+insert into user_technology(id_user, id_technology)
+    values(1, 13);
+    
+insert into user_technology(id_user,  id_technology)
+    values(2, 1);
+    
+insert into user_technology(id_user, id_technology)
+    values(2, 2);
+    
+insert into user_technology(id_user, id_technology)
+    values(2, 3);
+
+insert into user_technology(id_user, id_technology)
+    values(2, 4);
+
+insert into user_technology(id_user, id_technology)
+    values(2, 5);
+    
+insert into user_technology(id_user, id_technology)
+    values(2, 6);
+    
+insert into user_technology(id_user, id_technology)
+    values(2, 7);
+    
+insert into user_technology(id_user, id_technology)
+    values(2, 8);
+    
+insert into user_technology(id_user, id_technology)
+    values(2, 9);
+    
+insert into user_technology(id_user, id_technology)
+    values(2, 10);
+    
+insert into user_technology(id_user, id_technology)
+    values(2, 11);
+    
+insert into user_technology(id_user, id_technology)
+    values(2, 12);
+    
+insert into user_technology(id_user, id_technology)
+    values(2, 13);
+    
+insert into user_technology(id_user, id_technology)
+    values(3, 1);
+    
+insert into user_technology(id_user, id_technology)
+    values(3, 2);
+
+insert into user_technology(id_user, id_technology)
+    values(3, 3);
+
+insert into user_technology(id_user, id_technology)
+    values(3, 4);
+
+insert into user_technology(id_user, id_technology)
+    values(3, 5);
+    
+insert into user_technology(id_user, id_technology)
+    values(3, 6);
+    
+insert into user_technology(id_user, id_technology)
+    values(3, 7);
+    
+insert into user_technology(id_user, id_technology)
+    values(3, 8);
+    
+insert into user_technology(id_user, id_technology)
+    values(3, 9);
+    
+insert into user_technology(id_user, id_technology)
+    values(3, 10);
+    
+insert into user_technology(id_user, id_technology)
+    values(3, 11);
+    
+insert into user_technology(id_user, id_technology)
+    values(3, 12);
+    
+insert into user_technology(id_user, id_technology)
+    values(3, 13);
+    
+insert into user_technology(id_user, id_technology)
+    values(4, 1);
+    
+insert into user_technology(id_user, id_technology)
+    values(4, 2);
+
+insert into user_technology(id_user, id_technology)
+    values(4, 3);
+
+insert into user_technology(id_user, id_technology)
+    values(4, 4);
+
+insert into user_technology(id_user, id_technology)
+    values(4, 5);
+    
+insert into user_technology(id_user, id_technology)
+    values(4, 6);
+    
+insert into user_technology(id_user, id_technology)
+    values(4, 7);
+    
+insert into user_technology(id_user, id_technology)
+    values(4, 8);
+    
+insert into user_technology(id_user, id_technology)
+    values(4, 9);
+    
+insert into user_technology(id_user, id_technology)
+    values(4, 10);
+    
+insert into user_technology(id_user, id_technology)
+    values(4, 11);
+    
+insert into user_technology(id_user, id_technology)
+    values(4, 12);
+    
+insert into user_technology(id_user, id_technology)
+    values(4, 13);
 
 /*Init project technologies link table*/
 insert into project_technology (id_project, id_technology)
     values(1, 1);
+    
+insert into project_technology (id_project, id_technology)
+    values(1, 6);
+    
+insert into project_technology (id_project, id_technology)
+    values(2, 4);
+    
+insert into project_technology (id_project, id_technology)
+    values(2, 12);
+    
+insert into project_technology (id_project, id_technology)
+    values(3, 7);
+    
+insert into project_technology (id_project, id_technology)
+    values(3, 8);
+        
+insert into project_technology (id_project, id_technology)
+    values(4, 11);
+        
+insert into project_technology (id_project, id_technology)
+    values(4, 13);
