@@ -293,6 +293,9 @@ insert into participation(id_meeting, id_user)
 /*Init sprint user stories link table*/
 insert into sprint_user_story(id_sprint, id_user_story)
     values(1, 1);
+    
+insert into sprint_user_story(id_sprint, id_user_story)
+    values(2, 2);
 
 /*Init user technologies link table*/
 insert into user_technology(id_user, id_technology)
@@ -450,6 +453,48 @@ insert into user_technology(id_user, id_technology)
     
 insert into user_technology(id_user, id_technology)
     values(4, 13);
+    
+insert into user_technology(id_user, id_technology)
+    values(5, 4);
+    
+insert into user_technology(id_user, id_technology)
+    values(5, 6);
+    
+insert into user_technology(id_user, id_technology)
+    values(6, 1);
+
+insert into user_technology(id_user, id_technology)
+    values(6, 11);
+    
+insert into user_technology(id_user, id_technology)
+    values(6, 13);
+    
+insert into user_technology(id_user, id_technology)
+    values(7, 1);
+
+insert into user_technology(id_user, id_technology)
+    values(7, 11);
+    
+insert into user_technology(id_user, id_technology)
+    values(7, 13);
+    
+insert into user_technology(id_user, id_technology)
+    values(8, 1);
+    
+insert into user_technology(id_user, id_technology)
+    values(8, 6);
+    
+insert into user_technology(id_user, id_technology)
+    values(9, 7);
+    
+insert into user_technology(id_user, id_technology)
+    values(9, 8);
+    
+insert into user_technology(id_user, id_technology)
+    values(9, 11);
+    
+insert into user_technology(id_user, id_technology)
+    values(9, 13);
 
 /*Init project technologies link table*/
 insert into project_technology (id_project, id_technology)
