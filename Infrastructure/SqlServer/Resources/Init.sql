@@ -77,8 +77,7 @@ create table sprint (
     id_project int not null,
     sprint_number int not null,
     deadline datetime not null,
-    description varchar(1000) not null,
-    progression int not null
+    description varchar(1000) not null
 );
 
 create table user_story (
@@ -86,8 +85,7 @@ create table user_story (
     id_project int not null,
     name varchar(200) not null,
     description varchar(1000) not null,
-    priority smallint not null,
-    is_done bit not null default 0
+    priority smallint not null
 );
 
 create table meeting (
