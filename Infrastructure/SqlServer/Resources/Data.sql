@@ -150,65 +150,65 @@ insert into user_story(id_project, name, description, priority)
 
 /*Init meetings*/
 insert into meeting(id_sprint, schedule, description)
-    values(1, convert(datetime, '06-12-2021 12:00:00', 131), 'Meeting pour réussir son année.');
+    values(1, convert(datetime, '06-12-2021 12:00:00', 103), 'Meeting pour réussir son année.');
     
 insert into meeting(id_sprint, schedule, description)
-    values(1, convert(datetime, '15-12-2021 12:00:00', 131), 'Mise en commun des branches.');
+    values(1, convert(datetime, '15-12-2021 12:00:00', 103), 'Mise en commun des branches.');
     
 insert into meeting(id_sprint, schedule, description)
-    values(1, convert(datetime, '16-12-2021 12:00:00', 131), 'Partage des tâches restantes.');
+    values(1, convert(datetime, '16-12-2021 12:00:00', 103), 'Partage des tâches restantes.');
     
 insert into meeting(id_sprint, schedule, description)
-    values(2, convert(datetime, '14-12-2021 12:00:00', 131), 'Mise en commun des branches.');
+    values(2, convert(datetime, '14-12-2021 12:00:00', 103), 'Mise en commun des branches.');
     
 insert into meeting(id_sprint, schedule, description)
-    values(2, convert(datetime, '14-12-2021 15:00:00', 131), 'Partage des tâches restantes.');
+    values(2, convert(datetime, '14-12-2021 15:00:00', 103), 'Partage des tâches restantes.');
     
 insert into meeting(id_sprint, schedule, description)
-    values(3, convert(datetime, '14-11-2021 15:00:00', 131), 'Mise en commun des branches.');
+    values(3, convert(datetime, '14-11-2021 15:00:00', 103), 'Mise en commun des branches.');
     
 insert into meeting(id_sprint, schedule, description)
-    values(3, convert(datetime, '01-12-2021 15:00:00', 131), 'Partage des tâches restantes.');
+    values(3, convert(datetime, '01-12-2021 15:00:00', 103), 'Partage des tâches restantes.');
     
 insert into meeting(id_sprint, schedule, description)
-    values(3, convert(datetime, '07-12-2021 15:00:00', 131), 'Organisation de la présentation orale.');
+    values(3, convert(datetime, '07-12-2021 15:00:00', 103), 'Organisation de la présentation orale.');
     
 insert into meeting(id_sprint, schedule, description)
-    values(4, convert(datetime, '10-10-2021 15:00:00', 131), 'Partage des tâches.');
+    values(4, convert(datetime, '10-10-2021 15:00:00', 103), 'Partage des tâches.');
     
 insert into meeting(id_sprint, schedule, description)
-    values(4, convert(datetime, '20-10-2021 15:00:00', 131), 'Mise en commun des branches.');
+    values(4, convert(datetime, '20-10-2021 15:00:00', 103), 'Mise en commun des branches.');
 
 /*Init comments*/
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(1, 1, convert(datetime, '26-11-2021 12:00:00', 131), 'Commentaire pour réussir son année.');
+    values(1, 1, convert(datetime, '26-11-2021 12:00:00', 103), 'Commentaire pour réussir son année.');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(1, 2, convert(datetime, '26-11-2021 12:30:00', 131), 'Tu as raison.');
+    values(1, 2, convert(datetime, '26-11-2021 12:30:00', 103), 'Tu as raison.');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(1, 6, convert(datetime, '26-11-2021 12:30:00', 131), 'Tu es embauché.');
+    values(1, 6, convert(datetime, '26-11-2021 12:30:00', 103), 'Tu es embauché.');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(3, 6, convert(datetime, '02-12-2021 12:30:00', 131), 'Eeeeh vous me copiez la.');
+    values(3, 6, convert(datetime, '02-12-2021 12:30:00', 103), 'Eeeeh vous me copiez la.');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(3, 2, convert(datetime, '02-12-2021 13:30:00', 131), 'Mais pas du tout ????!!!! C''est quand même normal de pouvoir s''inscrire sur un site!!!');
+    values(3, 2, convert(datetime, '02-12-2021 13:30:00', 103), 'Mais pas du tout ????!!!! C''est quand même normal de pouvoir s''inscrire sur un site!!!');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(3, 3, convert(datetime, '03-12-2021 13:34:00', 131), 'De fou détends toi le zuck.');
+    values(3, 3, convert(datetime, '03-12-2021 13:34:00', 103), 'De fou détends toi le zuck.');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(10, 3, convert(datetime, '10-10-2021 13:34:00', 131), 'Le bateeeauuu naviiiigueeeee.');
+    values(10, 3, convert(datetime, '10-10-2021 13:34:00', 103), 'Le bateeeauuu naviiiigueeeee.');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(10, 1, convert(datetime, '10-10-2021 13:35:00', 131), 'T''es ravagé toi.');
+    values(10, 1, convert(datetime, '10-10-2021 13:35:00', 103), 'T''es ravagé toi.');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(7, 8, convert(datetime, '10-12-2021 13:35:00', 131), 'Je veux voir vos têtes vous dateeeeeez!');
+    values(7, 8, convert(datetime, '10-12-2021 13:35:00', 103), 'Je veux voir vos têtes vous dateeeeeez!');
 
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(7, 9, convert(datetime, '10-12-2021 13:35:00', 131), 'Oh non pas lui....');
+    values(7, 9, convert(datetime, '10-12-2021 13:35:00', 103), 'Oh non pas lui....');
 
 /*Init project_user link table*/
 insert into developer_project(id_project, id_developer)
