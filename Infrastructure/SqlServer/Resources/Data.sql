@@ -1,15 +1,15 @@
 /*Init users*/
 insert into sos_user(firstname, lastname, password, email, role, birthdate, profile_picture)
     values('Florian', 'Mazzeo', 'scryper', 'florian.mazzeo@gmail.com', 1, convert(date, '20-12-2001', 103)
-        , './assets/images/imgFlorian.jpg');
+        , './assets/images/profilePictures/florian_mazzeo.jpg');
 
 insert into sos_user(firstname, lastname, password, email, role, birthdate, profile_picture)
     values('Damien', 'Auversack', 'damien97', 'damsover@gmail.com', 2, convert(date, '23-07-1997', 103)
-          , './assets/images/imgDamien.jpg');
+          , './assets/images/profilePictures/damien_auversack.jpg');
 
 insert into sos_user(firstname, lastname, password, email, role, birthdate, profile_picture)
     values('Martin', 'Maes', 'dotni', 'martin.maes100.000@gmail.com', 3, convert(date, '26-11-1998', 103)
-          , './assets/images/imgMartin.jpg');
+          , './assets/images/profilePictures/martin_maes.jpg');
 
 insert into sos_user(firstname, lastname, password, email, role, birthdate)
     values('Floran', 'Houdart', 'myneck', 'la199788@student.helha.be', 1, convert(date, '11-01-2001', 103));
