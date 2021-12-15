@@ -8,6 +8,7 @@ namespace Application.Security.Models
         public string Lastname { get; set; }
         public string Email { get; set; }
         public int Role { get; set; }
+        public string ProfilePicture { get; set; }
         public string Token { get; set; }
 
         public AuthenticateResponse(User user, string token)
@@ -16,6 +17,7 @@ namespace Application.Security.Models
             Lastname = user.Lastname;
             Email = user.Email;
             Role = user.Role;
+            ProfilePicture = user.ProfilePicture;
             Token = token;
         }
     }
