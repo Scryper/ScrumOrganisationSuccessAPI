@@ -16,7 +16,6 @@
 
     <ItemGroup>
       <Folder Include="UseCases\DeveloperProject\Delete" />
-      <Folder Include="UseCases\DeveloperProject\Post" />
       <Folder Include="UseCases\DeveloperProject\Put" />
     </ItemGroup>
 

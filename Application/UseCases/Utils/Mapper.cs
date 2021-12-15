@@ -1,4 +1,5 @@
 ﻿using Application.UseCases.Comment.Dtos;
+using Application.UseCases.DeveloperProject.Dtos;
 using Application.UseCases.Meeting.Dtos;
 using Application.UseCases.Project.Dtos;
 using Application.UseCases.Sprint.Dtos;
@@ -29,6 +30,7 @@ namespace Application.UseCases.Utils
                 cfg.CreateMap<InputDtoSprint, Domain.Sprint>();
                 cfg.CreateMap<InputDtoUser, Domain.User>();
                 cfg.CreateMap<InputDtoUserStory, Domain.UserStory>();
+                cfg.CreateMap<InputDtoDeveloperProject, Domain.DeveloperProject>();
                 
                 // From elements to output
                 cfg.CreateMap<Domain.Comment, OutputDtoComment>();
@@ -37,6 +39,7 @@ namespace Application.UseCases.Utils
                 cfg.CreateMap<Domain.Sprint, OutputDtoSprint>();
                 cfg.CreateMap<Domain.User, OutputDtoUser>();
                 cfg.CreateMap<Domain.UserStory, OutputDtoUserStory>();
+                cfg.CreateMap<Domain.DeveloperProject, OutputDtoDeveloperProject>();
             });
 
             return new AutoMapper.Mapper(config);

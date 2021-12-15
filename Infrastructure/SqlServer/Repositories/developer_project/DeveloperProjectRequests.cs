@@ -14,7 +14,7 @@
                                                               where {ColIdDeveloper} = @{ColIdDeveloper}";
 
         private static readonly string ReqGetByProjectId = $@"select * from {TableName} 
-                                                            where {ColIdProject} = @{ColIdDeveloper}";
+                                                            where {ColIdProject} = @{ColIdProject}";
 
         // Post requests
         private static readonly string ReqCreate = $@"insert into {TableName}({ColIdDeveloper},{ColIdProject},{ColIsAppliance}) 

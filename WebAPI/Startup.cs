@@ -5,6 +5,8 @@ using Application.UseCases.Comment;
 using Application.UseCases.Comment.Delete;
 using Application.UseCases.Comment.Get;
 using Application.UseCases.Comment.Put;
+using Application.UseCases.DeveloperProject.Get;
+using Application.UseCases.DeveloperProject.Post;
 using Application.UseCases.Meeting;
 using Application.UseCases.Meeting.Delete;
 using Application.UseCases.Meeting.Get;
@@ -26,6 +28,7 @@ using Application.UseCases.UserStory.Delete;
 using Application.UseCases.UserStory.Get;
 using Application.UseCases.UserStory.Put;
 using Infrastructure.SqlServer.Repositories.Comment;
+using Infrastructure.SqlServer.Repositories.developer_project;
 using Infrastructure.SqlServer.Repositories.Meeting;
 using Infrastructure.SqlServer.Repositories.Project;
 using Infrastructure.SqlServer.Repositories.Sprint;
@@ -65,6 +68,7 @@ namespace WebAPI
             services.AddSingleton<ISprintRepository, SprintRepository>();
             services.AddSingleton<IUserRepository, UserRepository>();
             services.AddSingleton<IUserStoryRepository, UserStoryRepository>();
+            services.AddSingleton<IDeveloperProjectRepository, DeveloperProjectRepository>();
             
             services.AddSingleton<IDatabaseManager, DatabaseManager>();
             
@@ -146,6 +150,13 @@ namespace WebAPI
             services.AddSingleton<UseCaseUpdateUserStoryIsDone>();
             
             services.AddSingleton<UseCaseDeleteUserStory>();
+            
+            // DeveloperProject use cases
+            services.AddSingleton<UseCaseGetAllDeveloperProjects>();
+            services.AddSingleton<UseCaseGetDeveloperProjectsByIdDeveloper>();
+            services.AddSingleton<UseCaseGetDeveloperProjectsByIdProject>();
+            services.AddSingleton<UseCaseCreateDeveloperProject>();
+            
             
             services.AddControllers();
             
