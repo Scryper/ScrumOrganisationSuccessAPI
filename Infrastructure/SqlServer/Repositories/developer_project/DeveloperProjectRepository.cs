@@ -2,21 +2,20 @@
 using System.Data;
 using Domain;
 using Infrastructure.SqlServer.Utils;
-using NotImplementedException = System.NotImplementedException;
 
 namespace Infrastructure.SqlServer.Repositories.developer_project
 {
     public partial class DeveloperProjectRepository : IDeveloperProjectRepository
     {
-        private readonly IDomainFactory<Domain.DeveloperProject> _developerProjectFactory =
+        private readonly IDomainFactory<DeveloperProject> _developerProjectFactory =
             new DeveloperProjectFactory();
 
         // Get requests
         public List<DeveloperProject> GetAll()
         {
-            var developerProjects = new List<Domain.DeveloperProject>();
+            var developerProjects = new List<DeveloperProject>();
 
-            var command = Database.GetCommand((ReqGetAll));
+            var command = Database.GetCommand(ReqGetAll);
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
@@ -27,7 +26,7 @@ namespace Infrastructure.SqlServer.Repositories.developer_project
 
         public List<DeveloperProject> GetByIdDeveloper(int idDeveloper)
         {
-            var developerProjects = new List<Domain.DeveloperProject>();
+            var developerProjects = new List<DeveloperProject>();
 
             var command = Database.GetCommand((ReqGetByDeveloperId));
 
@@ -42,7 +41,7 @@ namespace Infrastructure.SqlServer.Repositories.developer_project
 
         public List<DeveloperProject> GetByIdProject(int idProject)
         {
-            var developerProjects = new List<Domain.DeveloperProject>();
+            var developerProjects = new List<DeveloperProject>();
 
             var command = Database.GetCommand((ReqGetByProjectId));
 
@@ -56,7 +55,7 @@ namespace Infrastructure.SqlServer.Repositories.developer_project
         }
 
         // Post requests
-        public Domain.DeveloperProject Create(DeveloperProject developerProject)
+        public DeveloperProject Create(DeveloperProject developerProject)
         {
             var command = Database.GetCommand((ReqCreate));
 
@@ -64,7 +63,7 @@ namespace Infrastructure.SqlServer.Repositories.developer_project
             command.Parameters.AddWithValue("@" + ColIdProject, developerProject.IdProject);
             command.Parameters.AddWithValue("@" + ColIsAppliance, developerProject.IsAppliance);
 
-            return new Domain.DeveloperProject
+            return new DeveloperProject
             {
                 IdDeveloper = developerProject.IdDeveloper,
                 IdProject = developerProject.IdProject,

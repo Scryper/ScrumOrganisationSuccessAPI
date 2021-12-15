@@ -103,6 +103,7 @@ namespace WebAPI
             // Projects use cases
             services.AddSingleton<UseCaseGetAllProjects>();
             services.AddSingleton<UseCaseGetProjectById>();
+            services.AddSingleton<UseCaseGetProjectByName>();
             services.AddSingleton<UseCaseGetProjectsByIdProductOwner>();
             services.AddSingleton<UseCaseGetProjectsByIdScrumMaster>();
             

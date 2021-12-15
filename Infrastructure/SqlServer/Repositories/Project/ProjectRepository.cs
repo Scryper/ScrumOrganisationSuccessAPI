@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using Infrastructure.SqlServer.Utils;
+using NotImplementedException = System.NotImplementedException;
 
 namespace Infrastructure.SqlServer.Repositories.Project
 {
@@ -35,7 +36,20 @@ namespace Infrastructure.SqlServer.Repositories.Project
             // Return the project if found, null if not
             return reader.Read() ? _projectFactory.CreateFromSqlReader(reader) : null;
         }
-        
+
+        public Domain.Project GetByName(string name)
+        {
+            var command = Database.GetCommand(ReqGetByName);
+            
+            // Parametrize the command
+            command.Parameters.AddWithValue("@" + ColName, name);
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            // Return the project if found, null if not
+            return reader.Read() ? _projectFactory.CreateFromSqlReader(reader) : null;
+        }
+
         // TODO : factorisation
         public List<Domain.Project> GetByIdProductOwner(int idProductOwner)
         {

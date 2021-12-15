@@ -7,6 +7,7 @@ namespace Infrastructure.SqlServer.Repositories.Project
         // Get requests
         List<Domain.Project> GetAll();
         Domain.Project GetById(int id);
+        Domain.Project GetByName(string name);
         List<Domain.Project> GetByIdProductOwner(int idProductOwner);
         List<Domain.Project> GetByIdScrumMaster(int idScrumMaster);
 

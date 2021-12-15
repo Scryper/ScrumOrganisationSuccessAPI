@@ -16,6 +16,7 @@ namespace WebAPI.Controllers
         // Use cases
         private readonly UseCaseGetAllProjects _useCaseGetAllProjects;
         private readonly UseCaseGetProjectById _useCaseGetProjectById;
+        private readonly UseCaseGetProjectByName _useCaseGetProjectByName;
         private readonly UseCaseGetProjectsByIdProductOwner _useCaseGetProjectsByIdProductOwner;
         private readonly UseCaseGetProjectsByIdScrumMaster _useCaseGetProjectsByIdScrumMaster;
         
@@ -29,6 +30,7 @@ namespace WebAPI.Controllers
         public ProjectController(
             UseCaseGetAllProjects useCaseGetAllProjects,
             UseCaseGetProjectById useCaseGetProjectById,
+            UseCaseGetProjectByName useCaseGetProjectByName,
             UseCaseGetProjectsByIdProductOwner useCaseGetProjectsByIdProductOwner,
             UseCaseGetProjectsByIdScrumMaster useCaseGetProjectsByIdScrumMaster,
             UseCaseCreateProject useCaseCreateProject,
@@ -39,6 +41,7 @@ namespace WebAPI.Controllers
             _useCaseGetProjectsByIdProductOwner = useCaseGetProjectsByIdProductOwner;
             _useCaseGetProjectsByIdScrumMaster = useCaseGetProjectsByIdScrumMaster;
             _useCaseGetProjectById = useCaseGetProjectById;
+            _useCaseGetProjectByName = useCaseGetProjectByName;
             
             _useCaseCreateProject = useCaseCreateProject;
 
@@ -62,7 +65,14 @@ namespace WebAPI.Controllers
         {
             return _useCaseGetProjectById.Execute(id);
         }
-        
+
+        [HttpGet]
+        [Route("byName/{name:alpha}")]
+        public ActionResult<OutputDtoProject> GetByName(string name)
+        {
+            return _useCaseGetProjectByName.Execute(name);
+        }
+
         [HttpGet]
         [Route("byProductOwner/{idProductOwner:int}")]
         public ActionResult<List<OutputDtoProject>> GetByIdProductOwner(int idProductOwner)

@@ -12,7 +12,7 @@
         public const string ColRepositoryUrl = "repository_url";
         public const string ColIdProductOwner = "id_product_owner";
         public const string ColIdScrumMaster = "id_scrum_master";
-        public const string ColStatus = "status";
+        public const string ColStatus = "sos_status";
         
         public const string UserColId = "sos_user.id";
 
@@ -21,6 +21,9 @@
         
         private static readonly string ReqGetById = $@"select * from {TableName} 
                                                     where {ColId} = @{ColId}";
+        
+        private static readonly string ReqGetByName = $@"select * from {TableName}
+                                                      where {ColName} = @{ColName}";
         
         private static readonly string ReqGetByIdProductOwner = 
                                                     $@"select * from {TableName} 
