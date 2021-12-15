@@ -15,6 +15,7 @@
         public const string ColEmail = "email";
         public const string ColRole = "role";
         public const string ColBirthdate = "birthdate";
+        public const string ColProfilePicture = "profile_picture";
         
         public const string ProjectUserColIdUser = "project_user.id_user";
         public const string ProjectUserColIdProject = "project_user.id_project";

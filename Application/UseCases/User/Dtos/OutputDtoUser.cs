@@ -12,5 +12,6 @@ namespace Application.UseCases.User.Dtos
         public string Email { get; set; }
         public int Role { get; set; }
         public DateTime Birthdate { get; set; }
+        public string ProfilePicture { get; set; }
     }
 }

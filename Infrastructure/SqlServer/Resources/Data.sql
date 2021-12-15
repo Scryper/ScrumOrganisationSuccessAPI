@@ -1,12 +1,15 @@
 /*Init users*/
-insert into sos_user(firstname, lastname, password, email, role, birthdate)
-    values('Florian', 'Mazzeo', 'scryper', 'florian.mazzeo@gmail.com', 1, convert(date, '20-12-2001', 103));
+insert into sos_user(firstname, lastname, password, email, role, birthdate, profile_picture)
+    values('Florian', 'Mazzeo', 'scryper', 'florian.mazzeo@gmail.com', 1, convert(date, '20-12-2001', 103)
+        , './assets/images/imgFlorian.jpg');
 
-insert into sos_user(firstname, lastname, password, email, role, birthdate)
-    values('Damien', 'Auversack', 'damien97', 'damsover@gmail.com', 2, convert(date, '23-07-1997', 103));
+insert into sos_user(firstname, lastname, password, email, role, birthdate, profile_picture)
+    values('Damien', 'Auversack', 'damien97', 'damsover@gmail.com', 2, convert(date, '23-07-1997', 103)
+          , './assets/images/imgDamien.jpg');
 
-insert into sos_user(firstname, lastname, password, email, role, birthdate)
-    values('Martin', 'Maes', 'dotni', 'martin.maes100.000@gmail.com', 3, convert(date, '26-11-1998', 103));
+insert into sos_user(firstname, lastname, password, email, role, birthdate, profile_picture)
+    values('Martin', 'Maes', 'dotni', 'martin.maes100.000@gmail.com', 3, convert(date, '26-11-1998', 103)
+          , './assets/images/imgMartin.jpg');
 
 insert into sos_user(firstname, lastname, password, email, role, birthdate)
     values('Floran', 'Houdart', 'myneck', 'la199788@student.helha.be', 1, convert(date, '11-01-2001', 103));
@@ -84,32 +87,32 @@ insert into technology(name)
     values('HTML');
 
 /*Init sprints*/
-insert into sprint(id_project, sprint_number, deadline, description)
-    values(1, 1, convert(date, '01-12-2021', 103), 'Création basique du serveur');
+insert into sprint(id_project, sprint_number, start_date, deadline, description)
+    values(1, 1, convert(date, '01-11-2021', 103), convert(date, '01-12-2021', 103), 'Création basique du serveur');
    
-insert into sprint(id_project, sprint_number, deadline, description)
-    values(1, 2, convert(date, '15-12-2021', 103), 'Ajout des dernières fonctionnalités nécessaires');
+insert into sprint(id_project, sprint_number, start_date, deadline, description)
+    values(1, 2, convert(date, '15-11-2021', 103), convert(date, '15-12-2021', 103), 'Ajout des dernières fonctionnalités nécessaires');
     
-insert into sprint(id_project, sprint_number, deadline, description)
-    values(2, 1, convert(date, '06-12-2021', 103), 'Premier jet des pages du site');
+insert into sprint(id_project, sprint_number, start_date, deadline, description)
+    values(2, 1, convert(date, '06-11-2021', 103), convert(date, '06-12-2021', 103), 'Premier jet des pages du site');
     
-insert into sprint(id_project, sprint_number, deadline, description)
-    values(2, 2, convert(date, '20-12-2021', 103), 'Deuxième jet des pages du site');
+insert into sprint(id_project, sprint_number, start_date, deadline, description)
+    values(2, 2, convert(date, '20-11-2021', 103), convert(date, '20-12-2021', 103), 'Deuxième jet des pages du site');
     
-insert into sprint(id_project, sprint_number, deadline, description)
-    values(3, 1, convert(date, '10-10-2021', 103), 'Ajout des premiers mouvements');
+insert into sprint(id_project, sprint_number, start_date, deadline, description)
+    values(3, 1, convert(date, '10-09-2021', 103), convert(date, '10-10-2021', 103), 'Ajout des premiers mouvements');
     
-insert into sprint(id_project, sprint_number, deadline, description)
-    values(3, 2, convert(date, '10-11-2021', 103), 'Ajout des personnages et maps');
+insert into sprint(id_project, sprint_number, start_date, deadline, description)
+    values(3, 2, convert(date, '10-10-2021', 103), convert(date, '10-11-2021', 103), 'Ajout des personnages et maps');
     
-insert into sprint(id_project, sprint_number, deadline, description)
-    values(3, 3, convert(date, '06-12-2021', 103), 'Finitions, améliorations, factorisation');
+insert into sprint(id_project, sprint_number, start_date, deadline, description)
+    values(3, 3, convert(date, '06-11-2021', 103), convert(date, '06-12-2021', 103), 'Finitions, améliorations, factorisation');
     
-insert into sprint(id_project, sprint_number, deadline, description)
-    values(4, 1, convert(date, '10-11-2021', 103), 'Création du visuel des pages');
+insert into sprint(id_project, sprint_number, start_date, deadline, description)
+    values(4, 1, convert(date, '10-10-2021', 103), convert(date, '10-11-2021', 103), 'Création du visuel des pages');
     
-insert into sprint(id_project, sprint_number, deadline, description)
-    values(4, 2, convert(date, '24-11-2021', 103), 'Création du back-end des pages');
+insert into sprint(id_project, sprint_number, start_date, deadline, description)
+    values(4, 2, convert(date, '24-10-2021', 103), convert(date, '24-11-2021', 103), 'Création du back-end des pages');
 
 /*Init user stories*/
 insert into user_story(id_project, name, description, priority)

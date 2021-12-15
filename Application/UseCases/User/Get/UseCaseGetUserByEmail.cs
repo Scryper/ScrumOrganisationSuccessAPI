@@ -15,7 +15,6 @@ namespace Application.UseCases.User.Get
 
         public OutputDtoUser Execute(string filter)
         {
-            
             var user = _userRepository.GetByEmail(filter);
 
             return Mapper.GetInstance().Map<OutputDtoUser>(user);
