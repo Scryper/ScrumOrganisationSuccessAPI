@@ -106,7 +106,8 @@ create table comment (
 
 create table developer_project (
     id_project int not null,
-    id_developer int not null
+    id_developer int not null,
+    is_appliance bit default true
 );
 
 create table participation (
