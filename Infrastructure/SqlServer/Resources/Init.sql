@@ -46,7 +46,7 @@ create table sos_user (
     lastname varchar(50) not null,
     password varchar(100) not null,
     email varchar(100) not null,
-    profile_picture varchar(200) default 'NULL',
+    profile_picture varchar(200) default '',
     role smallint not null,
     birthdate date not null,
     description varchar(500),
