@@ -126,6 +126,9 @@ create table sprint_user_story (
 create table user_technology (
     id_user int not null,
     id_technology int not null
+    PRIMARY KEY(id_user,id_technology),
+    FOREIGN KEY (id_user) REFERENCES sos_user(id) on delete cascade,
+    FOREIGN KEY (id_technology) REFERENCES technology(id) on delete cascade
 );
 
 create table project_technology (

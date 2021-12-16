@@ -18,6 +18,10 @@
       <Folder Include="UseCases\DeveloperProject\Delete" />
       <Folder Include="UseCases\DeveloperProject\Put" />
       <Folder Include="UseCases\UserStory\Put" />
+      <Folder Include="UseCases\UserTechnology\Delete" />
+      <Folder Include="UseCases\UserTechnology\Dtos" />
+      <Folder Include="UseCases\UserTechnology\Get" />
+      <Folder Include="UseCases\UserTechnology\Post" />
     </ItemGroup>
 
 </Project>
