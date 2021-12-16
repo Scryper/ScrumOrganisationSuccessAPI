@@ -75,9 +75,7 @@ namespace Infrastructure.SqlServer.Repositories.Sprint
                 Description = sprint.Description
             };
         }
-
-        // Put requests
-
+        
         // Delete requests
         public bool Delete(int id)
         {

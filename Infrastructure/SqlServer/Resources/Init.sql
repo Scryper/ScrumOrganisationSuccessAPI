@@ -1,7 +1,10 @@
 use db_scrum_organisation_success;
 
 if exists (select * from sysobjects where name='developer_project' and xtype='U')
-drop table developer_project;
+    drop table developer_project;
+
+if exists (select * from sysobjects where name='sprint_user_story' and xtype='U')
+    drop table sprint_user_story;
 
 if exists (select * from sysobjects where name='user_technology' and xtype='U')
 drop table user_technology;
@@ -29,9 +32,6 @@ if exists (select * from sysobjects where name='comment' and xtype='U')
 
 if exists (select * from sysobjects where name='participation' and xtype='U')
     drop table participation;
-
-if exists (select * from sysobjects where name='sprint_user_story' and xtype='U')
-    drop table sprint_user_story;
     
 if exists (select * from sysobjects where name='project_technology' and xtype='U')
     drop table project_technology;
@@ -108,9 +108,9 @@ create table developer_project (
     id_project int not null,
     id_developer int not null,
     is_appliance bit default 1,
-    PRIMARY KEY(id_project,id_developer),
-    FOREIGN KEY (id_project) REFERENCES project(id) on delete cascade,
-    FOREIGN KEY (id_developer) REFERENCES sos_user(id) on delete cascade
+    primary key(id_project, id_developer),
+    foreign key(id_project) references project(id) on delete cascade,
+    foreign key(id_developer) references sos_user(id) on delete cascade
 );
 
 create table participation (
@@ -120,7 +120,10 @@ create table participation (
 
 create table sprint_user_story (
     id_sprint int not null,
-    id_user_story int not null
+    id_user_story int not null,
+    primary key(id_sprint, id_user_story),
+    foreign key(id_sprint) references sprint(id) on delete cascade,
+    foreign key(id_user_story) references user_story(id) on delete cascade
 );
 
 create table user_technology (
