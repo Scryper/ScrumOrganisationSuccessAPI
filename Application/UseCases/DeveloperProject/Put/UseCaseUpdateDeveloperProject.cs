@@ -1,6 +1,6 @@
 ﻿using Application.UseCases.DeveloperProject.Dtos;
 using Application.UseCases.Utils;
-using Infrastructure.SqlServer.Repositories.developer_project;
+using Infrastructure.SqlServer.Repositories.DeveloperProject;
 
 namespace Application.UseCases.DeveloperProject.Put
 {

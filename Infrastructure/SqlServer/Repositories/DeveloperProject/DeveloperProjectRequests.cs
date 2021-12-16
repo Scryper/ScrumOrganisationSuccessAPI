@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.SqlServer.Repositories.developer_project
+﻿namespace Infrastructure.SqlServer.Repositories.DeveloperProject
 {
     public partial class DeveloperProjectRepository
     {

@@ -21,6 +21,7 @@ using Application.UseCases.Sprint;
 using Application.UseCases.Sprint.Delete;
 using Application.UseCases.Sprint.Get;
 using Application.UseCases.Sprint.Post;
+using Application.UseCases.Technology.Get;
 using Application.UseCases.User.Delete;
 using Application.UseCases.User.Get;
 using Application.UseCases.User.Post;
@@ -30,10 +31,11 @@ using Application.UseCases.UserStory.Delete;
 using Application.UseCases.UserStory.Get;
 using Application.UseCases.UserStory.Put;
 using Infrastructure.SqlServer.Repositories.Comment;
-using Infrastructure.SqlServer.Repositories.developer_project;
+using Infrastructure.SqlServer.Repositories.DeveloperProject;
 using Infrastructure.SqlServer.Repositories.Meeting;
 using Infrastructure.SqlServer.Repositories.Project;
 using Infrastructure.SqlServer.Repositories.Sprint;
+using Infrastructure.SqlServer.Repositories.Technology;
 using Infrastructure.SqlServer.Repositories.User;
 using Infrastructure.SqlServer.Repositories.UserStory;
 using Infrastructure.SqlServer.System;
@@ -43,6 +45,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using DeveloperProjectRepository = Infrastructure.SqlServer.Repositories.DeveloperProject.DeveloperProjectRepository;
 
 namespace WebAPI
 {
@@ -71,6 +74,7 @@ namespace WebAPI
             services.AddSingleton<IUserRepository, UserRepository>();
             services.AddSingleton<IUserStoryRepository, UserStoryRepository>();
             services.AddSingleton<IDeveloperProjectRepository, DeveloperProjectRepository>();
+            services.AddSingleton<ITechnologyRepository, TechnologyRepository>();
             
             services.AddSingleton<IDatabaseManager, DatabaseManager>();
             
@@ -159,7 +163,12 @@ namespace WebAPI
             services.AddSingleton<UseCaseCreateDeveloperProject>();
             services.AddSingleton<UseCaseUpdateDeveloperProject>();
             services.AddSingleton<UseCaseDeleteDeveloperProject>();
-
+            
+            //technology uses cases
+            services.AddSingleton<UseCaseGetAllTechnologies>();
+            services.AddSingleton<UseCaseGetTechnologyById>();
+            services.AddSingleton<UseCaseGetTechnologyByName>();
+            
 
             services.AddControllers();
             

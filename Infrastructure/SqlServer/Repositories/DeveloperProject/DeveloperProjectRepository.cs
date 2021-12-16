@@ -1,21 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Data;
-using Domain;
 using Infrastructure.SqlServer.Utils;
 
-namespace Infrastructure.SqlServer.Repositories.developer_project
+namespace Infrastructure.SqlServer.Repositories.DeveloperProject
 {
     public partial class DeveloperProjectRepository : IDeveloperProjectRepository
     {
-        private readonly IDomainFactory<DeveloperProject> _developerProjectFactory =
+        private readonly IDomainFactory<Domain.DeveloperProject> _developerProjectFactory =
             new DeveloperProjectFactory();
 
         // Get requests
-        public List<DeveloperProject> GetAll()
+        public List<Domain.DeveloperProject> GetAll()
         {
-            var developerProjects = new List<DeveloperProject>();
+            var developerProjects = new List<Domain.DeveloperProject>();
 
-            var command = Database.GetCommand(ReqGetAll);
+            var command = Database.GetCommand(DeveloperProjectRepository.ReqGetAll);
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
@@ -24,13 +23,13 @@ namespace Infrastructure.SqlServer.Repositories.developer_project
             return developerProjects;
         }
 
-        public List<DeveloperProject> GetByIdDeveloper(int idDeveloper)
+        public List<Domain.DeveloperProject> GetByIdDeveloper(int idDeveloper)
         {
-            var developerProjects = new List<DeveloperProject>();
+            var developerProjects = new List<Domain.DeveloperProject>();
 
-            var command = Database.GetCommand((ReqGetByDeveloperId));
+            var command = Database.GetCommand((DeveloperProjectRepository.ReqGetByDeveloperId));
 
-            command.Parameters.AddWithValue("@" + ColIdDeveloper, idDeveloper);
+            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIdDeveloper, idDeveloper);
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
@@ -39,13 +38,13 @@ namespace Infrastructure.SqlServer.Repositories.developer_project
             return developerProjects;
         }
 
-        public List<DeveloperProject> GetByIdProject(int idProject)
+        public List<Domain.DeveloperProject> GetByIdProject(int idProject)
         {
-            var developerProjects = new List<DeveloperProject>();
+            var developerProjects = new List<Domain.DeveloperProject>();
 
-            var command = Database.GetCommand((ReqGetByProjectId));
+            var command = Database.GetCommand((DeveloperProjectRepository.ReqGetByProjectId));
 
-            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
+            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIdProject, idProject);
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
@@ -55,17 +54,17 @@ namespace Infrastructure.SqlServer.Repositories.developer_project
         }
 
         // Post requests
-        public DeveloperProject Create(DeveloperProject developerProject)
+        public Domain.DeveloperProject Create(Domain.DeveloperProject developerProject)
         {
-            var command = Database.GetCommand((ReqCreate));
+            var command = Database.GetCommand((DeveloperProjectRepository.ReqCreate));
 
-            command.Parameters.AddWithValue("@" + ColIdDeveloper, developerProject.IdDeveloper);
-            command.Parameters.AddWithValue("@" + ColIdProject, developerProject.IdProject);
-            command.Parameters.AddWithValue("@" + ColIsAppliance, developerProject.IsAppliance);
+            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIdDeveloper, developerProject.IdDeveloper);
+            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIdProject, developerProject.IdProject);
+            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIsAppliance, developerProject.IsAppliance);
 
             command.ExecuteNonQuery();
             
-            return new DeveloperProject
+            return new Domain.DeveloperProject
             {
                 IdDeveloper = developerProject.IdDeveloper,
                 IdProject = developerProject.IdProject,
@@ -76,11 +75,11 @@ namespace Infrastructure.SqlServer.Repositories.developer_project
         // Put requests
         public bool Update(int idDeveloper, int idProject, bool isAppliance)
         {
-            var command = Database.GetCommand(ReqUpdate);
+            var command = Database.GetCommand(DeveloperProjectRepository.ReqUpdate);
             
-            command.Parameters.AddWithValue("@" + ColIdDeveloper, idDeveloper);
-            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
-            command.Parameters.AddWithValue("@" + ColIsAppliance, isAppliance);
+            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIdDeveloper, idDeveloper);
+            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIdProject, idProject);
+            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIsAppliance, isAppliance);
 
             return command.ExecuteNonQuery() > 0;
         }
@@ -88,10 +87,10 @@ namespace Infrastructure.SqlServer.Repositories.developer_project
         // Delete requests
         public bool Delete(int idDeveloper, int idProject)
         {
-            var command = Database.GetCommand(ReqDelete);
+            var command = Database.GetCommand(DeveloperProjectRepository.ReqDelete);
             
-            command.Parameters.AddWithValue("@" + ColIdDeveloper, idDeveloper);
-            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
+            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIdDeveloper, idDeveloper);
+            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIdProject, idProject);
             
             return command.ExecuteNonQuery() > 0;
         }

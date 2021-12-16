@@ -1,9 +1,7 @@
 ﻿using System.Data.SqlClient;
-using Domain;
-using Infrastructure.SqlServer.Repositories.Comment;
 using Infrastructure.SqlServer.Utils;
 
-namespace Infrastructure.SqlServer.Repositories.developer_project
+namespace Infrastructure.SqlServer.Repositories.DeveloperProject
 {
     public class DeveloperProjectFactory : IDomainFactory<Domain.DeveloperProject>
     {
