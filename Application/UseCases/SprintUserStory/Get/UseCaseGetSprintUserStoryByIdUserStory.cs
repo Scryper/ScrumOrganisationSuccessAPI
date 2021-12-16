@@ -5,11 +5,11 @@ using Infrastructure.SqlServer.Repositories.SprintUserStory;
 
 namespace Application.UseCases.SprintUserStory.Get
 {
-    public class UseCaseGetSprintByIdUserStory : IQueryFiltering<List<OutputDtoSprintUserStory>, int>
+    public class UseCaseGetSprintUserStoryByIdUserStory : IQueryFiltering<List<OutputDtoSprintUserStory>, int>
     {
         private readonly ISprintUserStoryRepository _sprintUserStoryRepository;
 
-        public UseCaseGetSprintByIdUserStory(ISprintUserStoryRepository sprintUserStoryRepository)
+        public UseCaseGetSprintUserStoryByIdUserStory(ISprintUserStoryRepository sprintUserStoryRepository)
         {
             _sprintUserStoryRepository = sprintUserStoryRepository;
         }

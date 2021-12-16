@@ -13,8 +13,8 @@ namespace WebAPI.Controllers
     {
         // Use cases
         private readonly UseCaseGetAllSprintUserStory _useCaseGetAllSprintUserStory;
-        private readonly UseCaseGetSprintByIdUserStory _useCaseGetSprintByIdUserStory;
-        private readonly UseCaseGetUserStoriesByIdSprint _useCaseGetUserStoriesByIdSprint;
+        private readonly UseCaseGetSprintUserStoryByIdUserStory _useCaseGetSprintUserStoryByIdUserStory;
+        private readonly UseCaseGetSprintUserStoryByIdSprint _useCaseGetSprintUserStoryByIdSprint;
 
         private readonly UseCaseCreateSprintUserStory _useCaseCreateSprintUserStory;
 
@@ -23,14 +23,14 @@ namespace WebAPI.Controllers
         // Constructor
         public SprintUserStoryController(
             UseCaseGetAllSprintUserStory useCaseGetAllSprintUserStory,
-            UseCaseGetSprintByIdUserStory useCaseGetSprintByIdUserStory,
-            UseCaseGetUserStoriesByIdSprint useCaseGetUserStoriesByIdSprint,
+            UseCaseGetSprintUserStoryByIdUserStory caseGetSprintUserStoryByIdUserStory,
+            UseCaseGetSprintUserStoryByIdSprint caseGetSprintUserStoryByIdSprint,
             UseCaseCreateSprintUserStory useCaseCreateSprintUserStory,
             UseCaseDeleteSprintUserStory useCaseDeleteSprintUserStory)
         {
             _useCaseGetAllSprintUserStory = useCaseGetAllSprintUserStory;
-            _useCaseGetSprintByIdUserStory = useCaseGetSprintByIdUserStory;
-            _useCaseGetUserStoriesByIdSprint = useCaseGetUserStoriesByIdSprint;
+            _useCaseGetSprintUserStoryByIdUserStory = caseGetSprintUserStoryByIdUserStory;
+            _useCaseGetSprintUserStoryByIdSprint = caseGetSprintUserStoryByIdSprint;
 
             _useCaseCreateSprintUserStory = useCaseCreateSprintUserStory;
 
@@ -48,14 +48,14 @@ namespace WebAPI.Controllers
         [Route("byIdSprint/{idSprint:int}")]
         public ActionResult<List<OutputDtoSprintUserStory>> GetByIdSprint(int idSprint)
         {
-            return _useCaseGetUserStoriesByIdSprint.Execute(idSprint);
+            return _useCaseGetSprintUserStoryByIdSprint.Execute(idSprint);
         }
 
         [HttpGet]
         [Route("byIdUserStory/{idUserStory}")]
         public ActionResult<List<OutputDtoSprintUserStory>> GetByIdUserStory(int idUserStory)
         {
-            return _useCaseGetSprintByIdUserStory.Execute(idUserStory);
+            return _useCaseGetSprintUserStoryByIdUserStory.Execute(idUserStory);
         }
 
         // Post requests
