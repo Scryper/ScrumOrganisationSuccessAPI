@@ -183,8 +183,8 @@ namespace WebAPI
             
             // SprintUserStory use cases
             services.AddSingleton<UseCaseGetAllSprintUserStory>();
-            services.AddSingleton<UseCaseGetSprintByIdUserStory>();
-            services.AddSingleton<UseCaseGetUserStoriesByIdSprint>();
+            services.AddSingleton<UseCaseGetSprintUserStoryByIdUserStory>();
+            services.AddSingleton<UseCaseGetSprintUserStoryByIdSprint>();
             
             services.AddSingleton<UseCaseCreateSprintUserStory>();
             
