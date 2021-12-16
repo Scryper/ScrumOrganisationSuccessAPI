@@ -10,7 +10,10 @@ if exists (select * from sysobjects where name='user_technology' and xtype='U')
     drop table user_technology;
 
 if exists (select * from sysobjects where name='project_technology' and xtype='U')
-drop table project_technology;
+    drop table project_technology;
+
+if exists (select * from sysobjects where name='meeting' and xtype='U')
+    drop table meeting;
 
 if exists (select * from sysobjects where name='sos_user' and xtype='U')
     drop table sos_user;
@@ -26,9 +29,6 @@ if exists (select * from sysobjects where name='sprint' and xtype='U')
 
 if exists (select * from sysobjects where name='user_story' and xtype='U')
     drop table user_story;
-
-if exists (select * from sysobjects where name='meeting' and xtype='U')
-    drop table meeting;
 
 if exists (select * from sysobjects where name='comment' and xtype='U')
     drop table comment;
@@ -115,7 +115,10 @@ create table developer_project (
 
 create table participation (
     id_meeting int not null,
-    id_user int not null
+    id_user int not null,
+    PRIMARY KEY(id_user,id_meeting),
+    FOREIGN KEY (id_user) REFERENCES sos_user(id) on delete cascade,
+    FOREIGN KEY (id_meeting) REFERENCES meeting(id) on delete cascade
 );
 
 create table sprint_user_story (

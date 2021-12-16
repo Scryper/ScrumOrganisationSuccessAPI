@@ -8,7 +8,6 @@ namespace Infrastructure.SqlServer.Repositories.UserTechnology
     public partial class UserTechnologyRepository : IUserTechnologyRepository
     {
         private readonly IDomainFactory<Domain.UserTechnology> _userTechnologyFactory = new UserTechnologyFactory();
-
         
         public List<Domain.UserTechnology> GetAll()
         {
@@ -34,7 +33,6 @@ namespace Infrastructure.SqlServer.Repositories.UserTechnology
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
-            // Add all user stories
             while(reader.Read()) userTechnologies.Add(_userTechnologyFactory.CreateFromSqlReader(reader));
             
             return userTechnologies;

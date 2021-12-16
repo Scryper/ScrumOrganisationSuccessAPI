@@ -14,6 +14,9 @@ using Application.UseCases.Meeting.Delete;
 using Application.UseCases.Meeting.Get;
 using Application.UseCases.Meeting.Post;
 using Application.UseCases.Meeting.Put;
+using Application.UseCases.Participation.Delete;
+using Application.UseCases.Participation.Get;
+using Application.UseCases.Participation.Post;
 using Application.UseCases.Project;
 using Application.UseCases.Project.Delete;
 using Application.UseCases.Project.Get;
@@ -45,6 +48,7 @@ using Domain;
 using Infrastructure.SqlServer.Repositories.Comment;
 using Infrastructure.SqlServer.Repositories.DeveloperProject;
 using Infrastructure.SqlServer.Repositories.Meeting;
+using Infrastructure.SqlServer.Repositories.Participation;
 using Infrastructure.SqlServer.Repositories.Project;
 using Infrastructure.SqlServer.Repositories.ProjectTechnology;
 using Infrastructure.SqlServer.Repositories.Sprint;
@@ -92,6 +96,7 @@ namespace WebAPI
             services.AddSingleton<ISprintUserStoryRepository, SprintUserStoryRepository>();
             services.AddSingleton<IUserTechnologyRepository, UserTechnologyRepository>();
             services.AddSingleton<IProjectTechnologyRepository, ProjectTechnologyRepository>();
+            services.AddSingleton<IParticipationRepository, ParticipationRepository>();
             
             services.AddSingleton<IDatabaseManager, DatabaseManager>();
             
@@ -208,6 +213,13 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetProjectTechnologiesByIdTechnology>();
             services.AddSingleton<UseCaseDeleteProjectTechnology>();
             services.AddSingleton<UseCaseCreateProjectTechnologies>();
+            
+            //Participation uses cases
+            services.AddSingleton<UseCaseGetAllParticipations>();
+            services.AddSingleton<UseCaseGetParticipationsByIdMeeting>();
+            services.AddSingleton<UseCaseGetParticipationsByIdUser>();
+            services.AddSingleton<UseCaseDeleteParticipation>();
+            services.AddSingleton<UseCaseCreateParticipation>();
             
             
 
