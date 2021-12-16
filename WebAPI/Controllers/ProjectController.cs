@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web;
 using Application.UseCases.Project;
 using Application.UseCases.Project.Delete;
 using Application.UseCases.Project.Dtos;
@@ -68,10 +69,11 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("byName/{name:alpha}")]
+        [Route("byName/{name:required}")]
         public ActionResult<OutputDtoProject> GetByName(string name)
         {
-            return _useCaseGetProjectByName.Execute(name);
+            var correctName = HttpUtility.UrlDecode(name);
+            return _useCaseGetProjectByName.Execute(correctName);
         }
 
         [HttpGet]

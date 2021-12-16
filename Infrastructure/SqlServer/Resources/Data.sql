@@ -44,7 +44,7 @@ insert into project(id_product_owner, id_scrum_master, name, deadline, descripti
     'https://github.com/Scryper/Skydda', 3);
 
 insert into project(id_product_owner, id_scrum_master, name, deadline, description, repository_url, sos_status)
-    values(5, 9, 'Labo TCP/IP', convert(datetime, '08-12-2021 12:00:00', 103), 'Labo pour réussir son année',
+    values(5, 9, 'Labo TCP IP', convert(datetime, '08-12-2021 12:00:00', 103), 'Labo pour réussir son année',
     'https://github.com/Scryper/Labo01_TCP_IP', 3);
 
 /*Init technology*/
