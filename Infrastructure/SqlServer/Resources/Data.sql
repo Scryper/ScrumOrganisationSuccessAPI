@@ -5,14 +5,15 @@ insert into sos_user(firstname, lastname, password, email, role, birthdate, prof
 
 insert into sos_user(firstname, lastname, password, email, role, birthdate, profile_picture)
     values('Damien', 'Auversack', 'damien97', 'damsover@gmail.com', 2, convert(date, '23-07-1997', 103)
-          , './assets/images/profilePictures/damien_auversack.jpg');
+        , './assets/images/profilePictures/damien_auversack.jpg');
 
 insert into sos_user(firstname, lastname, password, email, role, birthdate, profile_picture)
     values('Martin', 'Maes', 'dotni', 'martin.maes100.000@gmail.com', 3, convert(date, '26-11-1998', 103)
-          , './assets/images/profilePictures/martin_maes.jpg');
+        , './assets/images/profilePictures/martin_maes.jpg');
 
-insert into sos_user(firstname, lastname, password, email, role, birthdate)
-    values('Floran', 'Houdart', 'myneck', 'la199788@student.helha.be', 1, convert(date, '11-01-2001', 103));
+insert into sos_user(firstname, lastname, password, email, role, birthdate, profile_picture)
+    values('Floran', 'Houdart', 'myneck', 'la199788@student.helha.be', 1, convert(date, '11-01-2001', 103)
+        , './assets/images/profilePictures/floran_houdart.png');
 
 insert into sos_user(firstname, lastname, password, email, role, birthdate)
     values('Mark', 'Zuckerberg', 'zuck', 'zuck@facebook.com', 3, convert(date, '14-05-1984', 103));
@@ -42,9 +43,9 @@ insert into project(id_product_owner, id_scrum_master, name, deadline, descripti
     values(3, 9, 'Skydda', convert(datetime, '08-12-2021 12:00:00', 103), 'Jeu vidéo pour réussir son année',
     'https://github.com/Scryper/Skydda', 3);
 
-insert into project(id_product_owner, id_scrum_master, name, deadline, description, repository_url)
+insert into project(id_product_owner, id_scrum_master, name, deadline, description, repository_url, sos_status)
     values(5, 9, 'Labo TCP/IP', convert(datetime, '08-12-2021 12:00:00', 103), 'Labo pour réussir son année',
-    'https://github.com/Scryper/Labo01_TCP_IP');
+    'https://github.com/Scryper/Labo01_TCP_IP', 3);
 
 /*Init technology*/
 insert into technology(name)
@@ -211,26 +212,26 @@ insert into comment(id_user_story, id_user, posted_at, content)
     values(7, 9, convert(datetime, '10-12-2021 13:35:00', 103), 'Oh non pas lui....');
 
 /*Init project_user link table*/
-insert into developer_project(id_project, id_developer)
-    values(1, 1);
+insert into developer_project(id_project, id_developer, is_appliance)
+    values(1, 1, 0);
 
-insert into developer_project(id_project, id_developer)
-    values(1, 4);
+insert into developer_project(id_project, id_developer, is_appliance)
+    values(1, 4, 0);
     
-insert into developer_project(id_project, id_developer)
-    values(4, 1);
+insert into developer_project(id_project, id_developer, is_appliance)
+    values(4, 1, 0);
     
-insert into developer_project(id_project, id_developer)
-    values(1, 7);
+insert into developer_project(id_project, id_developer, is_appliance)
+    values(1, 7, 0);
     
-insert into developer_project(id_project, id_developer)
-    values(4, 7);
+insert into developer_project(id_project, id_developer, is_appliance)
+    values(4, 7, 0);
     
-insert into developer_project(id_project, id_developer)
-    values(1, 6);
+insert into developer_project(id_project, id_developer, is_appliance)
+    values(1, 6, 0);
     
-insert into developer_project(id_project, id_developer)
-    values(4, 6);
+insert into developer_project(id_project, id_developer, is_appliance)
+    values(4, 6, 0);
 
 /*Init participation link table*/
 insert into participation(id_meeting, id_user)
