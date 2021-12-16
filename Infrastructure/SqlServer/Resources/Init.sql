@@ -7,7 +7,7 @@ if exists (select * from sysobjects where name='sprint_user_story' and xtype='U'
     drop table sprint_user_story;
 
 if exists (select * from sysobjects where name='user_technology' and xtype='U')
-drop table user_technology;
+    drop table user_technology;
 
 if exists (select * from sysobjects where name='sos_user' and xtype='U')
     drop table sos_user;
