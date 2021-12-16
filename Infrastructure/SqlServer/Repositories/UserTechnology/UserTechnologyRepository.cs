@@ -48,7 +48,7 @@ namespace Infrastructure.SqlServer.Repositories.UserTechnology
             var command = Database.GetCommand(ReqGetByTechnology);
             
             // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColIdUser, technologyId);
+            command.Parameters.AddWithValue("@" + ColIdTechnology, technologyId);
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             

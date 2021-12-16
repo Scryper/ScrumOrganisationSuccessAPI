@@ -35,6 +35,10 @@ using Application.UseCases.UserStory;
 using Application.UseCases.UserStory.Delete;
 using Application.UseCases.UserStory.Get;
 using Application.UseCases.UserStory.Post;
+using Application.UseCases.UserTechnology.Delete;
+using Application.UseCases.UserTechnology.Get;
+using Application.UseCases.UserTechnology.Post;
+using Domain;
 using Infrastructure.SqlServer.Repositories.Comment;
 using Infrastructure.SqlServer.Repositories.DeveloperProject;
 using Infrastructure.SqlServer.Repositories.Meeting;
@@ -44,6 +48,7 @@ using Infrastructure.SqlServer.Repositories.SprintUserStory;
 using Infrastructure.SqlServer.Repositories.Technology;
 using Infrastructure.SqlServer.Repositories.User;
 using Infrastructure.SqlServer.Repositories.UserStory;
+using Infrastructure.SqlServer.Repositories.UserTechnology;
 using Infrastructure.SqlServer.System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -81,6 +86,7 @@ namespace WebAPI
             services.AddSingleton<IDeveloperProjectRepository, DeveloperProjectRepository>();
             services.AddSingleton<ITechnologyRepository, TechnologyRepository>();
             services.AddSingleton<ISprintUserStoryRepository, SprintUserStoryRepository>();
+            services.AddSingleton<IUserTechnologyRepository, UserTechnologyRepository>();
             
             services.AddSingleton<IDatabaseManager, DatabaseManager>();
             
@@ -183,6 +189,16 @@ namespace WebAPI
             services.AddSingleton<UseCaseCreateSprintUserStory>();
             
             services.AddSingleton<UseCaseDeleteSprintUserStory>();
+            
+            //UserTechnology uses cases
+            services.AddSingleton<UseCaseGetAllUserTechnologies>();
+            services.AddSingleton<UseCaseGetUserTechnologyByIdUser>();
+            services.AddSingleton<UseCaseGetUserTechnologyByIdTechnology>();
+            services.AddSingleton<UseCaseDeleteUserTechnology>();
+            services.AddSingleton<UseCaseCreateUserTechnology>();
+            
+            
+            
 
             services.AddControllers();
             
