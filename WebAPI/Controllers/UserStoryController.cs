@@ -3,7 +3,6 @@ using Application.UseCases.UserStory;
 using Application.UseCases.UserStory.Delete;
 using Application.UseCases.UserStory.Dtos;
 using Application.UseCases.UserStory.Get;
-using Application.UseCases.UserStory.Put;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -20,8 +19,6 @@ namespace WebAPI.Controllers
         
         private readonly UseCaseCreateUserStory _useCaseCreateUserStory;
 
-        private readonly UseCaseUpdateUserStoryIsDone _useCaseUpdateUserStoryIsDone;
-
         private readonly UseCaseDeleteUserStory _useCaseDeleteUserStory;
         
         // Constructor
@@ -31,7 +28,6 @@ namespace WebAPI.Controllers
             UseCaseGetUserStoriesByIdSprint useCaseGetUserStoriesByIdSprint,
             UseCaseGetUserStoryById useCaseGetUserStoryById,
             UseCaseCreateUserStory useCaseCreateUserStory,
-            UseCaseUpdateUserStoryIsDone useCaseUpdateUserStoryIsDone,
             UseCaseDeleteUserStory useCaseDeleteUserStory)
         {
             _useCaseGetAllUserStories = useCaseGetAllUserStories;
@@ -40,8 +36,6 @@ namespace WebAPI.Controllers
             _useCaseGetUserStoriesByIdSprint = useCaseGetUserStoriesByIdSprint;
             
             _useCaseCreateUserStory = useCaseCreateUserStory;
-
-            _useCaseUpdateUserStoryIsDone = useCaseUpdateUserStoryIsDone;
 
             _useCaseDeleteUserStory = useCaseDeleteUserStory;
         }
@@ -86,24 +80,6 @@ namespace WebAPI.Controllers
         }
 
         // Put requests
-        [HttpPut]
-        [Route("{id:int}")]
-        public ActionResult UpdateIsDone(int id, InputDtoUserStory inputDtoUserStory)
-        {
-            var inputDtoUpdate = new InputDtoUpdateUserStoryIsDone
-            {
-                Id = id,
-                InternUserStory = new InputDtoUpdateUserStoryIsDone.UserStory
-                {
-                    IsDone = inputDtoUserStory.IsDone
-                }
-            };
-
-            var result = _useCaseUpdateUserStoryIsDone.Execute(inputDtoUpdate);
-
-            if (result) return Ok();
-            return NotFound();
-        }
 
         //  Delete requests
         [HttpDelete]

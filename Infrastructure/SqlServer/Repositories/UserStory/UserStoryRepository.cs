@@ -85,23 +85,12 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
                 Id = (int) command.ExecuteScalar(),
                 Name = userStory.Name,
                 Description = userStory.Description,
-                IsDone = userStory.IsDone,
                 IdProject = userStory.IdProject,
                 Priority = userStory.Priority
             };
         }
         
         // Put requests
-        public bool UpdateIsDone(int id, bool isDone)
-        {
-            var command = Database.GetCommand(ReqUpdateIsDone);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColId, id);
-            command.Parameters.AddWithValue("@" + ColIsDone, isDone);
-            
-            return command.ExecuteNonQuery() > 0;
-        }
 
         // Delete requests
         public bool Delete(int id)
