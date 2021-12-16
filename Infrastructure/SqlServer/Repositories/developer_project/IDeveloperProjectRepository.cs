@@ -15,7 +15,7 @@ namespace Infrastructure.SqlServer.Repositories.developer_project
         Domain.DeveloperProject Create(Domain.DeveloperProject developerProject);
         
         // Put requests
-        bool UpdateContent(int idDeveloper, int idProject, bool isAppliance);
+        bool Update(int idDeveloper, int idProject, bool isAppliance);
 
         // Delete requests
         bool Delete(int idDeveloper, int idProject);

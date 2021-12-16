@@ -63,6 +63,8 @@ namespace Infrastructure.SqlServer.Repositories.developer_project
             command.Parameters.AddWithValue("@" + ColIdProject, developerProject.IdProject);
             command.Parameters.AddWithValue("@" + ColIsAppliance, developerProject.IsAppliance);
 
+            command.ExecuteNonQuery();
+            
             return new DeveloperProject
             {
                 IdDeveloper = developerProject.IdDeveloper,
@@ -72,7 +74,7 @@ namespace Infrastructure.SqlServer.Repositories.developer_project
         }
 
         // Put requests
-        public bool UpdateContent(int idDeveloper, int idProject, bool isAppliance)
+        public bool Update(int idDeveloper, int idProject, bool isAppliance)
         {
             var command = Database.GetCommand(ReqUpdate);
             
