@@ -28,7 +28,6 @@ using Application.UseCases.User.Put;
 using Application.UseCases.UserStory;
 using Application.UseCases.UserStory.Delete;
 using Application.UseCases.UserStory.Get;
-using Application.UseCases.UserStory.Put;
 using Infrastructure.SqlServer.Repositories.Comment;
 using Infrastructure.SqlServer.Repositories.developer_project;
 using Infrastructure.SqlServer.Repositories.Meeting;
@@ -147,8 +146,6 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetUserStoryById>();
             
             services.AddSingleton<UseCaseCreateUserStory>();
-            
-            services.AddSingleton<UseCaseUpdateUserStoryIsDone>();
             
             services.AddSingleton<UseCaseDeleteUserStory>();
             

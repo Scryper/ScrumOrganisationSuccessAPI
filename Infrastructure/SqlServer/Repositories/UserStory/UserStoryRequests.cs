@@ -9,7 +9,6 @@
         public const string ColId = "id";
         public const string ColName = "name";
         public const string ColDescription = "description";
-        public const string ColIsDone = "is_done";
         public const string ColPriority = "priority";
         public const string ColIdProject = "id_project";
         
@@ -43,9 +42,6 @@
                                 values(@{ColIdProject} @{ColName}, @{ColDescription}, @{ColPriority})";
         
         // Put requests
-        private static readonly string ReqUpdateIsDone = $@"update {TableName} 
-                                                         set {ColIsDone} = @{ColIsDone} 
-                                                         where {ColId} = @{ColId}";
         
         // Delete requests
         private static readonly string ReqDeleteById = $@"delete from {TableName} 
