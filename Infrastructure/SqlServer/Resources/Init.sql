@@ -3,6 +3,9 @@ use db_scrum_organisation_success;
 if exists (select * from sysobjects where name='developer_project' and xtype='U')
 drop table developer_project;
 
+if exists (select * from sysobjects where name='user_technology' and xtype='U')
+drop table user_technology;
+
 if exists (select * from sysobjects where name='sos_user' and xtype='U')
     drop table sos_user;
 
@@ -29,9 +32,6 @@ if exists (select * from sysobjects where name='participation' and xtype='U')
 
 if exists (select * from sysobjects where name='sprint_user_story' and xtype='U')
     drop table sprint_user_story;
-    
-if exists (select * from sysobjects where name='user_technology' and xtype='U')
-    drop table user_technology;
     
 if exists (select * from sysobjects where name='project_technology' and xtype='U')
     drop table project_technology;
