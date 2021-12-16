@@ -12,9 +12,9 @@ namespace Infrastructure.SqlServer.Repositories.Sprint
                 Id = reader.GetInt32(reader.GetOrdinal(SprintRepository.ColId)),
                 IdProject = reader.GetInt32(reader.GetOrdinal(SprintRepository.ColIdProject)),
                 SprintNumber = reader.GetInt32(reader.GetOrdinal(SprintRepository.ColSprintNumber)),
+                StartDate = reader.GetDateTime(reader.GetOrdinal(SprintRepository.ColStartDate)),
                 Deadline = reader.GetDateTime(reader.GetOrdinal(SprintRepository.ColDeadline)),
-                Description = reader.GetString(reader.GetOrdinal(SprintRepository.ColDescription)),
-                Progression = reader.GetInt32(reader.GetOrdinal(SprintRepository.ColProgression))
+                Description = reader.GetString(reader.GetOrdinal(SprintRepository.ColDescription))
             };
         }
     }
