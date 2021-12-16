@@ -2,7 +2,7 @@
 using Application.UseCases.Utils;
 using Infrastructure.SqlServer.Repositories.Comment;
 
-namespace Application.UseCases.Comment
+namespace Application.UseCases.Comment.Post
 {
     public class UseCaseCreateComment : IWriting<OutputDtoComment, InputDtoComment>
     {

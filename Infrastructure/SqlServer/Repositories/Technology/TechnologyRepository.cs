@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using Infrastructure.SqlServer.Utils;
 
@@ -7,7 +6,6 @@ namespace Infrastructure.SqlServer.Repositories.Technology
 {
     public partial class TechnologyRepository : ITechnologyRepository
     {
-        
         private readonly IDomainFactory<Domain.Technology> _technologyFactory = new TechnologyFactory();
         
         public List<Domain.Technology> GetAll()
@@ -34,7 +32,7 @@ namespace Infrastructure.SqlServer.Repositories.Technology
             var reader = technologies.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the project if found, null if not
-            return reader.Read() ?_technologyFactory .CreateFromSqlReader(reader) : null;
+            return reader.Read() ? _technologyFactory.CreateFromSqlReader(reader) : null;
         }
 
         public Domain.Technology GetByName(string name)
@@ -47,7 +45,7 @@ namespace Infrastructure.SqlServer.Repositories.Technology
             var reader = technologies.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the project if found, null if not
-            return reader.Read() ?_technologyFactory .CreateFromSqlReader(reader) : null;
+            return reader.Read() ? _technologyFactory.CreateFromSqlReader(reader) : null;
         }
     }
 }

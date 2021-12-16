@@ -14,7 +14,7 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
         {
             var developerProjects = new List<Domain.DeveloperProject>();
 
-            var command = Database.GetCommand(DeveloperProjectRepository.ReqGetAll);
+            var command = Database.GetCommand(ReqGetAll);
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
@@ -27,9 +27,9 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
         {
             var developerProjects = new List<Domain.DeveloperProject>();
 
-            var command = Database.GetCommand((DeveloperProjectRepository.ReqGetByDeveloperId));
+            var command = Database.GetCommand(ReqGetByDeveloperId);
 
-            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIdDeveloper, idDeveloper);
+            command.Parameters.AddWithValue("@" + ColIdDeveloper, idDeveloper);
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
@@ -42,9 +42,9 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
         {
             var developerProjects = new List<Domain.DeveloperProject>();
 
-            var command = Database.GetCommand((DeveloperProjectRepository.ReqGetByProjectId));
+            var command = Database.GetCommand(ReqGetByProjectId);
 
-            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIdProject, idProject);
+            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
@@ -56,11 +56,11 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
         // Post requests
         public Domain.DeveloperProject Create(Domain.DeveloperProject developerProject)
         {
-            var command = Database.GetCommand((DeveloperProjectRepository.ReqCreate));
+            var command = Database.GetCommand(ReqCreate);
 
-            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIdDeveloper, developerProject.IdDeveloper);
-            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIdProject, developerProject.IdProject);
-            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIsAppliance, developerProject.IsAppliance);
+            command.Parameters.AddWithValue("@" + ColIdDeveloper, developerProject.IdDeveloper);
+            command.Parameters.AddWithValue("@" + ColIdProject, developerProject.IdProject);
+            command.Parameters.AddWithValue("@" + ColIsAppliance, developerProject.IsAppliance);
 
             command.ExecuteNonQuery();
             
@@ -75,11 +75,11 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
         // Put requests
         public bool Update(int idDeveloper, int idProject, bool isAppliance)
         {
-            var command = Database.GetCommand(DeveloperProjectRepository.ReqUpdate);
+            var command = Database.GetCommand(ReqUpdate);
             
-            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIdDeveloper, idDeveloper);
-            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIdProject, idProject);
-            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIsAppliance, isAppliance);
+            command.Parameters.AddWithValue("@" + ColIdDeveloper, idDeveloper);
+            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
+            command.Parameters.AddWithValue("@" + ColIsAppliance, isAppliance);
 
             return command.ExecuteNonQuery() > 0;
         }
@@ -87,10 +87,10 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
         // Delete requests
         public bool Delete(int idDeveloper, int idProject)
         {
-            var command = Database.GetCommand(DeveloperProjectRepository.ReqDelete);
+            var command = Database.GetCommand(ReqDelete);
             
-            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIdDeveloper, idDeveloper);
-            command.Parameters.AddWithValue("@" + DeveloperProjectRepository.ColIdProject, idProject);
+            command.Parameters.AddWithValue("@" + ColIdDeveloper, idDeveloper);
+            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
             
             return command.ExecuteNonQuery() > 0;
         }

@@ -5,7 +5,7 @@ using Infrastructure.SqlServer.Repositories.DeveloperProject;
 
 namespace Application.UseCases.DeveloperProject.Get
 {
-    public class UseCaseGetDeveloperProjectsByIdProject
+    public class UseCaseGetDeveloperProjectsByIdProject : IQueryFiltering<List<OutputDtoDeveloperProject>, int>
     {
         private readonly IDeveloperProjectRepository _developerProjectRepository;
 

@@ -38,14 +38,41 @@ namespace WebAPI.Controllers
         }
         
         // Get requests
-        // [HttpGet]
-        // public ActionResult<List<OutputDtoSprintUserStory>> GetAll()
-        // {
-        //     
-        // }
+        [HttpGet]
+        public ActionResult<List<OutputDtoSprintUserStory>> GetAll()
+        {
+            return _useCaseGetAllSprintUserStory.Execute();
+        }
+
+        [HttpGet]
+        [Route("byIdSprint/{idSprint:int}")]
+        public ActionResult<List<OutputDtoSprintUserStory>> GetByIdSprint(int idSprint)
+        {
+            return _useCaseGetUserStoriesByIdSprint.Execute(idSprint);
+        }
+
+        [HttpGet]
+        [Route("byIdUserStory/{idUserStory}")]
+        public ActionResult<List<OutputDtoSprintUserStory>> GetByIdUserStory(int idUserStory)
+        {
+            return _useCaseGetSprintByIdUserStory.Execute(idUserStory);
+        }
 
         // Post requests
-        
+        [HttpPost]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        public ActionResult<OutputDtoSprintUserStory> Create(InputDtoSprintUserStory inputDtoSprintUserStory)
+        {
+            return _useCaseCreateSprintUserStory.Execute(inputDtoSprintUserStory);
+        }
+
         // Delete requests
+        [HttpDelete]
+        [Route("{idSprint:int}, {idUserStory:int}")]
+        public bool Delete(int idSprint, int idUserStory)
+        {
+            return _useCaseDeleteSprintUserStory.Execute(idSprint, idUserStory);
+        }
     }
 }

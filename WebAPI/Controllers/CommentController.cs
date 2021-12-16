@@ -3,6 +3,7 @@ using Application.UseCases.Comment;
 using Application.UseCases.Comment.Delete;
 using Application.UseCases.Comment.Dtos;
 using Application.UseCases.Comment.Get;
+using Application.UseCases.Comment.Post;
 using Application.UseCases.Comment.Put;
 using Microsoft.AspNetCore.Mvc;
 

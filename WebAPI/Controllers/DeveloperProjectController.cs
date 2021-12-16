@@ -16,8 +16,11 @@ namespace WebAPI.Controllers
         private readonly UseCaseGetAllDeveloperProjects _useCaseGetAllDeveloperProjects;
         private readonly UseCaseGetDeveloperProjectsByIdDeveloper _useCaseGetDeveloperProjectsByIdDeveloper;
         private readonly UseCaseGetDeveloperProjectsByIdProject _useCaseGetDeveloperProjectsByIdProject;
+        
         private readonly UseCaseCreateDeveloperProject _useCaseCreateDeveloperProject;
+        
         private readonly UseCaseUpdateDeveloperProject _useCaseUpdateDeveloperProject;
+        
         private readonly UseCaseDeleteDeveloperProject _useCaseDeleteDeveloperProject;
         
         // Constructor
@@ -34,8 +37,11 @@ namespace WebAPI.Controllers
             _useCaseGetAllDeveloperProjects = useCaseGetAllDeveloperProjects;
             _useCaseGetDeveloperProjectsByIdDeveloper = useCaseGetDeveloperProjectsByIdDeveloper;
             _useCaseGetDeveloperProjectsByIdProject = useCaseGetDeveloperProjectsByIdProject;
+            
             _useCaseCreateDeveloperProject = useCaseCreateDeveloperProject;
+            
             _useCaseUpdateDeveloperProject = useCaseUpdateDeveloperProject;
+            
             _useCaseDeleteDeveloperProject = useCaseDeleteDeveloperProject;
         }
         
@@ -69,7 +75,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        [Route("{idDeveloper:int},{idProject:int}")]
+        [Route("{idDeveloper:int}, {idProject:int}")]
         public ActionResult Update(int idDeveloper, int idProject, InputDtoDeveloperProject newDeveloperProject)
         {
             var inputDtoUpdate = new InputDtoUpdateDeveloperProject
@@ -90,7 +96,7 @@ namespace WebAPI.Controllers
         
         //  Delete requests
         [HttpDelete]
-        [Route("{idDeveloper:int},{idProject:int}")]
+        [Route("{idDeveloper:int}, {idProject:int}")]
         public ActionResult Delete(int idDeveloper,int idProject)
         {
             var result = _useCaseDeleteDeveloperProject.Execute(idDeveloper,idProject);

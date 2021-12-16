@@ -2,7 +2,7 @@
 using Application.UseCases.Utils;
 using Infrastructure.SqlServer.Repositories.Project;
 
-namespace Application.UseCases.Project
+namespace Application.UseCases.Project.Post
 {
     public class UseCaseCreateProject : IWriting<OutputDtoProject, InputDtoProject>
     {

@@ -3,6 +3,7 @@ using Application.UseCases.Meeting;
 using Application.UseCases.Meeting.Delete;
 using Application.UseCases.Meeting.Dtos;
 using Application.UseCases.Meeting.Get;
+using Application.UseCases.Meeting.Post;
 using Application.UseCases.Meeting.Put;
 using Microsoft.AspNetCore.Mvc;
 

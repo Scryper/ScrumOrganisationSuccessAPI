@@ -2,7 +2,7 @@
 using Application.UseCases.Utils;
 using Infrastructure.SqlServer.Repositories.Meeting;
 
-namespace Application.UseCases.Meeting
+namespace Application.UseCases.Meeting.Post
 {
     public class UseCaseCreateMeeting : IWriting<OutputDtoMeeting, InputDtoMeeting>
     {

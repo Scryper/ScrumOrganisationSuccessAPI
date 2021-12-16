@@ -3,7 +3,7 @@ using Infrastructure.SqlServer.Repositories.DeveloperProject;
 
 namespace Application.UseCases.DeveloperProject.Delete
 {
-    public class UseCaseDeleteDeveloperProject : IWritingMultipleKeys<bool,int,int>
+    public class UseCaseDeleteDeveloperProject : IWritingMultipleKeys<bool, int, int>
     {
         private readonly IDeveloperProjectRepository _developerProjectRepository;
 
