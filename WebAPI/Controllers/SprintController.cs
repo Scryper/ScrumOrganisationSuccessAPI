@@ -69,8 +69,6 @@ namespace WebAPI.Controllers
         {
             return StatusCode(201, _useCaseCreateSprint.Execute(inputDtoSprint));
         }
-        
-        // Put requests
 
         //  Delete requests
         [HttpDelete]

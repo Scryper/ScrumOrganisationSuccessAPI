@@ -29,8 +29,6 @@
                         values(@{ColIdProject}, @{ColSprintNumber}, @{ColDeadline}, 
                         @{ColDescription}, @{ColStartDate})";
 
-        // Put requests
-        
         // Delete Requests
         private static readonly string ReqDeleteById = $@"delete from {TableName} 
                                                        where {ColId} = @{ColId}";
