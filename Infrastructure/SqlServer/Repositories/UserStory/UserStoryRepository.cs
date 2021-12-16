@@ -72,8 +72,6 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
                 Priority = userStory.Priority
             };
         }
-        
-        // Put requests
 
         // Delete requests
         public bool Delete(int id)
