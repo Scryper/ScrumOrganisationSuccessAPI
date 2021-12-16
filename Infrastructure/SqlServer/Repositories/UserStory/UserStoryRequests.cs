@@ -28,12 +28,6 @@
                                     left join {SprintUserStoryTableName} on {ColId} = {SprintUserColIdUserStory} 
                                     left join {SprintTableName} on {SprintUserColIdSprint} = {SprintColId} 
                                     where {UserStoryColIdProject} = @{ColId}";
-                                
-        private static readonly string ReqGetByIdSprint = 
-                                    $@"select * from {TableName} 
-                                    left join {SprintUserStoryTableName} on {ColId} = {SprintUserColIdUserStory} 
-                                    left join {SprintTableName} on {SprintUserColIdSprint} = {SprintColId} 
-                                    where {SprintColId} = @{ColId}"; 
         
         // Post requests
         private static readonly string ReqCreate = 

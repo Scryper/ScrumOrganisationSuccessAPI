@@ -15,7 +15,7 @@ namespace WebAPI.Controllers
         // Use cases
         private readonly UseCaseGetAllUserStories _useCaseGetAllUserStories;
         private readonly UseCaseGetUserStoriesByIdProject _useCaseGetUserStoriesByIdProject;
-        private readonly UseCaseGetUserStoriesByIdSprint _useCaseGetUserStoriesByIdSprint;
+        // private readonly UseCaseGetUserStoriesByIdSprint _useCaseGetUserStoriesByIdSprint;
         private readonly UseCaseGetUserStoryById _useCaseGetUserStoryById;
         
         private readonly UseCaseCreateUserStory _useCaseCreateUserStory;
@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
         public UserStoryController(
             UseCaseGetAllUserStories useCaseGetAllUserStories,
             UseCaseGetUserStoriesByIdProject useCaseGetUserStoriesByIdProject,
-            UseCaseGetUserStoriesByIdSprint useCaseGetUserStoriesByIdSprint,
+            // UseCaseGetUserStoriesByIdSprint useCaseGetUserStoriesByIdSprint,
             UseCaseGetUserStoryById useCaseGetUserStoryById,
             UseCaseCreateUserStory useCaseCreateUserStory,
             UseCaseDeleteUserStory useCaseDeleteUserStory)
@@ -34,7 +34,7 @@ namespace WebAPI.Controllers
             _useCaseGetAllUserStories = useCaseGetAllUserStories;
             _useCaseGetUserStoryById = useCaseGetUserStoryById;
             _useCaseGetUserStoriesByIdProject = useCaseGetUserStoriesByIdProject;
-            _useCaseGetUserStoriesByIdSprint = useCaseGetUserStoriesByIdSprint;
+            // _useCaseGetUserStoriesByIdSprint = useCaseGetUserStoriesByIdSprint;
             
             _useCaseCreateUserStory = useCaseCreateUserStory;
 
@@ -50,13 +50,6 @@ namespace WebAPI.Controllers
 
         // If routes would only have {id:int}, even if the name would change, the url would be for both :
         // swagger/data/xxx -> so multiple endpoints matches
-        [HttpGet]
-        [Route("bySprint/{idSprint:int}")]
-        public ActionResult<List<OutputDtoUserStory>> GetByIdSprint(int idSprint)
-        {
-            return _useCaseGetUserStoriesByIdSprint.Execute(idSprint);
-        }
-        
         [HttpGet]
         [Route("byProject/{idProject:int}")]
         public ActionResult<List<OutputDtoUserStory>> GetByIdProject(int idProject)

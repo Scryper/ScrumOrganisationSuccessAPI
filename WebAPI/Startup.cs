@@ -51,7 +51,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using UseCaseGetUserStoriesByIdSprint = Application.UseCases.UserStory.Get.UseCaseGetUserStoriesByIdSprint;
 
 namespace WebAPI
 {
@@ -154,7 +153,6 @@ namespace WebAPI
             // User stories use cases
             services.AddSingleton<UseCaseGetAllUserStories>();
             services.AddSingleton<UseCaseGetUserStoriesByIdProject>();
-            services.AddSingleton<UseCaseGetUserStoriesByIdSprint>();
             services.AddSingleton<UseCaseGetUserStoryById>();
             
             services.AddSingleton<UseCaseCreateUserStory>();

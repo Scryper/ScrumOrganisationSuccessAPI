@@ -6,7 +6,6 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
     {
         // Get requests
         List<Domain.UserStory> GetAll();
-        List<Domain.UserStory> GetByIdSprint(int idSprint);
         List<Domain.UserStory> GetByIdProject(int idProject);
         Domain.UserStory GetById(int id);
         

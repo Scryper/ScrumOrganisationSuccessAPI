@@ -23,23 +23,6 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
             return userStories;
         }
 
-        public List<Domain.UserStory> GetByIdSprint(int idSprint)
-        {
-            var userStories = new List<Domain.UserStory>();
-            
-            var command = Database.GetCommand(ReqGetByIdSprint);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColId, idSprint);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all user stories
-            while(reader.Read()) userStories.Add(_userStoryFactory.CreateFromSqlReader(reader));
-            
-            return userStories;
-        }
-
         public List<Domain.UserStory> GetByIdProject(int idProject)
         {
             var userStories = new List<Domain.UserStory>();
