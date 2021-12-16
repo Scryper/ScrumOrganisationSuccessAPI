@@ -10,6 +10,6 @@ namespace Application.UseCases.Sprint.Dtos
         public int SprintNumber { get; set; }
         public string Description { get; set; }
         public DateTime Deadline { get; set; }
-        public int Progression { get; set; }
+        public DateTime StartDate { get; set; }
     }
 }

@@ -13,7 +13,6 @@ namespace Infrastructure.SqlServer.Repositories.Sprint
         Domain.Sprint Create(Domain.Sprint sprint);
         
         // Put requests
-        bool UpdateProgression(int id, int newSprintProgression);
 
         // Delete requests
         bool Delete(int id);

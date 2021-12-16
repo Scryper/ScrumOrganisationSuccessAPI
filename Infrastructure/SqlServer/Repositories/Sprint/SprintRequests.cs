@@ -9,7 +9,7 @@
         public const string ColIdProject = "id_project";
         public const string ColDeadline = "deadline";
         public const string ColDescription = "description";
-        public const string ColProgression = "progression";
+        public const string ColStartDate = "start_date";
         
         // Get requests
         private static readonly string ReqGetAll = $"select * from {TableName}"; 
@@ -24,15 +24,12 @@
         // Post requests
         private static readonly string ReqCreate = 
                         $@"insert into {TableName}({ColIdProject}, {ColSprintNumber}, {ColDeadline},  
-                        {ColDescription}, {ColProgression}) 
+                        {ColDescription}, {ColStartDate}) 
                         output inserted.{ColId} 
                         values(@{ColIdProject}, @{ColSprintNumber}, @{ColDeadline}, 
-                        @{ColDescription}, @{ColProgression})";
+                        @{ColDescription}, @{ColStartDate})";
 
         // Put requests
-        private static readonly string ReqUpdateProgression = $@"update {TableName} 
-                                                              set {ColProgression} = @{ColProgression} 
-                                                              where {ColId} = @{ColId}";
         
         // Delete Requests
         private static readonly string ReqDeleteById = $@"delete from {TableName} 

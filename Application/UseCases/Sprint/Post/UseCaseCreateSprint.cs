@@ -2,7 +2,7 @@
 using Application.UseCases.Utils;
 using Infrastructure.SqlServer.Repositories.Sprint;
 
-namespace Application.UseCases.Sprint
+namespace Application.UseCases.Sprint.Post
 {
     public class UseCaseCreateSprint : IWriting<OutputDtoSprint, InputDtoSprint>
     {

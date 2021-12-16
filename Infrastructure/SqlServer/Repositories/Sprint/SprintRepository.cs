@@ -62,8 +62,8 @@ namespace Infrastructure.SqlServer.Repositories.Sprint
             command.Parameters.AddWithValue("@" + ColIdProject, sprint.IdProject);
             command.Parameters.AddWithValue("@" + ColSprintNumber, sprint.SprintNumber);
             command.Parameters.AddWithValue("@" + ColDeadline, sprint.Deadline);
+            command.Parameters.AddWithValue("@" + ColStartDate, sprint.StartDate);
             command.Parameters.AddWithValue("@" + ColDescription, sprint.Description);
-            command.Parameters.AddWithValue("@" + ColProgression, sprint.Progression);
 
             return new Domain.Sprint
             {
@@ -71,22 +71,12 @@ namespace Infrastructure.SqlServer.Repositories.Sprint
                 SprintNumber = sprint.SprintNumber,
                 IdProject = sprint.IdProject,
                 Deadline = sprint.Deadline,
-                Description = sprint.Description,
-                Progression = sprint.Progression
+                StartDate = sprint.StartDate,
+                Description = sprint.Description
             };
         }
 
         // Put requests
-        public bool UpdateProgression(int id, int newSprintProgression)
-        {
-            var command = Database.GetCommand(ReqUpdateProgression);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColProgression, newSprintProgression);
-            command.Parameters.AddWithValue("@" + ColId, id);
-
-            return command.ExecuteNonQuery() > 0;
-        }
 
         // Delete requests
         public bool Delete(int id)

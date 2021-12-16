@@ -18,7 +18,7 @@ using Application.UseCases.Project.Put;
 using Application.UseCases.Sprint;
 using Application.UseCases.Sprint.Delete;
 using Application.UseCases.Sprint.Get;
-using Application.UseCases.Sprint.Put;
+using Application.UseCases.Sprint.Post;
 using Application.UseCases.User.Delete;
 using Application.UseCases.User.Get;
 using Application.UseCases.User.Post;
@@ -119,9 +119,7 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetSprintById>();
             
             services.AddSingleton<UseCaseCreateSprint>();
-            
-            services.AddSingleton<UseCaseUpdateSprintProgression>();
-            
+
             services.AddSingleton<UseCaseDeleteSprint>();
             
             // Users use cases
