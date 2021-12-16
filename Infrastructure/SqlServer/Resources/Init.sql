@@ -6,6 +6,9 @@ if exists (select * from sysobjects where name='developer_project' and xtype='U'
 if exists (select * from sysobjects where name='sprint_user_story' and xtype='U')
     drop table sprint_user_story;
 
+if exists (select * from sysobjects where name='user_technology' and xtype='U')
+    drop table user_technology;
+
 if exists (select * from sysobjects where name='sos_user' and xtype='U')
     drop table sos_user;
 
@@ -29,9 +32,6 @@ if exists (select * from sysobjects where name='comment' and xtype='U')
 
 if exists (select * from sysobjects where name='participation' and xtype='U')
     drop table participation;
-    
-if exists (select * from sysobjects where name='user_technology' and xtype='U')
-    drop table user_technology;
     
 if exists (select * from sysobjects where name='project_technology' and xtype='U')
     drop table project_technology;
@@ -129,6 +129,9 @@ create table sprint_user_story (
 create table user_technology (
     id_user int not null,
     id_technology int not null
+    PRIMARY KEY(id_user,id_technology),
+    FOREIGN KEY (id_user) REFERENCES sos_user(id) on delete cascade,
+    FOREIGN KEY (id_technology) REFERENCES technology(id) on delete cascade
 );
 
 create table project_technology (
