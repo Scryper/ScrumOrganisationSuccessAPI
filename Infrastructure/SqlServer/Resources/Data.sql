@@ -13,7 +13,7 @@ insert into sos_user(firstname, lastname, password, email, role, birthdate, prof
 
 insert into sos_user(firstname, lastname, password, email, role, birthdate, profile_picture)
     values('Floran', 'Houdart', 'myneck', 'la199788@student.helha.be', 1, convert(date, '11-01-2001', 103)
-        , './assets/images/profilePictures/floran_houdart.png');
+        , './assets/images/profilePictures/floran_houdart.jpg');
 
 insert into sos_user(firstname, lastname, password, email, role, birthdate)
     values('Mark', 'Zuckerberg', 'zuck', 'zuck@facebook.com', 3, convert(date, '14-05-1984', 103));
