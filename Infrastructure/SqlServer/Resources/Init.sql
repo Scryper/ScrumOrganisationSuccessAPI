@@ -1,11 +1,14 @@
 use db_scrum_organisation_success;
 
+if exists (select * from sysobjects where name='developer_project' and xtype='U')
+drop table developer_project;
+
 if exists (select * from sysobjects where name='sos_user' and xtype='U')
     drop table sos_user;
 
 if exists (select * from sysobjects where name='project' and xtype='U')
     drop table project;
-    
+
 if exists (select * from sysobjects where name='technology' and xtype='U')
     drop table technology;
 
@@ -20,9 +23,6 @@ if exists (select * from sysobjects where name='meeting' and xtype='U')
 
 if exists (select * from sysobjects where name='comment' and xtype='U')
     drop table comment;
-
-if exists (select * from sysobjects where name='developer_project' and xtype='U')
-    drop table developer_project;
 
 if exists (select * from sysobjects where name='participation' and xtype='U')
     drop table participation;
@@ -40,7 +40,7 @@ if exists (select * from sysobjects where name='project_technology' and xtype='U
   1 -> dev
   2 -> scrum master
   3 -> product owner*/
-create table sos_user (
+create table sos_user(
     id int identity primary key,
     firstname varchar(50) not null,
     lastname varchar(50) not null,
@@ -56,7 +56,7 @@ create table sos_user (
 /*1 -> inactive
   2 -> active
   3 -> finished*/
-create table project (
+create table project(
     id int identity primary key,
     id_product_owner int not null,
     id_scrum_master int not null,
@@ -107,7 +107,10 @@ create table comment (
 create table developer_project (
     id_project int not null,
     id_developer int not null,
-    is_appliance bit default 1
+    is_appliance bit default 1,
+    PRIMARY KEY(id_project,id_developer),
+    FOREIGN KEY (id_project) REFERENCES project(id) on delete cascade,
+    FOREIGN KEY (id_developer) REFERENCES sos_user(id) on delete cascade
 );
 
 create table participation (
