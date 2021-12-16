@@ -19,6 +19,9 @@ using Application.UseCases.Project.Delete;
 using Application.UseCases.Project.Get;
 using Application.UseCases.Project.Post;
 using Application.UseCases.Project.Put;
+using Application.UseCases.ProjectTechnology.Delete;
+using Application.UseCases.ProjectTechnology.Get;
+using Application.UseCases.ProjectTechnology.Post;
 using Application.UseCases.Sprint;
 using Application.UseCases.Sprint.Delete;
 using Application.UseCases.Sprint.Get;
@@ -43,6 +46,7 @@ using Infrastructure.SqlServer.Repositories.Comment;
 using Infrastructure.SqlServer.Repositories.DeveloperProject;
 using Infrastructure.SqlServer.Repositories.Meeting;
 using Infrastructure.SqlServer.Repositories.Project;
+using Infrastructure.SqlServer.Repositories.ProjectTechnology;
 using Infrastructure.SqlServer.Repositories.Sprint;
 using Infrastructure.SqlServer.Repositories.SprintUserStory;
 using Infrastructure.SqlServer.Repositories.Technology;
@@ -87,6 +91,7 @@ namespace WebAPI
             services.AddSingleton<ITechnologyRepository, TechnologyRepository>();
             services.AddSingleton<ISprintUserStoryRepository, SprintUserStoryRepository>();
             services.AddSingleton<IUserTechnologyRepository, UserTechnologyRepository>();
+            services.AddSingleton<IProjectTechnologyRepository, ProjectTechnologyRepository>();
             
             services.AddSingleton<IDatabaseManager, DatabaseManager>();
             
@@ -197,6 +202,12 @@ namespace WebAPI
             services.AddSingleton<UseCaseDeleteUserTechnology>();
             services.AddSingleton<UseCaseCreateUserTechnology>();
             
+            //ProjectTechnology uses cases
+            services.AddSingleton<UseCaseGetAllProjectTechnologies>();
+            services.AddSingleton<UseCaseGetProjectTechnologiesByIdProject>();
+            services.AddSingleton<UseCaseGetProjectTechnologiesByIdTechnology>();
+            services.AddSingleton<UseCaseDeleteProjectTechnology>();
+            services.AddSingleton<UseCaseCreateProjectTechnologies>();
             
             
 

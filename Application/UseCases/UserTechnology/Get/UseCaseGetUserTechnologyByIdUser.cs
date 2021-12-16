@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Application.UseCases.DeveloperProject.Dtos;
 using Application.UseCases.UserTechnology.Dtos;
 using Application.UseCases.Utils;
 using Infrastructure.SqlServer.Repositories.UserTechnology;

@@ -17,8 +17,7 @@ namespace Infrastructure.SqlServer.Repositories.UserTechnology
             var command = Database.GetCommand(ReqGetAll);
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Add all user stories
+            
             while(reader.Read()) userTechnologies.Add(_userTechnologyFactory.CreateFromSqlReader(reader));
             
             return userTechnologies;

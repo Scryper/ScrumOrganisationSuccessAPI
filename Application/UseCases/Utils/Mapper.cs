@@ -2,6 +2,7 @@
 using Application.UseCases.DeveloperProject.Dtos;
 using Application.UseCases.Meeting.Dtos;
 using Application.UseCases.Project.Dtos;
+using Application.UseCases.ProjectTechnology.Dtos;
 using Application.UseCases.Sprint.Dtos;
 using Application.UseCases.SprintUserStory.Dtos;
 using Application.UseCases.Technology.Dtos;
@@ -37,6 +38,7 @@ namespace Application.UseCases.Utils
                 cfg.CreateMap<InputDtoTechnology, Domain.Technology>();
                 cfg.CreateMap<InputDtoSprintUserStory, Domain.SprintUserStory>();
                 cfg.CreateMap<InputDtoUserTechnology, Domain.UserTechnology>();
+                cfg.CreateMap<InputDtoProjectTechnology, Domain.ProjectTechnology>();
                 
                 // From elements to output
                 cfg.CreateMap<Domain.Comment, OutputDtoComment>();
@@ -49,6 +51,8 @@ namespace Application.UseCases.Utils
                 cfg.CreateMap<Domain.Technology, OutputDtoTechnology>();
                 cfg.CreateMap<Domain.SprintUserStory, OutputDtoSprintUserStory>();
                 cfg.CreateMap<Domain.UserTechnology, OutputDtoUserTechnology>();
+                cfg.CreateMap<Domain.ProjectTechnology,OutputDtoProjectTechnology>();
+
             });
 
             return new AutoMapper.Mapper(config);
