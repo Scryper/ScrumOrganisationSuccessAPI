@@ -5,8 +5,10 @@ using Application.UseCases.Comment;
 using Application.UseCases.Comment.Delete;
 using Application.UseCases.Comment.Get;
 using Application.UseCases.Comment.Put;
+using Application.UseCases.DeveloperProject.Delete;
 using Application.UseCases.DeveloperProject.Get;
 using Application.UseCases.DeveloperProject.Post;
+using Application.UseCases.DeveloperProject.Put;
 using Application.UseCases.Meeting;
 using Application.UseCases.Meeting.Delete;
 using Application.UseCases.Meeting.Get;
@@ -157,8 +159,10 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetDeveloperProjectsByIdDeveloper>();
             services.AddSingleton<UseCaseGetDeveloperProjectsByIdProject>();
             services.AddSingleton<UseCaseCreateDeveloperProject>();
-            
-            
+            services.AddSingleton<UseCaseUpdateDeveloperProject>();
+            services.AddSingleton<UseCaseDeleteDeveloperProject>();
+
+
             services.AddControllers();
             
             services.AddSwaggerGen(c =>

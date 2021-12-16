@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using Application.UseCases.DeveloperProject.Delete;
 using Application.UseCases.DeveloperProject.Dtos;
 using Application.UseCases.DeveloperProject.Get;
 using Application.UseCases.DeveloperProject.Post;
+using Application.UseCases.DeveloperProject.Put;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -15,6 +17,8 @@ namespace WebAPI.Controllers
         private readonly UseCaseGetDeveloperProjectsByIdDeveloper _useCaseGetDeveloperProjectsByIdDeveloper;
         private readonly UseCaseGetDeveloperProjectsByIdProject _useCaseGetDeveloperProjectsByIdProject;
         private readonly UseCaseCreateDeveloperProject _useCaseCreateDeveloperProject;
+        private readonly UseCaseUpdateDeveloperProject _useCaseUpdateDeveloperProject;
+        private readonly UseCaseDeleteDeveloperProject _useCaseDeleteDeveloperProject;
         
         // Constructor
 
@@ -22,13 +26,17 @@ namespace WebAPI.Controllers
             UseCaseGetAllDeveloperProjects useCaseGetAllDeveloperProjects,
             UseCaseGetDeveloperProjectsByIdDeveloper useCaseGetDeveloperProjectsByIdDeveloper,
             UseCaseGetDeveloperProjectsByIdProject useCaseGetDeveloperProjectsByIdProject,
-            UseCaseCreateDeveloperProject useCaseCreateDeveloperProject
+            UseCaseCreateDeveloperProject useCaseCreateDeveloperProject,
+            UseCaseUpdateDeveloperProject useCaseUpdateDeveloperProject,
+            UseCaseDeleteDeveloperProject useCaseDeleteDeveloperProject
         )
         {
             _useCaseGetAllDeveloperProjects = useCaseGetAllDeveloperProjects;
             _useCaseGetDeveloperProjectsByIdDeveloper = useCaseGetDeveloperProjectsByIdDeveloper;
             _useCaseGetDeveloperProjectsByIdProject = useCaseGetDeveloperProjectsByIdProject;
             _useCaseCreateDeveloperProject = useCaseCreateDeveloperProject;
+            _useCaseUpdateDeveloperProject = useCaseUpdateDeveloperProject;
+            _useCaseDeleteDeveloperProject = useCaseDeleteDeveloperProject;
         }
         
         // Get requests
@@ -60,5 +68,36 @@ namespace WebAPI.Controllers
             return StatusCode(201, _useCaseCreateDeveloperProject.Execute(inputDtoDeveloperProject));
         }
 
+        [HttpPut]
+        [Route("{idDeveloper:int},{idProject:int}")]
+        public ActionResult Update(int idDeveloper, int idProject, InputDtoDeveloperProject newDeveloperProject)
+        {
+            var inputDtoUpdate = new InputDtoUpdateDeveloperProject
+            {
+                IdDeveloper = idDeveloper,
+                IdProject = idProject,
+                InternIsApply = new InputDtoUpdateDeveloperProject.IsApply
+                {
+                    IsAppliance = newDeveloperProject.IsAppliance
+                }
+            };
+
+            var result = _useCaseUpdateDeveloperProject.Execute(inputDtoUpdate);
+
+            if (result) return Ok();
+            return BadRequest();
+        }
+        
+        //  Delete requests
+        [HttpDelete]
+        [Route("{idDeveloper:int},{idProject:int}")]
+        public ActionResult Delete(int idDeveloper,int idProject)
+        {
+            var result = _useCaseDeleteDeveloperProject.Execute(idDeveloper,idProject);
+
+            if (result) return Ok();
+            return NotFound();
+        }
+        
     }
 }
