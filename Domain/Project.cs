@@ -6,7 +6,6 @@ namespace Domain
     {
         public int Id { get; set; }
         public int IdProductOwner { get; set; }
-        public int IdScrumMaster { get; set; }
         public string Name { get; set; }
         public DateTime Deadline { get; set; }
         public string Description { get; set; }

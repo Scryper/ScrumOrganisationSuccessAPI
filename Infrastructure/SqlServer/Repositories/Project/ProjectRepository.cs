@@ -65,24 +65,7 @@ namespace Infrastructure.SqlServer.Repositories.Project
 
             return projects;
         }
-
-        // TODO : factorisation
-        public List<Domain.Project> GetByIdScrumMaster(int idScrumMaster)
-        {
-            var projects = new List<Domain.Project>();
-
-            var command = Database.GetCommand(ReqGetByIdScrumMaster);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColIdScrumMaster, idScrumMaster);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            while(reader.Read()) projects.Add(_projectFactory.CreateFromSqlReader(reader));
-
-            return projects;
-        }
-
+        
         // Post requests
         public Domain.Project Create(Domain.Project project)
         {
@@ -90,7 +73,6 @@ namespace Infrastructure.SqlServer.Repositories.Project
             
             // Parametrize the command
             command.Parameters.AddWithValue("@" + ColIdProductOwner, project.IdProductOwner);
-            command.Parameters.AddWithValue("@" + ColIdScrumMaster, project.IdScrumMaster);
             command.Parameters.AddWithValue("@" + ColName, project.Name);
             command.Parameters.AddWithValue("@" + ColDeadline, project.Deadline);
             command.Parameters.AddWithValue("@" + ColDescription, project.Description);
@@ -104,7 +86,6 @@ namespace Infrastructure.SqlServer.Repositories.Project
                 Description = project.Description,
                 RepositoryUrl = project.RepositoryUrl,
                 IdProductOwner = project.IdProductOwner,
-                IdScrumMaster = project.IdScrumMaster
             };
         }
         

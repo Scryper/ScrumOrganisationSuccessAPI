@@ -31,20 +31,20 @@ insert into sos_user(firstname, lastname, password, email, role, birthdate)
     values('Lucas', 'Hauchard', 'squeezie', 'lucas.hauchard@squeezie.industries.fr', 2, convert(date, '27-01-1996', 103));
 
 /*Init projects*/
-insert into project(id_product_owner, id_scrum_master, name, deadline, description, repository_url, sos_status)
-    values(3, 2, 'ScrumOrganisationSuccess API', convert(datetime, '24-12-2021 12:00:00', 103), 'Serveur pour réussir son année',
+insert into project(id_product_owner, name, deadline, description, repository_url, sos_status)
+    values(3, 'ScrumOrganisationSuccess API', convert(datetime, '24-12-2021 12:00:00', 103), 'Serveur pour réussir son année',
     'https://github.com/Scryper/ScrumOrganisationSuccessAPI', 2);
 
-insert into project(id_product_owner, id_scrum_master, name, deadline, description, repository_url, sos_status)
-    values(5, 8, 'ScrumOrganisationSuccess Web App', convert(datetime, '24-12-2021 12:00:00', 103), 'Site pour réussir son année',
+insert into project(id_product_owner, name, deadline, description, repository_url, sos_status)
+    values(5, 'ScrumOrganisationSuccess Web App', convert(datetime, '24-12-2021 12:00:00', 103), 'Site pour réussir son année',
     'https://github.com/Scryper/ScrumOrganisationSuccessWebApp', 2);
 
-insert into project(id_product_owner, id_scrum_master, name, deadline, description, repository_url, sos_status)
-    values(3, 9, 'Skydda', convert(datetime, '08-12-2021 12:00:00', 103), 'Jeu vidéo pour réussir son année',
+insert into project(id_product_owner, name, deadline, description, repository_url, sos_status)
+    values(3, 'Skydda', convert(datetime, '08-12-2021 12:00:00', 103), 'Jeu vidéo pour réussir son année',
     'https://github.com/Scryper/Skydda', 3);
 
-insert into project(id_product_owner, id_scrum_master, name, deadline, description, repository_url, sos_status)
-    values(5, 9, 'Labo TCP IP', convert(datetime, '08-12-2021 12:00:00', 103), 'Labo pour réussir son année',
+insert into project(id_product_owner, name, deadline, description, repository_url, sos_status)
+    values(5, 'Labo TCP IP', convert(datetime, '08-12-2021 12:00:00', 103), 'Labo pour réussir son année',
     'https://github.com/Scryper/Labo01_TCP_IP', 3);
 
 /*Init technology*/

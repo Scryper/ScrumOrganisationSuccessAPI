@@ -11,7 +11,6 @@
         public const string ColDescription = "description";
         public const string ColRepositoryUrl = "repository_url";
         public const string ColIdProductOwner = "id_product_owner";
-        public const string ColIdScrumMaster = "id_scrum_master";
         public const string ColStatus = "sos_status";
         
         public const string UserColId = "sos_user.id";
@@ -29,18 +28,13 @@
                                                     $@"select * from {TableName} 
                                                     left join {UserTableName} on {UserColId} = {ColIdProductOwner} 
                                                     where {UserColId} = @{ColIdProductOwner}";
-        
-        private static readonly string ReqGetByIdScrumMaster = 
-                                                    $@"select * from {TableName} 
-                                                    left join {UserTableName} on {UserColId} = {ColIdScrumMaster} 
-                                                    where {UserColId} = @{ColIdScrumMaster}";
-        
+
         // Post requests
         private static readonly string ReqCreate = 
-                    $@"insert into {TableName}({ColIdProductOwner}, {ColIdScrumMaster}, {ColName}, {ColDeadline}, {ColDescription}, 
+                    $@"insert into {TableName}({ColIdProductOwner}, {ColName}, {ColDeadline}, {ColDescription}, 
                     {ColRepositoryUrl})
                     output inserted.{ColId} 
-                    values(@{ColIdProductOwner}, @{ColIdScrumMaster}, @{ColName}, @{ColDeadline}, @{ColDescription}, 
+                    values(@{ColIdProductOwner}, @{ColName}, @{ColDeadline}, @{ColDescription}, 
                     @{ColRepositoryUrl})";
         
         // Put requests

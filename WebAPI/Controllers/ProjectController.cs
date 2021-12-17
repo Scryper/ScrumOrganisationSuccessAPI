@@ -20,8 +20,7 @@ namespace WebAPI.Controllers
         private readonly UseCaseGetProjectById _useCaseGetProjectById;
         private readonly UseCaseGetProjectByName _useCaseGetProjectByName;
         private readonly UseCaseGetProjectsByIdProductOwner _useCaseGetProjectsByIdProductOwner;
-        private readonly UseCaseGetProjectsByIdScrumMaster _useCaseGetProjectsByIdScrumMaster;
-        
+
         private readonly UseCaseCreateProject _useCaseCreateProject;
 
         private readonly UseCaseUpdateProjectRepositoryUrl _useCaseUpdateProjectRepositoryUrl;
@@ -34,14 +33,12 @@ namespace WebAPI.Controllers
             UseCaseGetProjectById useCaseGetProjectById,
             UseCaseGetProjectByName useCaseGetProjectByName,
             UseCaseGetProjectsByIdProductOwner useCaseGetProjectsByIdProductOwner,
-            UseCaseGetProjectsByIdScrumMaster useCaseGetProjectsByIdScrumMaster,
             UseCaseCreateProject useCaseCreateProject,
             UseCaseUpdateProjectRepositoryUrl useCaseUpdateProjectRepositoryUrl,
             UseCaseDeleteProject useCaseDeleteProject)
         {
             _useCaseGetAllProjects = useCaseGetAllProjects;
             _useCaseGetProjectsByIdProductOwner = useCaseGetProjectsByIdProductOwner;
-            _useCaseGetProjectsByIdScrumMaster = useCaseGetProjectsByIdScrumMaster;
             _useCaseGetProjectById = useCaseGetProjectById;
             _useCaseGetProjectByName = useCaseGetProjectByName;
             
@@ -81,13 +78,6 @@ namespace WebAPI.Controllers
         public ActionResult<List<OutputDtoProject>> GetByIdProductOwner(int idProductOwner)
         {
             return _useCaseGetProjectsByIdProductOwner.Execute(idProductOwner);
-        }
-        
-        [HttpGet]
-        [Route("byScrumMaster/{idScrumMaster:int}")]
-        public ActionResult<List<OutputDtoProject>> GetByIdScrumMaster(int idScrumMaster)
-        {
-            return _useCaseGetProjectsByIdScrumMaster.Execute(idScrumMaster);
         }
 
         // Post requests
