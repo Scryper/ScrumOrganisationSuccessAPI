@@ -19,7 +19,6 @@ namespace WebAPI.Controllers
         private readonly UseCaseGetAllProjects _useCaseGetAllProjects;
         private readonly UseCaseGetProjectById _useCaseGetProjectById;
         private readonly UseCaseGetProjectByName _useCaseGetProjectByName;
-        private readonly UseCaseGetProjectsByIdProductOwner _useCaseGetProjectsByIdProductOwner;
 
         private readonly UseCaseCreateProject _useCaseCreateProject;
 
@@ -32,13 +31,11 @@ namespace WebAPI.Controllers
             UseCaseGetAllProjects useCaseGetAllProjects,
             UseCaseGetProjectById useCaseGetProjectById,
             UseCaseGetProjectByName useCaseGetProjectByName,
-            UseCaseGetProjectsByIdProductOwner useCaseGetProjectsByIdProductOwner,
             UseCaseCreateProject useCaseCreateProject,
             UseCaseUpdateProjectRepositoryUrl useCaseUpdateProjectRepositoryUrl,
             UseCaseDeleteProject useCaseDeleteProject)
         {
             _useCaseGetAllProjects = useCaseGetAllProjects;
-            _useCaseGetProjectsByIdProductOwner = useCaseGetProjectsByIdProductOwner;
             _useCaseGetProjectById = useCaseGetProjectById;
             _useCaseGetProjectByName = useCaseGetProjectByName;
             
@@ -72,14 +69,7 @@ namespace WebAPI.Controllers
             var correctName = HttpUtility.UrlDecode(name);
             return _useCaseGetProjectByName.Execute(correctName);
         }
-
-        [HttpGet]
-        [Route("byProductOwner/{idProductOwner:int}")]
-        public ActionResult<List<OutputDtoProject>> GetByIdProductOwner(int idProductOwner)
-        {
-            return _useCaseGetProjectsByIdProductOwner.Execute(idProductOwner);
-        }
-
+        
         // Post requests
         [HttpPost]
         [ProducesResponseType(201)]

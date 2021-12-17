@@ -132,7 +132,6 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetAllProjects>();
             services.AddSingleton<UseCaseGetProjectById>();
             services.AddSingleton<UseCaseGetProjectByName>();
-            services.AddSingleton<UseCaseGetProjectsByIdProductOwner>();
 
             services.AddSingleton<UseCaseCreateProject>();
             

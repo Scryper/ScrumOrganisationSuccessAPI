@@ -49,30 +49,12 @@ namespace Infrastructure.SqlServer.Repositories.Project
             return reader.Read() ? _projectFactory.CreateFromSqlReader(reader) : null;
         }
 
-        // TODO : factorisation
-        public List<Domain.Project> GetByIdProductOwner(int idProductOwner)
-        {
-            var projects = new List<Domain.Project>();
-
-            var command = Database.GetCommand(ReqGetByIdProductOwner);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColIdProductOwner, idProductOwner);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            while(reader.Read()) projects.Add(_projectFactory.CreateFromSqlReader(reader));
-
-            return projects;
-        }
-        
         // Post requests
         public Domain.Project Create(Domain.Project project)
         {
             var command = Database.GetCommand(ReqCreate);
             
             // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColIdProductOwner, project.IdProductOwner);
             command.Parameters.AddWithValue("@" + ColName, project.Name);
             command.Parameters.AddWithValue("@" + ColDeadline, project.Deadline);
             command.Parameters.AddWithValue("@" + ColDescription, project.Description);
@@ -85,7 +67,6 @@ namespace Infrastructure.SqlServer.Repositories.Project
                 Deadline = project.Deadline,
                 Description = project.Description,
                 RepositoryUrl = project.RepositoryUrl,
-                IdProductOwner = project.IdProductOwner,
             };
         }
         

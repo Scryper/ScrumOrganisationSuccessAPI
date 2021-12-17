@@ -8,7 +8,6 @@ namespace Infrastructure.SqlServer.Repositories.Project
         List<Domain.Project> GetAll();
         Domain.Project GetById(int id);
         Domain.Project GetByName(string name);
-        List<Domain.Project> GetByIdProductOwner(int idProductOwner);
 
         // Post requests
         Domain.Project Create(Domain.Project project);

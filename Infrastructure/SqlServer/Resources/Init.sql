@@ -58,7 +58,6 @@ create table sos_user(
   3 -> finished*/
 create table project(
     id int identity primary key,
-    id_product_owner int default null,
     name varchar(100) not null,
     deadline date not null,
     description varchar(1000) not null,

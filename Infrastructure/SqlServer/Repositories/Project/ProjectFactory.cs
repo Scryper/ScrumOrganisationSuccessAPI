@@ -10,7 +10,6 @@ namespace Infrastructure.SqlServer.Repositories.Project
             return new Domain.Project
             {
                 Id = reader.GetInt32(reader.GetOrdinal(ProjectRepository.ColId)),
-                IdProductOwner = reader.GetInt32(reader.GetOrdinal(ProjectRepository.ColIdProductOwner)),
                 Name = reader.GetString(reader.GetOrdinal(ProjectRepository.ColName)),
                 Deadline = reader.GetDateTime(reader.GetOrdinal(ProjectRepository.ColDeadline)),
                 Description = reader.GetString(reader.GetOrdinal(ProjectRepository.ColDescription)),
