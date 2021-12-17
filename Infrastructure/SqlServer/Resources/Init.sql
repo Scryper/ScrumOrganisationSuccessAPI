@@ -70,43 +70,6 @@ create table technology (
     name varchar(50) not null
 );
 
-create table sprint (
-    id int identity primary key,
-    id_project int not null,
-    sprint_number int not null,
-    start_date datetime not null,
-    deadline datetime not null,
-    description varchar(1000) not null,
-    foreign key(id_project) references project(id) ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-create table user_story (
-    id int identity primary key,
-    id_project int not null,
-    name varchar(200) not null,
-    description varchar(1000) not null,
-    priority smallint not null,
-    foreign key(id_project) references project(id) ON UPDATE CASCADE ON DELETE CASCADE               
-);
-
-create table meeting (
-    id int identity primary key,
-    id_sprint int not null,
-    schedule datetime not null,
-    description varchar(1000) not null,
-    foreign key(id_sprint) references sprint(id) ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-create table comment (
-    id int identity primary key,
-    id_user_story int not null,
-    id_user int not null,
-    posted_at datetime not null,
-    content varchar(1000) not null,
-    foreign key(id_user_story) references user_story(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    foreign key(id_user) references sos_user(id) ON UPDATE CASCADE ON DELETE CASCADE     
-);
-
 create table developer_project (
     id_project int not null,
     id_developer int not null,
@@ -114,22 +77,6 @@ create table developer_project (
     primary key(id_project, id_developer),
     foreign key(id_project) references project(id) on delete cascade,
     foreign key(id_developer) references sos_user(id) on delete cascade
-);
-
-create table participation (
-    id_meeting int not null,
-    id_user int not null,
-    PRIMARY KEY(id_user,id_meeting),
-    FOREIGN KEY (id_user) REFERENCES sos_user(id) on delete cascade,
-    FOREIGN KEY (id_meeting) REFERENCES meeting(id) on delete cascade
-);
-
-create table sprint_user_story (
-    id_sprint int not null,
-    id_user_story int not null,
-    primary key(id_sprint, id_user_story),
-    foreign key(id_sprint) references sprint(id) on delete cascade,
-    foreign key(id_user_story) references user_story(id) on delete cascade
 );
 
 create table user_technology (
@@ -147,3 +94,57 @@ create table project_technology (
     FOREIGN KEY (id_project) REFERENCES project(id) on delete cascade,
     FOREIGN KEY (id_technology) REFERENCES technology(id) on delete cascade                     
 );
+
+create table sprint (
+    id int identity primary key,
+    id_project int not null,
+    sprint_number int not null,
+    start_date datetime not null,
+    deadline datetime not null,
+    description varchar(1000) not null,
+    foreign key(id_project) references project(id) ON UPDATE CASCADE
+);
+
+create table user_story (
+    id int identity primary key,
+    id_project int not null,
+    name varchar(200) not null,
+    description varchar(1000) not null,
+    priority smallint not null,
+    foreign key(id_project) references project(id) ON UPDATE CASCADE
+);
+
+create table sprint_user_story (
+   id_sprint int not null,
+   id_user_story int not null,
+   primary key(id_sprint, id_user_story),
+   foreign key(id_sprint) references sprint(id) on delete cascade,
+   foreign key(id_user_story) references user_story(id) on delete cascade
+);
+
+create table comment (
+     id int identity primary key,
+     id_user_story int not null,
+     id_user int not null,
+     posted_at datetime not null,
+     content varchar(1000) not null,
+     foreign key(id_user_story) references user_story(id) ON UPDATE CASCADE ON DELETE CASCADE,
+     foreign key(id_user) references sos_user(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+create table meeting (
+     id int identity primary key,
+     id_sprint int not null,
+     schedule datetime not null,
+     description varchar(1000) not null,
+     foreign key(id_sprint) references sprint(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+create table participation (
+   id_meeting int not null,
+   id_user int not null,
+   PRIMARY KEY(id_user,id_meeting),
+   FOREIGN KEY (id_user) REFERENCES sos_user(id) on delete cascade,
+   FOREIGN KEY (id_meeting) REFERENCES meeting(id) on delete cascade
+);
+
