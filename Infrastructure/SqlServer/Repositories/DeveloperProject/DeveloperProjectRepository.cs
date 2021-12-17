@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using Infrastructure.SqlServer.Utils;
+using NotImplementedException = System.NotImplementedException;
 
 namespace Infrastructure.SqlServer.Repositories.DeveloperProject
 {
@@ -51,6 +52,36 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
             while(reader.Read()) developerProjects.Add(_developerProjectFactory.CreateFromSqlReader(reader));
 
             return developerProjects;
+        }
+
+        public List<Domain.DeveloperProject> GetByIdDeveloperIsAppliance(int idDeveloper)
+        {
+            var developerProjects = new List<Domain.DeveloperProject>();
+            
+            var command = Database.GetCommand(ReqByIdDeveloperIsAppliance);
+
+            command.Parameters.AddWithValue("@" + ColIdDeveloper, idDeveloper);
+            
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            
+            while(reader.Read()) developerProjects.Add(_developerProjectFactory.CreateFromSqlReader(reader));
+
+            return developerProjects;
+        }
+
+        public Domain.DeveloperProject GetByIdDeveloperIdProject(int idDeveloper, int idProject)
+        {
+            var developerProjects = new Domain.DeveloperProject();
+
+            var command = Database.GetCommand(ReqGetByIdDeveloperIdProject);
+            
+            command.Parameters.AddWithValue("@" + ColIdDeveloper, idDeveloper);
+            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
+            
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            
+            // Return the project if found, null if not
+            return reader.Read() ? _developerProjectFactory.CreateFromSqlReader(reader) : null;
         }
 
         // Post requests

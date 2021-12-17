@@ -11,6 +11,12 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
         
         List<Domain.DeveloperProject> GetByIdProject(int idProject);
 
+        List<Domain.DeveloperProject> GetByIdDeveloperIsAppliance(int idDeveloper);
+        
+        Domain.DeveloperProject GetByIdDeveloperIdProject(int idDeveloper, int idProject);
+        
+        
+        
         // Post requests
         Domain.DeveloperProject Create(Domain.DeveloperProject developerProject);
         

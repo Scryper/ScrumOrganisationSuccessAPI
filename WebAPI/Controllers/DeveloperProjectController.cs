@@ -16,6 +16,8 @@ namespace WebAPI.Controllers
         private readonly UseCaseGetAllDeveloperProjects _useCaseGetAllDeveloperProjects;
         private readonly UseCaseGetDeveloperProjectsByIdDeveloper _useCaseGetDeveloperProjectsByIdDeveloper;
         private readonly UseCaseGetDeveloperProjectsByIdProject _useCaseGetDeveloperProjectsByIdProject;
+        private readonly UseCaseGetDeveloperProjectsByIdDeveloperIsAppliance _useCaseGetDeveloperProjectsByIdDeveloperIsAppliance;
+        private readonly UseCaseGetByIdDeveloperIdProject _useCaseGetByIdDeveloperIdProject;
         
         private readonly UseCaseCreateDeveloperProject _useCaseCreateDeveloperProject;
         
@@ -31,12 +33,16 @@ namespace WebAPI.Controllers
             UseCaseGetDeveloperProjectsByIdProject useCaseGetDeveloperProjectsByIdProject,
             UseCaseCreateDeveloperProject useCaseCreateDeveloperProject,
             UseCaseUpdateDeveloperProject useCaseUpdateDeveloperProject,
-            UseCaseDeleteDeveloperProject useCaseDeleteDeveloperProject
+            UseCaseDeleteDeveloperProject useCaseDeleteDeveloperProject,
+            UseCaseGetDeveloperProjectsByIdDeveloperIsAppliance useCaseGetDeveloperProjectsByIdDeveloperIsAppliance,
+            UseCaseGetByIdDeveloperIdProject useCaseGetByIdDeveloperIdProject
         )
         {
             _useCaseGetAllDeveloperProjects = useCaseGetAllDeveloperProjects;
             _useCaseGetDeveloperProjectsByIdDeveloper = useCaseGetDeveloperProjectsByIdDeveloper;
             _useCaseGetDeveloperProjectsByIdProject = useCaseGetDeveloperProjectsByIdProject;
+            _useCaseGetDeveloperProjectsByIdDeveloperIsAppliance = useCaseGetDeveloperProjectsByIdDeveloperIsAppliance;
+            _useCaseGetByIdDeveloperIdProject = useCaseGetByIdDeveloperIdProject;
             
             _useCaseCreateDeveloperProject = useCaseCreateDeveloperProject;
             
@@ -64,6 +70,20 @@ namespace WebAPI.Controllers
         public ActionResult<List<OutputDtoDeveloperProject>> GetByIdProject(int idProject)
         {
             return _useCaseGetDeveloperProjectsByIdProject.Execute(idProject);
+        }
+        
+        [HttpGet]
+        [Route("byIdDeveloperIsAppliance/{idDeveloper:int}")]
+        public ActionResult<List<OutputDtoDeveloperProject>> GetByIdDeveloperIsAppliance(int idDeveloper)
+        {
+            return _useCaseGetDeveloperProjectsByIdDeveloperIsAppliance.Execute(idDeveloper);
+        }
+        
+        [HttpGet]
+        [Route("byIdDeveloperIdProject/{idDeveloper:int},{idProject:int}")]
+        public ActionResult<OutputDtoDeveloperProject> GetByIdDeveloperIdProject(int idDeveloper,int idProject)
+        {
+            return _useCaseGetByIdDeveloperIdProject.Execute(idDeveloper,idProject);
         }
         
         [HttpPost]
