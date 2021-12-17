@@ -21,7 +21,9 @@ namespace Infrastructure.SqlServer.Repositories.Comment
             
             // Add all comments
             while(reader.Read()) comments.Add(_commentFactory.CreateFromSqlReader(reader));
-
+            
+            command.Connection.Close();
+            
             return comments;
         }
 
@@ -39,6 +41,8 @@ namespace Infrastructure.SqlServer.Repositories.Comment
             // Add all comments
             while(reader.Read()) comments.Add(_commentFactory.CreateFromSqlReader(reader));
             
+            command.Connection.Close();
+            
             return comments;
         }
 
@@ -50,9 +54,13 @@ namespace Infrastructure.SqlServer.Repositories.Comment
             command.Parameters.AddWithValue("@" + ColId, id);
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            var returnData = reader.Read() ? _commentFactory.CreateFromSqlReader(reader) : null;
+            
+            command.Connection.Close();
             
             // Return the comment if found, null if not
-            return reader.Read() ? _commentFactory.CreateFromSqlReader(reader) : null;
+            return returnData ;
         }
 
         // Post requests
@@ -66,9 +74,13 @@ namespace Infrastructure.SqlServer.Repositories.Comment
             command.Parameters.AddWithValue("@" + ColPostedAt, comment.PostedAt);
             command.Parameters.AddWithValue("@" + ColContent, comment.Content);
 
+            int returnID = (int)command.ExecuteScalar();
+            
+            command.Connection.Close();
+            
             return new Domain.Comment
             {
-                Id = (int) command.ExecuteScalar(),
+                Id = returnID,
                 IdUserStory = comment.IdUserStory,
                 IdUser = comment.IdUser,
                 PostedAt = comment.PostedAt,
