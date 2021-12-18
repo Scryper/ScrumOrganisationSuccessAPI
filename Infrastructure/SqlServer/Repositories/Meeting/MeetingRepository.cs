@@ -89,7 +89,8 @@ namespace Infrastructure.SqlServer.Repositories.Meeting
                 Id = (int) command.ExecuteScalar(),
                 IdSprint = meeting.IdSprint,
                 Schedule = meeting.Schedule,
-                Description = meeting.Description
+                Description = meeting.Description,
+                MeetingUrl = meeting.MeetingUrl
             };
         }
 

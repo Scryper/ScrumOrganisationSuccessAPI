@@ -159,34 +159,34 @@ insert into user_story(id_project, name, description, priority)
     values(4, 'En tant qu''utilisateur je peux revenir sur la page d''acceuil.', 'L''utilisateur peut revenir sur la page d''accueil, et ce depuis n''importe quel autre page du site.', 2);
 
 /*Init meetings*/
-insert into meeting(id_sprint, schedule, description, url)
+insert into meeting(id_sprint, schedule, description, meeting_url)
     values(1, convert(datetime, '01-11-2021 12:00:00', 103), 'Meeting pour réussir son année.','www.google.com');
     
-insert into meeting(id_sprint, schedule, description, url)
+insert into meeting(id_sprint, schedule, description, meeting_url)
     values(1, convert(datetime, '05-11-2021 12:00:00', 103), 'Mise en commun des branches.','www.google.com');
     
-insert into meeting(id_sprint, schedule, description, url)
+insert into meeting(id_sprint, schedule, description, meeting_url)
     values(1, convert(datetime, '12-11-2021 12:00:00', 103), 'Partage des tâches restantes.','www.google.com');
     
-insert into meeting(id_sprint, schedule, description, url)
+insert into meeting(id_sprint, schedule, description, meeting_url)
     values(2, convert(datetime, '20-11-2021 12:00:00', 103), 'Mise en commun des branches.','www.google.com');
     
-insert into meeting(id_sprint, schedule, description, url)
+insert into meeting(id_sprint, schedule, description, meeting_url)
     values(2, convert(datetime, '14-12-2021 15:00:00', 103), 'Partage des tâches restantes.','www.google.com');
     
-insert into meeting(id_sprint, schedule, description, url)
+insert into meeting(id_sprint, schedule, description, meeting_url)
     values(3, convert(datetime, '08-11-2021 15:00:00', 103), 'Mise en commun des branches.','www.google.com');
     
-insert into meeting(id_sprint, schedule, description, url)
+insert into meeting(id_sprint, schedule, description, meeting_url)
     values(3, convert(datetime, '14-11-2021 15:00:00', 103), 'Partage des tâches restantes.','www.google.com');
     
-insert into meeting(id_sprint, schedule, description, url)
+insert into meeting(id_sprint, schedule, description, meeting_url)
     values(3, convert(datetime, '18-11-2021 15:00:00', 103), 'Organisation de la présentation orale.','www.google.com');
     
-insert into meeting(id_sprint, schedule, description, url)
+insert into meeting(id_sprint, schedule, description, meeting_url)
     values(4, convert(datetime, '01-12-2021 15:00:00', 103), 'Partage des tâches.','www.google.com');
     
-insert into meeting(id_sprint, schedule, description, url)
+insert into meeting(id_sprint, schedule, description, meeting_url)
     values(4, convert(datetime, '19-12-2021 15:00:00', 103), 'Mise en commun des branches.','www.google.com');
 
 /*Init comments*/

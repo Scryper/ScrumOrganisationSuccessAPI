@@ -10,7 +10,7 @@
         public const string ColIdSprint = "id_sprint";
         public const string ColSchedule = "schedule";
         public const string ColDescription = "description";
-        public const string ColUrl = "url";
+        public const string ColUrl = "meeting_url";
 
         public const string ParticipationColIdMeeting = "participation.id_meeting";
         public const string ParticipationColIdUser = "participation.id_user";
