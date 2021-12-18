@@ -63,7 +63,12 @@
         private static readonly string ReqUpdateEmail = $@"update {TableName} 
                                                         set {ColEmail} = @{ColEmail} 
                                                         where {ColId} = @{ColId}";
-
+        
+        private static readonly string ReqUpdateFirstNameLastName = $@"update {TableName} 
+                                                        set {ColFirstName} = @{ColFirstName}, 
+                                                        {ColLastName} = @{ColLastName} 
+                                                        where {ColId} = @{ColId}";
+        
         // Delete Requests
         private static readonly string ReqDeleteById = $@"delete from {TableName} 
                                                        where {ColId} = @{ColId}";

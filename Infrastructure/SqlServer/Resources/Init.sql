@@ -46,7 +46,7 @@ create table sos_user(
     lastname varchar(50) not null,
     password varchar(100) not null,
     email varchar(100) not null,
-    profile_picture varchar(200) default '',
+    profile_picture varchar(200) default './assets/images/profilePictures/anonym.jpg',
     role smallint not null,
     birthdate date not null,
     description varchar(500),
@@ -137,6 +137,7 @@ create table meeting (
      id_sprint int not null,
      schedule datetime not null,
      description varchar(1000) not null,
+     url varchar(300) not null,
      foreign key(id_sprint) references sprint(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 

@@ -7,6 +7,9 @@ namespace Application.UseCases.Meeting.Dtos
     {
         public int IdSprint { get; set; }
         public DateTime Schedule { get; set; }
+        
         public string Description { get; set; }
+        
+        public string Url { get; set; }
     }
 }

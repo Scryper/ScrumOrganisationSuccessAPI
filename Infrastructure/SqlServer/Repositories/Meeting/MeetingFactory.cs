@@ -12,7 +12,8 @@ namespace Infrastructure.SqlServer.Repositories.Meeting
                 Id = reader.GetInt32(reader.GetOrdinal(MeetingRepository.ColId)),
                 IdSprint = reader.GetInt32(reader.GetOrdinal(MeetingRepository.ColIdSprint)),
                 Schedule = reader.GetDateTime(reader.GetOrdinal(MeetingRepository.ColSchedule)),
-                Description = reader.GetString(reader.GetOrdinal(MeetingRepository.ColDescription))
+                Description = reader.GetString(reader.GetOrdinal(MeetingRepository.ColDescription)),
+                Url = reader.GetString(reader.GetOrdinal(MeetingRepository.ColUrl))
             };
         }
     }
