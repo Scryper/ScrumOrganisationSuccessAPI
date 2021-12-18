@@ -225,6 +225,12 @@ insert into developer_project(id_project, id_developer, is_appliance)
     values(1, 1, 0);
 
 insert into developer_project(id_project, id_developer, is_appliance)
+values(2, 1, 0);
+
+insert into developer_project(id_project, id_developer, is_appliance)
+values(3, 1, 0);
+
+insert into developer_project(id_project, id_developer, is_appliance)
     values(1, 4, 0);
     
 insert into developer_project(id_project, id_developer, is_appliance)
