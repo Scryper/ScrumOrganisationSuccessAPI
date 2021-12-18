@@ -30,7 +30,7 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
             var command = Database.GetCommand(ReqGetByIdProject);
             
             // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColId, idProject);
+            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
