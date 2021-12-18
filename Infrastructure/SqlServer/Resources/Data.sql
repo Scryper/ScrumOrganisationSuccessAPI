@@ -245,6 +245,9 @@ insert into developer_project(id_project, id_developer, is_appliance)
 insert into developer_project(id_project, id_developer, is_appliance)
     values(4, 6, 0);
 
+insert into developer_project(id_project, id_developer, is_appliance)
+    values(1, 5, 0);
+
 /*Init participation link table*/
 insert into participation(id_meeting, id_user)
     values(1, 1);
