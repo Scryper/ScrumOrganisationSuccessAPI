@@ -41,7 +41,7 @@ namespace Application.UseCases.Utils
                 cfg.CreateMap<InputDtoUserTechnology, Domain.UserTechnology>();
                 cfg.CreateMap<InputDtoProjectTechnology, Domain.ProjectTechnology>();
                 cfg.CreateMap<InputDtoParticipation, Domain.Participation>();
-                
+
                 // From elements to output
                 cfg.CreateMap<Domain.Comment, OutputDtoComment>();
                 cfg.CreateMap<Domain.Meeting, OutputDtoMeeting>();

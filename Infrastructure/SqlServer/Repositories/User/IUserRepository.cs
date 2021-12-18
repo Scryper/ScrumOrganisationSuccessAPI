@@ -18,6 +18,7 @@ namespace Infrastructure.SqlServer.Repositories.User
         bool UpdateRole(int id, int newRole);
         bool UpdatePassword(int id, string newPassword);
         bool UpdateEmail(int id, string newEmail);
+        bool UpdateFirstNameLastName(int id, string firstname, string lastname);
 
         // Delete requests
         bool Delete(int id);

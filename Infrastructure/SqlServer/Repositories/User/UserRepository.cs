@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using Infrastructure.SqlServer.Utils;
+using NotImplementedException = System.NotImplementedException;
 
 namespace Infrastructure.SqlServer.Repositories.User
 {
@@ -145,6 +146,19 @@ namespace Infrastructure.SqlServer.Repositories.User
 
             return command.ExecuteNonQuery() > 0;
         }
+
+        public bool UpdateFirstNameLastName(int id, string firstname, string lastname)
+        {
+            var command = Database.GetCommand(ReqUpdateFirstNameLastName);
+            
+            // Parametrize the command
+            command.Parameters.AddWithValue("@" + ColId, id);
+            command.Parameters.AddWithValue("@" + ColFirstName, firstname);
+            command.Parameters.AddWithValue("@" + ColLastName, lastname);
+
+            return command.ExecuteNonQuery() > 0;
+        }
+
 
         // Delete requests
         public bool Delete(int id)

@@ -6,7 +6,6 @@ namespace Application.UseCases.Project.Dtos
     public class OutputDtoProject
     {
         public int Id { get; set; }
-        public int IdProductOwner { get; set; }
         public string Name { get; set; }
         public DateTime Deadline { get; set; }
         public string Description { get; set; }

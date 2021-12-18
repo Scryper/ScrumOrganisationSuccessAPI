@@ -26,6 +26,7 @@ namespace WebAPI.Controllers
         private readonly UseCaseUpdateUserRole _useCaseUpdateUserRole;
         private readonly UseCaseUpdateUserEmail _useCaseUpdateUserEmail;
         private readonly UseCaseUpdateUserPassword _useCaseUpdateUserPassword;
+        private readonly UseCaseUpdateUserFirstNameLastName _useCaseUpdateUserFirstNameLastName;
         
         private readonly UseCaseDeleteUser _useCaseDeleteUser;
         
@@ -43,7 +44,8 @@ namespace WebAPI.Controllers
             UseCaseUpdateUserPassword useCaseUpdateUserPassword,
             UseCaseUpdateUserRole useCaseUpdateUserRole,
             UseCaseDeleteUser useCaseDeleteUser,
-            UseCaseAuthenticateUser useCaseAuthenticateUser)
+            UseCaseAuthenticateUser useCaseAuthenticateUser,
+            UseCaseUpdateUserFirstNameLastName useCaseUpdateUserFirstNameLastName)
         {
             _useCaseGetAllUsers = useCaseGetAllUsers;
             _useCaseGetUserById = useCaseGetUserById;
@@ -56,6 +58,7 @@ namespace WebAPI.Controllers
             _useCaseUpdateUserEmail = useCaseUpdateUserEmail;
             _useCaseUpdateUserPassword = useCaseUpdateUserPassword;
             _useCaseUpdateUserRole = useCaseUpdateUserRole;
+            _useCaseUpdateUserFirstNameLastName = useCaseUpdateUserFirstNameLastName;
             
             _useCaseDeleteUser = useCaseDeleteUser;
             
@@ -184,6 +187,29 @@ namespace WebAPI.Controllers
             return NotFound();
         }
 
+        [HttpPut]
+        [Route("firstNameLastNameUpdate/{idForFirstNameLastNameUpdate:int}")]
+        public ActionResult UpdateFirstNameLastName(int idForFirstNameLastNameUpdate, InputDtoUser inputDtoUser)
+        {
+            var inputDtoUpdate = new InputDtoUpdateUserFirstNameLastName
+            {
+                Id = idForFirstNameLastNameUpdate,
+                InternUser = new InputDtoUpdateUserFirstNameLastName.User
+                {
+                    FirstName = inputDtoUser.Firstname,
+                    LastName = inputDtoUser.Lastname
+                }
+            };
+            
+            var result = _useCaseUpdateUserFirstNameLastName.Execute(inputDtoUpdate);
+
+            if (result) return Ok();
+            return NotFound();
+        }
+        
+        
+        
+        
         //  Delete requests
         [HttpDelete]
         [Route("{id:int}")]
