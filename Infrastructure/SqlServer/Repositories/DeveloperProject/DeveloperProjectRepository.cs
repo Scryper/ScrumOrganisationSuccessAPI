@@ -114,6 +114,16 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
             return developerProjects;
         }
 
+        public List<Domain.DeveloperProject> GetScrumMasterByIdProject(int idDeveloper)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Domain.DeveloperProject> GetDevsByIdProject(int idDeveloper)
+        {
+            throw new NotImplementedException();
+        }
+
         // Post requests
         public Domain.DeveloperProject Create(Domain.DeveloperProject developerProject)
         {

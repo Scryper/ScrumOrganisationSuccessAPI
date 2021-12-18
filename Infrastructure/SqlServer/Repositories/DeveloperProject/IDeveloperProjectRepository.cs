@@ -12,8 +12,8 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
         Domain.DeveloperProject GetByIdDeveloperIdProject(int idDeveloper, int idProject);
         List<Domain.DeveloperProject> GetByIdDeveloperifIsWorking(int idDeveloper);
         List<Domain.DeveloperProject> GetByIdDeveloperifIsNotWorking(int idDeveloper);
-        
-        
+        List<Domain.DeveloperProject> GetScrumMasterByIdProject(int idDeveloper);
+        List<Domain.DeveloperProject> GetDevsByIdProject(int idDeveloper);
         
         // Post requests
         Domain.DeveloperProject Create(Domain.DeveloperProject developerProject);

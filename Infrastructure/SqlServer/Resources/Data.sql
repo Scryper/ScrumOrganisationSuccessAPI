@@ -56,6 +56,10 @@ insert into project( name, deadline, description, repository_url, sos_status)
     values( 'Labo TCP IP', convert(datetime, '08-12-2021 12:00:00', 103), 'Labo pour réussir son année',
     'https://github.com/Scryper/Labo01_TCP_IP', 3);
 
+insert into project( name, deadline, description, repository_url, sos_status)
+values('Dernier Projet', convert(datetime, '09-12-2021 12:00:00', 103), 'projet pour réussir son année',
+        'https://github.com/dotni/meilleurProjet', 2);
+
 /*Init technology*/
 insert into technology(name)
     values('C#');
@@ -160,34 +164,40 @@ insert into user_story(id_project, name, description, priority)
 
 /*Init meetings*/
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(1, convert(datetime, '01-11-2021 12:00:00', 103), 'Meeting pour réussir son année.','www.google.com');
+    values(1, convert(datetime, '01-11-2021 12:00:00', 103), 'Meeting pour réussir son année.','PrivateHelhaRoom1');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(1, convert(datetime, '05-11-2021 12:00:00', 103), 'Mise en commun des branches.','www.google.com');
+    values(1, convert(datetime, '05-11-2021 12:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom7');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(1, convert(datetime, '12-11-2021 12:00:00', 103), 'Partage des tâches restantes.','www.google.com');
+    values(1, convert(datetime, '12-11-2021 12:00:00', 103), 'Partage des tâches restantes.','PrivateHelhaRoom2');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(2, convert(datetime, '20-11-2021 12:00:00', 103), 'Mise en commun des branches.','www.google.com');
+    values(2, convert(datetime, '20-11-2021 12:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom3');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(2, convert(datetime, '14-12-2021 15:00:00', 103), 'Partage des tâches restantes.','www.google.com');
+    values(2, convert(datetime, '14-12-2021 15:00:00', 103), 'Partage des tâches restantes.','PrivateHelhaRoom4');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(3, convert(datetime, '08-11-2021 15:00:00', 103), 'Mise en commun des branches.','www.google.com');
+    values(3, convert(datetime, '08-11-2021 15:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom5');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(3, convert(datetime, '14-11-2021 15:00:00', 103), 'Partage des tâches restantes.','www.google.com');
+    values(3, convert(datetime, '14-11-2021 15:00:00', 103), 'Partage des tâches restantes.','PrivateHelhaRoom6');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(3, convert(datetime, '18-11-2021 15:00:00', 103), 'Organisation de la présentation orale.','www.google.com');
+    values(3, convert(datetime, '18-11-2021 15:00:00', 103), 'Organisation de la présentation orale.','PrivateHelhaRoom8');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(4, convert(datetime, '01-12-2021 15:00:00', 103), 'Partage des tâches.','www.google.com');
+    values(4, convert(datetime, '01-12-2021 15:00:00', 103), 'Partage des tâches.','PrivateHelhaRoom9');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(4, convert(datetime, '19-12-2021 15:00:00', 103), 'Mise en commun des branches.','www.google.com');
+    values(4, convert(datetime, '19-12-2021 15:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom10');
+
+insert into meeting(id_sprint, schedule, description, meeting_url)
+values(5, convert(datetime, '20-12-2021 15:00:00', 103), 'Partage des tâches.','PrivateHelhaRoom11');
+
+insert into meeting(id_sprint, schedule, description, meeting_url)
+values(5, convert(datetime, '19-12-2021 15:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom12');
 
 /*Init comments*/
 insert into comment(id_user_story, id_user, posted_at, content)
@@ -247,6 +257,9 @@ insert into developer_project(id_project, id_developer, is_appliance)
 
 insert into developer_project(id_project, id_developer, is_appliance)
     values(1, 5, 0);
+
+insert into developer_project(id_project, id_developer, is_appliance)
+values(5, 3, 0);
 
 /*Init participation link table*/
 insert into participation(id_meeting, id_user)

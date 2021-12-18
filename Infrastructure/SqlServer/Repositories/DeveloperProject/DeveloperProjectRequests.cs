@@ -4,11 +4,14 @@
     {
         public const string TableName = "developer_project";
         public const string TableProject = "project";
+        public const string TableUser = "sos_user";
         public const string ColIdProjectFromProject = "id";
+        public const string ColIdProjectFromUser = "id";
         public const string ColStatusProject = "sos_status";
         public const string ColIdDeveloper = "id_developer";
         public const string ColIdProject = "id_project";
         public const string ColIsAppliance = "is_appliance";
+        public const string ColUserRole = "role";
         
         
         // Get requests
@@ -38,13 +41,19 @@
                                                                         where {ColIdDeveloper} = @{ColIdDeveloper} and 
                                                                         {ColIsAppliance} = 1";
         
-        //use to get the list of projects on wich a dev is not working on
-        /*private static readonly string ReqProjectsByIdDeveloperIfNoRelation = $@"select * from {TableProject} left join {TableName} 
-                                                                                on {TableProject}.{ColIdProjectFromProject} = {TableName}.{ColIdProject} 
-                                                                                where "
-                                                                                */
+        //use to get the scrums master on a project
+        private static readonly string ReqGetScrumMasterByIdProject = $@"select {ColIdDeveloper} from {TableName} 
+                                                                        inner join  {TableUser} on {TableName}.{ColIdDeveloper} = {TableUser}.{ColIdProjectFromUser} 
+                                                                        where {ColIdDeveloper} = @{ColIdDeveloper} and 
+                                                                        {ColUserRole} = 2";
         
+        //use to get the devs on a project
+        private static readonly string ReqGetDevsByIdProject = $@"select {ColIdDeveloper} from {TableName} 
+                                                                        inner join  {TableUser} on {TableName}.{ColIdDeveloper} = {TableUser}.{ColIdProjectFromUser} 
+                                                                        where {ColIdDeveloper} = @{ColIdDeveloper} and 
+                                                                        {ColUserRole} = 1";
         
+
         private static readonly string ReqGetByIdDeveloperIdProject = $@"select * from {TableName} 
                                                                         where {ColIdDeveloper} = @{ColIdDeveloper} and 
                                                                         {ColIdProject} = @{ColIdProject}";
