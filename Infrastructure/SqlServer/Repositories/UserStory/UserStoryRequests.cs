@@ -11,14 +11,16 @@
         public const string ColIdProject = "id_project";
         
         // Get requests
-        private static readonly string ReqGetAll = $"select * from {TableName}";
+        private static readonly string ReqGetAll = $@"select * from {TableName} 
+                                                    order by {ColPriority} asc";
 
         private static readonly string ReqGetById = $@"select * from {TableName} 
                                                     where {ColId} = @{ColId}";
         
         private static readonly string ReqGetByIdProject = 
                                     $@"select * from {TableName} 
-                                    where {ColIdProject} = @{ColIdProject}";
+                                    where {ColIdProject} = @{ColIdProject} 
+                                    order by {ColPriority} asc";
         
         // Post requests
         private static readonly string ReqCreate = 
