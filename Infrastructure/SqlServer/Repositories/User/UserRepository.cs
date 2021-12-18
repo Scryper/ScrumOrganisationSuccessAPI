@@ -89,10 +89,11 @@ namespace Infrastructure.SqlServer.Repositories.User
         public Domain.User Create(Domain.User user)
         {
             var command = Database.GetCommand(ReqCreate);
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
             command.Parameters.AddWithValue("@" + ColFirstName, user.Firstname);
             command.Parameters.AddWithValue("@" + ColLastName, user.Lastname);
-            command.Parameters.AddWithValue("@" + ColPassword, user.Password);
+            command.Parameters.AddWithValue("@" + ColPassword, hashedPassword);
             command.Parameters.AddWithValue("@" + ColEmail, user.Email);
             command.Parameters.AddWithValue("@" + ColRole, user.Role);
             command.Parameters.AddWithValue("@" + ColBirthdate, user.Birthdate);
@@ -102,7 +103,7 @@ namespace Infrastructure.SqlServer.Repositories.User
                 Id = (int) command.ExecuteScalar(),
                 Firstname = user.Firstname,
                 Lastname = user.Lastname,
-                Password = user.Password,
+                Password = hashedPassword,
                 Email = user.Email,
                 Role = user.Role,
                 Birthdate = user.Birthdate
