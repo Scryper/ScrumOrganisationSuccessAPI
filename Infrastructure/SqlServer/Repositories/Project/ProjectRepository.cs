@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using Infrastructure.SqlServer.Utils;
+using NotImplementedException = System.NotImplementedException;
 
 namespace Infrastructure.SqlServer.Repositories.Project
 {
@@ -77,6 +78,17 @@ namespace Infrastructure.SqlServer.Repositories.Project
             
             // Parametrize the command
             command.Parameters.AddWithValue("@" + ColRepositoryUrl, newRepositoryUrl);
+            command.Parameters.AddWithValue("@" + ColId, id);
+
+            return command.ExecuteNonQuery() > 0;
+        }
+
+        public bool UpdateStatus(int id, int state)
+        {
+            var command = Database.GetCommand(ReqUpdateState);
+            
+            // Parametrize the command
+            command.Parameters.AddWithValue("@" + ColStatus, state);
             command.Parameters.AddWithValue("@" + ColId, id);
 
             return command.ExecuteNonQuery() > 0;

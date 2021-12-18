@@ -136,6 +136,7 @@ namespace WebAPI
             services.AddSingleton<UseCaseCreateProject>();
             
             services.AddSingleton<UseCaseUpdateProjectRepositoryUrl>();
+            services.AddSingleton<UseCaseUpdateProjectStatus>();
             
             services.AddSingleton<UseCaseDeleteProject>();
             

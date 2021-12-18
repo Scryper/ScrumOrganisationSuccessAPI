@@ -14,6 +14,8 @@ namespace Infrastructure.SqlServer.Repositories.Project
         
         // Put requests
         bool UpdateRepositoryUrl(int id, string newRepositoryUrl);
+        
+        bool UpdateStatus(int id, int state);
 
         // Delete requests
         bool Delete(int id);

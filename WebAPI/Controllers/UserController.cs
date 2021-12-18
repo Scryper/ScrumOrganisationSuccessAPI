@@ -7,6 +7,7 @@ using Application.UseCases.User.Get;
 using Application.UseCases.User.Post;
 using Application.UseCases.User.Put;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Security.Attributes;
 
 namespace WebAPI.Controllers
 {
@@ -66,7 +67,6 @@ namespace WebAPI.Controllers
         }
 
         // Get requests
-        //[Authorize]
         [HttpGet]
         public ActionResult<List<OutputDtoUser>> GetAll()
         {
@@ -148,8 +148,9 @@ namespace WebAPI.Controllers
             if (result) return Ok();
             return NotFound();
         }
-        
+        /*
         [HttpPut]
+        [Authorize]
         [Route("passwordUpdate/{idForPasswordUpdate:int}")]
         public ActionResult UpdatePassword(int idForPasswordUpdate, InputDtoUser inputDtoUser)
         {
@@ -185,7 +186,7 @@ namespace WebAPI.Controllers
 
             if (result) return Ok();
             return NotFound();
-        }
+        }*/
 
         [HttpPut]
         [Route("firstNameLastNameUpdate/{idForFirstNameLastNameUpdate:int}")]
@@ -207,9 +208,7 @@ namespace WebAPI.Controllers
             return NotFound();
         }
         
-        
-        
-        
+        /*
         //  Delete requests
         [HttpDelete]
         [Route("{id:int}")]
@@ -219,6 +218,6 @@ namespace WebAPI.Controllers
             
             if (result) return Ok();
             return NotFound();
-        }
+        }*/
     }
 }

@@ -23,6 +23,7 @@ namespace WebAPI.Controllers
         private readonly UseCaseCreateProject _useCaseCreateProject;
 
         private readonly UseCaseUpdateProjectRepositoryUrl _useCaseUpdateProjectRepositoryUrl;
+        private readonly UseCaseUpdateProjectStatus _useCaseUpdateProjectStatus;
 
         private readonly UseCaseDeleteProject _useCaseDeleteProject;
         
@@ -33,7 +34,8 @@ namespace WebAPI.Controllers
             UseCaseGetProjectByName useCaseGetProjectByName,
             UseCaseCreateProject useCaseCreateProject,
             UseCaseUpdateProjectRepositoryUrl useCaseUpdateProjectRepositoryUrl,
-            UseCaseDeleteProject useCaseDeleteProject)
+            UseCaseDeleteProject useCaseDeleteProject,
+            UseCaseUpdateProjectStatus useCaseUpdateProjectStatus)
         {
             _useCaseGetAllProjects = useCaseGetAllProjects;
             _useCaseGetProjectById = useCaseGetProjectById;
@@ -42,6 +44,7 @@ namespace WebAPI.Controllers
             _useCaseCreateProject = useCaseCreateProject;
 
             _useCaseUpdateProjectRepositoryUrl = useCaseUpdateProjectRepositoryUrl;
+            _useCaseUpdateProjectStatus = useCaseUpdateProjectStatus;
 
             _useCaseDeleteProject = useCaseDeleteProject;
         }
@@ -94,6 +97,26 @@ namespace WebAPI.Controllers
             };
             
             var result = _useCaseUpdateProjectRepositoryUrl.Execute(inputDtoUpdate);
+
+            if (result) return Ok();
+            return NotFound();
+        }
+        
+        // Put requests
+        [HttpPut]
+        [Route("updateStatus/{idProjectUpdateState:int}")]
+        public ActionResult UpdateState(int idProjectUpdateState, InputDtoProject newProject)
+        {
+            var inputDtoUpdate = new InputDtoUpdateProjectStatus
+            {
+                Id = idProjectUpdateState,
+                InternProject = new InputDtoUpdateProjectStatus.Project
+                {
+                    Status = newProject.Status
+                }
+            };
+            
+            var result = _useCaseUpdateProjectStatus.Execute(inputDtoUpdate);
 
             if (result) return Ok();
             return NotFound();
