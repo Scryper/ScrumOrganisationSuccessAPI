@@ -179,6 +179,9 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetDeveloperProjectsByIdProject>();
             services.AddSingleton<UseCaseGetDeveloperProjectsByIdDeveloperIsAppliance>();
             services.AddSingleton<UseCaseGetByIdDeveloperIdProject>();
+            services.AddSingleton<UseCaseGetDeveloperProjectByIdDeveloperIfIsWorking>();
+            services.AddSingleton<UseCaseGetDeveloperProjectByIdDeveloperIfIsNotWorking>();
+
             
             services.AddSingleton<UseCaseCreateDeveloperProject>();
             

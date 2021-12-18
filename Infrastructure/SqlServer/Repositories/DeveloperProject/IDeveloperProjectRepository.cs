@@ -6,14 +6,12 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
     {
         // Get requests
         List<Domain.DeveloperProject> GetAll();
-        
         List<Domain.DeveloperProject> GetByIdDeveloper(int idDeveloper);
-        
         List<Domain.DeveloperProject> GetByIdProject(int idProject);
-
         List<Domain.DeveloperProject> GetByIdDeveloperIsAppliance(int idDeveloper);
-        
         Domain.DeveloperProject GetByIdDeveloperIdProject(int idDeveloper, int idProject);
+        List<Domain.DeveloperProject> GetByIdDeveloperifIsWorking(int idDeveloper);
+        List<Domain.DeveloperProject> GetByIdDeveloperifIsNotWorking(int idDeveloper);
         
         
         

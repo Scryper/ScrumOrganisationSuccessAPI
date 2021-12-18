@@ -20,6 +20,7 @@
         private static readonly string ReqGetByProjectId = $@"select * from {TableName} 
                                                             where {ColIdProject} = @{ColIdProject}";
         
+        //use to get the project of a dev if he works on it and if the project is not over yet
         private static readonly string ReqByIdDeveloperIsAppliance = $@"select {ColIdDeveloper}, {ColIdProject}, {ColIsAppliance} 
                                                                         from {TableName} inner join {TableProject} on 
                                                                         {TableName}.{ColIdProject} = {TableProject}.{ColIdProjectFromProject} 
@@ -27,6 +28,23 @@
                                                                         {ColIsAppliance} = 0 and 
                                                                         {ColStatusProject} = 2";
 
+        //use to get the list of devprojects of a dev if he works on it
+        private static readonly string ReqDeveloperProjectByIdDeveloperIfIsWorking = $@"select {ColIdDeveloper}, {ColIdProject}, {ColIsAppliance} from {TableName} 
+                                                                        where {ColIdDeveloper} = @{ColIdDeveloper} and 
+                                                                        {ColIsAppliance} = 0";
+        
+        //use to get the list of devproject of a dev if he doen't works on it
+        private static readonly string ReqDeveloperProjectByIdDeveloperifIsNotWorking = $@"select {ColIdDeveloper}, {ColIdProject}, {ColIsAppliance} from {TableName} 
+                                                                        where {ColIdDeveloper} = @{ColIdDeveloper} and 
+                                                                        {ColIsAppliance} = 1";
+        
+        //use to get the list of projects on wich a dev is not working on
+        /*private static readonly string ReqProjectsByIdDeveloperIfNoRelation = $@"select * from {TableProject} left join {TableName} 
+                                                                                on {TableProject}.{ColIdProjectFromProject} = {TableName}.{ColIdProject} 
+                                                                                where "
+                                                                                */
+        
+        
         private static readonly string ReqGetByIdDeveloperIdProject = $@"select * from {TableName} 
                                                                         where {ColIdDeveloper} = @{ColIdDeveloper} and 
                                                                         {ColIdProject} = @{ColIdProject}";

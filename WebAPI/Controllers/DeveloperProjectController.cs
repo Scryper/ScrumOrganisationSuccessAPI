@@ -18,6 +18,12 @@ namespace WebAPI.Controllers
         private readonly UseCaseGetDeveloperProjectsByIdProject _useCaseGetDeveloperProjectsByIdProject;
         private readonly UseCaseGetDeveloperProjectsByIdDeveloperIsAppliance _useCaseGetDeveloperProjectsByIdDeveloperIsAppliance;
         private readonly UseCaseGetByIdDeveloperIdProject _useCaseGetByIdDeveloperIdProject;
+
+        private readonly UseCaseGetDeveloperProjectByIdDeveloperIfIsWorking
+            _useCaseGetDeveloperProjectByIdDeveloperIfIsWorking;
+
+        private readonly UseCaseGetDeveloperProjectByIdDeveloperIfIsNotWorking
+            _useCaseGetDeveloperProjectByIdDeveloperIfIsNotWorking;
         
         private readonly UseCaseCreateDeveloperProject _useCaseCreateDeveloperProject;
         
@@ -35,7 +41,9 @@ namespace WebAPI.Controllers
             UseCaseUpdateDeveloperProject useCaseUpdateDeveloperProject,
             UseCaseDeleteDeveloperProject useCaseDeleteDeveloperProject,
             UseCaseGetDeveloperProjectsByIdDeveloperIsAppliance useCaseGetDeveloperProjectsByIdDeveloperIsAppliance,
-            UseCaseGetByIdDeveloperIdProject useCaseGetByIdDeveloperIdProject
+            UseCaseGetByIdDeveloperIdProject useCaseGetByIdDeveloperIdProject,
+            UseCaseGetDeveloperProjectByIdDeveloperIfIsWorking useCaseGetDeveloperProjectByIdDeveloperIfIsWorking,
+            UseCaseGetDeveloperProjectByIdDeveloperIfIsNotWorking useCaseGetDeveloperProjectByIdDeveloperIfIsNotWorking
         )
         {
             _useCaseGetAllDeveloperProjects = useCaseGetAllDeveloperProjects;
@@ -43,6 +51,9 @@ namespace WebAPI.Controllers
             _useCaseGetDeveloperProjectsByIdProject = useCaseGetDeveloperProjectsByIdProject;
             _useCaseGetDeveloperProjectsByIdDeveloperIsAppliance = useCaseGetDeveloperProjectsByIdDeveloperIsAppliance;
             _useCaseGetByIdDeveloperIdProject = useCaseGetByIdDeveloperIdProject;
+            _useCaseGetDeveloperProjectByIdDeveloperIfIsWorking = useCaseGetDeveloperProjectByIdDeveloperIfIsWorking;
+            _useCaseGetDeveloperProjectByIdDeveloperIfIsNotWorking =
+                useCaseGetDeveloperProjectByIdDeveloperIfIsNotWorking;
             
             _useCaseCreateDeveloperProject = useCaseCreateDeveloperProject;
             
@@ -86,6 +97,20 @@ namespace WebAPI.Controllers
             return _useCaseGetByIdDeveloperIdProject.Execute(idDeveloper,idProject);
         }
         
+        [HttpGet]
+        [Route("byIdDeveloperIfIsWorking/{idDeveloper:int}")]
+        public ActionResult<List<OutputDtoDeveloperProject>> GetByIdDeveloperIfIsWorking(int idDeveloper)
+        {
+            return _useCaseGetDeveloperProjectByIdDeveloperIfIsWorking.Execute(idDeveloper);
+        }
+        
+        [HttpGet]
+        [Route("byIdDeveloperIfIsNotWorking/{idDeveloper:int}")]
+        public ActionResult<List<OutputDtoDeveloperProject>> GetByIdDeveloperIfIsNotWorking(int idDeveloper)
+        {
+            return _useCaseGetDeveloperProjectByIdDeveloperIfIsNotWorking.Execute(idDeveloper);
+        }
+        
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
@@ -124,6 +149,5 @@ namespace WebAPI.Controllers
             if (result) return Ok();
             return NotFound();
         }
-        
     }
 }

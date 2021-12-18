@@ -84,6 +84,36 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
             return reader.Read() ? _developerProjectFactory.CreateFromSqlReader(reader) : null;
         }
 
+        public List<Domain.DeveloperProject> GetByIdDeveloperifIsWorking(int idDeveloper)
+        {
+            var developerProjects = new List<Domain.DeveloperProject>();
+            
+            var command = Database.GetCommand(ReqDeveloperProjectByIdDeveloperIfIsWorking);
+
+            command.Parameters.AddWithValue("@" + ColIdDeveloper, idDeveloper);
+            
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            
+            while(reader.Read()) developerProjects.Add(_developerProjectFactory.CreateFromSqlReader(reader));
+
+            return developerProjects;
+        }
+
+        public List<Domain.DeveloperProject> GetByIdDeveloperifIsNotWorking(int idDeveloper)
+        {
+            var developerProjects = new List<Domain.DeveloperProject>();
+            
+            var command = Database.GetCommand(ReqDeveloperProjectByIdDeveloperifIsNotWorking);
+
+            command.Parameters.AddWithValue("@" + ColIdDeveloper, idDeveloper);
+            
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            
+            while(reader.Read()) developerProjects.Add(_developerProjectFactory.CreateFromSqlReader(reader));
+
+            return developerProjects;
+        }
+
         // Post requests
         public Domain.DeveloperProject Create(Domain.DeveloperProject developerProject)
         {
