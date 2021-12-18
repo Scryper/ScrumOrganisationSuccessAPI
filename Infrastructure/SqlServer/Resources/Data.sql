@@ -1,34 +1,43 @@
 /*Init users*/
+/*scryper*/
 insert into sos_user(firstname, lastname, password, email, role, birthdate, profile_picture)
-    values('Florian', 'Mazzeo', 'scryper', 'florian.mazzeo@gmail.com', 1, convert(date, '20-12-2001', 103)
+    values('Florian', 'Mazzeo', '$2a$11$5y2KG.K8bFlI5dfELDfa4eBEfJIADR1w3s6AUy7WfgmE2UxTHO7bO', 'florian.mazzeo@gmail.com', 1, convert(date, '20-12-2001', 103)
         , './assets/images/profilePictures/florian_mazzeo.jpg');
 
+/*damien97*/
 insert into sos_user(firstname, lastname, password, email, role, birthdate, profile_picture)
-    values('Damien', 'Auversack', 'damien97', 'damsover@gmail.com', 2, convert(date, '23-07-1997', 103)
+    values('Damien', 'Auversack', '$2a$11$509d8kS5yzSunKES0J783.DZpLx.XnMlFeKH5wgHcRnSVkzSxaShu', 'damsover@gmail.com', 2, convert(date, '23-07-1997', 103)
         , './assets/images/profilePictures/damien_auversack.jpg');
 
+/*dotni*/
 insert into sos_user(firstname, lastname, password, email, role, birthdate, profile_picture)
-    values('Martin', 'Maes', 'dotni', 'martin.maes100.000@gmail.com', 3, convert(date, '26-11-1998', 103)
+    values('Martin', 'Maes', '$2a$11$BRuCITwYepTWRRbm25qEgeK5q2bH.bQrtR4w01c4P0E.Egj865yPO', 'martin.maes100.000@gmail.com', 3, convert(date, '26-11-1998', 103)
         , './assets/images/profilePictures/martin_maes.jpg');
 
+/*myneck*/
 insert into sos_user(firstname, lastname, password, email, role, birthdate, profile_picture)
-    values('Floran', 'Houdart', 'myneck', 'la199788@student.helha.be', 1, convert(date, '11-01-2001', 103)
+    values('Floran', 'Houdart', '$2a$11$zZ9V3CPBRH5BXiAmf70TNOvhCJLG/bt0GN2V6aUtSzoaYHZzG6UMq', 'la199788@student.helha.be', 1, convert(date, '11-01-2001', 103)
         , './assets/images/profilePictures/floran_houdart.jpg');
 
+/*zuck*/
 insert into sos_user(firstname, lastname, password, email, role, birthdate)
-    values('Mark', 'Zuckerberg', 'zuck', 'zuck@facebook.com', 3, convert(date, '14-05-1984', 103));
+    values('Mark', 'Zuckerberg', '$2a$11$zC.3DpLEjifSQQ5NkFQv2eb9SFoN8rAxLSoNFVlX1U7zISqQZXPfW', 'zuck@facebook.com', 3, convert(date, '14-05-1984', 103));
 
+/*tesla*/
 insert into sos_user(firstname, lastname, password, email, role, birthdate)
-    values('Elon', 'Musk', 'tesla', 'elon.musk@tesla.com', 1, convert(date, '28-06-1971', 103));
+    values('Elon', 'Musk', '$2a$11$4dZxukSdA1p8g.Q1Pj4H7eMTRSVNgG8c7fzzR0TEbX1x9TOidc4W6', 'elon.musk@tesla.com', 1, convert(date, '28-06-1971', 103));
 
+/*laref*/
 insert into sos_user(firstname, lastname, password, email, role, birthdate)
-    values('Patrick', 'Onatenpa', 'laref', 'onatenpa.patrick@camping.fr', 1, convert(date, '24-10-1994', 103));
+    values('Patrick', 'Onatenpa', '$2a$11$GEUFBYTcGFqZECEoz849reToY5.oa7EhYFuyVGCHfryECxOHJuDQy', 'onatenpa.patrick@camping.fr', 1, convert(date, '24-10-1994', 103));
 
+/*choisi*/
 insert into sos_user(firstname, lastname, password, email, role, birthdate)
-    values('Vouza', 'Vaibien', 'choisi', 'techniquecellela@vandenborre.be', 2, convert(date, '14-08-2000', 103));
+    values('Vouza', 'Vaibien', '$2a$11$umlGXv4DwE.QEfQ6BP3nk.52MX6MyaRQseFvh7pGjqj2xnW9lJs.G', 'techniquecellela@vandenborre.be', 2, convert(date, '14-08-2000', 103));
 
+/*squeezie*/
 insert into sos_user(firstname, lastname, password, email, role, birthdate)
-    values('Lucas', 'Hauchard', 'squeezie', 'lucas.hauchard@squeezie.industries.fr', 2, convert(date, '27-01-1996', 103));
+    values('Lucas', 'Hauchard', '$2a$11$lP0oA3.lnMV6yd69sgwqZ.HbhyEOGrHtf8a/2tTTTPO1ko5iak5li', 'lucas.hauchard@squeezie.industries.fr', 2, convert(date, '27-01-1996', 103));
 
 /*Init projects*/
 insert into project( name, deadline, description, repository_url, sos_status)
@@ -150,35 +159,35 @@ insert into user_story(id_project, name, description, priority)
     values(4, 'En tant qu''utilisateur je peux revenir sur la page d''acceuil.', 'L''utilisateur peut revenir sur la page d''accueil, et ce depuis n''importe quel autre page du site.', 2);
 
 /*Init meetings*/
-insert into meeting(id_sprint, schedule, description, url)
-    values(1, convert(datetime, '01-11-2021 12:00:00', 103), 'Meeting pour réussir son année.','HelhaRoom12453');
+insert into meeting(id_sprint, schedule, description, meeting_url)
+    values(1, convert(datetime, '01-11-2021 12:00:00', 103), 'Meeting pour réussir son année.','www.google.com');
     
-insert into meeting(id_sprint, schedule, description, url)
-    values(1, convert(datetime, '05-11-2021 12:00:00', 103), 'Mise en commun des branches.','HelhaRoom1243');
+insert into meeting(id_sprint, schedule, description, meeting_url)
+    values(1, convert(datetime, '05-11-2021 12:00:00', 103), 'Mise en commun des branches.','www.google.com');
     
-insert into meeting(id_sprint, schedule, description, url)
-    values(1, convert(datetime, '12-11-2021 12:00:00', 103), 'Partage des tâches restantes.','HelhaRoom124534');
+insert into meeting(id_sprint, schedule, description, meeting_url)
+    values(1, convert(datetime, '12-11-2021 12:00:00', 103), 'Partage des tâches restantes.','www.google.com');
     
-insert into meeting(id_sprint, schedule, description, url)
-    values(2, convert(datetime, '20-11-2021 12:00:00', 103), 'Mise en commun des branches.','HelhaRoom124534');
+insert into meeting(id_sprint, schedule, description, meeting_url)
+    values(2, convert(datetime, '20-11-2021 12:00:00', 103), 'Mise en commun des branches.','www.google.com');
     
-insert into meeting(id_sprint, schedule, description, url)
-    values(2, convert(datetime, '14-12-2021 15:00:00', 103), 'Partage des tâches restantes.','HelhaRoom1245443');
+insert into meeting(id_sprint, schedule, description, meeting_url)
+    values(2, convert(datetime, '14-12-2021 15:00:00', 103), 'Partage des tâches restantes.','www.google.com');
     
-insert into meeting(id_sprint, schedule, description, url)
-    values(3, convert(datetime, '08-11-2021 15:00:00', 103), 'Mise en commun des branches.','HelhaRoom124537');
+insert into meeting(id_sprint, schedule, description, meeting_url)
+    values(3, convert(datetime, '08-11-2021 15:00:00', 103), 'Mise en commun des branches.','www.google.com');
     
-insert into meeting(id_sprint, schedule, description, url)
-    values(3, convert(datetime, '14-11-2021 15:00:00', 103), 'Partage des tâches restantes.','HelhaRoom1247853');
+insert into meeting(id_sprint, schedule, description, meeting_url)
+    values(3, convert(datetime, '14-11-2021 15:00:00', 103), 'Partage des tâches restantes.','www.google.com');
     
-insert into meeting(id_sprint, schedule, description, url)
-    values(3, convert(datetime, '18-11-2021 15:00:00', 103), 'Organisation de la présentation orale.','HelhaRoom12457843');
+insert into meeting(id_sprint, schedule, description, meeting_url)
+    values(3, convert(datetime, '18-11-2021 15:00:00', 103), 'Organisation de la présentation orale.','www.google.com');
     
-insert into meeting(id_sprint, schedule, description, url)
-    values(4, convert(datetime, '01-12-2021 15:00:00', 103), 'Partage des tâches.','HelhaRoom124574843');
+insert into meeting(id_sprint, schedule, description, meeting_url)
+    values(4, convert(datetime, '01-12-2021 15:00:00', 103), 'Partage des tâches.','www.google.com');
     
-insert into meeting(id_sprint, schedule, description, url)
-    values(4, convert(datetime, '19-12-2021 15:00:00', 103), 'Mise en commun des branches.','HelhaRoom1245784377');
+insert into meeting(id_sprint, schedule, description, meeting_url)
+    values(4, convert(datetime, '19-12-2021 15:00:00', 103), 'Mise en commun des branches.','www.google.com');
 
 /*Init comments*/
 insert into comment(id_user_story, id_user, posted_at, content)
@@ -214,12 +223,6 @@ insert into comment(id_user_story, id_user, posted_at, content)
 /*Init project_user link table*/
 insert into developer_project(id_project, id_developer, is_appliance)
     values(1, 1, 0);
-
-insert into developer_project(id_project, id_developer, is_appliance)
-    values(2, 1, 0);
-
-insert into developer_project(id_project, id_developer, is_appliance)
-    values(3, 1, 0);
 
 insert into developer_project(id_project, id_developer, is_appliance)
     values(1, 4, 0);

@@ -137,7 +137,7 @@ create table meeting (
      id_sprint int not null,
      schedule datetime not null,
      description varchar(1000) not null,
-     url varchar(300) not null,
+     meeting_url varchar(300) not null,
      foreign key(id_sprint) references sprint(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 

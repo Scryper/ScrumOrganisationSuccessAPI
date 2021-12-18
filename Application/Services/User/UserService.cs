@@ -30,8 +30,7 @@ namespace Application.Services.User
             // Return null if user not found
             if (user == null) return null;
 
-            // TODO : hash model password with same hashing used to add suers in db
-            if (!user.Password.Equals(model.Password)) return null;
+            if (!BCrypt.Net.BCrypt.Verify(model.Password, user.Password)) return null;
 
             // Authentication successful so generate jwt token
             var token = GenerateJwtToken(user);
