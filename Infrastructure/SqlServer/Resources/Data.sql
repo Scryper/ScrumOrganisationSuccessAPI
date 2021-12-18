@@ -151,34 +151,34 @@ insert into user_story(id_project, name, description, priority)
 
 /*Init meetings*/
 insert into meeting(id_sprint, schedule, description, url)
-    values(1, convert(datetime, '01-11-2021 12:00:00', 103), 'Meeting pour réussir son année.','www.google.com');
+    values(1, convert(datetime, '01-11-2021 12:00:00', 103), 'Meeting pour réussir son année.','HelhaRoom12453');
     
 insert into meeting(id_sprint, schedule, description, url)
-    values(1, convert(datetime, '05-11-2021 12:00:00', 103), 'Mise en commun des branches.','www.google.com');
+    values(1, convert(datetime, '05-11-2021 12:00:00', 103), 'Mise en commun des branches.','HelhaRoom1243');
     
 insert into meeting(id_sprint, schedule, description, url)
-    values(1, convert(datetime, '12-11-2021 12:00:00', 103), 'Partage des tâches restantes.','www.google.com');
+    values(1, convert(datetime, '12-11-2021 12:00:00', 103), 'Partage des tâches restantes.','HelhaRoom124534');
     
 insert into meeting(id_sprint, schedule, description, url)
-    values(2, convert(datetime, '20-11-2021 12:00:00', 103), 'Mise en commun des branches.','www.google.com');
+    values(2, convert(datetime, '20-11-2021 12:00:00', 103), 'Mise en commun des branches.','HelhaRoom124534');
     
 insert into meeting(id_sprint, schedule, description, url)
-    values(2, convert(datetime, '14-12-2021 15:00:00', 103), 'Partage des tâches restantes.','www.google.com');
+    values(2, convert(datetime, '14-12-2021 15:00:00', 103), 'Partage des tâches restantes.','HelhaRoom1245443');
     
 insert into meeting(id_sprint, schedule, description, url)
-    values(3, convert(datetime, '08-11-2021 15:00:00', 103), 'Mise en commun des branches.','www.google.com');
+    values(3, convert(datetime, '08-11-2021 15:00:00', 103), 'Mise en commun des branches.','HelhaRoom124537');
     
 insert into meeting(id_sprint, schedule, description, url)
-    values(3, convert(datetime, '14-11-2021 15:00:00', 103), 'Partage des tâches restantes.','www.google.com');
+    values(3, convert(datetime, '14-11-2021 15:00:00', 103), 'Partage des tâches restantes.','HelhaRoom1247853');
     
 insert into meeting(id_sprint, schedule, description, url)
-    values(3, convert(datetime, '18-11-2021 15:00:00', 103), 'Organisation de la présentation orale.','www.google.com');
+    values(3, convert(datetime, '18-11-2021 15:00:00', 103), 'Organisation de la présentation orale.','HelhaRoom12457843');
     
 insert into meeting(id_sprint, schedule, description, url)
-    values(4, convert(datetime, '01-12-2021 15:00:00', 103), 'Partage des tâches.','www.google.com');
+    values(4, convert(datetime, '01-12-2021 15:00:00', 103), 'Partage des tâches.','HelhaRoom124574843');
     
 insert into meeting(id_sprint, schedule, description, url)
-    values(4, convert(datetime, '19-12-2021 15:00:00', 103), 'Mise en commun des branches.','www.google.com');
+    values(4, convert(datetime, '19-12-2021 15:00:00', 103), 'Mise en commun des branches.','HelhaRoom1245784377');
 
 /*Init comments*/
 insert into comment(id_user_story, id_user, posted_at, content)
@@ -214,6 +214,12 @@ insert into comment(id_user_story, id_user, posted_at, content)
 /*Init project_user link table*/
 insert into developer_project(id_project, id_developer, is_appliance)
     values(1, 1, 0);
+
+insert into developer_project(id_project, id_developer, is_appliance)
+    values(2, 1, 0);
+
+insert into developer_project(id_project, id_developer, is_appliance)
+    values(3, 1, 0);
 
 insert into developer_project(id_project, id_developer, is_appliance)
     values(1, 4, 0);
