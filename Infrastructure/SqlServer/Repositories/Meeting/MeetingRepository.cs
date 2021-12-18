@@ -83,6 +83,7 @@ namespace Infrastructure.SqlServer.Repositories.Meeting
             command.Parameters.AddWithValue("@" + ColIdSprint, meeting.IdSprint);
             command.Parameters.AddWithValue("@" + ColSchedule, meeting.Schedule);
             command.Parameters.AddWithValue("@" + ColDescription, meeting.Description);
+            command.Parameters.AddWithValue("@" + ColUrl, meeting.MeetingUrl);
 
             return new Domain.Meeting
             {

@@ -34,9 +34,9 @@
         
         // Post requests
         private static readonly string ReqCreate = 
-                                $@"insert into {TableName}({ColIdSprint}, {ColSchedule}, {ColDescription}) 
+                                $@"insert into {TableName}({ColIdSprint}, {ColSchedule}, {ColDescription}, {ColUrl}) 
                                 output inserted.{ColId} 
-                                values(@{ColIdSprint}, @{ColSchedule}, @{ColDescription})";
+                                values(@{ColIdSprint}, @{ColSchedule}, @{ColDescription}, @{ColUrl})";
         
         // Put requests
         private static readonly string ReqUpdateSchedule = $@"update {TableName} 
