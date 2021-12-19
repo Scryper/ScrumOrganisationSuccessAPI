@@ -30,7 +30,7 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
 
             var command = Database.GetCommand(ReqGetByDeveloperId);
 
-            command.Parameters.AddWithValue("@" + ColIdDeveloper, idDeveloper);
+            command.Parameters.AddWithValue("@" + ColIdUser, idDeveloper);
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
@@ -60,7 +60,7 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
             
             var command = Database.GetCommand(ReqByIdDeveloperIsAppliance);
 
-            command.Parameters.AddWithValue("@" + ColIdDeveloper, idDeveloper);
+            command.Parameters.AddWithValue("@" + ColIdUser, idDeveloper);
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
@@ -75,7 +75,7 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
 
             var command = Database.GetCommand(ReqGetByIdDeveloperIdProject);
             
-            command.Parameters.AddWithValue("@" + ColIdDeveloper, idDeveloper);
+            command.Parameters.AddWithValue("@" + ColIdUser, idDeveloper);
             command.Parameters.AddWithValue("@" + ColIdProject, idProject);
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
@@ -90,7 +90,7 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
             
             var command = Database.GetCommand(ReqDeveloperProjectByIdDeveloperIfIsWorking);
 
-            command.Parameters.AddWithValue("@" + ColIdDeveloper, idDeveloper);
+            command.Parameters.AddWithValue("@" + ColIdUser, idDeveloper);
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
@@ -105,7 +105,7 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
             
             var command = Database.GetCommand(ReqDeveloperProjectByIdDeveloperifIsNotWorking);
 
-            command.Parameters.AddWithValue("@" + ColIdDeveloper, idDeveloper);
+            command.Parameters.AddWithValue("@" + ColIdUser, idDeveloper);
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
@@ -149,7 +149,7 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
         {
             var command = Database.GetCommand(ReqCreate);
 
-            command.Parameters.AddWithValue("@" + ColIdDeveloper, userProject.IdDeveloper);
+            command.Parameters.AddWithValue("@" + ColIdUser, userProject.IdDeveloper);
             command.Parameters.AddWithValue("@" + ColIdProject, userProject.IdProject);
             command.Parameters.AddWithValue("@" + ColIsAppliance, userProject.IsAppliance);
 
@@ -168,7 +168,7 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
         {
             var command = Database.GetCommand(ReqUpdate);
             
-            command.Parameters.AddWithValue("@" + ColIdDeveloper, idDeveloper);
+            command.Parameters.AddWithValue("@" + ColIdUser, idDeveloper);
             command.Parameters.AddWithValue("@" + ColIdProject, idProject);
             command.Parameters.AddWithValue("@" + ColIsAppliance, isAppliance);
 
@@ -180,7 +180,7 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
         {
             var command = Database.GetCommand(ReqDelete);
             
-            command.Parameters.AddWithValue("@" + ColIdDeveloper, idDeveloper);
+            command.Parameters.AddWithValue("@" + ColIdUser, idDeveloper);
             command.Parameters.AddWithValue("@" + ColIdProject, idProject);
             
             return command.ExecuteNonQuery() > 0;

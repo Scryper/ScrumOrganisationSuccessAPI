@@ -9,7 +9,7 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
         {
             return new Domain.UserProject()
             {
-                IdDeveloper = reader.GetInt32(reader.GetOrdinal(UserProject.UserProjectRepository.ColIdDeveloper)),
+                IdDeveloper = reader.GetInt32(reader.GetOrdinal(UserProject.UserProjectRepository.ColIdUser)),
                 IdProject = reader.GetInt32(reader.GetOrdinal(UserProject.UserProjectRepository.ColIdProject)),
                 IsAppliance = reader.GetBoolean(reader.GetOrdinal(UserProject.UserProjectRepository.ColIsAppliance))
             };

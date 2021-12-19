@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers
 {
     [ApiController]
-    [Route("api/developerProject")]
-    public class DeveloperProjectController : ControllerBase
+    [Route("api/userProject")]
+    public class UserProjectController : ControllerBase
     {
         // Use cases
         private readonly UseCaseGetAllUserProjects _useCaseGetAllUserProjects;
@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
         
         // Constructor
 
-        public DeveloperProjectController(
+        public UserProjectController(
             UseCaseGetAllUserProjects caseGetAllUserProjects,
             UseCaseGetUserProjectsByIdDeveloper caseGetUserProjectsByIdDeveloper,
             UseCaseGetUserProjectsByIdProject caseGetUserProjectsByIdProject,
@@ -56,8 +56,7 @@ namespace WebAPI.Controllers
             _useCaseGetUserProjectsByIdDeveloperIsAppliance = caseGetUserProjectsByIdDeveloperIsAppliance;
             _useCaseGetByIdUserIdProject = caseGetByIdUserIdProject;
             _useCaseGetUserProjectByIdDeveloperIfIsWorking = caseGetUserProjectByIdDeveloperIfIsWorking;
-            _useCaseGetUserProjectByIdDeveloperIfIsNotWorking =
-                caseGetUserProjectByIdDeveloperIfIsNotWorking;
+            _useCaseGetUserProjectByIdDeveloperIfIsNotWorking = caseGetUserProjectByIdDeveloperIfIsNotWorking;
             _useCaseGetUserByIdProject = caseGetUserByIdProject;
             _useCaseGetScrumMasterByIdProject = useCaseGetScrumMasterByIdProject;
             
