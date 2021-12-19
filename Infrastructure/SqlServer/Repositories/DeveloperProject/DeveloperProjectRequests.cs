@@ -45,14 +45,15 @@
         private static readonly string ReqGetScrumMasterByIdProject = $@"select {ColIdDeveloper}, {ColIdProject}, {ColIsAppliance} from {TableName} 
                                                                         inner join  {TableUser} on {TableName}.{ColIdDeveloper} = {TableUser}.{ColIdProjectFromUser} 
                                                                         where {ColIdProject} = @{ColIdProject} and 
-                                                                        {ColUserRole} = 2";
+                                                                        {ColUserRole} = 2 and 
+                                                                        {ColIsAppliance} = 1";
         
         //use to get the devs on a project
         private static readonly string ReqGetDevsByIdProject = $@"select {ColIdDeveloper}, {ColIdProject}, {ColIsAppliance}  from {TableName} 
                                                                         inner join  {TableUser} on {TableName}.{ColIdDeveloper} = {TableUser}.{ColIdProjectFromUser} 
                                                                         where {ColIdProject} = @{ColIdProject} and 
-                                                                        {ColUserRole} = 1";
-        
+                                                                        {ColUserRole} = 1 and 
+                                                                        {ColIsAppliance} = 1";
 
         private static readonly string ReqGetByIdDeveloperIdProject = $@"select * from {TableName} 
                                                                         where {ColIdDeveloper} = @{ColIdDeveloper} and 
