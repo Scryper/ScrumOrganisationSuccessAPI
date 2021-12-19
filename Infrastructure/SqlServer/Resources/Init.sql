@@ -1,5 +1,8 @@
 use db_scrum_organisation_success;
 
+if exists (select * from sysobjects where name='project_user' and xtype='U')
+    drop table project_user;
+
 if exists (select * from sysobjects where name='user_project' and xtype='U')
     drop table user_project;
 
@@ -72,11 +75,11 @@ create table technology (
 
 create table user_project (
     id_project int not null,
-    id_developer int not null,
+    id_user int not null,
     is_appliance bit default 1,
-    primary key(id_project, id_developer),
+    primary key(id_project, id_user),
     foreign key(id_project) references project(id) on delete cascade,
-    foreign key(id_developer) references sos_user(id) on delete cascade
+    foreign key(id_user) references sos_user(id) on delete cascade
 );
 
 create table user_technology (
