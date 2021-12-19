@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using Infrastructure.SqlServer.Repositories.DeveloperProject;
 using Infrastructure.SqlServer.Utils;
-using NotImplementedException = System.NotImplementedException;
 
-namespace Infrastructure.SqlServer.Repositories.DeveloperProject
+namespace Infrastructure.SqlServer.Repositories.UserProject
 {
-    public partial class DeveloperProjectRepository : IDeveloperProjectRepository
+    public partial class UserProjectRepository : IUserProjectRepository
     {
-        private readonly IDomainFactory<Domain.DeveloperProject> _developerProjectFactory =
-            new DeveloperProjectFactory();
+        private readonly IDomainFactory<Domain.UserProject> _developerProjectFactory =
+            new UserProjectFactory();
 
         // Get requests
-        public List<Domain.DeveloperProject> GetAll()
+        public List<Domain.UserProject> GetAll()
         {
-            var developerProjects = new List<Domain.DeveloperProject>();
+            var developerProjects = new List<Domain.UserProject>();
 
             var command = Database.GetCommand(ReqGetAll);
 
@@ -24,9 +24,9 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
             return developerProjects;
         }
 
-        public List<Domain.DeveloperProject> GetByIdDeveloper(int idDeveloper)
+        public List<Domain.UserProject> GetByIdDeveloper(int idDeveloper)
         {
-            var developerProjects = new List<Domain.DeveloperProject>();
+            var developerProjects = new List<Domain.UserProject>();
 
             var command = Database.GetCommand(ReqGetByDeveloperId);
 
@@ -39,9 +39,9 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
             return developerProjects;
         }
 
-        public List<Domain.DeveloperProject> GetByIdProject(int idProject)
+        public List<Domain.UserProject> GetByIdProject(int idProject)
         {
-            var developerProjects = new List<Domain.DeveloperProject>();
+            var developerProjects = new List<Domain.UserProject>();
 
             var command = Database.GetCommand(ReqGetByProjectId);
 
@@ -54,9 +54,9 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
             return developerProjects;
         }
 
-        public List<Domain.DeveloperProject> GetByIdDeveloperIsAppliance(int idDeveloper)
+        public List<Domain.UserProject> GetByIdDeveloperIsAppliance(int idDeveloper)
         {
-            var developerProjects = new List<Domain.DeveloperProject>();
+            var developerProjects = new List<Domain.UserProject>();
             
             var command = Database.GetCommand(ReqByIdDeveloperIsAppliance);
 
@@ -69,9 +69,9 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
             return developerProjects;
         }
 
-        public Domain.DeveloperProject GetByIdDeveloperIdProject(int idDeveloper, int idProject)
+        public Domain.UserProject GetByIdDeveloperIdProject(int idDeveloper, int idProject)
         {
-            var developerProjects = new Domain.DeveloperProject();
+            var developerProjects = new Domain.UserProject();
 
             var command = Database.GetCommand(ReqGetByIdDeveloperIdProject);
             
@@ -84,9 +84,9 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
             return reader.Read() ? _developerProjectFactory.CreateFromSqlReader(reader) : null;
         }
 
-        public List<Domain.DeveloperProject> GetByIdDeveloperifIsWorking(int idDeveloper)
+        public List<Domain.UserProject> GetByIdDeveloperifIsWorking(int idDeveloper)
         {
-            var developerProjects = new List<Domain.DeveloperProject>();
+            var developerProjects = new List<Domain.UserProject>();
             
             var command = Database.GetCommand(ReqDeveloperProjectByIdDeveloperIfIsWorking);
 
@@ -99,9 +99,9 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
             return developerProjects;
         }
 
-        public List<Domain.DeveloperProject> GetByIdDeveloperifIsNotWorking(int idDeveloper)
+        public List<Domain.UserProject> GetByIdDeveloperifIsNotWorking(int idDeveloper)
         {
-            var developerProjects = new List<Domain.DeveloperProject>();
+            var developerProjects = new List<Domain.UserProject>();
             
             var command = Database.GetCommand(ReqDeveloperProjectByIdDeveloperifIsNotWorking);
 
@@ -114,9 +114,9 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
             return developerProjects;
         }
 
-        public List<Domain.DeveloperProject> GetScrumMasterByIdProject(int idProject)
+        public List<Domain.UserProject> GetScrumMasterByIdProject(int idProject)
         {
-            var developerProjects = new List<Domain.DeveloperProject>();
+            var developerProjects = new List<Domain.UserProject>();
             
             var command = Database.GetCommand(ReqGetScrumMasterByIdProject);
 
@@ -129,9 +129,9 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
             return developerProjects;
         }
 
-        public List<Domain.DeveloperProject> GetDevsByIdProject(int idProject)
+        public List<Domain.UserProject> GetDevsByIdProject(int idProject)
         {
-            var developerProjects = new List<Domain.DeveloperProject>();
+            var developerProjects = new List<Domain.UserProject>();
             
             var command = Database.GetCommand(ReqGetDevsByIdProject);
 
@@ -145,21 +145,21 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
         }
 
         // Post requests
-        public Domain.DeveloperProject Create(Domain.DeveloperProject developerProject)
+        public Domain.UserProject Create(Domain.UserProject userProject)
         {
             var command = Database.GetCommand(ReqCreate);
 
-            command.Parameters.AddWithValue("@" + ColIdDeveloper, developerProject.IdDeveloper);
-            command.Parameters.AddWithValue("@" + ColIdProject, developerProject.IdProject);
-            command.Parameters.AddWithValue("@" + ColIsAppliance, developerProject.IsAppliance);
+            command.Parameters.AddWithValue("@" + ColIdDeveloper, userProject.IdDeveloper);
+            command.Parameters.AddWithValue("@" + ColIdProject, userProject.IdProject);
+            command.Parameters.AddWithValue("@" + ColIsAppliance, userProject.IsAppliance);
 
             command.ExecuteNonQuery();
             
-            return new Domain.DeveloperProject
+            return new Domain.UserProject
             {
-                IdDeveloper = developerProject.IdDeveloper,
-                IdProject = developerProject.IdProject,
-                IsAppliance = developerProject.IsAppliance
+                IdDeveloper = userProject.IdDeveloper,
+                IdProject = userProject.IdProject,
+                IsAppliance = userProject.IsAppliance
             };
         }
 

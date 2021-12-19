@@ -1,6 +1,6 @@
-﻿namespace Application.UseCases.DeveloperProject.Dtos
+﻿namespace Domain
 {
-    public class InputDtoDeveloperProject
+    public class UserProject
     {
         public int IdDeveloper { get; set; }
         public int IdProject { get; set; }

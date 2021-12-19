@@ -5,8 +5,6 @@ using Application.UseCases.Comment.Delete;
 using Application.UseCases.Comment.Get;
 using Application.UseCases.Comment.Post;
 using Application.UseCases.Comment.Put;
-using Application.UseCases.DeveloperProject.Delete;
-using Application.UseCases.DeveloperProject.Get;
 using Application.UseCases.DeveloperProject.Post;
 using Application.UseCases.DeveloperProject.Put;
 using Application.UseCases.Meeting;
@@ -37,6 +35,8 @@ using Application.UseCases.User.Delete;
 using Application.UseCases.User.Get;
 using Application.UseCases.User.Post;
 using Application.UseCases.User.Put;
+using Application.UseCases.UserProject.Delete;
+using Application.UseCases.UserProject.Get;
 using Application.UseCases.UserStory;
 using Application.UseCases.UserStory.Delete;
 using Application.UseCases.UserStory.Get;
@@ -56,6 +56,7 @@ using Infrastructure.SqlServer.Repositories.Sprint;
 using Infrastructure.SqlServer.Repositories.SprintUserStory;
 using Infrastructure.SqlServer.Repositories.Technology;
 using Infrastructure.SqlServer.Repositories.User;
+using Infrastructure.SqlServer.Repositories.UserProject;
 using Infrastructure.SqlServer.Repositories.UserStory;
 using Infrastructure.SqlServer.Repositories.UserTechnology;
 using Infrastructure.SqlServer.System;
@@ -65,6 +66,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using UserProjectRepository = Infrastructure.SqlServer.Repositories.UserProject.UserProjectRepository;
 
 namespace WebAPI
 {
@@ -92,7 +94,7 @@ namespace WebAPI
             services.AddSingleton<ISprintRepository, SprintRepository>();
             services.AddSingleton<IUserRepository, UserRepository>();
             services.AddSingleton<IUserStoryRepository, UserStoryRepository>();
-            services.AddSingleton<IDeveloperProjectRepository, DeveloperProjectRepository>();
+            services.AddSingleton<IUserProjectRepository, UserProjectRepository>();
             services.AddSingleton<ITechnologyRepository, TechnologyRepository>();
             services.AddSingleton<ISprintUserStoryRepository, SprintUserStoryRepository>();
             services.AddSingleton<IUserTechnologyRepository, UserTechnologyRepository>();
@@ -179,14 +181,14 @@ namespace WebAPI
             services.AddSingleton<UseCaseDeleteUserStory>();
             
             // DeveloperProject use cases
-            services.AddSingleton<UseCaseGetAllDeveloperProjects>();
-            services.AddSingleton<UseCaseGetDeveloperProjectsByIdDeveloper>();
-            services.AddSingleton<UseCaseGetDeveloperProjectsByIdProject>();
-            services.AddSingleton<UseCaseGetDeveloperProjectsByIdDeveloperIsAppliance>();
-            services.AddSingleton<UseCaseGetByIdDeveloperIdProject>();
-            services.AddSingleton<UseCaseGetDeveloperProjectByIdDeveloperIfIsWorking>();
-            services.AddSingleton<UseCaseGetDeveloperProjectByIdDeveloperIfIsNotWorking>();
-            services.AddSingleton<UseCaseGetDeveloperByIdProject>();
+            services.AddSingleton<UseCaseGetAllUserProjects>();
+            services.AddSingleton<UseCaseGetUserProjectsByIdDeveloper>();
+            services.AddSingleton<UseCaseGetUserProjectsByIdProject>();
+            services.AddSingleton<UseCaseGetUserProjectsByIdDeveloperIsAppliance>();
+            services.AddSingleton<UseCaseGetByIdUserIdProject>();
+            services.AddSingleton<UseCaseGetUserProjectByIdDeveloperIfIsWorking>();
+            services.AddSingleton<UseCaseGetUserProjectByIdDeveloperIfIsNotWorking>();
+            services.AddSingleton<UseCaseGetUserByIdProject>();
             services.AddSingleton<UseCaseGetScrumMasterByIdProject>();
 
             
@@ -194,7 +196,7 @@ namespace WebAPI
             
             services.AddSingleton<UseCaseUpdateDeveloperProject>();
             
-            services.AddSingleton<UseCaseDeleteDeveloperProject>();
+            services.AddSingleton<UseCaseDeleteUserProject>();
             
             // Technology uses cases
             services.AddSingleton<UseCaseGetAllTechnologies>();

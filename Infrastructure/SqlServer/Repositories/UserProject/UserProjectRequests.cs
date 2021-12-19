@@ -1,8 +1,8 @@
-﻿namespace Infrastructure.SqlServer.Repositories.DeveloperProject
+﻿namespace Infrastructure.SqlServer.Repositories.UserProject
 {
-    public partial class DeveloperProjectRepository
+    public partial class UserProjectRepository
     {
-        public const string TableName = "developer_project";
+        public const string TableName = "user_project";
         public const string TableProject = "project";
         public const string TableUser = "sos_user";
         public const string ColIdProjectFromProject = "id";

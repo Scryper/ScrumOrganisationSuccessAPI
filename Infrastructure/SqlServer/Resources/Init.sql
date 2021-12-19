@@ -1,7 +1,7 @@
 use db_scrum_organisation_success;
 
-if exists (select * from sysobjects where name='developer_project' and xtype='U')
-    drop table developer_project;
+if exists (select * from sysobjects where name='user_project' and xtype='U')
+    drop table user_project;
 
 if exists (select * from sysobjects where name='sprint_user_story' and xtype='U')
     drop table sprint_user_story;
@@ -22,7 +22,7 @@ if exists (select * from sysobjects where name='sprint' and xtype='U')
     drop table sprint;
 
 if exists (select * from sysobjects where name='comment' and xtype='U')
-drop table comment;
+    drop table comment;
 
 if exists (select * from sysobjects where name='user_story' and xtype='U')
     drop table user_story;
@@ -70,7 +70,7 @@ create table technology (
     name varchar(50) not null
 );
 
-create table developer_project (
+create table user_project (
     id_project int not null,
     id_developer int not null,
     is_appliance bit default 1,

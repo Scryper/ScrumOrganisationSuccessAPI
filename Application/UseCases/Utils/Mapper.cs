@@ -1,5 +1,4 @@
 ﻿using Application.UseCases.Comment.Dtos;
-using Application.UseCases.DeveloperProject.Dtos;
 using Application.UseCases.Meeting.Dtos;
 using Application.UseCases.Participation.Dtos;
 using Application.UseCases.Project.Dtos;
@@ -8,6 +7,7 @@ using Application.UseCases.Sprint.Dtos;
 using Application.UseCases.SprintUserStory.Dtos;
 using Application.UseCases.Technology.Dtos;
 using Application.UseCases.User.Dtos;
+using Application.UseCases.UserProject.Dtos;
 using Application.UseCases.UserStory.Dtos;
 using Application.UseCases.UserTechnology.Dtos;
 using AutoMapper;
@@ -35,7 +35,7 @@ namespace Application.UseCases.Utils
                 cfg.CreateMap<InputDtoSprint, Domain.Sprint>();
                 cfg.CreateMap<InputDtoUser, Domain.User>();
                 cfg.CreateMap<InputDtoUserStory, Domain.UserStory>();
-                cfg.CreateMap<InputDtoDeveloperProject, Domain.DeveloperProject>();
+                cfg.CreateMap<InputDtoUserProject, Domain.UserProject>();
                 cfg.CreateMap<InputDtoTechnology, Domain.Technology>();
                 cfg.CreateMap<InputDtoSprintUserStory, Domain.SprintUserStory>();
                 cfg.CreateMap<InputDtoUserTechnology, Domain.UserTechnology>();
@@ -49,13 +49,12 @@ namespace Application.UseCases.Utils
                 cfg.CreateMap<Domain.Sprint, OutputDtoSprint>();
                 cfg.CreateMap<Domain.User, OutputDtoUser>();
                 cfg.CreateMap<Domain.UserStory, OutputDtoUserStory>();
-                cfg.CreateMap<Domain.DeveloperProject, OutputDtoDeveloperProject>();
+                cfg.CreateMap<Domain.UserProject, OutputDtoUserProject>();
                 cfg.CreateMap<Domain.Technology, OutputDtoTechnology>();
                 cfg.CreateMap<Domain.SprintUserStory, OutputDtoSprintUserStory>();
                 cfg.CreateMap<Domain.UserTechnology, OutputDtoUserTechnology>();
                 cfg.CreateMap<Domain.ProjectTechnology,OutputDtoProjectTechnology>();
                 cfg.CreateMap<Domain.Participation, OutputDtoParticipation>();
-                cfg.CreateMap<Domain.DeveloperProject, OutputDtoDeveloperProjectIdDeveloper>();
             });
 
             return new AutoMapper.Mapper(config);

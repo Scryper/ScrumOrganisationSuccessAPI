@@ -15,8 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="UseCases\DeveloperProject\Delete" />
-      <Folder Include="UseCases\DeveloperProject\Put" />
+      <Folder Include="UseCases\UserProject" />
     </ItemGroup>
 
 </Project>

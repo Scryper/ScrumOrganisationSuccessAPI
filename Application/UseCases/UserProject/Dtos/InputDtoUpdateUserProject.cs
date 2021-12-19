@@ -1,6 +1,6 @@
-﻿namespace Application.UseCases.DeveloperProject.Dtos
+﻿namespace Application.UseCases.UserProject.Dtos
 {
-    public class InputDtoUpdateDeveloperProject
+    public class InputDtoUpdateUserProject
     {
         public int IdDeveloper { get; set; }
         public int IdProject { get; set; }

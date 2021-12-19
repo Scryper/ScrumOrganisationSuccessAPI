@@ -240,35 +240,38 @@ insert into comment(id_user_story, id_user, posted_at, content)
     values(7, 9, convert(datetime, '10-12-2021 13:35:00', 103), 'Oh non pas lui....');
 
 /*Init project_user link table*/
-insert into developer_project(id_project, id_developer, is_appliance)
+insert into user_project(id_project, id_developer, is_appliance)
     values(1, 1, 0);
 
-insert into developer_project(id_project, id_developer, is_appliance)
+insert into user_project(id_project, id_developer, is_appliance)
+    values(1, 2, 0);
+
+insert into user_project(id_project, id_developer, is_appliance)
     values(3, 1, 0);
 
-insert into developer_project(id_project, id_developer, is_appliance)
+insert into user_project(id_project, id_developer, is_appliance)
     values(1, 4, 0);
     
-insert into developer_project(id_project, id_developer, is_appliance)
+insert into user_project(id_project, id_developer, is_appliance)
     values(4, 1, 0);
     
-insert into developer_project(id_project, id_developer, is_appliance)
+insert into user_project(id_project, id_developer, is_appliance)
     values(1, 7, 0);
     
-insert into developer_project(id_project, id_developer, is_appliance)
+insert into user_project(id_project, id_developer, is_appliance)
     values(4, 7, 0);
     
-insert into developer_project(id_project, id_developer, is_appliance)
+insert into user_project(id_project, id_developer, is_appliance)
     values(1, 6, 0);
     
-insert into developer_project(id_project, id_developer, is_appliance)
+insert into user_project(id_project, id_developer, is_appliance)
     values(4, 6, 0);
 
-insert into developer_project(id_project, id_developer, is_appliance)
+insert into user_project(id_project, id_developer, is_appliance)
     values(1, 5, 0);
 
-insert into developer_project(id_project, id_developer, is_appliance)
-values(5, 3, 0);
+insert into user_project(id_project, id_developer, is_appliance)
+    values(5, 3, 0);
 
 /*Init participation link table*/
 insert into participation(id_meeting, id_user)

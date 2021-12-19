@@ -1,5 +1,4 @@
-﻿using Application.UseCases.DeveloperProject.Dtos;
-using Application.UseCases.Participation.Dtos;
+﻿using Application.UseCases.Participation.Dtos;
 using Application.UseCases.Utils;
 using Infrastructure.SqlServer.Repositories.Participation;
 
