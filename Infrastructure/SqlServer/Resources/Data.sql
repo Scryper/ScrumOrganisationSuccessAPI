@@ -139,10 +139,10 @@ insert into user_story(id_project, name, description, priority)
     values(1, 'Encore une user story.', 'On va réussir vraiment.', 2);
 
 insert into user_story(id_project, name, description, priority)
-    values(1, 'Encore une user story.', 'On va réussir vraiment pour de vrai.', 3);
+    values(1, 'Encore une user story mais pas la même.', 'On va réussir vraiment pour de vrai.', 3);
 
 insert into user_story(id_project, name, description, priority)
-    values(1, 'Encore une user story.', 'Bugounet est vaincu.', 3);
+    values(1, 'Encore une user story mais différente.', 'Bugounet est vaincu.', 3);
     
 insert into user_story(id_project, name, description, priority)
     values(2, 'En  tant que visiteur, je peux m''inscrire.', 'Un visiteur sur le site peut s''inscrire si son adresse mail n''est pas déjà présente dans la base de donnée.', 1);
