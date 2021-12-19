@@ -106,6 +106,9 @@ insert into sprint(id_project, sprint_number, start_date, deadline, description)
    
 insert into sprint(id_project, sprint_number, start_date, deadline, description)
     values(1, 2, convert(date, '15-11-2021', 103), convert(date, '15-12-2021', 103), 'Ajout des dernières fonctionnalités nécessaires');
+
+insert into sprint(id_project, sprint_number, start_date, deadline, description)
+    values(1, 3, convert(date, '19-12-2021', 103), convert(date, '24-12-2021', 103), 'Ajout des vraies dernières fonctionnalités nécessaires');
     
 insert into sprint(id_project, sprint_number, start_date, deadline, description)
     values(2, 1, convert(date, '06-11-2021', 103), convert(date, '19-11-2021', 103), 'Premier jet des pages du site');
@@ -134,6 +137,12 @@ insert into user_story(id_project, name, description, priority)
     
 insert into user_story(id_project, name, description, priority)
     values(1, 'Encore une user story.', 'On va réussir vraiment.', 2);
+
+insert into user_story(id_project, name, description, priority)
+    values(1, 'Encore une user story.', 'On va réussir vraiment pour de vrai.', 3);
+
+insert into user_story(id_project, name, description, priority)
+    values(1, 'Encore une user story.', 'Bugounet est vaincu.', 3);
     
 insert into user_story(id_project, name, description, priority)
     values(2, 'En  tant que visiteur, je peux m''inscrire.', 'Un visiteur sur le site peut s''inscrire si son adresse mail n''est pas déjà présente dans la base de donnée.', 1);
@@ -328,19 +337,19 @@ insert into sprint_user_story(id_sprint, id_user_story)
     
 insert into sprint_user_story(id_sprint, id_user_story)
     values(2, 2);
-    
-insert into sprint_user_story(id_sprint, id_user_story)
-    values(3, 3);
- 
-insert into sprint_user_story(id_sprint, id_user_story)
-    values(3, 4);
-    
-insert into sprint_user_story(id_sprint, id_user_story)
-    values(4, 5);
 
 insert into sprint_user_story(id_sprint, id_user_story)
-    values(4, 6);
+    values(3, 3);
+
+insert into sprint_user_story(id_sprint, id_user_story)
+    values(4, 4);
+ 
+insert into sprint_user_story(id_sprint, id_user_story)
+    values(4, 5);
     
+insert into sprint_user_story(id_sprint, id_user_story)
+    values(5, 6);
+
 insert into sprint_user_story(id_sprint, id_user_story)
     values(5, 7);
     
@@ -355,6 +364,9 @@ insert into sprint_user_story(id_sprint, id_user_story)
     
 insert into sprint_user_story(id_sprint, id_user_story)
     values(9, 11);
+    
+insert into sprint_user_story(id_sprint, id_user_story)
+    values(10, 12);
 
 /*Init user technologies link table*/
 insert into user_technology(id_user, id_technology)
