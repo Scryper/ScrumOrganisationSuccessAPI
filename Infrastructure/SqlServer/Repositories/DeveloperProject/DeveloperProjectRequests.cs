@@ -42,15 +42,15 @@
                                                                         {ColIsAppliance} = 1";
         
         //use to get the scrums master on a project
-        private static readonly string ReqGetScrumMasterByIdProject = $@"select {ColIdDeveloper} from {TableName} 
+        private static readonly string ReqGetScrumMasterByIdProject = $@"select {ColIdDeveloper}, {ColIdProject}, {ColIsAppliance} from {TableName} 
                                                                         inner join  {TableUser} on {TableName}.{ColIdDeveloper} = {TableUser}.{ColIdProjectFromUser} 
-                                                                        where {ColIdDeveloper} = @{ColIdDeveloper} and 
+                                                                        where {ColIdProject} = @{ColIdProject} and 
                                                                         {ColUserRole} = 2";
         
         //use to get the devs on a project
-        private static readonly string ReqGetDevsByIdProject = $@"select {ColIdDeveloper} from {TableName} 
+        private static readonly string ReqGetDevsByIdProject = $@"select {ColIdDeveloper}, {ColIdProject}, {ColIsAppliance}  from {TableName} 
                                                                         inner join  {TableUser} on {TableName}.{ColIdDeveloper} = {TableUser}.{ColIdProjectFromUser} 
-                                                                        where {ColIdDeveloper} = @{ColIdDeveloper} and 
+                                                                        where {ColIdProject} = @{ColIdProject} and 
                                                                         {ColUserRole} = 1";
         
 

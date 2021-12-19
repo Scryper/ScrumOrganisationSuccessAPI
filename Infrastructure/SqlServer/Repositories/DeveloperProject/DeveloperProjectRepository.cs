@@ -114,14 +114,34 @@ namespace Infrastructure.SqlServer.Repositories.DeveloperProject
             return developerProjects;
         }
 
-        public List<Domain.DeveloperProject> GetScrumMasterByIdProject(int idDeveloper)
+        public List<Domain.DeveloperProject> GetScrumMasterByIdProject(int idProject)
         {
-            throw new NotImplementedException();
+            var developerProjects = new List<Domain.DeveloperProject>();
+            
+            var command = Database.GetCommand(ReqGetScrumMasterByIdProject);
+
+            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
+            
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            
+            while(reader.Read()) developerProjects.Add(_developerProjectFactory.CreateFromSqlReader(reader));
+
+            return developerProjects;
         }
 
-        public List<Domain.DeveloperProject> GetDevsByIdProject(int idDeveloper)
+        public List<Domain.DeveloperProject> GetDevsByIdProject(int idProject)
         {
-            throw new NotImplementedException();
+            var developerProjects = new List<Domain.DeveloperProject>();
+            
+            var command = Database.GetCommand(ReqGetDevsByIdProject);
+
+            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
+            
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            
+            while(reader.Read()) developerProjects.Add(_developerProjectFactory.CreateFromSqlReader(reader));
+
+            return developerProjects;
         }
 
         // Post requests

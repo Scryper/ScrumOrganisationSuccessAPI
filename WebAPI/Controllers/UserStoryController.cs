@@ -4,6 +4,7 @@ using Application.UseCases.UserStory.Delete;
 using Application.UseCases.UserStory.Dtos;
 using Application.UseCases.UserStory.Get;
 using Application.UseCases.UserStory.Post;
+using Application.UseCases.UserStory.Put;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -17,6 +18,8 @@ namespace WebAPI.Controllers
         private readonly UseCaseGetUserStoriesByIdProject _useCaseGetUserStoriesByIdProject;
         // private readonly UseCaseGetUserStoriesByIdSprint _useCaseGetUserStoriesByIdSprint;
         private readonly UseCaseGetUserStoryById _useCaseGetUserStoryById;
+
+        private readonly UseCaseUpdateUserStory _useCaseUpdateUserStory;
         
         private readonly UseCaseCreateUserStory _useCaseCreateUserStory;
 
@@ -29,13 +32,15 @@ namespace WebAPI.Controllers
             // UseCaseGetUserStoriesByIdSprint useCaseGetUserStoriesByIdSprint,
             UseCaseGetUserStoryById useCaseGetUserStoryById,
             UseCaseCreateUserStory useCaseCreateUserStory,
-            UseCaseDeleteUserStory useCaseDeleteUserStory)
+            UseCaseDeleteUserStory useCaseDeleteUserStory,
+            UseCaseUpdateUserStory useCaseUpdateUserStory)
         {
             _useCaseGetAllUserStories = useCaseGetAllUserStories;
             _useCaseGetUserStoryById = useCaseGetUserStoryById;
             _useCaseGetUserStoriesByIdProject = useCaseGetUserStoriesByIdProject;
             // _useCaseGetUserStoriesByIdSprint = useCaseGetUserStoriesByIdSprint;
-            
+
+            _useCaseUpdateUserStory = useCaseUpdateUserStory;
             _useCaseCreateUserStory = useCaseCreateUserStory;
 
             _useCaseDeleteUserStory = useCaseDeleteUserStory;
@@ -74,6 +79,26 @@ namespace WebAPI.Controllers
         }
 
         // Put requests
+        [HttpPut]
+        [Route("update/{id:int}")]
+        public ActionResult UpdateRole(int id, InputDtoUserStory inputDtoUserStory)
+        {
+            var inputDtoUpdate = new InputDtoUpdateUserStory
+            {
+                Id = id,
+                InternUserStory = new InputDtoUpdateUserStory.UserStory
+                {
+                    Name = inputDtoUserStory.Name,
+                    Description = inputDtoUserStory.Description,
+                    Priority = inputDtoUserStory.Priority
+                }
+            };
+            
+            var result = _useCaseUpdateUserStory.Execute(inputDtoUpdate);
+
+            if (result) return Ok();
+            return NotFound();
+        }
 
         //  Delete requests
         [HttpDelete]

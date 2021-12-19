@@ -18,6 +18,8 @@ namespace WebAPI.Controllers
         private readonly UseCaseGetDeveloperProjectsByIdProject _useCaseGetDeveloperProjectsByIdProject;
         private readonly UseCaseGetDeveloperProjectsByIdDeveloperIsAppliance _useCaseGetDeveloperProjectsByIdDeveloperIsAppliance;
         private readonly UseCaseGetByIdDeveloperIdProject _useCaseGetByIdDeveloperIdProject;
+        private readonly UseCaseGetDeveloperByIdProject _useCaseGetDeveloperByIdProject;
+        private readonly UseCaseGetScrumMasterByIdProject _useCaseGetScrumMasterByIdProject;
 
         private readonly UseCaseGetDeveloperProjectByIdDeveloperIfIsWorking
             _useCaseGetDeveloperProjectByIdDeveloperIfIsWorking;
@@ -43,7 +45,9 @@ namespace WebAPI.Controllers
             UseCaseGetDeveloperProjectsByIdDeveloperIsAppliance useCaseGetDeveloperProjectsByIdDeveloperIsAppliance,
             UseCaseGetByIdDeveloperIdProject useCaseGetByIdDeveloperIdProject,
             UseCaseGetDeveloperProjectByIdDeveloperIfIsWorking useCaseGetDeveloperProjectByIdDeveloperIfIsWorking,
-            UseCaseGetDeveloperProjectByIdDeveloperIfIsNotWorking useCaseGetDeveloperProjectByIdDeveloperIfIsNotWorking
+            UseCaseGetDeveloperProjectByIdDeveloperIfIsNotWorking useCaseGetDeveloperProjectByIdDeveloperIfIsNotWorking,
+            UseCaseGetDeveloperByIdProject useCaseGetDeveloperByIdProject,
+            UseCaseGetScrumMasterByIdProject useCaseGetScrumMasterByIdProject
         )
         {
             _useCaseGetAllDeveloperProjects = useCaseGetAllDeveloperProjects;
@@ -54,6 +58,8 @@ namespace WebAPI.Controllers
             _useCaseGetDeveloperProjectByIdDeveloperIfIsWorking = useCaseGetDeveloperProjectByIdDeveloperIfIsWorking;
             _useCaseGetDeveloperProjectByIdDeveloperIfIsNotWorking =
                 useCaseGetDeveloperProjectByIdDeveloperIfIsNotWorking;
+            _useCaseGetDeveloperByIdProject = useCaseGetDeveloperByIdProject;
+            _useCaseGetScrumMasterByIdProject = useCaseGetScrumMasterByIdProject;
             
             _useCaseCreateDeveloperProject = useCaseCreateDeveloperProject;
             
@@ -110,6 +116,20 @@ namespace WebAPI.Controllers
         {
             return _useCaseGetDeveloperProjectByIdDeveloperIfIsNotWorking.Execute(idDeveloper);
         }
+        [HttpGet]
+        [Route("scrumMasterByIdProject/{idProject:int}")]
+        public ActionResult<List<OutputDtoDeveloperProjectIdDeveloper>> GetScrumMasterByIdProject(int idProject)
+        {
+            return _useCaseGetScrumMasterByIdProject.Execute(idProject);
+        }
+        [HttpGet]
+        [Route("developersByIdProject/{idProject:int}")]
+        public ActionResult<List<OutputDtoDeveloperProjectIdDeveloper>> GetDevelopersByIdProject(int idProject)
+        {
+            return _useCaseGetDeveloperByIdProject.Execute(idProject);
+        }
+        
+        
         
         [HttpPost]
         [ProducesResponseType(201)]
