@@ -55,6 +55,7 @@ namespace Application.UseCases.Utils
                 cfg.CreateMap<Domain.UserTechnology, OutputDtoUserTechnology>();
                 cfg.CreateMap<Domain.ProjectTechnology,OutputDtoProjectTechnology>();
                 cfg.CreateMap<Domain.Participation, OutputDtoParticipation>();
+                cfg.CreateMap<Domain.DeveloperProject, OutputDtoDeveloperProjectIdDeveloper>();
             });
 
             return new AutoMapper.Mapper(config);

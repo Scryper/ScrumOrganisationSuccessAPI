@@ -41,6 +41,7 @@ using Application.UseCases.UserStory;
 using Application.UseCases.UserStory.Delete;
 using Application.UseCases.UserStory.Get;
 using Application.UseCases.UserStory.Post;
+using Application.UseCases.UserStory.Put;
 using Application.UseCases.UserTechnology.Delete;
 using Application.UseCases.UserTechnology.Get;
 using Application.UseCases.UserTechnology.Post;
@@ -172,6 +173,8 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetUserStoryById>();
             
             services.AddSingleton<UseCaseCreateUserStory>();
+
+            services.AddSingleton<UseCaseUpdateUserStory>();
             
             services.AddSingleton<UseCaseDeleteUserStory>();
             
@@ -183,6 +186,8 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetByIdDeveloperIdProject>();
             services.AddSingleton<UseCaseGetDeveloperProjectByIdDeveloperIfIsWorking>();
             services.AddSingleton<UseCaseGetDeveloperProjectByIdDeveloperIfIsNotWorking>();
+            services.AddSingleton<UseCaseGetDeveloperByIdProject>();
+            services.AddSingleton<UseCaseGetScrumMasterByIdProject>();
 
             
             services.AddSingleton<UseCaseCreateDeveloperProject>();

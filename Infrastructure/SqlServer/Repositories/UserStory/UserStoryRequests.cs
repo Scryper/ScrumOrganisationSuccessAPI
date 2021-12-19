@@ -26,9 +26,14 @@
         private static readonly string ReqCreate = 
                                 $@"insert into {TableName}({ColIdProject}, {ColName}, {ColDescription}, {ColPriority})  
                                 output inserted.{ColId} 
-                                values(@{ColIdProject} @{ColName}, @{ColDescription}, @{ColPriority})";
+                                values(@{ColIdProject}, @{ColName}, @{ColDescription}, @{ColPriority})";
         
         // Put requests
+        private static readonly string ReqUpdateUS = $@"update {TableName} 
+                                                        set {ColName} = @{ColName}, 
+                                                        {ColDescription} = @{ColDescription}, 
+                                                        {ColPriority} = @{ColPriority} 
+                                                        where {ColId} = @{ColId}";
         
         // Delete requests
         private static readonly string ReqDeleteById = $@"delete from {TableName} 

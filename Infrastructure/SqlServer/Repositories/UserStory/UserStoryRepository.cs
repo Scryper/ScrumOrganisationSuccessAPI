@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using Infrastructure.SqlServer.Utils;
+using NotImplementedException = System.NotImplementedException;
 
 namespace Infrastructure.SqlServer.Repositories.UserStory
 {
@@ -71,6 +72,19 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
                 IdProject = userStory.IdProject,
                 Priority = userStory.Priority
             };
+        }
+
+        public bool Update(int id, string name, string description, int priority)
+        {
+            var command = Database.GetCommand(ReqUpdateUS);
+            
+            // Parametrize the command
+            command.Parameters.AddWithValue("@" + ColId, id);
+            command.Parameters.AddWithValue("@" + ColName, name);
+            command.Parameters.AddWithValue("@" + ColDescription, description);
+            command.Parameters.AddWithValue("@" + ColPriority, priority);
+
+            return command.ExecuteNonQuery() > 0;
         }
 
         // Delete requests
