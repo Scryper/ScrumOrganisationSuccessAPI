@@ -21,6 +21,7 @@ namespace WebAPI.Controllers
         private readonly UseCaseGetUserByEmail _useCaseGetUserByEmail;
         private readonly UseCaseGetUsersByIdMeeting _useCaseGetUsersByIdMeeting;
         private readonly UseCaseGetUsersByIdProject _useCaseGetUsersByIdProject;
+        private readonly UseCaseGetUserDaysOfXP _useCaseGetUserDaysOfXp;
 
         private readonly UseCaseCreateUser _useCaseCreateUser;
 
@@ -46,13 +47,15 @@ namespace WebAPI.Controllers
             UseCaseUpdateUserRole useCaseUpdateUserRole,
             UseCaseDeleteUser useCaseDeleteUser,
             UseCaseAuthenticateUser useCaseAuthenticateUser,
-            UseCaseUpdateUserFirstNameLastName useCaseUpdateUserFirstNameLastName)
+            UseCaseUpdateUserFirstNameLastName useCaseUpdateUserFirstNameLastName,
+            UseCaseGetUserDaysOfXP useCaseUserDaysOfXp)
         {
             _useCaseGetAllUsers = useCaseGetAllUsers;
             _useCaseGetUserById = useCaseGetUserById;
             _useCaseGetUserByEmail = useCaseGetUserByEmail;
             _useCaseGetUsersByIdMeeting = useCaseGetUsersByIdMeeting;
             _useCaseGetUsersByIdProject = useCaseGetUsersByIdProject;
+            _useCaseGetUserDaysOfXp = useCaseUserDaysOfXp;
             
             _useCaseCreateUser = useCaseCreateUser;
 
@@ -102,6 +105,13 @@ namespace WebAPI.Controllers
         {
             var correctEmail = HttpUtility.UrlDecode(email);
             return _useCaseGetUserByEmail.Execute(correctEmail);
+        }
+        
+        [HttpGet]
+        [Route("daysOfXP/{idUser:int}")]
+        public int GetDaysOfXP(int idUser)
+        {
+            return _useCaseGetUserDaysOfXp.Execute(idUser);
         }
 
         // Post requests

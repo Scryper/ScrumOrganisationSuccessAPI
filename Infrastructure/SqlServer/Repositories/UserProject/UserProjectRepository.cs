@@ -147,23 +147,7 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
 
             return developerProjects;
         }
-
-        public List<Domain.Sprint> GetSprintByIdDeveloper(int idDeveloper)
-        {
-            var sprints = new List<Domain.Sprint>();
-                        
-            var command = Database.GetCommand(ReqGetSprintsByIdDeveloper);
-
-            command.Parameters.AddWithValue("@" + ColIdUser, idDeveloper);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) sprints.Add(_sprintFactory.CreateFromSqlReader(reader));
-
-            return sprints;
-        }
         
-
         // Post requests
         public Domain.UserProject Create(Domain.UserProject userProject)
         {

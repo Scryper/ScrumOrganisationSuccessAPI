@@ -4,6 +4,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Application.Security.Models;
+using Domain;
+using Infrastructure.SqlServer.Repositories.Project;
+using Infrastructure.SqlServer.Repositories.Sprint;
 using Infrastructure.SqlServer.Repositories.User;
 using Infrastructure.SqlServer.Repositories.UserProject;
 using Microsoft.Extensions.Options;
@@ -15,15 +18,21 @@ namespace Application.Services.User
     {
         private readonly IUserRepository _userRepository;
         private readonly IUserProjectRepository _userProjectRepository;
+        private readonly IProjectRepository _projectRepository;
+        private readonly ISprintRepository _sprintRepository;
         private readonly AppSettings _appSettings;
 
         public UserService(
             IUserRepository userRepository,
             IUserProjectRepository userProjectRepository,
+            IProjectRepository projectRepository,
+            ISprintRepository sprintRepository,
             IOptions<AppSettings> appSettings)
         {
             _userRepository = userRepository;
             _userProjectRepository = userProjectRepository;
+            _projectRepository = projectRepository;
+            _sprintRepository = sprintRepository;
             _appSettings = appSettings.Value;
         }
 
@@ -70,13 +79,17 @@ namespace Application.Services.User
         // Compute experience
         public int ComputeDaysOfExperience(int id)
         {
-            List<Domain.Sprint> sprintsOfUser = _userProjectRepository.GetSprintByIdDeveloper(id);
+            List<UserProject> userProjects = _userProjectRepository.GetByIdDeveloper(id); 
             List<TimeSpan> timeSpans = new List<TimeSpan>();
-
-            foreach (Domain.Sprint sprint in sprintsOfUser)
+            foreach (UserProject up in userProjects)
             {
-                timeSpans.Add(sprint.GetSprintDuration());
+                List<Sprint> sprintsTemp = _sprintRepository.GetByIdProject(up.IdProject);
+                foreach (Sprint tmp in sprintsTemp)
+                {
+                    timeSpans.Add(tmp.GetSprintDuration());
+                }
             }
+            
             return _userRepository.GetById(id).GetDaysOfWork(timeSpans);
         }
     }

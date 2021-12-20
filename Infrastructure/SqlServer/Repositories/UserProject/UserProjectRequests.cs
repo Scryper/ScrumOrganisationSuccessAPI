@@ -60,12 +60,6 @@
                                                                         where {ColIdUser} = @{ColIdUser} and 
                                                                         {ColIdProject} = @{ColIdProject}";
 
-        private static readonly string ReqGetSprintsByIdDeveloper = $@"select {TableSprint}.id , {TableSprint}.{ColIdProject}, {TableSprint}.sprint_number, {TableSprint}.description 
-                                                                        {TableSprint}.deadline, {TableSprint}.start_date from {TableName} 
-                                                                        inner join {TableProject} on {TableName}.{ColIdProject} = {TableProject}.{ColIdProjectFromProject} 
-                                                                        inner join {TableSprint} on {TableProject}.{ColIdProjectFromProject} = {TableSprint}.{ColIdProject} 
-                                                                        where {ColIdUser}=@{ColIdUser}";
-        
         // Post requests
         private static readonly string ReqCreate = $@"insert into {TableName}({ColIdUser},{ColIdProject},{ColIsAppliance}) 
                                                     values(@{ColIdUser}, @{ColIdProject}, @{ColIsAppliance})";
