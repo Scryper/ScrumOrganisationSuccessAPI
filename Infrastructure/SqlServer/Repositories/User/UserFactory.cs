@@ -12,7 +12,6 @@ namespace Infrastructure.SqlServer.Repositories.User
                 Id = reader.GetInt32(reader.GetOrdinal(UserRepository.ColId)),
                 Firstname = reader.GetString(reader.GetOrdinal(UserRepository.ColFirstName)),
                 Lastname = reader.GetString(reader.GetOrdinal(UserRepository.ColLastName)),
-                Password = reader.GetString(reader.GetOrdinal(UserRepository.ColPassword)),
                 Email = reader.GetString(reader.GetOrdinal(UserRepository.ColEmail)),
                 Role = reader.GetInt16(reader.GetOrdinal(UserRepository.ColRole)),
                 Birthdate = reader.GetDateTime(reader.GetOrdinal(UserRepository.ColBirthdate)),
