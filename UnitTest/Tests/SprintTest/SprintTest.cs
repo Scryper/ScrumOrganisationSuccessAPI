@@ -7,7 +7,7 @@ namespace UnitTest.Tests.SprintTest
     public class SprintTest
     {
         [Test]
-        public void PassingTest()
+        public void GetSprintDuration_noInput_SingleTimeSpan_AssertTrue()
         {
             Sprint sprint = new Sprint
             {
@@ -23,7 +23,7 @@ namespace UnitTest.Tests.SprintTest
         }
 
         [Test]
-        public void FailingTest()
+        public void GetSprintDuration_noInput_SingleTimeSpan_AssertFalse()
         {
             Sprint sprint = new Sprint
             {

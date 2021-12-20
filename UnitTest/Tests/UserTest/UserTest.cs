@@ -8,7 +8,7 @@ namespace UnitTest.Tests.UserTest
     public class UserTest
     {
         [Test]
-        public void PassingTest()
+        public void GetDaysOfWork_ListTimeSpan_SingleNumber_AssertTrue()
         {
             List<TimeSpan> timeSpans = new List<TimeSpan>();
 
@@ -24,7 +24,7 @@ namespace UnitTest.Tests.UserTest
         }
 
         [Test]
-        public void FailingTest()
+        public void GetDaysOfWork_ListTimeSpan_SingleNumber_AssertFalse()
         {
             List<TimeSpan> timeSpans = new List<TimeSpan>();
 
