@@ -10,5 +10,9 @@ namespace Domain
         public string Description { get; set; }
         public DateTime Deadline { get; set; }
         public DateTime StartDate { get; set; }
+        public TimeSpan GetSprintDuration()
+        {
+            return Deadline - StartDate;
+        }
     }
 }

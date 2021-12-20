@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace Domain
@@ -16,5 +17,15 @@ namespace Domain
         public string Password { get; set; }
 
         public string ProfilePicture { get; set; }
+
+        public int GetDaysOfWork(List<TimeSpan> timeSpans)
+        {
+            TimeSpan tmp = new TimeSpan(0,0,0,0);
+            foreach (TimeSpan duration in timeSpans)
+            {
+                tmp += duration;
+            }
+            return tmp.Days;
+        }
     }
 }
