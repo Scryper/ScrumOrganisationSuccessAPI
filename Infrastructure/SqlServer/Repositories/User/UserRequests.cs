@@ -3,7 +3,7 @@
     public partial class UserRepository
     {
         public const string TableName = "sos_user";
-        public const string ProjectUserTableName = "project_user";
+        public const string UserProjectTableName = "user_project";
         public const string ProjectTableName = "project";
         public const string ParticipationTableName = "participation";
         public const string MeetingTableName = "meeting";
@@ -17,8 +17,8 @@
         public const string ColBirthdate = "birthdate";
         public const string ColProfilePicture = "profile_picture";
         
-        public const string ProjectUserColIdUser = "project_user.id_user";
-        public const string ProjectUserColIdProject = "project_user.id_project";
+        public const string ProjectUserColIdUser = "user_project.id_user";
+        public const string ProjectUserColIdProject = "user_project.id_project";
         public const string ProjectColId = "project.id";
         public const string ParticipationColIdUser = "participation.id_user";
         public const string ParticipationColIdMeeting = "participation.id_meeting";
@@ -35,7 +35,7 @@
 
         private static readonly string ReqGetByIdProject = 
                                         $@"select * from {TableName} 
-                                        left join {ProjectUserTableName} on {ColId} = {ProjectUserColIdUser} 
+                                        left join {UserProjectTableName} on {ColId} = {ProjectUserColIdUser} 
                                         left join {ProjectTableName} on {ProjectUserColIdProject} = {ProjectColId} 
                                         where {ProjectColId} = @{ColId}";
         
