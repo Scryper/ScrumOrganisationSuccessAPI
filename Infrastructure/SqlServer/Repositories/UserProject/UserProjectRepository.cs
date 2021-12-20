@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using Infrastructure.SqlServer.Repositories.DeveloperProject;
+using Infrastructure.SqlServer.Repositories.Sprint;
 using Infrastructure.SqlServer.Utils;
+using NotImplementedException = System.NotImplementedException;
 
 namespace Infrastructure.SqlServer.Repositories.UserProject
 {
@@ -9,6 +11,8 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
     {
         private readonly IDomainFactory<Domain.UserProject> _developerProjectFactory =
             new UserProjectFactory();
+
+        private readonly IDomainFactory<Domain.Sprint> _sprintFactory = new SprintFactory();
 
         // Get requests
         public List<Domain.UserProject> GetAll()
@@ -143,6 +147,22 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
 
             return developerProjects;
         }
+
+        public List<Domain.Sprint> GetSprintByIdDeveloper(int idDeveloper)
+        {
+            var sprints = new List<Domain.Sprint>();
+                        
+            var command = Database.GetCommand(ReqGetSprintsByIdDeveloper);
+
+            command.Parameters.AddWithValue("@" + ColIdUser, idDeveloper);
+            
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            
+            while(reader.Read()) sprints.Add(_sprintFactory.CreateFromSqlReader(reader));
+
+            return sprints;
+        }
+        
 
         // Post requests
         public Domain.UserProject Create(Domain.UserProject userProject)

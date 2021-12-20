@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Application.Security.Models;
 using Infrastructure.SqlServer.Repositories.User;
+using Infrastructure.SqlServer.Repositories.UserProject;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -12,13 +14,16 @@ namespace Application.Services.User
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IUserProjectRepository _userProjectRepository;
         private readonly AppSettings _appSettings;
 
         public UserService(
             IUserRepository userRepository,
+            IUserProjectRepository userProjectRepository,
             IOptions<AppSettings> appSettings)
         {
             _userRepository = userRepository;
+            _userProjectRepository = userProjectRepository;
             _appSettings = appSettings.Value;
         }
 
@@ -60,6 +65,19 @@ namespace Application.Services.User
         public Domain.User GetById(int id)
         {
             return _userRepository.GetById(id);
+        }
+        
+        // Compute experience
+        public int ComputeDaysOfExperience(int id)
+        {
+            List<Domain.Sprint> sprintsOfUser = _userProjectRepository.GetSprintByIdDeveloper(id);
+            List<TimeSpan> timeSpans = new List<TimeSpan>();
+
+            foreach (Domain.Sprint sprint in sprintsOfUser)
+            {
+                timeSpans.Add(sprint.GetSprintDuration());
+            }
+            return _userRepository.GetById(id).GetDaysOfWork(timeSpans);
         }
     }
 }

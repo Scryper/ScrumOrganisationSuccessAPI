@@ -14,6 +14,7 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
         List<Domain.UserProject> GetByIdDeveloperifIsNotWorking(int idDeveloper);
         List<Domain.UserProject> GetScrumMasterByIdProject(int idDeveloper);
         List<Domain.UserProject> GetDevsByIdProject(int idDeveloper);
+        List<Domain.Sprint> GetSprintByIdDeveloper(int idDeveloper);
         
         // Post requests
         Domain.UserProject Create(Domain.UserProject userProject);
