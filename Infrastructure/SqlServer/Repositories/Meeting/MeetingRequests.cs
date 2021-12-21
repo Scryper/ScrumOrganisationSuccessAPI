@@ -30,7 +30,8 @@
                                 $@"select * from {TableName} 
                                 left join {ParticipationTableName} on {ColId} = {ParticipationColIdMeeting} 
                                 left join {UserTableName} on {ParticipationColIdUser} = {UserColId} 
-                                where {UserColId} = @{ColId}";
+                                where {UserColId} = @{ColId} 
+                                order by convert(date, {ColSchedule})";
         
         // Post requests
         private static readonly string ReqCreate = 

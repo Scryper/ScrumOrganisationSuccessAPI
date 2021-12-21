@@ -173,10 +173,10 @@ insert into user_story(id_project, name, description, priority)
 
 /*Init meetings*/
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(1, convert(datetime, '01-11-2021 12:00:00', 103), 'Meeting pour réussir son année.','PrivateHelhaRoom1');
+    values(1, convert(datetime, '21-12-2021 12:00:00', 103), 'Meeting pour réussir son année.','PrivateHelhaRoom1');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(1, convert(datetime, '05-11-2021 12:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom7');
+    values(1, convert(datetime, '05-12-2021 12:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom7');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
     values(1, convert(datetime, '12-11-2021 12:00:00', 103), 'Partage des tâches restantes.','PrivateHelhaRoom2');
@@ -200,13 +200,19 @@ insert into meeting(id_sprint, schedule, description, meeting_url)
     values(4, convert(datetime, '01-12-2021 15:00:00', 103), 'Partage des tâches.','PrivateHelhaRoom9');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(4, convert(datetime, '19-12-2021 15:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom10');
+    values(4, convert(datetime, '21-12-2021 15:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom10');
 
 insert into meeting(id_sprint, schedule, description, meeting_url)
-values(5, convert(datetime, '20-12-2021 15:00:00', 103), 'Partage des tâches.','PrivateHelhaRoom11');
+values(5, convert(datetime, '22-12-2021 15:00:00', 103), 'Partage des tâches.','PrivateHelhaRoom11');
 
 insert into meeting(id_sprint, schedule, description, meeting_url)
-values(5, convert(datetime, '19-12-2021 15:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom12');
+values(5, convert(datetime, '21-12-2021 15:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom12');
+
+insert into meeting(id_sprint, schedule, description, meeting_url)
+values(5, convert(datetime, '21-12-2021 15:00:00', 103), 'Mise en commun des branches21.','PrivateHelhaRoom1221');
+
+insert into meeting(id_sprint, schedule, description, meeting_url)
+values(5, convert(datetime, '22-12-2021 15:00:00', 103), 'Mise en commun des branches22.','PrivateHelhaRoom1222');
 
 /*Init comments*/
 insert into comment(id_user_story, id_user, posted_at, content)
@@ -272,6 +278,9 @@ insert into user_project(id_project, id_user, is_appliance)
 
 insert into user_project(id_project, id_user, is_appliance)
     values(5, 3, 0);
+
+insert into user_project(id_project, id_user, is_appliance)
+    values(2, 4, 0);
 
 /*Init participation link table*/
 insert into participation(id_meeting, id_user)
