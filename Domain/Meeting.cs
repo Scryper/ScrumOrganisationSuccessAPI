@@ -9,5 +9,6 @@ namespace Domain
         public DateTime Schedule { get; set; }
         public string Description { get; set; }
         public string MeetingUrl { get; set; }
+        
     }
 }
