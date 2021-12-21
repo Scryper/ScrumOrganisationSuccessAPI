@@ -64,7 +64,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("getMaxSprintNumber/{idProjectForMaxSprintNumber:int")]
+        [Route("getMaxSprintNumber/{idProjectForMaxSprintNumber:int}")]
         public int GetMaxSprintNumber(int idProjectForMaxSprintNumber)
         {
             return _useCaseGetMaximumSprintNumber.Execute(idProjectForMaxSprintNumber);
