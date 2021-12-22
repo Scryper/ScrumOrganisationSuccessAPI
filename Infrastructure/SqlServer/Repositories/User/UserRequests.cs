@@ -43,7 +43,7 @@
                                         $@"select * from {TableName} 
                                         left join {UserProjectTableName} on {ColId} = {ProjectUserColIdUser} 
                                         left join {ProjectTableName} on {ProjectUserColIdProject} = {ProjectColId} 
-                                        where {ProjectColId} = @{ColId} and where {UserProjectTableName}.is_appliance = 0";
+                                        where {ProjectColId} = @{ColId} and {UserProjectTableName}.is_appliance = 0";
         
         private static readonly string ReqGetByIdMeeting = 
                                     $@"select * from {TableName} 
