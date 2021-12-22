@@ -130,7 +130,8 @@ namespace WebAPI.Controllers
         [ProducesResponseType(400)]
         public ActionResult<OutputDtoUser> Create([FromBody] InputDtoUser inputDtoUser)
         {
-            return StatusCode(201, _useCaseCreateUser.Execute(inputDtoUser));
+            var result = _useCaseCreateUser.Execute(inputDtoUser);
+            return result == null ? null : StatusCode(201, result);
         }
         
         // Post requests : authentication

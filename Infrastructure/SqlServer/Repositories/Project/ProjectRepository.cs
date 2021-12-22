@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Infrastructure.SqlServer.Utils;
 using NotImplementedException = System.NotImplementedException;
 
@@ -53,6 +54,8 @@ namespace Infrastructure.SqlServer.Repositories.Project
         // Post requests
         public Domain.Project Create(Domain.Project project)
         {
+            if (Exists(project)) return null;
+            
             var command = Database.GetCommand(ReqCreate);
             
             // Parametrize the command
@@ -69,6 +72,14 @@ namespace Infrastructure.SqlServer.Repositories.Project
                 Description = project.Description,
                 RepositoryUrl = project.RepositoryUrl,
             };
+        }
+        
+        // Utils for post request
+        private bool Exists(Domain.Project project)
+        {
+            var projects = GetAll();
+
+            return Enumerable.Contains(projects, project);
         }
         
         // Put requests

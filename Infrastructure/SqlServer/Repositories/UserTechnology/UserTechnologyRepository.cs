@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Infrastructure.SqlServer.Utils;
 using NotImplementedException = System.NotImplementedException;
 
@@ -9,6 +10,7 @@ namespace Infrastructure.SqlServer.Repositories.UserTechnology
     {
         private readonly IDomainFactory<Domain.UserTechnology> _userTechnologyFactory = new UserTechnologyFactory();
         
+        // Get requests
         public List<Domain.UserTechnology> GetAll()
         {
             var userTechnologies = new List<Domain.UserTechnology>();
@@ -38,7 +40,7 @@ namespace Infrastructure.SqlServer.Repositories.UserTechnology
             return userTechnologies;
         }
 
-        public List<Domain.UserTechnology> getByTechnologyId(int technologyId)
+        public List<Domain.UserTechnology> GetByTechnologyId(int technologyId)
         {
             var userTechnologies = new List<Domain.UserTechnology>();
             
@@ -55,8 +57,11 @@ namespace Infrastructure.SqlServer.Repositories.UserTechnology
             return userTechnologies;
         }
 
+        // Post requests
         public Domain.UserTechnology Create(Domain.UserTechnology userTechnology)
         {
+            if (Exists(userTechnology)) return null;
+            
             var command = Database.GetCommand(ReqCreate);
 
             command.Parameters.AddWithValue("@" + ColIdUser, userTechnology.IdUser);
@@ -70,7 +75,15 @@ namespace Infrastructure.SqlServer.Repositories.UserTechnology
                 IdUser = userTechnology.IdUser
             };
         }
+        
+        // Utils for post requests
+        private bool Exists(Domain.UserTechnology userTechnology)
+        {
+            var userTechnologies = GetAll();
+            return Enumerable.Contains(userTechnologies, userTechnology);
+        }
 
+        // Delete requests
         public bool Delete(int idUser, int idTechnology)
         {
             var command = Database.GetCommand(ReqDelete);

@@ -83,7 +83,8 @@ namespace WebAPI.Controllers
         [ProducesResponseType(400)]
         public ActionResult<OutputDtoMeeting> Create([FromBody] InputDtoMeeting inputDtoMeeting)
         {
-            return StatusCode(201, _useCaseCreateMeeting.Execute(inputDtoMeeting));
+            var result = _useCaseCreateMeeting.Execute(inputDtoMeeting);
+            return result == null ? null : StatusCode(201, result);
         }
 
         // Put requests

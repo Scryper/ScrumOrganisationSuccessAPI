@@ -75,7 +75,8 @@ namespace WebAPI.Controllers
         [ProducesResponseType(400)]
         public ActionResult<OutputDtoUserStory> Create([FromBody] InputDtoUserStory inputDtoUserStory)
         {
-            return StatusCode(201, _useCaseCreateUserStory.Execute(inputDtoUserStory));
+            var result = _useCaseCreateUserStory.Execute(inputDtoUserStory);
+            return result == null ? null : StatusCode(201, result);
         }
 
         // Put requests

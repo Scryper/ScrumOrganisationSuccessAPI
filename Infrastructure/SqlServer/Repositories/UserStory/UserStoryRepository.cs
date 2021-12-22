@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Infrastructure.SqlServer.Utils;
 using NotImplementedException = System.NotImplementedException;
 
@@ -57,6 +58,8 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
         // Post requests
         public Domain.UserStory Create(Domain.UserStory userStory)
         {
+            if (Exists(userStory)) return null;
+            
             var command = Database.GetCommand(ReqCreate);
 
             command.Parameters.AddWithValue("@" + ColIdProject, userStory.IdProject);
@@ -72,6 +75,13 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
                 IdProject = userStory.IdProject,
                 Priority = userStory.Priority
             };
+        }
+        
+        // Utils for post request
+        private bool Exists(Domain.UserStory userStory)
+        {
+            var userStories = GetAll();
+            return Enumerable.Contains(userStories, userStory);
         }
 
         public bool Update(int id, string name, string description, int priority)

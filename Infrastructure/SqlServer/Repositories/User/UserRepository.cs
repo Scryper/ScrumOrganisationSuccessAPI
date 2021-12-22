@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Infrastructure.SqlServer.Utils;
 using NotImplementedException = System.NotImplementedException;
 
@@ -106,6 +107,8 @@ namespace Infrastructure.SqlServer.Repositories.User
         // Post requests
         public Domain.User Create(Domain.User user)
         {
+            if (Exists(user)) return null;
+            
             var command = Database.GetCommand(ReqCreate);
             var hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
@@ -126,6 +129,13 @@ namespace Infrastructure.SqlServer.Repositories.User
                 Role = user.Role,
                 Birthdate = user.Birthdate
             };
+        }
+        
+        // Utils for post requests
+        private bool Exists(Domain.User user)
+        {
+            var users = GetAll();
+            return Enumerable.Contains(users, user);
         }
 
         // Put requests

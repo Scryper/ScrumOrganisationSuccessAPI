@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Infrastructure.SqlServer.Utils;
 using NotImplementedException = System.NotImplementedException;
 
@@ -10,6 +11,7 @@ namespace Infrastructure.SqlServer.Repositories.Participation
 
         private readonly IDomainFactory<Domain.Participation> _participationFactory = new ParticipationFactory();
         
+        // Get requests
         public List<Domain.Participation> GetAll()
         {
             var participations = new List<Domain.Participation>();
@@ -39,7 +41,7 @@ namespace Infrastructure.SqlServer.Repositories.Participation
             return participations;
         }
 
-        public List<Domain.Participation> getByMeetingId(int meetingId)
+        public List<Domain.Participation> GetByMeetingId(int meetingId)
         {
             var participations = new List<Domain.Participation>();
             
@@ -55,8 +57,11 @@ namespace Infrastructure.SqlServer.Repositories.Participation
             return participations;
         }
 
+        // Post requests
         public Domain.Participation Create(Domain.Participation participation)
         {
+            if (Exists(participation)) return null;
+            
             var command = Database.GetCommand(ReqCreate);
 
             command.Parameters.AddWithValue("@" + ColIdUser, participation.IdUser);
@@ -70,7 +75,16 @@ namespace Infrastructure.SqlServer.Repositories.Participation
                 IdUser = participation.IdUser
             };
         }
+        
+        // Utils for post request
+        private bool Exists(Domain.Participation participation)
+        {
+            var participations = GetAll();
 
+            return Enumerable.Contains(participations, participation);
+        }
+
+        // Delete request
         public bool Delete(int idUser, int idMeeting)
         {
             var command = Database.GetCommand(ReqDelete);

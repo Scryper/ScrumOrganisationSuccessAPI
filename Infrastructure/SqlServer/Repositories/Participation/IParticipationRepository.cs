@@ -9,7 +9,7 @@ namespace Infrastructure.SqlServer.Repositories.Participation
 
         List<Domain.Participation> GetByUserId(int userId);
 
-        List<Domain.Participation> getByMeetingId(int meetingId);
+        List<Domain.Participation> GetByMeetingId(int meetingId);
 
         
         // Post Requests

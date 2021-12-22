@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using Infrastructure.SqlServer.Utils;
 
 namespace Infrastructure.SqlServer.Repositories.Sprint
@@ -57,6 +58,8 @@ namespace Infrastructure.SqlServer.Repositories.Sprint
         // Post requests
         public Domain.Sprint Create(Domain.Sprint sprint)
         {
+            if (Exists(sprint)) return null;
+            
             var command = Database.GetCommand(ReqCreate);
 
             command.Parameters.AddWithValue("@" + ColIdProject, sprint.IdProject);
@@ -74,6 +77,13 @@ namespace Infrastructure.SqlServer.Repositories.Sprint
                 StartDate = sprint.StartDate,
                 Description = sprint.Description
             };
+        }
+        
+        // Utils for post request
+        private bool Exists(Domain.Sprint sprint)
+        {
+            var sprints = GetAll();
+            return Enumerable.Contains(sprints, sprint);
         }
         
         // Delete requests

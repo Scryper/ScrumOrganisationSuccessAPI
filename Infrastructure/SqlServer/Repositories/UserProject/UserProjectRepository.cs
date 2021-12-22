@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Infrastructure.SqlServer.Repositories.DeveloperProject;
 using Infrastructure.SqlServer.Repositories.Sprint;
 using Infrastructure.SqlServer.Utils;
@@ -151,6 +152,8 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
         // Post requests
         public Domain.UserProject Create(Domain.UserProject userProject)
         {
+            if (Exists(userProject)) return null;
+            
             var command = Database.GetCommand(ReqCreate);
 
             command.Parameters.AddWithValue("@" + ColIdUser, userProject.IdDeveloper);
@@ -165,6 +168,13 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
                 IdProject = userProject.IdProject,
                 IsAppliance = userProject.IsAppliance
             };
+        }
+        
+        // Utils for post request
+        private bool Exists(Domain.UserProject userProject)
+        {
+            var userProjects = GetAll();
+            return Enumerable.Contains(userProjects, userProject);
         }
 
         // Put requests
