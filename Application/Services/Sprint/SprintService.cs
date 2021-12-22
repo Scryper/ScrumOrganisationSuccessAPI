@@ -26,7 +26,7 @@ namespace Application.Services.Sprint
                 sprintNumbers.SetValue(sprints[i].SprintNumber, i);
             }
 
-            return sprintNumbers.Max();
+            return (sprints.Count > 0) ? sprintNumbers.Max() : 0;
         }
     }
 }
