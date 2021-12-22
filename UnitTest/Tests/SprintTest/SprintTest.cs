@@ -70,5 +70,21 @@ namespace UnitTest.Tests.SprintTest
             // Assert
             Assert.AreEqual(expectedResult, actualResult, 0);
         }
+        
+        [Test]
+        public void FindMaxSprintNumber_emptySprintList_0()
+        {
+            // Arrange
+            var sprintService = new SprintService(new SprintRepository());
+            
+            const int expectedResult = 0;
+            var sprints = new List<Sprint>();
+            
+            // Act
+            var actualResult = sprintService.FindMaxSprintNumber(sprints);
+
+            // Assert
+            Assert.AreEqual(expectedResult, actualResult, 0);
+        }
     }
 }
