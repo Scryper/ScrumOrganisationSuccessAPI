@@ -19,6 +19,7 @@ namespace WebAPI.Controllers
         private readonly UseCaseGetAllProjects _useCaseGetAllProjects;
         private readonly UseCaseGetProjectById _useCaseGetProjectById;
         private readonly UseCaseGetProjectByName _useCaseGetProjectByName;
+        private readonly UseCaseGetActiveProject _useCaseGetActiveProject;
 
         private readonly UseCaseCreateProject _useCaseCreateProject;
 
@@ -35,11 +36,13 @@ namespace WebAPI.Controllers
             UseCaseCreateProject useCaseCreateProject,
             UseCaseUpdateProjectRepositoryUrl useCaseUpdateProjectRepositoryUrl,
             UseCaseDeleteProject useCaseDeleteProject,
-            UseCaseUpdateProjectStatus useCaseUpdateProjectStatus)
+            UseCaseUpdateProjectStatus useCaseUpdateProjectStatus,
+            UseCaseGetActiveProject useCaseGetActiveProject)
         {
             _useCaseGetAllProjects = useCaseGetAllProjects;
             _useCaseGetProjectById = useCaseGetProjectById;
             _useCaseGetProjectByName = useCaseGetProjectByName;
+            _useCaseGetActiveProject = useCaseGetActiveProject;
             
             _useCaseCreateProject = useCaseCreateProject;
 
@@ -71,6 +74,14 @@ namespace WebAPI.Controllers
         {
             var correctName = HttpUtility.UrlDecode(name);
             return _useCaseGetProjectByName.Execute(correctName);
+        }
+        
+        // Get requests
+        [HttpGet]
+        [Route("activeByIdUser/{idUser:int}")]
+        public ActionResult<List<OutputDtoProject>> GetActiveProject(int idUser)
+        {
+            return _useCaseGetActiveProject.Execute(idUser);
         }
         
         // Post requests
