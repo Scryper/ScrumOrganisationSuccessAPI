@@ -42,6 +42,23 @@ namespace Infrastructure.SqlServer.Repositories.User
             return users;
         }
 
+        public List<Domain.User> GetByIdProjectIsWorking(int idProject)
+        {
+            var users = new List<Domain.User>();
+
+            var command = Database.GetCommand(ReqGetByIdProjectIsWorking);
+            
+            // Parametrize the command
+            command.Parameters.AddWithValue("@" + ColId, idProject);
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            
+            // Add all users
+            while(reader.Read()) users.Add(_userFactory.CreateFromSqlReader(reader));
+
+            return users;
+        }
+
         // TODO : factorisation
         public List<Domain.User> GetByIdMeeting(int idMeeting)
         {
