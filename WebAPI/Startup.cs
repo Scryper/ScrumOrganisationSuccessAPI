@@ -160,6 +160,7 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetUserById>();
             services.AddSingleton<UseCaseGetUserByEmail>();
             services.AddSingleton<UseCaseGetUsersByIdProject>();
+            services.AddSingleton<UseCaseGetUsersByIdProjectIsWorking>();
             services.AddSingleton<UseCaseGetUsersByIdMeeting>();
             services.AddSingleton<UseCaseGetUserDaysOfXP>();
 
