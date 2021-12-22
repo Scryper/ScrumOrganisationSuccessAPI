@@ -1,5 +1,6 @@
 using Application.Security;
 using Application.Security.Models;
+using Application.Services.Sprint;
 using Application.Services.User;
 using Application.UseCases.Comment.Delete;
 using Application.UseCases.Comment.Get;
@@ -106,6 +107,7 @@ namespace WebAPI
             // Add services
             // services.AddSingleton<Interface, Implementation>();
             services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<ISprintService, SprintService>();
             
             // Add use cases
             // Comments use cases
@@ -147,7 +149,8 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetAllSprints>();
             services.AddSingleton<UseCaseGetSprintsByIdProject>();
             services.AddSingleton<UseCaseGetSprintById>();
-            
+            services.AddSingleton<UseCaseGetMaximumSprintNumber>();
+
             services.AddSingleton<UseCaseCreateSprint>();
 
             services.AddSingleton<UseCaseDeleteSprint>();
@@ -192,7 +195,6 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetUserByIdProject>();
             services.AddSingleton<UseCaseGetScrumMasterByIdProject>();
 
-            
             services.AddSingleton<UseCaseCreateDeveloperProject>();
             
             services.AddSingleton<UseCaseUpdateDeveloperProject>();
@@ -233,8 +235,6 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetParticipationsByIdUser>();
             services.AddSingleton<UseCaseDeleteParticipation>();
             services.AddSingleton<UseCaseCreateParticipation>();
-            
-            
 
             services.AddControllers();
             

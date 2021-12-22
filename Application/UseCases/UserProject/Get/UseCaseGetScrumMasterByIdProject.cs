@@ -17,9 +17,9 @@ namespace Application.UseCases.UserProject.Get
         
         public List<OutputDtoUserProject> Execute(int filter)
         {
-            var developerssFromDb = _userProjectRepository.GetScrumMasterByIdProject(filter);
+            var developersFromDb = _userProjectRepository.GetScrumMasterByIdProject(filter);
 
-            return Mapper.GetInstance().Map<List<OutputDtoUserProject>>(developerssFromDb);
+            return Mapper.GetInstance().Map<List<OutputDtoUserProject>>(developersFromDb);
         }
     }
 }

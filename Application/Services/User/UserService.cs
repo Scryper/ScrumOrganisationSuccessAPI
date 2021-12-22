@@ -5,7 +5,6 @@ using System.Security.Claims;
 using System.Text;
 using Application.Security.Models;
 using Domain;
-using Infrastructure.SqlServer.Repositories.Project;
 using Infrastructure.SqlServer.Repositories.Sprint;
 using Infrastructure.SqlServer.Repositories.User;
 using Infrastructure.SqlServer.Repositories.UserProject;
@@ -18,20 +17,15 @@ namespace Application.Services.User
     {
         private readonly IUserRepository _userRepository;
         private readonly IUserProjectRepository _userProjectRepository;
-        private readonly IProjectRepository _projectRepository;
         private readonly ISprintRepository _sprintRepository;
         private readonly AppSettings _appSettings;
 
-        public UserService(
-            IUserRepository userRepository,
+        public UserService(IUserRepository userRepository, 
             IUserProjectRepository userProjectRepository,
-            IProjectRepository projectRepository,
             ISprintRepository sprintRepository,
-            IOptions<AppSettings> appSettings)
-        {
+            IOptions<AppSettings> appSettings) {
             _userRepository = userRepository;
             _userProjectRepository = userProjectRepository;
-            _projectRepository = projectRepository;
             _sprintRepository = sprintRepository;
             _appSettings = appSettings.Value;
         }
@@ -83,8 +77,8 @@ namespace Application.Services.User
             List<TimeSpan> timeSpans = new List<TimeSpan>();
             foreach (UserProject up in userProjects)
             {
-                List<Sprint> sprintsTemp = _sprintRepository.GetByIdProject(up.IdProject);
-                foreach (Sprint tmp in sprintsTemp)
+                List<Domain.Sprint> sprintsTemp = _sprintRepository.GetByIdProject(up.IdProject);
+                foreach (Domain.Sprint tmp in sprintsTemp)
                 {
                     timeSpans.Add(tmp.GetSprintDuration());
                 }

@@ -10,7 +10,7 @@ namespace Application.Services.User
         // Requests
         public Domain.User GetById(int id);
         
-        //Requests
+        // Other
         public int ComputeDaysOfExperience(int id);
     }
 }

@@ -3,7 +3,7 @@ using Application.UseCases.Sprint.Dtos;
 using Application.UseCases.Utils;
 using Infrastructure.SqlServer.Repositories.Sprint;
 
-namespace Application.UseCases.Sprint
+namespace Application.UseCases.Sprint.Get
 {
     public class UseCaseGetAllSprints : IQuery<List<OutputDtoSprint>>
     {

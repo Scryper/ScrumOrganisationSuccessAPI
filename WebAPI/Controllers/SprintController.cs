@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Application.UseCases.Sprint;
 using Application.UseCases.Sprint.Delete;
 using Application.UseCases.Sprint.Dtos;
 using Application.UseCases.Sprint.Get;
@@ -16,6 +15,7 @@ namespace WebAPI.Controllers
         private readonly UseCaseGetAllSprints _useCaseGetAllSprints;
         private readonly UseCaseGetSprintById _useCaseGetSprintById;
         private readonly UseCaseGetSprintsByIdProject _useCaseGetSprintsByIdProject;
+        private readonly UseCaseGetMaximumSprintNumber _useCaseGetMaximumSprintNumber;
         
         private readonly UseCaseCreateSprint _useCaseCreateSprint;
 
@@ -26,12 +26,14 @@ namespace WebAPI.Controllers
             UseCaseGetAllSprints useCaseGetAllSprints,
             UseCaseGetSprintById useCaseGetSprintById,
             UseCaseGetSprintsByIdProject useCaseGetSprintsByIdProject,
+            UseCaseGetMaximumSprintNumber useCaseGetMaximumSprintNumber,
             UseCaseCreateSprint useCaseCreateSprint,
             UseCaseDeleteSprint useCaseDeleteSprint)
         {
             _useCaseGetAllSprints = useCaseGetAllSprints;
             _useCaseGetSprintById = useCaseGetSprintById;
             _useCaseGetSprintsByIdProject = useCaseGetSprintsByIdProject;
+            _useCaseGetMaximumSprintNumber = useCaseGetMaximumSprintNumber;
             
             _useCaseCreateSprint = useCaseCreateSprint;
 
@@ -59,6 +61,13 @@ namespace WebAPI.Controllers
         public List<OutputDtoSprint> GetByIdProject(int idProject)
         {
             return _useCaseGetSprintsByIdProject.Execute(idProject);
+        }
+
+        [HttpGet]
+        [Route("getMaxSprintNumber/{idProjectForMaxSprintNumber:int}")]
+        public int GetMaxSprintNumber(int idProjectForMaxSprintNumber)
+        {
+            return _useCaseGetMaximumSprintNumber.Execute(idProjectForMaxSprintNumber);
         }
         
         // Post requests
