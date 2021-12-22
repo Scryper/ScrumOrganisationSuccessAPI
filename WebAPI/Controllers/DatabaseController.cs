@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("init")]
-        //[Authorize]
+        // [Authorize(false, false, false)]
         public IActionResult CreateDatabaseAndTables()
         {
             if (_hostEnvironment.IsProduction()) return BadRequest("Only in development");
@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("fill")]
-        //[Authorize]
+        // [Authorize(false, false, false)]
         public IActionResult FillTables()
         {
             if (_hostEnvironment.IsProduction()) return BadRequest("Only in development");

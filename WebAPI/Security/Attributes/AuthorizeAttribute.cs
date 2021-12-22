@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Domain;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,22 +13,38 @@ namespace WebAPI.Security.Attributes
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class AuthorizeAttribute : Attribute, IAuthorizationFilter
     {
+        private bool DeveloperAccess { get; set; }
+        private bool ScrumMasterAccess { get; set; }
+        private bool ProductOwnerAccess { get; set; }
+
+        public AuthorizeAttribute(bool developerAccess, bool scrumMasterAccess, bool productOwnerAccess)
+        {
+            DeveloperAccess = developerAccess;
+            ScrumMasterAccess = scrumMasterAccess;
+            ProductOwnerAccess = productOwnerAccess;
+        }
         public void OnAuthorization(AuthorizationFilterContext context)
         {
             var user = (User) context.HttpContext.Items["User"];
-            if (user == null)
+            if (user == null
+                || !DeveloperAccess && user.Role == 1
+                || !ScrumMasterAccess && user.Role == 2
+                || !ProductOwnerAccess && user.Role == 3)
             {
-                // Not logged in
-                context.Result = 
-                    new JsonResult(new
-                    {
-                        message = "Unauthorized"
-                    })
-                    {
-                        StatusCode = StatusCodes.Status401Unauthorized
-                    };
+                SendUnauthorizedAccessMessage(context);
             }
-            // TODO : check role
+        }
+
+        private void SendUnauthorizedAccessMessage(AuthorizationFilterContext context)
+        {
+            context.Result = 
+                new JsonResult(new
+                {
+                    message = "Unauthorized"
+                })
+                {
+                    StatusCode = StatusCodes.Status401Unauthorized
+                };
         }
     }
 }
