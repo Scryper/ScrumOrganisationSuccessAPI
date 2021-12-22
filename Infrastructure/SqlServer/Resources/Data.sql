@@ -41,7 +41,7 @@ insert into sos_user(firstname, lastname, password, email, role, birthdate)
 
 /*Init projects*/
 insert into project( name, deadline, description, repository_url, sos_status)
-    values( 'ScrumOrganisationSuccess API', convert(datetime, '24-12-2021 12:00:00', 103), 'Serveur pour réussir son année',
+    values( 'Scrum Organisation Success API', convert(datetime, '24-12-2021 12:00:00', 103), 'Serveur pour réussir son année',
     'https://github.com/Scryper/ScrumOrganisationSuccessAPI', 2);
 
 insert into project( name, deadline, description, repository_url, sos_status)
@@ -173,7 +173,7 @@ insert into user_story(id_project, name, description, priority)
 
 /*Init meetings*/
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(1, convert(datetime, '21-12-2021 12:00:00', 103), 'Meeting pour réussir son année.','PrivateHelhaRoom1');
+    values(1, convert(datetime, '21-12-2021 23:59:00', 103), 'Meeting pour réussir son année.','PrivateHelhaRoom1');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
     values(1, convert(datetime, '05-12-2021 12:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom7');
