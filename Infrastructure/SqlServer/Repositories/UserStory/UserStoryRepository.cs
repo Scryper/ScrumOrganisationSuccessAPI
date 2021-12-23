@@ -2,13 +2,13 @@
 using System.Data;
 using System.Linq;
 using Infrastructure.SqlServer.Utils;
-using NotImplementedException = System.NotImplementedException;
 
 namespace Infrastructure.SqlServer.Repositories.UserStory
 {
     public partial class UserStoryRepository : IUserStoryRepository
     {
         private readonly IDomainFactory<Domain.UserStory> _userStoryFactory = new UserStoryFactory();
+        private readonly RequestHelper<Domain.UserStory> _requestHelper = new RequestHelper<Domain.UserStory>();
         
         // Get requests
         public List<Domain.UserStory> GetAll()
@@ -25,32 +25,14 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
             return userStories;
         }
 
-        // Utils for GetByIdProject, GetByIdSprint
-        // Both return a list of userstories, the only changing parameters are the request and the column on which 
-        // the request base its verification
-        private List<Domain.UserStory> GetByIdHelper(int id, string column, string request)
-        {
-            var userStories = new List<Domain.UserStory>();
-            
-            var command = Database.GetCommand(request);
-            
-            command.Parameters.AddWithValue("@" + column, id);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) userStories.Add(_userStoryFactory.CreateFromSqlReader(reader));
-            
-            return userStories;
-        }
-        
         public List<Domain.UserStory> GetByIdProject(int idProject)
         {
-            return GetByIdHelper(idProject, ColIdProject, ReqGetByIdProject);
+            return _requestHelper.GetByIdHelper(idProject, ColIdProject, ReqGetByIdProject, _userStoryFactory);
         }
 
         public List<Domain.UserStory> GetByIdSprint(int idSprint)
         {
-            return GetByIdHelper(idSprint, ColIdSprint, ReqGetByIdSprint);
+            return _requestHelper.GetByIdHelper(idSprint, ColIdSprint, ReqGetByIdSprint, _userStoryFactory);
         }
         
         public Domain.UserStory GetById(int id)

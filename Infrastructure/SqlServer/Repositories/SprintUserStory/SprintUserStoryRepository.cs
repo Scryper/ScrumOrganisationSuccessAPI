@@ -8,6 +8,7 @@ namespace Infrastructure.SqlServer.Repositories.SprintUserStory
     public partial class SprintUserStoryRepository : ISprintUserStoryRepository
     {
         private readonly IDomainFactory<Domain.SprintUserStory> _sprintUserStoryFactory = new SprintUserStoryFactory();
+        private readonly RequestHelper<Domain.SprintUserStory> _requestHelper = new RequestHelper<Domain.SprintUserStory>();
 
         // Get requests
         public List<Domain.SprintUserStory> GetAll()
@@ -23,33 +24,15 @@ namespace Infrastructure.SqlServer.Repositories.SprintUserStory
 
             return sprintUserStories;
         }
-        
-        // Utils for GetByIdSprint and GetByIdUserStory
-        // Both return a list of sprint user stories, the only changing parameters are the request and the column on which 
-        // the request base its verification
-        private List<Domain.SprintUserStory> GetByIdHelper(int id, string column, string request)
-        {
-            var sprintUserStories = new List<Domain.SprintUserStory>();
-            
-            var command = Database.GetCommand(request);
-            
-            command.Parameters.AddWithValue("@" + column, id);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) sprintUserStories.Add(_sprintUserStoryFactory.CreateFromSqlReader(reader));
-            
-            return sprintUserStories;
-        }
 
         public List<Domain.SprintUserStory> GetByIdSprint(int idSprint)
         {
-            return GetByIdHelper(idSprint, ColIdSprint, ReqGetByIdSprint);
+            return _requestHelper.GetByIdHelper(idSprint, ColIdSprint, ReqGetByIdSprint, _sprintUserStoryFactory);
         }
 
         public List<Domain.SprintUserStory> GetByIdUserStory(int idUserStory)
         {
-            return GetByIdHelper(idUserStory, ColIdUserStory, ReqGetByIdUserStory);
+            return _requestHelper.GetByIdHelper(idUserStory, ColIdUserStory, ReqGetByIdUserStory, _sprintUserStoryFactory);
         }
 
         // Post requests

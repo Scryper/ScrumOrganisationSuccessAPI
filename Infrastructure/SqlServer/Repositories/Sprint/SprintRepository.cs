@@ -9,6 +9,7 @@ namespace Infrastructure.SqlServer.Repositories.Sprint
     public partial class SprintRepository : ISprintRepository
     {
         private readonly IDomainFactory<Domain.Sprint> _sprintFactory = new SprintFactory();
+        private readonly RequestHelper<Domain.Sprint> _requestHelper = new RequestHelper<Domain.Sprint>();
 
         // Get requests
         public List<Domain.Sprint> GetAll()
@@ -27,19 +28,7 @@ namespace Infrastructure.SqlServer.Repositories.Sprint
 
         public List<Domain.Sprint> GetByIdProject(int idProject)
         {
-            var sprints = new List<Domain.Sprint>();
-
-            var command = Database.GetCommand(ReqGetByIdProject);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all sprints
-            while(reader.Read()) sprints.Add(_sprintFactory.CreateFromSqlReader(reader));
-            
-            return sprints;
+            return _requestHelper.GetByIdHelper(idProject, ColIdProject, ReqGetByIdProject, _sprintFactory);
         }
 
         public Domain.Sprint GetById(int id)

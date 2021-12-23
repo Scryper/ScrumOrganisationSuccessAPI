@@ -7,6 +7,7 @@ namespace Infrastructure.SqlServer.Repositories.Comment
     public partial class CommentRepository : ICommentRepository
     {
         private readonly IDomainFactory<Domain.Comment> _commentFactory = new CommentFactory();
+        private readonly RequestHelper<Domain.Comment> _requestHelper = new RequestHelper<Domain.Comment>();
 
         // Get requests
         public List<Domain.Comment> GetAll()
@@ -27,21 +28,7 @@ namespace Infrastructure.SqlServer.Repositories.Comment
 
         public List<Domain.Comment> GetByIdUserStory(int idUserStory)
         {
-            var comments = new List<Domain.Comment>();
-            
-            var command = Database.GetCommand(ReqGetByIdUserStory);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColIdUserStory, idUserStory);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all comments
-            while(reader.Read()) comments.Add(_commentFactory.CreateFromSqlReader(reader));
-            
-            command.Connection.Close();
-            
-            return comments;
+            return _requestHelper.GetByIdHelper(idUserStory, ColIdUserStory, ReqGetByIdUserStory, _commentFactory);
         }
 
         public Domain.Comment GetById(int id)

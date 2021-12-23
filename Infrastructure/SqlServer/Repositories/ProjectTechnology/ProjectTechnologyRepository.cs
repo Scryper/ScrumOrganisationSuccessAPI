@@ -8,6 +8,7 @@ namespace Infrastructure.SqlServer.Repositories.ProjectTechnology
     public partial class ProjectTechnologyRepository : IProjectTechnologyRepository
     {
         private readonly IDomainFactory<Domain.ProjectTechnology> _projectTechnologyFactory = new ProjectTechnologyFactory();
+        private readonly RequestHelper<Domain.ProjectTechnology> _requestHelper = new RequestHelper<Domain.ProjectTechnology>();
 
         // Get requests
         public List<Domain.ProjectTechnology> GetAll()
@@ -23,32 +24,14 @@ namespace Infrastructure.SqlServer.Repositories.ProjectTechnology
             return projectTechnologies;
         }
 
-        // Utils for GetActiveProjectByUser and GetProjectByIdUserNotFinishedIsLinked
-        // Both return a list of projects, the only changing parameters are the request and the column on which 
-        // the request base its verification
-        private List<Domain.ProjectTechnology> GetByIdHelper(int id, string column, string request)
-        {
-            var projectTechnologies = new List<Domain.ProjectTechnology>();
-            
-            var command = Database.GetCommand(request);
-            
-            command.Parameters.AddWithValue("@" + column, id);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) projectTechnologies.Add(_projectTechnologyFactory.CreateFromSqlReader(reader));
-            
-            return projectTechnologies;
-        }
-        
         public List<Domain.ProjectTechnology> GetByIdProject(int idProject)
         {
-            return GetByIdHelper(idProject, ColIdProject, ReqGetByIdProject);
+            return _requestHelper.GetByIdHelper(idProject, ColIdProject, ReqGetByIdProject, _projectTechnologyFactory);
         }
 
         public List<Domain.ProjectTechnology> getByIdTechnology(int idTechnology)
         {
-            return GetByIdHelper(idTechnology, ColIdTechnology, ReqGetByIdTechnology);
+            return _requestHelper.GetByIdHelper(idTechnology, ColIdTechnology, ReqGetByIdTechnology, _projectTechnologyFactory);
         }
 
         // Post requests
