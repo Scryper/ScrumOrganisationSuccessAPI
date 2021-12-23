@@ -70,19 +70,19 @@ insert into project( name, deadline, description, repository_url, sos_status)
     'https://github.com/Scryper/ScrumOrganisationSuccessAPI', 2);
 
 insert into project( name, deadline, description, repository_url, sos_status)
-    values( 'ScrumOrganisationSuccess Web App', convert(datetime, '24-12-2021 12:00:00', 103), 'Site pour réussir son année',
+    values( 'ScrumOrganisationSuccess Web App', convert(datetime, '24-02-2022 12:00:00', 103), 'Site pour réussir son année',
     'https://github.com/Scryper/ScrumOrganisationSuccessWebApp', 2);
 
 insert into project( name, deadline, description, repository_url, sos_status)
-    values( 'Skydda', convert(datetime, '08-12-2021 12:00:00', 103), 'Jeu vidéo pour réussir son année',
+    values( 'Skydda', convert(datetime, '08-03-2022 12:00:00', 103), 'Jeu vidéo pour réussir son année',
     'https://github.com/Scryper/Skydda', 3);
 
 insert into project( name, deadline, description, repository_url, sos_status)
-    values( 'Labo TCP IP', convert(datetime, '08-12-2021 12:00:00', 103), 'Labo pour réussir son année',
+    values( 'Labo TCP IP', convert(datetime, '08-02-2022 12:00:00', 103), 'Labo pour réussir son année',
     'https://github.com/Scryper/Labo01_TCP_IP', 3);
 
 insert into project( name, deadline, description, repository_url, sos_status)
-values('Dernier Projet', convert(datetime, '09-12-2021 12:00:00', 103), 'projet pour réussir son année',
+values('Dernier Projet', convert(datetime, '30-01-2022 12:00:00', 103), 'projet pour réussir son année',
         'https://github.com/dotni/meilleurProjet', 2);
 
 /*Init technology*/
@@ -127,34 +127,34 @@ insert into technology(name)
 
 /*Init sprints*/
 insert into sprint(id_project, sprint_number, start_date, deadline, description)
-    values(1, 1, convert(date, '01-11-2021', 103), convert(date, '31-12-2021', 103), 'Création basique du serveur');
+    values(1, 1, convert(date, '01-01-2022', 103), convert(date, '31-01-2022', 103), 'Création basique du serveur');
    
 insert into sprint(id_project, sprint_number, start_date, deadline, description)
-    values(1, 2, convert(date, '01-01-2022', 103), convert(date, '31-01-2022', 103), 'Liens entre API, application internet et application android');
+    values(1, 2, convert(date, '01-02-2022', 103), convert(date, '15-02-2022', 103), 'Liens entre API, application internet et application android');
 
 insert into sprint(id_project, sprint_number, start_date, deadline, description)
-    values(1, 3, convert(date, '01-02-2022', 103), convert(date, '24-02-2022', 103), 'Derniers réglages en fonctions des demandes du client');
+    values(1, 3, convert(date, '16-02-2022', 103), convert(date, '24-02-2022', 103), 'Derniers réglages en fonctions des demandes du client');
     
 insert into sprint(id_project, sprint_number, start_date, deadline, description)
-    values(2, 1, convert(date, '06-11-2021', 103), convert(date, '19-11-2021', 103), 'Premier jet des pages du site');
+    values(2, 1, convert(date, '06-01-2022', 103), convert(date, '19-01-2022', 103), 'Premier jet des pages du site');
     
 insert into sprint(id_project, sprint_number, start_date, deadline, description)
-    values(2, 2, convert(date, '20-11-2021', 103), convert(date, '20-12-2021', 103), 'Deuxième jet des pages du site');
+    values(2, 2, convert(date, '20-01-2022', 103), convert(date, '24-02-2022', 103), 'Deuxième jet des pages du site');
     
 insert into sprint(id_project, sprint_number, start_date, deadline, description)
-    values(3, 1, convert(date, '10-09-2021', 103), convert(date, '09-10-2021', 103), 'Ajout des premiers mouvements');
+    values(3, 1, convert(date, '10-01-2022', 103), convert(date, '11-01-2022', 103), 'Ajout des premiers mouvements');
     
 insert into sprint(id_project, sprint_number, start_date, deadline, description)
-    values(3, 2, convert(date, '10-10-2021', 103), convert(date, '10-11-2021', 103), 'Ajout des personnages et maps');
+    values(3, 2, convert(date, '12-01-2022', 103), convert(date, '10-02-2022', 103), 'Ajout des personnages et maps');
     
 insert into sprint(id_project, sprint_number, start_date, deadline, description)
-    values(3, 3, convert(date, '11-11-2021', 103), convert(date, '11-12-2021', 103), 'Finitions, améliorations, factorisation');
+    values(3, 3, convert(date, '11-02-2022', 103), convert(date, '08-03-2022', 103), 'Finitions, améliorations, factorisation');
     
 insert into sprint(id_project, sprint_number, start_date, deadline, description)
-    values(4, 1, convert(date, '10-10-2021', 103), convert(date, '23-10-2021', 103), 'Création du visuel des pages');
+    values(4, 1, convert(date, '30-12-2022', 103), convert(date, '15-01-2022', 103), 'Création du visuel des pages');
     
 insert into sprint(id_project, sprint_number, start_date, deadline, description)
-    values(4, 2, convert(date, '24-10-2021', 103), convert(date, '24-11-2021', 103), 'Création du back-end des pages');
+    values(4, 2, convert(date, '16-01-2022', 103), convert(date, '08-02-2022', 103), 'Création du back-end des pages');
 
 /*Init user stories*/
 insert into user_story(id_project, name, description, priority)
@@ -198,56 +198,56 @@ insert into user_story(id_project, name, description, priority)
 
 /*Init meetings*/
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(1, convert(datetime, '25-12-2021 22:00:00', 103), 'Meeting pour réussir son année.','PrivateHelhaRoom1');
+    values(1, convert(datetime, '24-01-2022 22:00:00', 103), 'Meeting pour réussir son année.','PrivateHelhaRoom1');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(1, convert(datetime, '27-12-2022 12:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom7');
+    values(1, convert(datetime, '25-01-2022 12:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom7');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(1, convert(datetime, '12-11-2021 12:00:00', 103), 'Partage des tâches restantes.','PrivateHelhaRoom2');
+    values(1, convert(datetime, '25-01-2022 19:00:00', 103), 'Partage des tâches restantes.','PrivateHelhaRoom2');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(2, convert(datetime, '05-01-2022 12:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom3');
+    values(2, convert(datetime, '02-02-2022 12:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom3');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(2, convert(datetime, '10-01-2022 15:00:00', 103), 'Partage des tâches restantes.','PrivateHelhaRoom4');
+    values(2, convert(datetime, '10-02-2022 15:00:00', 103), 'Partage des tâches restantes.','PrivateHelhaRoom4');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(3, convert(datetime, '02-02-2022 15:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom5');
+    values(3, convert(datetime, '17-02-2022 15:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom5');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(3, convert(datetime, '14-11-2021 15:00:00', 103), 'Partage des tâches restantes.','PrivateHelhaRoom6');
+    values(3, convert(datetime, '22-02-2022 15:00:00', 103), 'Partage des tâches restantes.','PrivateHelhaRoom6');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(3, convert(datetime, '18-11-2021 15:00:00', 103), 'Organisation de la présentation orale.','PrivateHelhaRoom8');
+    values(3, convert(datetime, '23-02-2022 15:00:00', 103), 'Organisation de la présentation orale.','PrivateHelhaRoom8');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(4, convert(datetime, '01-12-2021 15:00:00', 103), 'Partage des tâches.','PrivateHelhaRoom9');
+    values(4, convert(datetime, '07-01-2022 15:00:00', 103), 'Partage des tâches.','PrivateHelhaRoom9');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(4, convert(datetime, '21-12-2021 15:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom10');
+    values(4, convert(datetime, '15-01-2022 15:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom10');
 
 insert into meeting(id_sprint, schedule, description, meeting_url)
-values(5, convert(datetime, '22-12-2021 15:00:00', 103), 'Partage des tâches.','PrivateHelhaRoom11');
+values(5, convert(datetime, '24-01-2022 15:00:00', 103), 'Partage des tâches.','PrivateHelhaRoom11');
 
 insert into meeting(id_sprint, schedule, description, meeting_url)
-values(5, convert(datetime, '21-12-2021 15:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom12');
+values(5, convert(datetime, '24-01-2022 19:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom12');
 
 insert into meeting(id_sprint, schedule, description, meeting_url)
-values(5, convert(datetime, '21-12-2021 15:00:00', 103), 'Mise en commun des branches21.','PrivateHelhaRoom1221');
+values(5, convert(datetime, '25-01-2022 15:00:00', 103), 'Mise en commun des branches21.','PrivateHelhaRoom1221');
 
 insert into meeting(id_sprint, schedule, description, meeting_url)
-values(5, convert(datetime, '22-12-2021 15:00:00', 103), 'Mise en commun des branches22.','PrivateHelhaRoom1222');
+values(5, convert(datetime, '25-01-2022 19:00:00', 103), 'Mise en commun des branches22.','PrivateHelhaRoom1222');
 
 /*Init comments*/
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(1, 1, convert(datetime, '26-11-2021 12:00:00', 103), 'Bug sur cette User story, quelqu''un de dispo ?');
+    values(1, 1, convert(datetime, '20-01-2022 12:00:00', 103), 'Bug sur cette User story, quelqu''un de dispo ?');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(1, 2, convert(datetime, '26-11-2021 12:30:00', 103), 'Je suis disponible, on se rejoint sur Discord');
+    values(1, 2, convert(datetime, '20-01-2022 12:30:00', 103), 'Je suis disponible, on se rejoint sur Discord');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(1, 6, convert(datetime, '27-11-2021 12:30:00', 103), 'Vous en êtes où ?');
+    values(1, 6, convert(datetime, '21-01-2022 12:30:00', 103), 'Vous en êtes où ?');
     
 insert into comment(id_user_story, id_user, posted_at, content)
     values(3, 6, convert(datetime, '02-12-2021 12:30:00', 103), 'Les tests sont finis ?');
