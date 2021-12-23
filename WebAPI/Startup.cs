@@ -258,9 +258,13 @@ namespace WebAPI
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "ScrumOrganisationSuccessAPI v1");
                 });
             }
+            else
+            {
+                app.UseHttpsRedirection();
 
-            app.UseHttpsRedirection();
+            }
 
+            
             app.UseRouting();
 
             app.UseAuthorization();
