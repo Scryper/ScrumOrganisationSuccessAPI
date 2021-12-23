@@ -7,11 +7,11 @@ namespace Infrastructure.SqlServer.Repositories.UserTechnology
         // Get Requests
         List<Domain.UserTechnology> GetAll();
 
-        List<Domain.UserTechnology> GetByUserId(int userId);
+        List<Domain.UserTechnology> GetByIdUser(int userId);
 
-        List<Domain.UserTechnology> GetByTechnologyId(int technologyId);
+        List<Domain.UserTechnology> GetByIdTechnology(int technologyId);
 
-        List<Domain.UserTechnology> GetByTechnologyIdUserId(int technologyId, int idUser);
+        List<Domain.UserTechnology> GetByIdTechnologyIdUser(int technologyId, int idUser);
         
         // Post Requests
         Domain.UserTechnology Create(Domain.UserTechnology userTechnology);

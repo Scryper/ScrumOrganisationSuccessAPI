@@ -23,15 +23,17 @@ namespace Infrastructure.SqlServer.Repositories.UserTechnology
             
             return userTechnologies;
         }
-
-        public List<Domain.UserTechnology> GetByUserId(int userId)
+        
+        // Utils for GetByIdUser, GetByIdTechnology
+        // Both return a list of user technologies, the only changing parameters are the request and the column on which 
+        // the request base its verification
+        private List<Domain.UserTechnology> GetByIdHelper(int id, string column, string request)
         {
             var userTechnologies = new List<Domain.UserTechnology>();
             
-            var command = Database.GetCommand(ReqGetByUserId);
+            var command = Database.GetCommand(request);
             
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColIdUser, userId);
+            command.Parameters.AddWithValue("@" + column, id);
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
@@ -40,31 +42,24 @@ namespace Infrastructure.SqlServer.Repositories.UserTechnology
             return userTechnologies;
         }
 
-        public List<Domain.UserTechnology> GetByTechnologyId(int technologyId)
+        public List<Domain.UserTechnology> GetByIdUser(int idUser)
         {
-            var userTechnologies = new List<Domain.UserTechnology>();
-            
-            var command = Database.GetCommand(ReqGetByTechnology);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColIdTechnology, technologyId);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all user stories
-            while(reader.Read()) userTechnologies.Add(_userTechnologyFactory.CreateFromSqlReader(reader));
-            
-            return userTechnologies;
+            return GetByIdHelper(idUser, ColIdUser, ReqGetByUserId);
         }
 
-        public List<Domain.UserTechnology> GetByTechnologyIdUserId(int technologyId, int idUser)
+        public List<Domain.UserTechnology> GetByIdTechnology(int idTechnology)
+        {
+            return GetByIdHelper(idTechnology, ColIdTechnology, ReqGetByTechnology);
+        }
+
+        public List<Domain.UserTechnology> GetByIdTechnologyIdUser(int idTechnology, int idUser)
         {
             var userTechnologies = new List<Domain.UserTechnology>();
             
             var command = Database.GetCommand(ReqGetByIdTechnologyIdUser);
             
             // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColIdTechnology, technologyId);
+            command.Parameters.AddWithValue("@" + ColIdTechnology, idTechnology);
             command.Parameters.AddWithValue("@" + ColIdUser, idUser);
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
