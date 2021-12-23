@@ -122,7 +122,7 @@ namespace WebAPI.Controllers
         // Put requests
         [HttpPut]
         [Route("updateStatus/{idProjectUpdateState:int}")]
-        [Authorize(false, false, true)]
+        [Authorize(true, true, true)]
         public ActionResult UpdateState(int idProjectUpdateState, InputDtoProject newProject)
         {
             var inputDtoUpdate = new InputDtoUpdateProjectStatus
