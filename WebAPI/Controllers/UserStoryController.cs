@@ -6,6 +6,7 @@ using Application.UseCases.UserStory.Get;
 using Application.UseCases.UserStory.Post;
 using Application.UseCases.UserStory.Put;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Security.Attributes;
 
 namespace WebAPI.Controllers
 {
@@ -48,6 +49,7 @@ namespace WebAPI.Controllers
         
         // Get requests
         [HttpGet]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoUserStory>> GetAll()
         {
             return _useCaseGetAllUserStories.Execute();
@@ -57,6 +59,7 @@ namespace WebAPI.Controllers
         // swagger/data/xxx -> so multiple endpoints matches
         [HttpGet]
         [Route("byProject/{idProject:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoUserStory>> GetByIdProject(int idProject)
         {
             return _useCaseGetUserStoriesByIdProject.Execute(idProject);
@@ -64,6 +67,7 @@ namespace WebAPI.Controllers
         
         [HttpGet]
         [Route("byId/{id:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<OutputDtoUserStory> GetById(int id)
         {
             return _useCaseGetUserStoryById.Execute(id);
@@ -71,6 +75,7 @@ namespace WebAPI.Controllers
         
         [HttpGet]
         [Route("bySprint/{idSprint:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoUserStory>> GetByIdSprint(int idSprint)
         {
             return _useCaseGetUserStoriesByIdSprint.Execute(idSprint);
@@ -80,6 +85,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(409)]
+        [Authorize(false, false, true)]
         public ActionResult<OutputDtoUserStory> Create([FromBody] InputDtoUserStory inputDtoUserStory)
         {
             var result = _useCaseCreateUserStory.Execute(inputDtoUserStory);
@@ -90,7 +96,7 @@ namespace WebAPI.Controllers
         [HttpPut]
         [Route("update/{id:int}")]
         [ProducesResponseType(409)]
-        public ActionResult UpdateRole(int id, InputDtoUserStory inputDtoUserStory)
+        public ActionResult UpdateUserStory(int id, InputDtoUserStory inputDtoUserStory)
         {
             var inputDtoUpdate = new InputDtoUpdateUserStory
             {
@@ -113,6 +119,7 @@ namespace WebAPI.Controllers
         //  Delete requests
         [HttpDelete]
         [Route("{id:int}")]
+        [Authorize(false, false, true)]
         public ActionResult Delete(int id)
         {
             var result = _useCaseDeleteUserStory.Execute(id);

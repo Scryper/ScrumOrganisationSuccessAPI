@@ -4,6 +4,7 @@ using Application.UseCases.UserTechnology.Dtos;
 using Application.UseCases.UserTechnology.Get;
 using Application.UseCases.UserTechnology.Post;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Security.Attributes;
 
 
 namespace WebAPI.Controllers
@@ -38,6 +39,7 @@ namespace WebAPI.Controllers
         
         // Get requests
         [HttpGet]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoUserTechnology>> GetAll()
         {
             return _useCaseGetAllUserTechnologies.Execute();
@@ -45,6 +47,7 @@ namespace WebAPI.Controllers
         
         [HttpGet]
         [Route("byUser/{idUser:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoUserTechnology>> GetByIdUser(int idUser)
         {
             return _useCaseGetUserTechnologyByIdUser.Execute(idUser);
@@ -52,6 +55,7 @@ namespace WebAPI.Controllers
         
         [HttpGet]
         [Route("byTechnology/{idTechnology:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoUserTechnology>> GetByIdTechnology(int idTechnology)
         {
             return _useCaseGetUserTechnologyByIdTechnology.Execute(idTechnology);
@@ -59,6 +63,7 @@ namespace WebAPI.Controllers
         
         [HttpGet]
         [Route("byTechnologyUser/{idTechnology:int},{idUser:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoUserTechnology>> GetByIdTechnologyIdUser(int idTechnology,int idUser)
         {
             return _useCaseGetUserTechnologyByIdTechnologyIdUser.Execute(idTechnology,idUser);
@@ -68,6 +73,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(409)]
+        [Authorize(true, true, true)]
         public ActionResult<OutputDtoUserTechnology> Create([FromBody] InputDtoUserTechnology inputDtoUserTechnology)
         {
             var result = _useCaseCreateUserTechnology.Execute(inputDtoUserTechnology);
@@ -77,6 +83,7 @@ namespace WebAPI.Controllers
         // Delete requests
         [HttpDelete]
         [Route("{idUser:int},{idTechnology:int}")]
+        [Authorize(true, true, true)]
         public ActionResult Delete(int idUser, int idTechnology)
         {
             var result = _useCaseDeleteUserTechnology.Execute(idUser,idTechnology);

@@ -3,6 +3,7 @@ using Application.UseCases.SprintUserStory.Dtos;
 using Application.UseCases.SprintUserStory.Get;
 using Application.UseCases.SprintUserStory.Post;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Security.Attributes;
 
 namespace WebAPI.Controllers
 {
@@ -30,6 +31,7 @@ namespace WebAPI.Controllers
         
         // Get requests
         [HttpGet]
+        [Authorize(false, false, true)]
         public ActionResult<List<OutputDtoSprintUserStory>> GetAll()
         {
             return _useCaseGetAllSprintUserStory.Execute();
@@ -37,6 +39,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("byIdSprint/{idSprint:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoSprintUserStory>> GetByIdSprint(int idSprint)
         {
             return _useCaseGetSprintUserStoryByIdSprint.Execute(idSprint);
@@ -46,6 +49,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(409)]
+        [Authorize(false, true, true)]
         public ActionResult<OutputDtoSprintUserStory> Create(InputDtoSprintUserStory inputDtoSprintUserStory)
         {
             var result = _useCaseCreateSprintUserStory.Execute(inputDtoSprintUserStory);

@@ -2,6 +2,7 @@
 using Application.UseCases.Technology.Dtos;
 using Application.UseCases.Technology.Get;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Security.Attributes;
 
 namespace WebAPI.Controllers
 {
@@ -23,13 +24,15 @@ namespace WebAPI.Controllers
         
         // Get requests
         [HttpGet]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoTechnology>> GetAll()
         {
             return _useCaseGetAllTechnologies.Execute();
         }
         
         [HttpGet]
-        [Route("byName/{name:alpha}")] 
+        [Route("byName/{name:alpha}")]
+        [Authorize(true, true, true)]
         public ActionResult<OutputDtoTechnology> GetByName(string name)
         {
             return _useCaseGetTechnologyByName.Execute(name);

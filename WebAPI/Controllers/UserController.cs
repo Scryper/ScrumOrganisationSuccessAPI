@@ -29,11 +29,7 @@ namespace WebAPI.Controllers
         private readonly UseCaseCreateUser _useCaseCreateUser;
 
         private readonly UseCaseUpdateUserRole _useCaseUpdateUserRole;
-        private readonly UseCaseUpdateUserEmail _useCaseUpdateUserEmail;
-        private readonly UseCaseUpdateUserPassword _useCaseUpdateUserPassword;
         private readonly UseCaseUpdateUserFirstNameLastName _useCaseUpdateUserFirstNameLastName;
-        
-        private readonly UseCaseDeleteUser _useCaseDeleteUser;
         
         private readonly UseCaseAuthenticateUser _useCaseAuthenticateUser;
         
@@ -45,10 +41,7 @@ namespace WebAPI.Controllers
             UseCaseGetUsersByIdMeeting useCaseGetUsersByIdMeeting,
             UseCaseGetUsersByIdProject useCaseGetUsersByIdProject,
             UseCaseCreateUser useCaseCreateUser,
-            UseCaseUpdateUserEmail useCaseUpdateUserEmail,
-            UseCaseUpdateUserPassword useCaseUpdateUserPassword,
             UseCaseUpdateUserRole useCaseUpdateUserRole,
-            UseCaseDeleteUser useCaseDeleteUser,
             UseCaseAuthenticateUser useCaseAuthenticateUser,
             UseCaseUpdateUserFirstNameLastName useCaseUpdateUserFirstNameLastName,
             UseCaseGetUserDaysOfXP useCaseUserDaysOfXp,
@@ -68,18 +61,15 @@ namespace WebAPI.Controllers
             
             _useCaseCreateUser = useCaseCreateUser;
 
-            _useCaseUpdateUserEmail = useCaseUpdateUserEmail;
-            _useCaseUpdateUserPassword = useCaseUpdateUserPassword;
             _useCaseUpdateUserRole = useCaseUpdateUserRole;
             _useCaseUpdateUserFirstNameLastName = useCaseUpdateUserFirstNameLastName;
-            
-            _useCaseDeleteUser = useCaseDeleteUser;
             
             _useCaseAuthenticateUser = useCaseAuthenticateUser;
         }
 
         // Get requests
         [HttpGet]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoUser>> GetAll()
         {
             return _useCaseGetAllUsers.Execute();
@@ -89,6 +79,7 @@ namespace WebAPI.Controllers
         // swagger/data/xxx -> so multiple endpoints matches
         [HttpGet]
         [Route("byProject/{idProject:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoUser>> GetByIdProject(int idProject)
         {
             return _useCaseGetUsersByIdProject.Execute(idProject);
@@ -96,6 +87,7 @@ namespace WebAPI.Controllers
         
         [HttpGet]
         [Route("byProjectIsWorking/{idProject:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoUser>> GetByIdProjectIsWorking(int idProject)
         {
             return _useCaseGetUsersByIdProjectIsWorking.Execute(idProject);
@@ -103,6 +95,7 @@ namespace WebAPI.Controllers
         
         [HttpGet]
         [Route("byMeeting/{idMeeting:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoUser>> GetByIdMeeting(int idMeeting)
         {
             return _useCaseGetUsersByIdMeeting.Execute(idMeeting);
@@ -110,6 +103,7 @@ namespace WebAPI.Controllers
         
         [HttpGet]
         [Route("byId/{id:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<OutputDtoUser> GetById(int id)
         {
             return _useCaseGetUserById.Execute(id);
@@ -125,6 +119,7 @@ namespace WebAPI.Controllers
         
         [HttpGet]
         [Route("daysOfXP/{idUser:int}")]
+        [Authorize(true, true, true)]
         public int GetDaysOfXP(int idUser)
         {
             return _useCaseGetUserDaysOfXp.Execute(idUser);
@@ -132,6 +127,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("byProjectIsApplying/{idProject:int}")]
+        [Authorize(false, false, true)]
         public ActionResult<List<OutputDtoUser>> GetByIdProjectIsApplying(int idProject)
         {
             return _useCaseGetUserByIdProjectIsApplying.Execute(idProject);
@@ -139,6 +135,7 @@ namespace WebAPI.Controllers
         
         [HttpGet]
         [Route("byCommentOnUserStory/{idUserStory:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoUser>> GetByCommentOnUserStory(int idUserStory)
         {
             return _useCaseGetUsersByCommentOnUserStory.Execute(idUserStory);
@@ -173,6 +170,7 @@ namespace WebAPI.Controllers
         // swagger/data/xxx -> so multiple endpoints matches
         [HttpPut]
         [Route("roleUpdate/{idForRoleUpdate:int}")]
+        [Authorize(true, true, true)]
         public ActionResult UpdateRole(int idForRoleUpdate, InputDtoUser inputDtoUser)
         {
             var inputDtoUpdate = new InputDtoUpdateUserRole
@@ -231,6 +229,7 @@ namespace WebAPI.Controllers
 
         [HttpPut]
         [Route("firstNameLastNameUpdate/{idForFirstNameLastNameUpdate:int}")]
+        [Authorize(true, true, true)]
         public ActionResult UpdateFirstNameLastName(int idForFirstNameLastNameUpdate, InputDtoUser inputDtoUser)
         {
             var inputDtoUpdate = new InputDtoUpdateUserFirstNameLastName

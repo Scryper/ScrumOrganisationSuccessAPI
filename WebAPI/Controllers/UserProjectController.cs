@@ -5,6 +5,7 @@ using Application.UseCases.UserProject.Delete;
 using Application.UseCases.UserProject.Dtos;
 using Application.UseCases.UserProject.Get;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Security.Attributes;
 
 namespace WebAPI.Controllers
 {
@@ -60,6 +61,7 @@ namespace WebAPI.Controllers
         
         // Get requests
         [HttpGet]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoUserProject>> GetAll()
         {
             return _useCaseGetAllUserProjects.Execute();
@@ -67,6 +69,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("byIdDeveloper/{idDeveloper:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoUserProject>> GetByIdDeveloper(int idDeveloper)
         {
             return _useCaseGetUserProjectsByIdDeveloper.Execute(idDeveloper);
@@ -74,6 +77,7 @@ namespace WebAPI.Controllers
         
         [HttpGet]
         [Route("byIdDeveloperIsAppliance/{idDeveloper:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoUserProject>> GetByIdDeveloperIsAppliance(int idDeveloper)
         {
             return _useCaseGetUserProjectsByIdDeveloperIsAppliance.Execute(idDeveloper);
@@ -81,6 +85,7 @@ namespace WebAPI.Controllers
         
         [HttpGet]
         [Route("byIdDeveloperIdProject/{idDeveloper:int},{idProject:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<OutputDtoUserProject> GetByIdDeveloperIdProject(int idDeveloper,int idProject)
         {
             return _useCaseGetByIdUserIdProject.Execute(idDeveloper,idProject);
@@ -88,6 +93,7 @@ namespace WebAPI.Controllers
         
         [HttpGet]
         [Route("byIdDeveloperIfIsWorking/{idDeveloper:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoUserProject>> GetByIdDeveloperIfIsWorking(int idDeveloper)
         {
             return _useCaseGetUserProjectByIdDeveloperIfIsWorking.Execute(idDeveloper);
@@ -95,6 +101,7 @@ namespace WebAPI.Controllers
         
         [HttpGet]
         [Route("byIdDeveloperIfIsNotWorking/{idDeveloper:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoUserProject>> GetByIdDeveloperIfIsNotWorking(int idDeveloper)
         {
             return _useCaseGetUserProjectByIdDeveloperIfIsNotWorking.Execute(idDeveloper);
@@ -103,6 +110,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(409)]
+        [Authorize(false, false, true)]
         public ActionResult<OutputDtoUserProject> Create([FromBody] InputDtoUserProject inputDtoUserProject)
         {
             var result = _useCaseCreateDeveloperProject.Execute(inputDtoUserProject);
@@ -111,6 +119,7 @@ namespace WebAPI.Controllers
 
         [HttpPut]
         [Route("{idDeveloper:int}, {idProject:int}")]
+        [Authorize(true, true, true)]
         public ActionResult Update(int idDeveloper, int idProject, InputDtoUserProject newUserProject)
         {
             var inputDtoUpdate = new InputDtoUpdateUserProject
@@ -132,9 +141,10 @@ namespace WebAPI.Controllers
         //  Delete requests
         [HttpDelete]
         [Route("{idDeveloper:int}, {idProject:int}")]
-        public ActionResult Delete(int idDeveloper,int idProject)
+        [Authorize(false, true, true)]
+        public ActionResult Delete(int idDeveloper, int idProject)
         {
-            var result = _useCaseDeleteUserProject.Execute(idDeveloper,idProject);
+            var result = _useCaseDeleteUserProject.Execute(idDeveloper, idProject);
 
             if (result) return Ok();
             return NotFound();

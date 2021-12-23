@@ -3,6 +3,7 @@ using Application.UseCases.Sprint.Dtos;
 using Application.UseCases.Sprint.Get;
 using Application.UseCases.Sprint.Post;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Security.Attributes;
 
 namespace WebAPI.Controllers
 {
@@ -36,6 +37,7 @@ namespace WebAPI.Controllers
         
         // Get requests
         [HttpGet]
+        [Authorize(false, false, true)]
         public ActionResult<List<OutputDtoSprint>> GetAll()
         {
             return _useCaseGetAllSprints.Execute();
@@ -45,6 +47,7 @@ namespace WebAPI.Controllers
         // swagger/data/xxx -> so multiple endpoints matches
         [HttpGet]
         [Route("byId/{id:int}")]
+        [Authorize(true, true, true)]
         public OutputDtoSprint GetById(int id)
         {
             return _useCaseGetSprintById.Execute(id);
@@ -52,6 +55,7 @@ namespace WebAPI.Controllers
         
         [HttpGet]
         [Route("byProject/{idProject:int}")]
+        [Authorize(true, true, true)]
         public List<OutputDtoSprint> GetByIdProject(int idProject)
         {
             return _useCaseGetSprintsByIdProject.Execute(idProject);
@@ -59,6 +63,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("getMaxSprintNumber/{idProjectForMaxSprintNumber:int}")]
+        [Authorize(true, true, true)]
         public int GetMaxSprintNumber(int idProjectForMaxSprintNumber)
         {
             return _useCaseGetMaximumSprintNumber.Execute(idProjectForMaxSprintNumber);
@@ -68,6 +73,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(409)]
+        [Authorize(false, true, false)]
         public ActionResult<OutputDtoSprint> Create(InputDtoSprint inputDtoSprint)
         {
             var result = _useCaseCreateSprint.Execute(inputDtoSprint);

@@ -4,6 +4,7 @@ using Application.UseCases.Meeting.Dtos;
 using Application.UseCases.Meeting.Get;
 using Application.UseCases.Meeting.Post;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Security.Attributes;
 
 namespace WebAPI.Controllers
 {
@@ -31,6 +32,7 @@ namespace WebAPI.Controllers
 
         // Get requests
         [HttpGet]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoMeeting>> GetAll()
         {
             return _useCaseGetAllMeetings.Execute();
@@ -40,6 +42,7 @@ namespace WebAPI.Controllers
         // swagger/data/xxx -> so multiple endpoints matches
         [HttpGet]
         [Route("byUser/{idUser:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoMeeting>> GetByIdUser(int idUser)
         {
             return _useCaseGetMeetingsByIdUser.Execute(idUser);
@@ -49,6 +52,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(409)]
+        [Authorize(false, true, false)]
         public ActionResult<OutputDtoMeeting> Create([FromBody] InputDtoMeeting inputDtoMeeting)
         {
             var result = _useCaseCreateMeeting.Execute(inputDtoMeeting);

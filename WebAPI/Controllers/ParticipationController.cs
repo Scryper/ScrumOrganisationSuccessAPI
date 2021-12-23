@@ -3,6 +3,7 @@ using Application.UseCases.Participation.Dtos;
 using Application.UseCases.Participation.Get;
 using Application.UseCases.Participation.Post;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Security.Attributes;
 
 namespace WebAPI.Controllers
 {
@@ -31,6 +32,7 @@ namespace WebAPI.Controllers
         
         // Get requests
         [HttpGet]
+        [Authorize(false, true, true)]
         public ActionResult<List<OutputDtoParticipation>> GetAll()
         {
             return _useCaseGetAllParticipations.Execute();
@@ -38,6 +40,7 @@ namespace WebAPI.Controllers
         
         [HttpGet]
         [Route("byUser/{idUser:int}")]
+        [Authorize(false, true, true)]
         public ActionResult<List<OutputDtoParticipation>> GetByIdUser(int idUser)
         {
             return _useCaseGetParticipationsByIdUser.Execute(idUser);
@@ -45,6 +48,7 @@ namespace WebAPI.Controllers
         
         [HttpGet]
         [Route("byMeeting/{idMeeting:int}")]
+        [Authorize(false, true, true)]
         public ActionResult<List<OutputDtoParticipation>> GetByIdMeeting(int idMeeting)
         {
             return _useCaseGetParticipationsByIdMeeting.Execute(idMeeting);
@@ -54,6 +58,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(409)]
+        [Authorize(false, true, false)]
         public ActionResult<OutputDtoParticipation> Create([FromBody] InputDtoParticipation inputDtoParticipation)
         {
             var result = _useCaseCreateParticipation.Execute(inputDtoParticipation);

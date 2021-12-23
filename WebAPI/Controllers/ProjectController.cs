@@ -6,6 +6,7 @@ using Application.UseCases.Project.Get;
 using Application.UseCases.Project.Post;
 using Application.UseCases.Project.Put;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Security.Attributes;
 
 namespace WebAPI.Controllers
 {
@@ -54,6 +55,7 @@ namespace WebAPI.Controllers
         
         // Get requests
         [HttpGet]
+        [Authorize(false, false, true)]
         public ActionResult<List<OutputDtoProject>> GetAll()
         {
             return _useCaseGetAllProjects.Execute();
@@ -63,6 +65,7 @@ namespace WebAPI.Controllers
         // swagger/data/xxx -> so multiple endpoints matches
         [HttpGet]
         [Route("byId/{id:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<OutputDtoProject> GetById(int id)
         {
             return _useCaseGetProjectById.Execute(id);
@@ -70,6 +73,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("byName/{name:required}")]
+        [Authorize(true, true, true)]
         public ActionResult<OutputDtoProject> GetByName(string name)
         {
             var correctName = HttpUtility.UrlDecode(name);
@@ -79,6 +83,7 @@ namespace WebAPI.Controllers
         // Get requests
         [HttpGet]
         [Route("activeByIdUser/{idUser:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoProject>> GetActiveProject(int idUser)
         {
             return _useCaseGetByIdUserActiveProject.Execute(idUser);
@@ -87,6 +92,7 @@ namespace WebAPI.Controllers
         // Get requests
         [HttpGet]
         [Route("active/")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoProject>> GetActiveProject()
         {
             return _useCaseGetActiveProjects.Execute();
@@ -96,6 +102,7 @@ namespace WebAPI.Controllers
         // Get requests
         [HttpGet]
         [Route("byIdUserNotFinishedIsLinked/{idUser:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoProject>> GetIdUserNotFinishedIsLinked(int idUser)
         {
             return _useCaseGetProjectByIdUserNotFinishedIsLinkedToUser.Execute(idUser);
@@ -105,6 +112,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(409)]
+        [Authorize(false, false, true)]
         public ActionResult<OutputDtoProject> Create([FromBody] InputDtoProject inputDtoProject)
         {
             var result = _useCaseCreateProject.Execute(inputDtoProject);
@@ -114,6 +122,7 @@ namespace WebAPI.Controllers
         // Put requests
         [HttpPut]
         [Route("updateStatus/{idProjectUpdateState:int}")]
+        [Authorize(false, false, true)]
         public ActionResult UpdateState(int idProjectUpdateState, InputDtoProject newProject)
         {
             var inputDtoUpdate = new InputDtoUpdateProjectStatus

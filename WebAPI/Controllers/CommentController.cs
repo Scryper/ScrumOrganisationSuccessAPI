@@ -6,6 +6,7 @@ using Application.UseCases.Comment.Get;
 using Application.UseCases.Comment.Post;
 using Application.UseCases.Comment.Put;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Security.Attributes;
 
 namespace WebAPI.Controllers
 {
@@ -43,6 +44,7 @@ namespace WebAPI.Controllers
         // swagger/data/xxx -> so multiple endpoints matches
         [HttpGet]
         [Route("byUserStory/{idUserStory:int}")]
+        [Authorize(true, true, true)]
         public ActionResult<List<OutputDtoComment>> GetByIdUserStory(int idUserStory)
         {
             return _useCaseGetCommentsByIdUserStory.Execute(idUserStory);
@@ -52,6 +54,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
+        [Authorize(true, true, true)]
         public ActionResult<OutputDtoComment> Create([FromBody] InputDtoComment inputDtoComment)
         {
             return StatusCode(201, _useCaseCreateComment.Execute(inputDtoComment));
@@ -60,6 +63,7 @@ namespace WebAPI.Controllers
         // Put requests
         [HttpPut]
         [Route("{id:int}")]
+        [Authorize(true, true, true)]
         public ActionResult UpdateContent(int id, InputDtoComment newComment)
         {
             var inputDtoUpdate = new InputDtoUpdateCommentContent
@@ -79,6 +83,7 @@ namespace WebAPI.Controllers
         //  Delete requests
         [HttpDelete]
         [Route("{id:int}")]
+        [Authorize(true, true, true)]
         public ActionResult Delete(int id)
         {
             var result = _useCaseDeleteComment.Execute(id);
