@@ -57,6 +57,24 @@ namespace Infrastructure.SqlServer.Repositories.UserTechnology
             return userTechnologies;
         }
 
+        public List<Domain.UserTechnology> GetByTechnologyIdUserId(int technologyId, int idUser)
+        {
+            var userTechnologies = new List<Domain.UserTechnology>();
+            
+            var command = Database.GetCommand(ReqGetByIdTechnologyIdUser);
+            
+            // Parametrize the command
+            command.Parameters.AddWithValue("@" + ColIdTechnology, technologyId);
+            command.Parameters.AddWithValue("@" + ColIdUser, idUser);
+            
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            
+            // Add all user stories
+            while(reader.Read()) userTechnologies.Add(_userTechnologyFactory.CreateFromSqlReader(reader));
+            
+            return userTechnologies;
+        }
+
         // Post requests
         public Domain.UserTechnology Create(Domain.UserTechnology userTechnology)
         {
