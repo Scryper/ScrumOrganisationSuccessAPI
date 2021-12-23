@@ -12,6 +12,7 @@ namespace Infrastructure.SqlServer.Repositories.User
         List<Domain.User> GetByIdMeeting(int idMeeting);
         Domain.User GetById(int id);
         Domain.User GetByEmail(string email);
+        List<Domain.User> GetUserByCommentOnUserStory(int idUserStory);
 
         List<Domain.User> GetByIdProjectIsApplying(int idProject);
 

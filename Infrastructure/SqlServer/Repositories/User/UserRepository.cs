@@ -58,6 +58,22 @@ namespace Infrastructure.SqlServer.Repositories.User
             return GetByIdHelper(idMeeting, ReqGetByIdMeeting);
         }
 
+        public List<Domain.User> GetUserByCommentOnUserStory(int idUserStory)
+        {
+            var users = new List<Domain.User>();
+
+            var command = Database.GetCommand(ReqGetUserByCommentOnUserStory);
+            
+            command.Parameters.AddWithValue("@" + UserStoryId, idUserStory);
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            
+            // Add all users
+            while(reader.Read()) users.Add(_userFactory.CreateFromSqlReader(reader));
+
+            return users;
+        }
+
         public List<Domain.User> GetByIdProjectIsApplying(int idProject)
         {
             var users = new List<Domain.User>();
