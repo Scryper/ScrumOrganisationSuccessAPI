@@ -11,16 +11,13 @@ namespace WebAPI.Controllers
     {
         // Use cases 
         private readonly UseCaseGetAllTechnologies _useCaseGetAllTechnologies;
-        private readonly UseCaseGetTechnologyById _useCaseGetTechnologyById;
         private readonly UseCaseGetTechnologyByName _useCaseGetTechnologyByName;
 
         public TechnologyController(
             UseCaseGetAllTechnologies useCaseGetAllTechnologies,
-            UseCaseGetTechnologyById useCaseGetTechnologyById,
             UseCaseGetTechnologyByName useCaseGetTechnologyByName)
         {
             _useCaseGetAllTechnologies = useCaseGetAllTechnologies;
-            _useCaseGetTechnologyById = useCaseGetTechnologyById;
             _useCaseGetTechnologyByName = useCaseGetTechnologyByName;
         }
         
@@ -29,13 +26,6 @@ namespace WebAPI.Controllers
         public ActionResult<List<OutputDtoTechnology>> GetAll()
         {
             return _useCaseGetAllTechnologies.Execute();
-        }
-
-        [HttpGet]
-        [Route("byId/{id:int}")] 
-        public ActionResult<OutputDtoTechnology> GetById(int id)
-        {
-            return _useCaseGetTechnologyById.Execute(id);
         }
         
         [HttpGet]

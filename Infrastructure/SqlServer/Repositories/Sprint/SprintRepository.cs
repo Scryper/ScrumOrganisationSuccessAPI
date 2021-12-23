@@ -56,16 +56,5 @@ namespace Infrastructure.SqlServer.Repositories.Sprint
             var sprints = GetAll();
             return Enumerable.Contains(sprints, sprint);
         }
-        
-        // Delete requests
-        public bool Delete(int id)
-        {
-            var command = Database.GetCommand(ReqDeleteById);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColId, id);
-
-            return command.ExecuteNonQuery() > 0;
-        }
     }
 }

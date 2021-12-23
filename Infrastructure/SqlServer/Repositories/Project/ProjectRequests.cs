@@ -47,17 +47,8 @@
                     @{ColRepositoryUrl})";
         
         // Put requests
-        private static readonly string ReqUpdateRepositoryUrl = $@"update {TableName} 
-                                                                set {ColRepositoryUrl} = @{ColRepositoryUrl} 
-                                                                where {ColId} = @{ColId}";
-        
         private static readonly string ReqUpdateState = $@"update {TableName} 
                                                                 set {ColStatus} = @{ColStatus} 
                                                                 where {ColId} = @{ColId}";
-        
-        
-        // Delete Requests
-        private static readonly string ReqDeleteById = $@"delete from {TableName} 
-                                                       where {ColId} = @{ColId}";
     }
 }

@@ -15,11 +15,8 @@ namespace WebAPI.Controllers
         // Use cases
         private readonly UseCaseGetAllUserProjects _useCaseGetAllUserProjects;
         private readonly UseCaseGetUserProjectsByIdDeveloper _useCaseGetUserProjectsByIdDeveloper;
-        private readonly UseCaseGetUserProjectsByIdProject _useCaseGetUserProjectsByIdProject;
         private readonly UseCaseGetUserProjectsByIdDeveloperIsAppliance _useCaseGetUserProjectsByIdDeveloperIsAppliance;
         private readonly UseCaseGetByIdUserIdProject _useCaseGetByIdUserIdProject;
-        private readonly UseCaseGetUserByIdProject _useCaseGetUserByIdProject;
-        private readonly UseCaseGetScrumMasterByIdProject _useCaseGetScrumMasterByIdProject;
 
         private readonly UseCaseGetUserProjectByIdDeveloperIfIsWorking
             _useCaseGetUserProjectByIdDeveloperIfIsWorking;
@@ -38,27 +35,21 @@ namespace WebAPI.Controllers
         public UserProjectController(
             UseCaseGetAllUserProjects caseGetAllUserProjects,
             UseCaseGetUserProjectsByIdDeveloper caseGetUserProjectsByIdDeveloper,
-            UseCaseGetUserProjectsByIdProject caseGetUserProjectsByIdProject,
             UseCaseCreateDeveloperProject useCaseCreateDeveloperProject,
             UseCaseUpdateDeveloperProject useCaseUpdateDeveloperProject,
             UseCaseDeleteUserProject caseDeleteUserProject,
             UseCaseGetUserProjectsByIdDeveloperIsAppliance caseGetUserProjectsByIdDeveloperIsAppliance,
             UseCaseGetByIdUserIdProject caseGetByIdUserIdProject,
             UseCaseGetUserProjectByIdDeveloperIfIsWorking caseGetUserProjectByIdDeveloperIfIsWorking,
-            UseCaseGetUserProjectByIdDeveloperIfIsNotWorking caseGetUserProjectByIdDeveloperIfIsNotWorking,
-            UseCaseGetUserByIdProject caseGetUserByIdProject,
-            UseCaseGetScrumMasterByIdProject useCaseGetScrumMasterByIdProject
+            UseCaseGetUserProjectByIdDeveloperIfIsNotWorking caseGetUserProjectByIdDeveloperIfIsNotWorking
         )
         {
             _useCaseGetAllUserProjects = caseGetAllUserProjects;
             _useCaseGetUserProjectsByIdDeveloper = caseGetUserProjectsByIdDeveloper;
-            _useCaseGetUserProjectsByIdProject = caseGetUserProjectsByIdProject;
             _useCaseGetUserProjectsByIdDeveloperIsAppliance = caseGetUserProjectsByIdDeveloperIsAppliance;
             _useCaseGetByIdUserIdProject = caseGetByIdUserIdProject;
             _useCaseGetUserProjectByIdDeveloperIfIsWorking = caseGetUserProjectByIdDeveloperIfIsWorking;
             _useCaseGetUserProjectByIdDeveloperIfIsNotWorking = caseGetUserProjectByIdDeveloperIfIsNotWorking;
-            _useCaseGetUserByIdProject = caseGetUserByIdProject;
-            _useCaseGetScrumMasterByIdProject = useCaseGetScrumMasterByIdProject;
             
             _useCaseCreateDeveloperProject = useCaseCreateDeveloperProject;
             
@@ -79,13 +70,6 @@ namespace WebAPI.Controllers
         public ActionResult<List<OutputDtoUserProject>> GetByIdDeveloper(int idDeveloper)
         {
             return _useCaseGetUserProjectsByIdDeveloper.Execute(idDeveloper);
-        }
-
-        [HttpGet]
-        [Route("byIdProject/{idProject:int}")]
-        public ActionResult<List<OutputDtoUserProject>> GetByIdProject(int idProject)
-        {
-            return _useCaseGetUserProjectsByIdProject.Execute(idProject);
         }
         
         [HttpGet]
@@ -115,19 +99,7 @@ namespace WebAPI.Controllers
         {
             return _useCaseGetUserProjectByIdDeveloperIfIsNotWorking.Execute(idDeveloper);
         }
-        [HttpGet]
-        [Route("scrumMasterByIdProject/{idProject:int}")]
-        public ActionResult<List<OutputDtoUserProject>> GetScrumMasterByIdProject(int idProject)
-        {
-            return _useCaseGetScrumMasterByIdProject.Execute(idProject);
-        }
-        [HttpGet]
-        [Route("developersByIdProject/{idProject:int}")]
-        public ActionResult<List<OutputDtoUserProject>> GetDevelopersByIdProject(int idProject)
-        {
-            return _useCaseGetUserByIdProject.Execute(idProject);
-        }
-        
+
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(409)]

@@ -28,9 +28,5 @@
                         output inserted.{ColId} 
                         values(@{ColIdProject}, @{ColSprintNumber}, @{ColDeadline}, 
                         @{ColDescription}, @{ColStartDate})";
-
-        // Delete Requests
-        private static readonly string ReqDeleteById = $@"delete from {TableName} 
-                                                       where {ColId} = @{ColId}";
     }
 }

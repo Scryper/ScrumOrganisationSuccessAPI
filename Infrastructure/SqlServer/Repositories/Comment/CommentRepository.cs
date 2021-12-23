@@ -9,19 +9,9 @@ namespace Infrastructure.SqlServer.Repositories.Comment
         private readonly RequestHelper<Domain.Comment> _requestHelper = new RequestHelper<Domain.Comment>();
 
         // Get requests
-        public List<Domain.Comment> GetAll()
-        {
-            return _requestHelper.GetAll(ReqGetAll, _commentFactory);
-        }
-
         public List<Domain.Comment> GetByIdUserStory(int idUserStory)
         {
             return _requestHelper.GetByIdHelper(idUserStory, ColIdUserStory, ReqGetByIdUserStory, _commentFactory);
-        }
-
-        public Domain.Comment GetById(int id)
-        {
-            return _requestHelper.GetById(id, ColId, ReqGetById, _commentFactory);
         }
 
         // Post requests

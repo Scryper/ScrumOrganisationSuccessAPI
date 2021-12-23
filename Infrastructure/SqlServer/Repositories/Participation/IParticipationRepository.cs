@@ -14,8 +14,5 @@ namespace Infrastructure.SqlServer.Repositories.Participation
         
         // Post Requests
         Domain.Participation Create(Domain.Participation participation);
-        
-        // Delete Requests
-        bool Delete(int idUser, int idMeeting);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Application.UseCases.Sprint.Delete;
 using Application.UseCases.Sprint.Dtos;
 using Application.UseCases.Sprint.Get;
 using Application.UseCases.Sprint.Post;
@@ -18,8 +17,6 @@ namespace WebAPI.Controllers
         private readonly UseCaseGetMaximumSprintNumber _useCaseGetMaximumSprintNumber;
         
         private readonly UseCaseCreateSprint _useCaseCreateSprint;
-
-        private readonly UseCaseDeleteSprint _useCaseDeleteSprint;
         
         // Constructor
         public SprintController(
@@ -27,8 +24,7 @@ namespace WebAPI.Controllers
             UseCaseGetSprintById useCaseGetSprintById,
             UseCaseGetSprintsByIdProject useCaseGetSprintsByIdProject,
             UseCaseGetMaximumSprintNumber useCaseGetMaximumSprintNumber,
-            UseCaseCreateSprint useCaseCreateSprint,
-            UseCaseDeleteSprint useCaseDeleteSprint)
+            UseCaseCreateSprint useCaseCreateSprint)
         {
             _useCaseGetAllSprints = useCaseGetAllSprints;
             _useCaseGetSprintById = useCaseGetSprintById;
@@ -36,8 +32,6 @@ namespace WebAPI.Controllers
             _useCaseGetMaximumSprintNumber = useCaseGetMaximumSprintNumber;
             
             _useCaseCreateSprint = useCaseCreateSprint;
-
-            _useCaseDeleteSprint = useCaseDeleteSprint;
         }
         
         // Get requests
@@ -78,17 +72,6 @@ namespace WebAPI.Controllers
         {
             var result = _useCaseCreateSprint.Execute(inputDtoSprint);
             return result == null ? StatusCode(409, null) : StatusCode(201, result);
-        }
-
-        //  Delete requests
-        [HttpDelete]
-        [Route("{id:int}")]
-        public ActionResult Delete(int id)
-        {
-            var result = _useCaseDeleteSprint.Execute(id);
-
-            if (result) return Ok();
-            return NotFound();
         }
     }
 }

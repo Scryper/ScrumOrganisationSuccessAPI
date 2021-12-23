@@ -82,34 +82,12 @@ namespace Infrastructure.SqlServer.Repositories.Project
         }
         
         // Put requests
-        public bool UpdateRepositoryUrl(int id, string newRepositoryUrl)
-        {
-            var command = Database.GetCommand(ReqUpdateRepositoryUrl);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColRepositoryUrl, newRepositoryUrl);
-            command.Parameters.AddWithValue("@" + ColId, id);
-
-            return command.ExecuteNonQuery() > 0;
-        }
-
         public bool UpdateStatus(int id, int state)
         {
             var command = Database.GetCommand(ReqUpdateState);
             
             // Parametrize the command
             command.Parameters.AddWithValue("@" + ColStatus, state);
-            command.Parameters.AddWithValue("@" + ColId, id);
-
-            return command.ExecuteNonQuery() > 0;
-        }
-
-        // Delete requests
-        public bool Delete(int id)
-        {
-            var command = Database.GetCommand(ReqDeleteById);
-            
-            // Parametrize the command
             command.Parameters.AddWithValue("@" + ColId, id);
 
             return command.ExecuteNonQuery() > 0;

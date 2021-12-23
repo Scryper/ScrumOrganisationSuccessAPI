@@ -20,11 +20,6 @@ namespace Infrastructure.SqlServer.Repositories.SprintUserStory
             return _requestHelper.GetByIdHelper(idSprint, ColIdSprint, ReqGetByIdSprint, _sprintUserStoryFactory);
         }
 
-        public List<Domain.SprintUserStory> GetByIdUserStory(int idUserStory)
-        {
-            return _requestHelper.GetByIdHelper(idUserStory, ColIdUserStory, ReqGetByIdUserStory, _sprintUserStoryFactory);
-        }
-
         // Post requests
         public Domain.SprintUserStory Create(Domain.SprintUserStory sprintUserStory)
         {
@@ -49,17 +44,6 @@ namespace Infrastructure.SqlServer.Repositories.SprintUserStory
         {
             var sprintUserStories = GetAll();
             return Enumerable.Contains(sprintUserStories, sprintUserStory);
-        }
-
-        // Delete requests
-        public bool Delete(int idSprint, int idUserStory)
-        {
-            var command = Database.GetCommand(ReqDelete);
-
-            command.Parameters.AddWithValue("@" + ColIdSprint, idSprint);
-            command.Parameters.AddWithValue("@" + ColIdUserStory, idUserStory);
-
-            return command.ExecuteNonQuery() > 0;
         }
     }
 }

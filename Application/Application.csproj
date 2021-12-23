@@ -15,6 +15,12 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="UseCases\Meeting\Delete" />
+      <Folder Include="UseCases\Meeting\Put" />
+      <Folder Include="UseCases\Participation\Delete" />
+      <Folder Include="UseCases\Project\Delete" />
+      <Folder Include="UseCases\SprintUserStory\Delete" />
+      <Folder Include="UseCases\Sprint\Delete" />
       <Folder Include="UseCases\UserProject" />
     </ItemGroup>
 

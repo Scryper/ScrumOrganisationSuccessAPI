@@ -16,20 +16,10 @@ namespace Infrastructure.SqlServer.Repositories.Meeting
         {
             return _requestHelper.GetAll(ReqGetAll, _meetingFactory);
         }
-        
-        public Domain.Meeting GetById(int id)
-        {
-            return _requestHelper.GetById(id, ColId, ReqGetById, _meetingFactory);
-        }
 
         public List<Domain.Meeting> GetByIdUser(int idUser)
         {
             return _requestHelper.GetByIdHelper(idUser, ColId, ReqGetByIdUser, _meetingFactory);
-        }
-
-        public List<Domain.Meeting> GetByIdSprint(int idSprint)
-        {
-            return _requestHelper.GetByIdHelper(idSprint, ColIdSprint, ReqGetByIdSprint, _meetingFactory);
         }
 
         // Post requests
@@ -61,28 +51,6 @@ namespace Infrastructure.SqlServer.Repositories.Meeting
             var meetings = GetAll();
 
             return Enumerable.Contains(meetings, meeting); // Verify if the meeting already exists in database
-        }
-
-        // Put requests
-        public bool UpdateSchedule(int id, DateTime newSchedule)
-        {
-            var command = Database.GetCommand(ReqUpdateSchedule);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColId, id);
-            command.Parameters.AddWithValue("@" + ColSchedule, newSchedule);
-
-            return command.ExecuteNonQuery() > 0;
-        }
-
-        // Delete requests
-        public bool Delete(int id)
-        {
-            var command = Database.GetCommand(ReqDeleteById);
-
-            command.Parameters.AddWithValue("@" + ColId, id);
-
-            return command.ExecuteNonQuery() > 0;
         }
     }
 }

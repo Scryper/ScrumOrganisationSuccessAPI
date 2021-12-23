@@ -10,11 +10,6 @@
         public const string ColContent = "content";
         
         // Get requests
-        private static readonly string ReqGetAll = $"select * from {TableName}"; 
-        
-        private static readonly string ReqGetById = $@"select * from {TableName} 
-                                                    where {ColId} = @{ColId}";
-        
         private static readonly string ReqGetByIdUserStory = $@"select * from {TableName} 
                                                              where {ColIdUserStory} = @{ColIdUserStory} 
                                                              order by convert(date, {ColPostedAt}) desc";

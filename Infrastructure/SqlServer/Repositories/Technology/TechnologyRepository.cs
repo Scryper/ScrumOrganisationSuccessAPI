@@ -14,11 +14,6 @@ namespace Infrastructure.SqlServer.Repositories.Technology
             return _requestHelper.GetAll(ReqGetAll, _technologyFactory);
         }
 
-        public Domain.Technology GetById(int id)
-        {
-            return _requestHelper.GetById(id, ColId, ReqGetById, _technologyFactory);
-        }
-
         public Domain.Technology GetByName(string name)
         {
             return _requestHelper.GetByName(name, ColName, ReqGetByName, _technologyFactory);

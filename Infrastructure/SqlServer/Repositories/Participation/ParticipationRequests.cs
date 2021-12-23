@@ -18,9 +18,5 @@
 
         private static readonly string ReqCreate = $@"insert into {TableName}({ColIdUser},{ColIdMeeting}) 
                                                     values(@{ColIdUser},@{ColIdMeeting})";
-
-        private static readonly string ReqDelete = $@"delete from {TableName} 
-                                                        where {ColIdMeeting} = @{ColIdMeeting} and 
-                                                        {ColIdUser} = @{ColIdUser}";
     }
 }

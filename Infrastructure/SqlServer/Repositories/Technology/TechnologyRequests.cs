@@ -1,6 +1,4 @@
-﻿using Infrastructure.SqlServer.Utils;
-
-namespace Infrastructure.SqlServer.Repositories.Technology
+﻿namespace Infrastructure.SqlServer.Repositories.Technology
 {
     public partial class  TechnologyRepository
     {
@@ -11,13 +9,7 @@ namespace Infrastructure.SqlServer.Repositories.Technology
         // Get Requests
         private static readonly string ReqGetAll = $"select *  from {TableName}";
 
-        private static readonly string ReqGetById = $@"select * from {TableName} 
-                                                    where {ColId} = @{ColId}";
-
         private static readonly string ReqGetByName = $@"select * from {TableName} 
                                                        where {ColName} =@{ColName}";
-
-
-
     }
 }

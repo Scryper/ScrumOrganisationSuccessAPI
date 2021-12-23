@@ -19,13 +19,6 @@
         // Get requests
         private static readonly string ReqGetAll = $"select * from {TableName}";
         
-        private static readonly string ReqGetById = $@"select * from {TableName} 
-                                                    where {ColId} = @{ColId}"; 
-        
-        private static readonly string ReqGetByIdSprint = $@"select * from {TableName} 
-                                                          where {ColIdSprint} = @{ColIdSprint} 
-                                                          order by convert(date, {ColSchedule})"; 
-        
         private static readonly string ReqGetByIdUser = 
                                 $@"select * from {TableName} 
                                 left join {ParticipationTableName} on {ColId} = {ParticipationColIdMeeting} 
@@ -38,14 +31,5 @@
                                 $@"insert into {TableName}({ColIdSprint}, {ColSchedule}, {ColDescription}, {ColUrl}) 
                                 output inserted.{ColId} 
                                 values(@{ColIdSprint}, @{ColSchedule}, @{ColDescription}, @{ColUrl})";
-        
-        // Put requests
-        private static readonly string ReqUpdateSchedule = $@"update {TableName} 
-                                                           set {ColSchedule} = @{ColSchedule} 
-                                                           where {ColId} = @{ColId}";
-        
-        // Delete Requests
-        private static readonly string ReqDeleteById = $@"delete from {TableName} 
-                                                       where {ColId} = @{ColId}";
     }
 }

@@ -24,11 +24,6 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
             return _requestHelper.GetByIdHelper(idDeveloper, ColIdUser, ReqGetByDeveloperId, _userProjectFactory);
         }
 
-        public List<Domain.UserProject> GetByIdProject(int idProject)
-        {
-            return  _requestHelper.GetByIdHelper(idProject, ColIdProject, ReqGetByProjectId, _userProjectFactory);
-        }
-
         public List<Domain.UserProject> GetByIdDeveloperIsAppliance(int idDeveloper)
         {
             return  _requestHelper.GetByIdHelper(idDeveloper, ColIdUser, ReqByIdDeveloperIsAppliance, _userProjectFactory);
@@ -44,16 +39,6 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
             return  _requestHelper.GetByIdHelper(idDeveloper, ColIdUser, ReqDeveloperProjectByIdDeveloperifIsNotWorking, _userProjectFactory);
         }
 
-        public List<Domain.UserProject> GetScrumMasterByIdProject(int idProject)
-        {
-            return  _requestHelper.GetByIdHelper(idProject, ColIdProject, ReqGetScrumMasterByIdProject, _userProjectFactory);
-        }
-
-        public List<Domain.UserProject> GetDevelopersByIdProject(int idProject)
-        {
-            return  _requestHelper.GetByIdHelper(idProject, ColIdProject, ReqGetDevelopersByIdProject, _userProjectFactory);
-        }
-        
         public Domain.UserProject GetByIdDeveloperIdProject(int idDeveloper, int idProject)
         {
             var command = Database.GetCommand(ReqGetByIdDeveloperIdProject);

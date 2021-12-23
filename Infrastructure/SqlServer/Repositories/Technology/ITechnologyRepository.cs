@@ -6,8 +6,6 @@ namespace Infrastructure.SqlServer.Repositories.Technology
     {
         // Get Requests
         List<Domain.Technology> GetAll();
-        Domain.Technology GetById(int id);
-
         Domain.Technology GetByName(string name);
     }
 }

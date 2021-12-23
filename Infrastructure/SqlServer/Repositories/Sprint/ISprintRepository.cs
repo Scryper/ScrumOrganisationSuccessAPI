@@ -11,10 +11,5 @@ namespace Infrastructure.SqlServer.Repositories.Sprint
 
         // Post requests
         Domain.Sprint Create(Domain.Sprint sprint);
-        
-        // Put requests
-
-        // Delete requests
-        bool Delete(int id);
     }
 }

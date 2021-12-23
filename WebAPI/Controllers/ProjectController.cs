@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web;
 using Application.UseCases.Project;
-using Application.UseCases.Project.Delete;
 using Application.UseCases.Project.Dtos;
 using Application.UseCases.Project.Get;
 using Application.UseCases.Project.Post;
@@ -27,10 +25,7 @@ namespace WebAPI.Controllers
 
         private readonly UseCaseCreateProject _useCaseCreateProject;
 
-        private readonly UseCaseUpdateProjectRepositoryUrl _useCaseUpdateProjectRepositoryUrl;
         private readonly UseCaseUpdateProjectStatus _useCaseUpdateProjectStatus;
-
-        private readonly UseCaseDeleteProject _useCaseDeleteProject;
         
         // Constructor
         public ProjectController(
@@ -38,8 +33,6 @@ namespace WebAPI.Controllers
             UseCaseGetProjectById useCaseGetProjectById,
             UseCaseGetProjectByName useCaseGetProjectByName,
             UseCaseCreateProject useCaseCreateProject,
-            UseCaseUpdateProjectRepositoryUrl useCaseUpdateProjectRepositoryUrl,
-            UseCaseDeleteProject useCaseDeleteProject,
             UseCaseUpdateProjectStatus useCaseUpdateProjectStatus,
             UseCaseGetByIdUserActiveProject caseGetByIdUserActiveProject,
             UseCaseGetProjectByIdUserNotFinishedIsLinkedToUser
@@ -56,10 +49,7 @@ namespace WebAPI.Controllers
             
             _useCaseCreateProject = useCaseCreateProject;
 
-            _useCaseUpdateProjectRepositoryUrl = useCaseUpdateProjectRepositoryUrl;
             _useCaseUpdateProjectStatus = useCaseUpdateProjectStatus;
-
-            _useCaseDeleteProject = useCaseDeleteProject;
         }
         
         // Get requests
@@ -123,26 +113,6 @@ namespace WebAPI.Controllers
 
         // Put requests
         [HttpPut]
-        [Route("{id:int}")]
-        public ActionResult UpdateContent(int id, InputDtoProject newProject)
-        {
-            var inputDtoUpdate = new InputDtoUpdateProjectRepositoryUrl
-            {
-                Id = id,
-                InternProject = new InputDtoUpdateProjectRepositoryUrl.Project
-                {
-                    RepositoryUrl = newProject.RepositoryUrl
-                }
-            };
-            
-            var result = _useCaseUpdateProjectRepositoryUrl.Execute(inputDtoUpdate);
-
-            if (result) return Ok();
-            return NotFound();
-        }
-        
-        // Put requests
-        [HttpPut]
         [Route("updateStatus/{idProjectUpdateState:int}")]
         public ActionResult UpdateState(int idProjectUpdateState, InputDtoProject newProject)
         {
@@ -156,17 +126,6 @@ namespace WebAPI.Controllers
             };
             
             var result = _useCaseUpdateProjectStatus.Execute(inputDtoUpdate);
-
-            if (result) return Ok();
-            return NotFound();
-        }
-
-        //  Delete requests
-        [HttpDelete]
-        [Route("{id:int}")]
-        public ActionResult Delete(int id)
-        {
-            var result = _useCaseDeleteProject.Execute(id);
 
             if (result) return Ok();
             return NotFound();

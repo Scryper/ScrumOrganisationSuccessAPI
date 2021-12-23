@@ -52,16 +52,5 @@ namespace Infrastructure.SqlServer.Repositories.Participation
 
             return Enumerable.Contains(participations, participation);
         }
-
-        // Delete request
-        public bool Delete(int idUser, int idMeeting)
-        {
-            var command = Database.GetCommand(ReqDelete);
-
-            command.Parameters.AddWithValue("@" + ColIdUser, idUser);
-            command.Parameters.AddWithValue("@" + ColIdMeeting, idMeeting);
-
-            return command.ExecuteNonQuery() > 0;
-        }
     }
 }

@@ -9,25 +9,19 @@ using Application.UseCases.Comment.Put;
 using Application.UseCases.DeveloperProject.Post;
 using Application.UseCases.DeveloperProject.Put;
 using Application.UseCases.Meeting;
-using Application.UseCases.Meeting.Delete;
 using Application.UseCases.Meeting.Get;
 using Application.UseCases.Meeting.Post;
-using Application.UseCases.Meeting.Put;
-using Application.UseCases.Participation.Delete;
 using Application.UseCases.Participation.Get;
 using Application.UseCases.Participation.Post;
 using Application.UseCases.Project;
-using Application.UseCases.Project.Delete;
 using Application.UseCases.Project.Get;
 using Application.UseCases.Project.Post;
 using Application.UseCases.Project.Put;
 using Application.UseCases.ProjectTechnology.Delete;
 using Application.UseCases.ProjectTechnology.Get;
 using Application.UseCases.ProjectTechnology.Post;
-using Application.UseCases.Sprint.Delete;
 using Application.UseCases.Sprint.Get;
 using Application.UseCases.Sprint.Post;
-using Application.UseCases.SprintUserStory.Delete;
 using Application.UseCases.SprintUserStory.Get;
 using Application.UseCases.SprintUserStory.Post;
 using Application.UseCases.Technology.Get;
@@ -45,9 +39,7 @@ using Application.UseCases.UserStory.Put;
 using Application.UseCases.UserTechnology.Delete;
 using Application.UseCases.UserTechnology.Get;
 using Application.UseCases.UserTechnology.Post;
-using Domain;
 using Infrastructure.SqlServer.Repositories.Comment;
-using Infrastructure.SqlServer.Repositories.DeveloperProject;
 using Infrastructure.SqlServer.Repositories.Meeting;
 using Infrastructure.SqlServer.Repositories.Participation;
 using Infrastructure.SqlServer.Repositories.Project;
@@ -110,8 +102,6 @@ namespace WebAPI
             
             // Add use cases
             // Comments use cases
-            services.AddSingleton<UseCaseGetAllComments>();
-            services.AddSingleton<UseCaseGetCommentById>();
             services.AddSingleton<UseCaseGetCommentsByIdUserStory>();
 
             services.AddSingleton<UseCaseCreateComment>();
@@ -122,15 +112,9 @@ namespace WebAPI
             
             // Meetings use cases
             services.AddSingleton<UseCaseGetAllMeetings>();
-            services.AddSingleton<UseCaseGetMeetingById>();
-            services.AddSingleton<UseCaseGetMeetingsByIdSprint>();
             services.AddSingleton<UseCaseGetMeetingsByIdUser>();
             
             services.AddSingleton<UseCaseCreateMeeting>();
-            
-            services.AddSingleton<UseCaseUpdateMeetingSchedule>();
-            
-            services.AddSingleton<UseCaseDeleteMeeting>();
 
             // Projects use cases
             services.AddSingleton<UseCaseGetAllProjects>();
@@ -142,10 +126,7 @@ namespace WebAPI
 
             services.AddSingleton<UseCaseCreateProject>();
             
-            services.AddSingleton<UseCaseUpdateProjectRepositoryUrl>();
             services.AddSingleton<UseCaseUpdateProjectStatus>();
-            
-            services.AddSingleton<UseCaseDeleteProject>();
             
             // Sprints use cases
             services.AddSingleton<UseCaseGetAllSprints>();
@@ -154,8 +135,6 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetMaximumSprintNumber>();
 
             services.AddSingleton<UseCaseCreateSprint>();
-
-            services.AddSingleton<UseCaseDeleteSprint>();
             
             // Users use cases
             services.AddSingleton<UseCaseGetAllUsers>();
@@ -194,13 +173,10 @@ namespace WebAPI
             // DeveloperProject use cases
             services.AddSingleton<UseCaseGetAllUserProjects>();
             services.AddSingleton<UseCaseGetUserProjectsByIdDeveloper>();
-            services.AddSingleton<UseCaseGetUserProjectsByIdProject>();
             services.AddSingleton<UseCaseGetUserProjectsByIdDeveloperIsAppliance>();
             services.AddSingleton<UseCaseGetByIdUserIdProject>();
             services.AddSingleton<UseCaseGetUserProjectByIdDeveloperIfIsWorking>();
             services.AddSingleton<UseCaseGetUserProjectByIdDeveloperIfIsNotWorking>();
-            services.AddSingleton<UseCaseGetUserByIdProject>();
-            services.AddSingleton<UseCaseGetScrumMasterByIdProject>();
 
             services.AddSingleton<UseCaseCreateDeveloperProject>();
             
@@ -210,17 +186,13 @@ namespace WebAPI
             
             // Technology uses cases
             services.AddSingleton<UseCaseGetAllTechnologies>();
-            services.AddSingleton<UseCaseGetTechnologyById>();
             services.AddSingleton<UseCaseGetTechnologyByName>();
             
             // SprintUserStory use cases
             services.AddSingleton<UseCaseGetAllSprintUserStory>();
-            services.AddSingleton<UseCaseGetSprintUserStoryByIdUserStory>();
             services.AddSingleton<UseCaseGetSprintUserStoryByIdSprint>();
             
             services.AddSingleton<UseCaseCreateSprintUserStory>();
-            
-            services.AddSingleton<UseCaseDeleteSprintUserStory>();
             
             //UserTechnology uses cases
             services.AddSingleton<UseCaseGetAllUserTechnologies>();
@@ -241,7 +213,6 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetAllParticipations>();
             services.AddSingleton<UseCaseGetParticipationsByIdMeeting>();
             services.AddSingleton<UseCaseGetParticipationsByIdUser>();
-            services.AddSingleton<UseCaseDeleteParticipation>();
             services.AddSingleton<UseCaseCreateParticipation>();
 
             services.AddControllers();

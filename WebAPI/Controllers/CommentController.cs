@@ -14,8 +14,6 @@ namespace WebAPI.Controllers
     public class CommentController : ControllerBase
     {
         // Use cases
-        private readonly UseCaseGetAllComments _useCaseGetAllComments;
-        private readonly UseCaseGetCommentById _useCaseGetCommentById;
         private readonly UseCaseGetCommentsByIdUserStory _useCaseGetCommentsByIdUserStory;
         
         private readonly UseCaseCreateComment _useCaseCreateComment;
@@ -26,15 +24,11 @@ namespace WebAPI.Controllers
 
         // Constructor
         public CommentController(
-            UseCaseGetAllComments useCaseGetAllComments,
-            UseCaseGetCommentById useCaseGetCommentById,
             UseCaseGetCommentsByIdUserStory useCaseGetCommentsByIdUserStory,
             UseCaseCreateComment useCaseCreateComment,
             UseCaseUpdateCommentContent useCaseUpdateCommentContent,
             UseCaseDeleteComment useCaseDeleteComment)
         {
-            _useCaseGetAllComments = useCaseGetAllComments;
-            _useCaseGetCommentById = useCaseGetCommentById;
             _useCaseGetCommentsByIdUserStory = useCaseGetCommentsByIdUserStory;
             
             _useCaseCreateComment = useCaseCreateComment;
@@ -45,21 +39,8 @@ namespace WebAPI.Controllers
         }
 
         // Get requests
-        [HttpGet]
-        public ActionResult<List<OutputDtoComment>> GetAll()
-        {
-            return _useCaseGetAllComments.Execute();
-        }
-
         // If routes would only have {id:int}, even if the name would change, the url would be for both :
         // swagger/data/xxx -> so multiple endpoints matches
-        [HttpGet]
-        [Route("byId/{id:int}")]
-        public ActionResult<OutputDtoComment> GetById(int id)
-        {
-            return _useCaseGetCommentById.Execute(id);
-        }
-        
         [HttpGet]
         [Route("byUserStory/{idUserStory:int}")]
         public ActionResult<List<OutputDtoComment>> GetByIdUserStory(int idUserStory)
