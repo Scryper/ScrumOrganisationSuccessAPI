@@ -110,7 +110,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(409)]
-        [Authorize(false, false, true)]
+        [Authorize(true, true, true)]
         public ActionResult<OutputDtoUserProject> Create([FromBody] InputDtoUserProject inputDtoUserProject)
         {
             var result = _useCaseCreateDeveloperProject.Execute(inputDtoUserProject);
