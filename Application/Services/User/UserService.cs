@@ -33,11 +33,15 @@ namespace Application.Services.User
         // Authentication
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
+            // To authenticate a user, we first check if the user is registered in the database
+            // this verification is based on if the email address is in the databse
+            // we know it's him because we do not allow duplicate emails (see User.cs => Equals)
             var user = _userRepository.GetByEmail(model.Email);
             
             // Return null if user not found
             if (user == null) return null;
 
+            // Verify the password using hash
             if (!BCrypt.Net.BCrypt.Verify(model.Password, user.Password)) return null;
 
             // Authentication successful so generate jwt token
@@ -71,6 +75,8 @@ namespace Application.Services.User
         }
         
         // Compute experience
+        // The user's experience is equal to the addition of the length of the different sprints of the different
+        // projects he worked on
         public int ComputeDaysOfExperience(int id)
         {
             List<UserProject> userProjects = _userProjectRepository.GetByIdDeveloper(id); 

@@ -2,6 +2,9 @@
 
 namespace Application.Security.Models
 {
+    // Represent the user, when he is authenticated.
+    // The user in the database is different from the user in the different login sessions
+    // the user in login sessions will have his token, along with all his other attributes
     public class AuthenticateResponse
     {
         public int Id { get; set; }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Domain;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +9,7 @@ namespace WebAPI.Security.Attributes
     // Creating a custom attribute, the attribute name is "Authorize"
     // In every custom attributes -> <Name>Attribute, <Name> will be used [<Name>]
     // In our case : [Authorize]
+    // This attribute allows to say who has access to what
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class AuthorizeAttribute : Attribute, IAuthorizationFilter
     {

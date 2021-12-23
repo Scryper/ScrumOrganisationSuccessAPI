@@ -9,6 +9,11 @@ using Application.UseCases.User.Put;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Security.Attributes;
 
+/*
+ * The controllers calls the usecases which calls the repositories
+ * This allows to respect the architecture of the project and its different layers :
+ * API -> Application -> Infrastructure -> Domain
+ */
 namespace WebAPI.Controllers
 {
     [ApiController]

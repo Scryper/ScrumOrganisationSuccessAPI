@@ -18,6 +18,8 @@ namespace Application.Services.Sprint
             return _sprintRepository.GetByIdProject(idProject);
         }
 
+        // When you create a new sprint, you need to number it
+        // to do that, you need to know what is the next number of sprint (so actual number of sprints + 1)
         public int FindMaxSprintNumber(List<Domain.Sprint> sprints)
         {
             var sprintNumbers = new int[sprints.Count];
