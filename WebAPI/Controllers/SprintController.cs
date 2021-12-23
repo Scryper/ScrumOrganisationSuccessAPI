@@ -73,11 +73,11 @@ namespace WebAPI.Controllers
         // Post requests
         [HttpPost]
         [ProducesResponseType(201)]
-        [ProducesResponseType(400)]
+        [ProducesResponseType(409)]
         public ActionResult<OutputDtoSprint> Create(InputDtoSprint inputDtoSprint)
         {
             var result = _useCaseCreateSprint.Execute(inputDtoSprint);
-            return result == null ? null : StatusCode(201, result);
+            return result == null ? StatusCode(409, null) : StatusCode(201, result);
         }
 
         //  Delete requests
