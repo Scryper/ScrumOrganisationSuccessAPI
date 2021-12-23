@@ -13,16 +13,7 @@ namespace Infrastructure.SqlServer.Repositories.User
         // Get requests
         public List<Domain.User> GetAll()
         {
-            var users = new List<Domain.User>();
-
-            var command = Database.GetCommand(ReqGetAll);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all users
-            while(reader.Read()) users.Add(_userFactory.CreateFromSqlReader(reader));
-
-            return users;
+            return _requestHelper.GetAll(ReqGetAll, _userFactory);
         }
 
         public List<Domain.User> GetByIdProject(int idProject)
@@ -52,15 +43,7 @@ namespace Infrastructure.SqlServer.Repositories.User
         
         public Domain.User GetById(int id)
         {
-            var command = Database.GetCommand(ReqGetById);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColId, id);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return user if found, null if not
-            return reader.Read() ? _userFactory.CreateFromSqlReader(reader) : null;
+            return _requestHelper.GetById(id, ColId, ReqGetById, _userFactory);
         }
 
         public Domain.User GetByEmail(string email)

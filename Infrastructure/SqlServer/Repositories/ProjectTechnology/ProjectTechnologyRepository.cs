@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using Infrastructure.SqlServer.Utils;
 
@@ -13,15 +12,7 @@ namespace Infrastructure.SqlServer.Repositories.ProjectTechnology
         // Get requests
         public List<Domain.ProjectTechnology> GetAll()
         {
-            var projectTechnologies = new List<Domain.ProjectTechnology>();
-            
-            var command = Database.GetCommand(ReqGetAll);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) projectTechnologies.Add(_projectTechnologyFactory.CreateFromSqlReader(reader));
-            
-            return projectTechnologies;
+            return _requestHelper.GetAll(ReqGetAll, _projectTechnologyFactory);
         }
 
         public List<Domain.ProjectTechnology> GetByIdProject(int idProject)

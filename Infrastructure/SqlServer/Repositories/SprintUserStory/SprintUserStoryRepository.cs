@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using Infrastructure.SqlServer.Utils;
 
@@ -13,16 +12,7 @@ namespace Infrastructure.SqlServer.Repositories.SprintUserStory
         // Get requests
         public List<Domain.SprintUserStory> GetAll()
         {
-            var sprintUserStories = new List<Domain.SprintUserStory>();
-
-            var command = Database.GetCommand(ReqGetAll);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all sprint links to user stories
-            while(reader.Read()) sprintUserStories.Add(_sprintUserStoryFactory.CreateFromSqlReader(reader));
-
-            return sprintUserStories;
+            return _requestHelper.GetAll(ReqGetAll, _sprintUserStoryFactory);
         }
 
         public List<Domain.SprintUserStory> GetByIdSprint(int idSprint)

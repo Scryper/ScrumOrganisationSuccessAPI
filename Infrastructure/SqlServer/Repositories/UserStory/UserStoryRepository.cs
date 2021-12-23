@@ -13,16 +13,7 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
         // Get requests
         public List<Domain.UserStory> GetAll()
         {
-            var userStories = new List<Domain.UserStory>();
-
-            var command = Database.GetCommand(ReqGetAll);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Add all user stories
-            while(reader.Read()) userStories.Add(_userStoryFactory.CreateFromSqlReader(reader));
-            
-            return userStories;
+            return _requestHelper.GetAll(ReqGetAll, _userStoryFactory);
         }
 
         public List<Domain.UserStory> GetByIdProject(int idProject)
@@ -37,15 +28,7 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
         
         public Domain.UserStory GetById(int id)
         {
-            var command = Database.GetCommand(ReqGetById);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColId, id);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the user story if found, null if not
-            return reader.Read() ? _userStoryFactory.CreateFromSqlReader(reader) : null;
+            return _requestHelper.GetById(id, ColId, ReqGetById, _userStoryFactory);
         }
 
         // Post requests

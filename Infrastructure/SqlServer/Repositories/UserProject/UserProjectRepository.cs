@@ -2,9 +2,7 @@
 using System.Data;
 using System.Linq;
 using Infrastructure.SqlServer.Repositories.DeveloperProject;
-using Infrastructure.SqlServer.Repositories.Sprint;
 using Infrastructure.SqlServer.Utils;
-using NotImplementedException = System.NotImplementedException;
 
 namespace Infrastructure.SqlServer.Repositories.UserProject
 {
@@ -18,31 +16,9 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
         // Get requests
         public List<Domain.UserProject> GetAll()
         {
-            var developerProjects = new List<Domain.UserProject>();
-
-            var command = Database.GetCommand(ReqGetAll);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) developerProjects.Add(_userProjectFactory.CreateFromSqlReader(reader));
-
-            return developerProjects;
+            return _requestHelper.GetAll(ReqGetAll, _userProjectFactory);
         }
         
-        public Domain.UserProject GetByIdDeveloperIdProject(int idDeveloper, int idProject)
-        {
-            var command = Database.GetCommand(ReqGetByIdDeveloperIdProject);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColIdUser, idDeveloper);
-            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Return the project if found, null if not
-            return reader.Read() ? _userProjectFactory.CreateFromSqlReader(reader) : null;
-        }
-
         public List<Domain.UserProject> GetByIdDeveloper(int idDeveloper)
         {
             return _requestHelper.GetByIdHelper(idDeveloper, ColIdUser, ReqGetByDeveloperId, _userProjectFactory);
@@ -76,6 +52,20 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
         public List<Domain.UserProject> GetDevelopersByIdProject(int idProject)
         {
             return  _requestHelper.GetByIdHelper(idProject, ColIdProject, ReqGetDevelopersByIdProject, _userProjectFactory);
+        }
+        
+        public Domain.UserProject GetByIdDeveloperIdProject(int idDeveloper, int idProject)
+        {
+            var command = Database.GetCommand(ReqGetByIdDeveloperIdProject);
+            
+            // Parametrize the command
+            command.Parameters.AddWithValue("@" + ColIdUser, idDeveloper);
+            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
+            
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            
+            // Return the project if found, null if not
+            return reader.Read() ? _userProjectFactory.CreateFromSqlReader(reader) : null;
         }
         
         // Post requests

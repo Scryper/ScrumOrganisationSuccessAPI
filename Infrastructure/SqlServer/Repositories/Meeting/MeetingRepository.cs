@@ -14,29 +14,12 @@ namespace Infrastructure.SqlServer.Repositories.Meeting
         // Get requests
         public List<Domain.Meeting> GetAll()
         {
-            var comments = new List<Domain.Meeting>();
-            
-            var command = Database.GetCommand(ReqGetAll);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all comments
-            while(reader.Read()) comments.Add(_meetingFactory.CreateFromSqlReader(reader));
-
-            return comments;
+            return _requestHelper.GetAll(ReqGetAll, _meetingFactory);
         }
         
         public Domain.Meeting GetById(int id)
         {
-            var command = Database.GetCommand(ReqGetById);
-
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColId, id);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the meeting if found, null if not
-            return reader.Read() ? _meetingFactory.CreateFromSqlReader(reader) : null;
+            return _requestHelper.GetById(id, ColId, ReqGetById, _meetingFactory);
         }
 
         public List<Domain.Meeting> GetByIdUser(int idUser)

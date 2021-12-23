@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using Infrastructure.SqlServer.Utils;
 
@@ -14,15 +13,7 @@ namespace Infrastructure.SqlServer.Repositories.Participation
         // Get requests
         public List<Domain.Participation> GetAll()
         {
-            var participations = new List<Domain.Participation>();
-
-            var command = Database.GetCommand(ReqGetAll);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) participations.Add(_participationFactory.CreateFromSqlReader(reader));
-            
-            return participations;
+            return _requestHelper.GetAll(ReqGetAll, _participationFactory);
         }
 
         public List<Domain.Participation> GetByIdUser(int idUser)

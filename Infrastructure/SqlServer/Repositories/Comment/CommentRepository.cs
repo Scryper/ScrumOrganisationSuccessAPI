@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using Infrastructure.SqlServer.Utils;
 
 namespace Infrastructure.SqlServer.Repositories.Comment
@@ -12,18 +11,7 @@ namespace Infrastructure.SqlServer.Repositories.Comment
         // Get requests
         public List<Domain.Comment> GetAll()
         {
-            var comments = new List<Domain.Comment>();
-            
-            var command = Database.GetCommand(ReqGetAll);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all comments
-            while(reader.Read()) comments.Add(_commentFactory.CreateFromSqlReader(reader));
-            
-            command.Connection.Close();
-            
-            return comments;
+            return _requestHelper.GetAll(ReqGetAll, _commentFactory);
         }
 
         public List<Domain.Comment> GetByIdUserStory(int idUserStory)
@@ -33,19 +21,7 @@ namespace Infrastructure.SqlServer.Repositories.Comment
 
         public Domain.Comment GetById(int id)
         {
-            var command = Database.GetCommand(ReqGetById);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColId, id);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            var returnData = reader.Read() ? _commentFactory.CreateFromSqlReader(reader) : null;
-            
-            command.Connection.Close();
-            
-            // Return the comment if found, null if not
-            return returnData ;
+            return _requestHelper.GetById(id, ColId, ReqGetById, _commentFactory);
         }
 
         // Post requests

@@ -13,15 +13,7 @@ namespace Infrastructure.SqlServer.Repositories.UserTechnology
         // Get requests
         public List<Domain.UserTechnology> GetAll()
         {
-            var userTechnologies = new List<Domain.UserTechnology>();
-
-            var command = Database.GetCommand(ReqGetAll);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) userTechnologies.Add(_userTechnologyFactory.CreateFromSqlReader(reader));
-            
-            return userTechnologies;
+            return _requestHelper.GetAll(ReqGetAll, _userTechnologyFactory);
         }
 
         public List<Domain.UserTechnology> GetByIdUser(int idUser)
