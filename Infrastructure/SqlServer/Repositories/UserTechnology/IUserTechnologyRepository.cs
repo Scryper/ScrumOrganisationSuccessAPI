@@ -11,6 +11,7 @@ namespace Infrastructure.SqlServer.Repositories.UserTechnology
 
         List<Domain.UserTechnology> GetByTechnologyId(int technologyId);
 
+        List<Domain.UserTechnology> GetByTechnologyIdUserId(int technologyId, int idUser);
         
         // Post Requests
         Domain.UserTechnology Create(Domain.UserTechnology userTechnology);

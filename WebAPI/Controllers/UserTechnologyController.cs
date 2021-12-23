@@ -16,6 +16,7 @@ namespace WebAPI.Controllers
         private readonly UseCaseGetAllUserTechnologies _useCaseGetAllUserTechnologies;
         private readonly UseCaseGetUserTechnologyByIdTechnology _useCaseGetUserTechnologyByIdTechnology;
         private readonly UseCaseGetUserTechnologyByIdUser _useCaseGetUserTechnologyByIdUser;
+        private readonly UseCaseGetUserTechnologyByIdTechnologyIdUser _useCaseGetUserTechnologyByIdTechnologyIdUser;
         private readonly UseCaseCreateUserTechnology _useCaseCreateUserTechnology;
         private readonly UseCaseDeleteUserTechnology _useCaseDeleteUserTechnology;
 
@@ -24,13 +25,15 @@ namespace WebAPI.Controllers
             UseCaseGetUserTechnologyByIdTechnology useCaseGetUserTechnologyByIdTechnology,
             UseCaseGetUserTechnologyByIdUser useCaseGetUserTechnologyByIdUser,
             UseCaseCreateUserTechnology useCaseCreateUserTechnology,
-            UseCaseDeleteUserTechnology useCaseDeleteUserTechnology)
+            UseCaseDeleteUserTechnology useCaseDeleteUserTechnology,
+            UseCaseGetUserTechnologyByIdTechnologyIdUser useCaseGetUserTechnologyByIdTechnologyIdUser)
         {
             _useCaseGetAllUserTechnologies = useCaseGetAllUserTechnologies;
             _useCaseGetUserTechnologyByIdTechnology = useCaseGetUserTechnologyByIdTechnology;
             _useCaseGetUserTechnologyByIdUser = useCaseGetUserTechnologyByIdUser;
             _useCaseCreateUserTechnology = useCaseCreateUserTechnology;
             _useCaseDeleteUserTechnology = useCaseDeleteUserTechnology;
+            _useCaseGetUserTechnologyByIdTechnologyIdUser =useCaseGetUserTechnologyByIdTechnologyIdUser;
         }
         
         // Get requests
@@ -52,6 +55,13 @@ namespace WebAPI.Controllers
         public ActionResult<List<OutputDtoUserTechnology>> GetByIdTechnology(int idTechnology)
         {
             return _useCaseGetUserTechnologyByIdTechnology.Execute(idTechnology);
+        }
+        
+        [HttpGet]
+        [Route("byTechnologyUser/{idTechnology:int},{idUser:int}")]
+        public ActionResult<List<OutputDtoUserTechnology>> GetByIdTechnologyIdUser(int idTechnology,int idUser)
+        {
+            return _useCaseGetUserTechnologyByIdTechnologyIdUser.Execute(idTechnology,idUser);
         }
         
         // Post requests

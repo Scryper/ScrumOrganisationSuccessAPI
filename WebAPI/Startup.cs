@@ -183,6 +183,7 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetUserStoryById>();
             services.AddSingleton<UseCaseGetUserStoriesByIdSprint>();
             
+            
             services.AddSingleton<UseCaseCreateUserStory>();
 
             services.AddSingleton<UseCaseUpdateUserStory>();
@@ -224,6 +225,7 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetAllUserTechnologies>();
             services.AddSingleton<UseCaseGetUserTechnologyByIdUser>();
             services.AddSingleton<UseCaseGetUserTechnologyByIdTechnology>();
+            services.AddSingleton<UseCaseGetUserTechnologyByIdTechnologyIdUser>();
             services.AddSingleton<UseCaseDeleteUserTechnology>();
             services.AddSingleton<UseCaseCreateUserTechnology>();
             

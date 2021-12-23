@@ -15,6 +15,9 @@
 
         private static readonly string ReqGetByTechnology = $@"select * from {TableName} 
                                                             where {ColIdTechnology} = @{ColIdTechnology}";
+        
+        private static readonly string ReqGetByIdTechnologyIdUser = $@"select * from {TableName} 
+                                                            where {ColIdTechnology} = @{ColIdTechnology} and {ColIdUser} = @{ColIdUser}";
 
         private static readonly string ReqCreate = $@"insert into {TableName}({ColIdUser},{ColIdTechnology}) 
                                                     values(@{ColIdUser},@{ColIdTechnology})";
