@@ -16,7 +16,7 @@ namespace Application.UseCases.Participation.Get
 
         public List<OutputDtoParticipation> Execute(int filter)
         {
-            var participations = _participationRepository.getByMeetingId(filter);
+            var participations = _participationRepository.GetByMeetingId(filter);
 
             return Mapper.GetInstance().Map<List<OutputDtoParticipation>>(participations);
         }

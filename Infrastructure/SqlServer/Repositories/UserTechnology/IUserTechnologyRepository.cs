@@ -9,7 +9,7 @@ namespace Infrastructure.SqlServer.Repositories.UserTechnology
 
         List<Domain.UserTechnology> GetByUserId(int userId);
 
-        List<Domain.UserTechnology> getByTechnologyId(int technologyId);
+        List<Domain.UserTechnology> GetByTechnologyId(int technologyId);
 
         
         // Post Requests

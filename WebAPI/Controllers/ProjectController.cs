@@ -117,7 +117,8 @@ namespace WebAPI.Controllers
         [ProducesResponseType(400)]
         public ActionResult<OutputDtoProject> Create([FromBody] InputDtoProject inputDtoProject)
         {
-            return StatusCode(201,_useCaseCreateProject.Execute(inputDtoProject));
+            var result = _useCaseCreateProject.Execute(inputDtoProject);
+            return result == null ? null : StatusCode(201, result);
         }
 
         // Put requests

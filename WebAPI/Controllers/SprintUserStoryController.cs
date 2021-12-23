@@ -64,7 +64,8 @@ namespace WebAPI.Controllers
         [ProducesResponseType(400)]
         public ActionResult<OutputDtoSprintUserStory> Create(InputDtoSprintUserStory inputDtoSprintUserStory)
         {
-            return _useCaseCreateSprintUserStory.Execute(inputDtoSprintUserStory);
+            var result = _useCaseCreateSprintUserStory.Execute(inputDtoSprintUserStory);
+            return result == null ? null : StatusCode(201, result);
         }
 
         // Delete requests
