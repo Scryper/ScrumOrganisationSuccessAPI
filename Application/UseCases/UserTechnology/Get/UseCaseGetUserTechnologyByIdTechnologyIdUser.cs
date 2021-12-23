@@ -16,7 +16,7 @@ namespace Application.UseCases.UserTechnology.Get
         
         public List<OutputDtoUserTechnology> Execute(int idTechnology, int idUser)
         {
-            var userTechnology = _userTechnologyRepository.GetByTechnologyIdUserId(idTechnology, idUser);
+            var userTechnology = _userTechnologyRepository.GetByIdTechnologyIdUser(idTechnology, idUser);
             
             return Mapper.GetInstance().Map<List<OutputDtoUserTechnology>>(userTechnology);
         }

@@ -25,11 +25,11 @@ namespace Infrastructure.SqlServer.Repositories.SprintUserStory
         }
         
         // Utils for GetByIdSprint and GetByIdUserStory
-        // Both return a list of projects, the only changing parameters are the request and the column on which 
+        // Both return a list of sprint user stories, the only changing parameters are the request and the column on which 
         // the request base its verification
         private List<Domain.SprintUserStory> GetByIdHelper(int id, string column, string request)
         {
-            var projectTechnologies = new List<Domain.SprintUserStory>();
+            var sprintUserStories = new List<Domain.SprintUserStory>();
             
             var command = Database.GetCommand(request);
             
@@ -37,9 +37,9 @@ namespace Infrastructure.SqlServer.Repositories.SprintUserStory
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
-            while(reader.Read()) projectTechnologies.Add(_sprintUserStoryFactory.CreateFromSqlReader(reader));
+            while(reader.Read()) sprintUserStories.Add(_sprintUserStoryFactory.CreateFromSqlReader(reader));
             
-            return projectTechnologies;
+            return sprintUserStories;
         }
 
         public List<Domain.SprintUserStory> GetByIdSprint(int idSprint)

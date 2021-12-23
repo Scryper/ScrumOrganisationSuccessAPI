@@ -10,7 +10,7 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
 {
     public partial class UserProjectRepository : IUserProjectRepository
     {
-        private readonly IDomainFactory<Domain.UserProject> _developerProjectFactory =
+        private readonly IDomainFactory<Domain.UserProject> _userProjectFactory =
             new UserProjectFactory();
 
         private readonly IDomainFactory<Domain.Sprint> _sprintFactory = new SprintFactory();
@@ -24,7 +24,7 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
-            while(reader.Read()) developerProjects.Add(_developerProjectFactory.CreateFromSqlReader(reader));
+            while(reader.Read()) developerProjects.Add(_userProjectFactory.CreateFromSqlReader(reader));
 
             return developerProjects;
         }
@@ -40,16 +40,16 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
             // Return the project if found, null if not
-            return reader.Read() ? _developerProjectFactory.CreateFromSqlReader(reader) : null;
+            return reader.Read() ? _userProjectFactory.CreateFromSqlReader(reader) : null;
         }
 
         // Utils for GetByIdDeveloper, GetByIdProject, GetByIdDeveloperIsAppliance, GetByIdDeveloperIfIsWorking
         // GetByIdDeveloperIfIsNotWorking, GetScrumMasterByIdProject, GetDevelopersByIdProject
-        // Both return a list of projects, the only changing parameters are the request and the column on which 
+        // Both return a list of user projects, the only changing parameters are the request and the column on which 
         // the request base its verification
         private List<Domain.UserProject> GetByIdHelper(int id, string column, string request)
         {
-            var projectTechnologies = new List<Domain.UserProject>();
+            var userProjects = new List<Domain.UserProject>();
             
             var command = Database.GetCommand(request);
             
@@ -57,9 +57,9 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
-            while(reader.Read()) projectTechnologies.Add(_developerProjectFactory.CreateFromSqlReader(reader));
+            while(reader.Read()) userProjects.Add(_userProjectFactory.CreateFromSqlReader(reader));
             
-            return projectTechnologies;
+            return userProjects;
         }
         
         public List<Domain.UserProject> GetByIdDeveloper(int idDeveloper)

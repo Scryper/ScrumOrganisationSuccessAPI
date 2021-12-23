@@ -25,23 +25,34 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
             return userStories;
         }
 
-        public List<Domain.UserStory> GetByIdProject(int idProject)
+        // Utils for GetByIdProject, GetByIdSprint
+        // Both return a list of userstories, the only changing parameters are the request and the column on which 
+        // the request base its verification
+        private List<Domain.UserStory> GetByIdHelper(int id, string column, string request)
         {
             var userStories = new List<Domain.UserStory>();
             
-            var command = Database.GetCommand(ReqGetByIdProject);
+            var command = Database.GetCommand(request);
             
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
+            command.Parameters.AddWithValue("@" + column, id);
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
-            // Add all user stories
             while(reader.Read()) userStories.Add(_userStoryFactory.CreateFromSqlReader(reader));
             
             return userStories;
         }
+        
+        public List<Domain.UserStory> GetByIdProject(int idProject)
+        {
+            return GetByIdHelper(idProject, ColIdProject, ReqGetByIdProject);
+        }
 
+        public List<Domain.UserStory> GetByIdSprint(int idSprint)
+        {
+            return GetByIdHelper(idSprint, ColIdSprint, ReqGetByIdSprint);
+        }
+        
         public Domain.UserStory GetById(int id)
         {
             var command = Database.GetCommand(ReqGetById);
@@ -53,23 +64,6 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
 
             // Return the user story if found, null if not
             return reader.Read() ? _userStoryFactory.CreateFromSqlReader(reader) : null;
-        }
-
-        public List<Domain.UserStory> GetByIdSprint(int idSprint)
-        {
-            var userStories = new List<Domain.UserStory>();
-            
-            var command = Database.GetCommand(ReqGetByIdSprint);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColIdSprint, idSprint);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all user stories
-            while(reader.Read()) userStories.Add(_userStoryFactory.CreateFromSqlReader(reader));
-            
-            return userStories;
         }
 
         // Post requests
