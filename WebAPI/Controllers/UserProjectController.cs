@@ -141,7 +141,7 @@ namespace WebAPI.Controllers
         //  Delete requests
         [HttpDelete]
         [Route("{idDeveloper:int}, {idProject:int}")]
-        [Authorize(false, true, true)]
+        [Authorize(true, true, true)]
         public ActionResult Delete(int idDeveloper, int idProject)
         {
             var result = _useCaseDeleteUserProject.Execute(idDeveloper, idProject);
