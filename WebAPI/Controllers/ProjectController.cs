@@ -19,7 +19,11 @@ namespace WebAPI.Controllers
         private readonly UseCaseGetAllProjects _useCaseGetAllProjects;
         private readonly UseCaseGetProjectById _useCaseGetProjectById;
         private readonly UseCaseGetProjectByName _useCaseGetProjectByName;
-        private readonly UseCaseGetActiveProject _useCaseGetActiveProject;
+        private readonly UseCaseGetByIdUserActiveProject _useCaseGetByIdUserActiveProject;
+        private readonly UseCaseGetActiveProjects _useCaseGetActiveProjects;
+
+        private readonly UseCaseGetProjectByIdUserNotFinishedIsLinkedToUser
+            _useCaseGetProjectByIdUserNotFinishedIsLinkedToUser;
 
         private readonly UseCaseCreateProject _useCaseCreateProject;
 
@@ -37,12 +41,18 @@ namespace WebAPI.Controllers
             UseCaseUpdateProjectRepositoryUrl useCaseUpdateProjectRepositoryUrl,
             UseCaseDeleteProject useCaseDeleteProject,
             UseCaseUpdateProjectStatus useCaseUpdateProjectStatus,
-            UseCaseGetActiveProject useCaseGetActiveProject)
+            UseCaseGetByIdUserActiveProject caseGetByIdUserActiveProject,
+            UseCaseGetProjectByIdUserNotFinishedIsLinkedToUser
+                useCaseGetProjectByIdUserNotFinishedIsLinkedToUser,
+            UseCaseGetActiveProjects useCaseGetActiveProjects)
         {
             _useCaseGetAllProjects = useCaseGetAllProjects;
             _useCaseGetProjectById = useCaseGetProjectById;
             _useCaseGetProjectByName = useCaseGetProjectByName;
-            _useCaseGetActiveProject = useCaseGetActiveProject;
+            _useCaseGetByIdUserActiveProject = caseGetByIdUserActiveProject;
+            _useCaseGetProjectByIdUserNotFinishedIsLinkedToUser
+                = useCaseGetProjectByIdUserNotFinishedIsLinkedToUser;
+            _useCaseGetActiveProjects = useCaseGetActiveProjects;
             
             _useCaseCreateProject = useCaseCreateProject;
 
@@ -81,7 +91,24 @@ namespace WebAPI.Controllers
         [Route("activeByIdUser/{idUser:int}")]
         public ActionResult<List<OutputDtoProject>> GetActiveProject(int idUser)
         {
-            return _useCaseGetActiveProject.Execute(idUser);
+            return _useCaseGetByIdUserActiveProject.Execute(idUser);
+        }
+        
+        // Get requests
+        [HttpGet]
+        [Route("active/")]
+        public ActionResult<List<OutputDtoProject>> GetActiveProject()
+        {
+            return _useCaseGetActiveProjects.Execute();
+        }
+        
+        
+        // Get requests
+        [HttpGet]
+        [Route("byIdUserNotFinishedIsLinked/{idUser:int}")]
+        public ActionResult<List<OutputDtoProject>> GetIdUserNotFinishedIsLinked(int idUser)
+        {
+            return _useCaseGetProjectByIdUserNotFinishedIsLinkedToUser.Execute(idUser);
         }
         
         // Post requests

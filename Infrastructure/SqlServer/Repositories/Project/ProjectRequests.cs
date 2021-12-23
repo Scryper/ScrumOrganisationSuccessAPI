@@ -21,14 +21,23 @@
         
         private static readonly string ReqGetByName = $@"select * from {TableName}
                                                       where {ColName} = @{ColName}";
+        
+        private static readonly string ReqGetActiveProject = $@"select * from {TableName} 
+                                                                where  {ColStatus} != 3";
 
-        private static readonly string ReqGetActiveProject = $@"select {TableName}.* from {TableName} 
+        private static readonly string ReqGetActiveProjectByUser = $@"select {TableName}.* from {TableName} 
                                                                 inner join {TableUserProject} on 
                                                                 {TableName}.{ColId} = {TableUserProject}.id_project 
                                                                 where  {TableName}.{ColStatus} != 3 and 
                                                                 {TableUserProject}.{ColIdUser} = @{ColIdUser} 
                                                                 and {TableUserProject}.is_appliance = 0";
-        
+
+        private static readonly string ReqGetProjectNotFinishedIsLinked = $@"select {TableName}.* from {TableName} 
+                                                                inner join {TableUserProject} on 
+                                                                {TableName}.{ColId} = {TableUserProject}.id_project 
+                                                                where  {TableName}.{ColStatus} != 3 and 
+                                                                {TableUserProject}.{ColIdUser} = @{ColIdUser}";
+
         // Post requests
         private static readonly string ReqCreate = 
                     $@"insert into {TableName}({ColName}, {ColDeadline}, {ColDescription}, 

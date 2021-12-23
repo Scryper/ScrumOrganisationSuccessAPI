@@ -13,6 +13,8 @@ namespace Infrastructure.SqlServer.Repositories.User
         Domain.User GetById(int id);
         Domain.User GetByEmail(string email);
 
+        List<Domain.User> GetByIdProjectIsApplying(int idProject);
+
         // Post requests
         Domain.User Create(Domain.User user);
         
