@@ -8,6 +8,8 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
         List<Domain.UserStory> GetAll();
         List<Domain.UserStory> GetByIdProject(int idProject);
         Domain.UserStory GetById(int id);
+
+        List<Domain.UserStory> GetByIdSprint(int idSprint);
         
         // Post requests
         Domain.UserStory Create(Domain.UserStory userStory);

@@ -16,7 +16,7 @@ namespace WebAPI.Controllers
         // Use cases
         private readonly UseCaseGetAllUserStories _useCaseGetAllUserStories;
         private readonly UseCaseGetUserStoriesByIdProject _useCaseGetUserStoriesByIdProject;
-        // private readonly UseCaseGetUserStoriesByIdSprint _useCaseGetUserStoriesByIdSprint;
+        private readonly UseCaseGetUserStoriesByIdSprint _useCaseGetUserStoriesByIdSprint;
         private readonly UseCaseGetUserStoryById _useCaseGetUserStoryById;
 
         private readonly UseCaseUpdateUserStory _useCaseUpdateUserStory;
@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
         public UserStoryController(
             UseCaseGetAllUserStories useCaseGetAllUserStories,
             UseCaseGetUserStoriesByIdProject useCaseGetUserStoriesByIdProject,
-            // UseCaseGetUserStoriesByIdSprint useCaseGetUserStoriesByIdSprint,
+            UseCaseGetUserStoriesByIdSprint useCaseGetUserStoriesByIdSprint,
             UseCaseGetUserStoryById useCaseGetUserStoryById,
             UseCaseCreateUserStory useCaseCreateUserStory,
             UseCaseDeleteUserStory useCaseDeleteUserStory,
@@ -38,7 +38,7 @@ namespace WebAPI.Controllers
             _useCaseGetAllUserStories = useCaseGetAllUserStories;
             _useCaseGetUserStoryById = useCaseGetUserStoryById;
             _useCaseGetUserStoriesByIdProject = useCaseGetUserStoriesByIdProject;
-            // _useCaseGetUserStoriesByIdSprint = useCaseGetUserStoriesByIdSprint;
+            _useCaseGetUserStoriesByIdSprint = useCaseGetUserStoriesByIdSprint;
 
             _useCaseUpdateUserStory = useCaseUpdateUserStory;
             _useCaseCreateUserStory = useCaseCreateUserStory;
@@ -67,6 +67,13 @@ namespace WebAPI.Controllers
         public ActionResult<OutputDtoUserStory> GetById(int id)
         {
             return _useCaseGetUserStoryById.Execute(id);
+        }
+        
+        [HttpGet]
+        [Route("bySprint/{idSprint:int}")]
+        public ActionResult<List<OutputDtoUserStory>> GetByIdSprint(int idSprint)
+        {
+            return _useCaseGetUserStoriesByIdSprint.Execute(idSprint);
         }
 
         // Post requests

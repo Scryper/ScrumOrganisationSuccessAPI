@@ -181,6 +181,7 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetAllUserStories>();
             services.AddSingleton<UseCaseGetUserStoriesByIdProject>();
             services.AddSingleton<UseCaseGetUserStoryById>();
+            services.AddSingleton<UseCaseGetUserStoriesByIdSprint>();
             
             services.AddSingleton<UseCaseCreateUserStory>();
 

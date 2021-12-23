@@ -55,6 +55,23 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
             return reader.Read() ? _userStoryFactory.CreateFromSqlReader(reader) : null;
         }
 
+        public List<Domain.UserStory> GetByIdSprint(int idSprint)
+        {
+            var userStories = new List<Domain.UserStory>();
+            
+            var command = Database.GetCommand(ReqGetByIdSprint);
+            
+            // Parametrize the command
+            command.Parameters.AddWithValue("@" + ColIdSprint, idSprint);
+            
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            
+            // Add all user stories
+            while(reader.Read()) userStories.Add(_userStoryFactory.CreateFromSqlReader(reader));
+            
+            return userStories;
+        }
+
         // Post requests
         public Domain.UserStory Create(Domain.UserStory userStory)
         {
