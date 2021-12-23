@@ -16,6 +16,7 @@ namespace Application.UseCases.UserStory.Put
         public bool Execute(InputDtoUpdateUserStory data)
         {
             return _userStoryRepository.Update(data.Id,
+                data.InternUserStory.IdProject,
                 data.InternUserStory.Name,
                 data.InternUserStory.Description,
                 data.InternUserStory.Priority);

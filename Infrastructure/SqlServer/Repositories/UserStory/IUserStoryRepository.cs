@@ -15,7 +15,7 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
         Domain.UserStory Create(Domain.UserStory userStory);
         
         // Put requests
-        bool Update(int id, string nom, string description, int priority);
+        bool Update(int id, int idProject, string nom, string description, int priority);
         
         // Delete requests
         bool Delete(int id);

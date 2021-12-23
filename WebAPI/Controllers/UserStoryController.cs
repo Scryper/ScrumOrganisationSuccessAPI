@@ -89,6 +89,7 @@ namespace WebAPI.Controllers
         // Put requests
         [HttpPut]
         [Route("update/{id:int}")]
+        [ProducesResponseType(409)]
         public ActionResult UpdateRole(int id, InputDtoUserStory inputDtoUserStory)
         {
             var inputDtoUpdate = new InputDtoUpdateUserStory
@@ -96,6 +97,7 @@ namespace WebAPI.Controllers
                 Id = id,
                 InternUserStory = new InputDtoUpdateUserStory.UserStory
                 {
+                    IdProject = inputDtoUserStory.IdProject,
                     Name = inputDtoUserStory.Name,
                     Description = inputDtoUserStory.Description,
                     Priority = inputDtoUserStory.Priority
@@ -105,7 +107,7 @@ namespace WebAPI.Controllers
             var result = _useCaseUpdateUserStory.Execute(inputDtoUpdate);
 
             if (result) return Ok();
-            return NotFound();
+            return StatusCode(409, false);
         }
 
         //  Delete requests

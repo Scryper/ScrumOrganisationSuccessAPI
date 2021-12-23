@@ -36,7 +36,7 @@
                                 values(@{ColIdProject}, @{ColName}, @{ColDescription}, @{ColPriority})";
         
         // Put requests
-        private static readonly string ReqUpdateUS = $@"update {TableName} 
+        private static readonly string ReqUpdateUserStory = $@"update {TableName} 
                                                         set {ColName} = @{ColName}, 
                                                         {ColDescription} = @{ColDescription}, 
                                                         {ColPriority} = @{ColPriority} 

@@ -94,16 +94,34 @@ namespace Infrastructure.SqlServer.Repositories.UserStory
             };
         }
         
-        // Utils for post request
+        // Utils for post and update request
         private bool Exists(Domain.UserStory userStory)
         {
             var userStories = GetAll();
             return Enumerable.Contains(userStories, userStory);
         }
 
-        public bool Update(int id, string name, string description, int priority)
+        private bool ExistsInProject(Domain.UserStory userStory)
         {
-            var command = Database.GetCommand(ReqUpdateUS);
+            var userStories = GetByIdProject(userStory.IdProject);
+            return Enumerable.Contains(userStories, userStory);
+        }
+
+        // Post request
+        public bool Update(int id, int idProject, string name, string description, int priority)
+        {
+            var userStory = new Domain.UserStory
+            {
+                Description = description,
+                Id = 0,
+                Name = name,
+                Priority = priority,
+                IdProject = idProject
+            };
+
+            if (ExistsInProject(userStory)) return false;
+            
+            var command = Database.GetCommand(ReqUpdateUserStory);
             
             // Parametrize the command
             command.Parameters.AddWithValue("@" + ColId, id);
