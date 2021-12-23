@@ -19,7 +19,7 @@ namespace Application.UseCases.Meeting.Post
             
             var meeting = _meetingRepository.Create(meetingFromDto);
             
-            return Mapper.GetInstance().Map<OutputDtoMeeting>(meeting);
+            return meeting == null ? null : Mapper.GetInstance().Map<OutputDtoMeeting>(meeting);
         }
     }
 }

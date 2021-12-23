@@ -1,7 +1,6 @@
 ﻿using Infrastructure.SqlServer.System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
-using WebAPI.Security.Attributes;
 
 namespace WebAPI.Controllers
 {
@@ -20,7 +19,6 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("init")]
-        // [Authorize(false, false, false)]
         public IActionResult CreateDatabaseAndTables()
         {
             if (_hostEnvironment.IsProduction()) return BadRequest("Only in development");
@@ -31,7 +29,6 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("fill")]
-        // [Authorize(false, false, false)]
         public IActionResult FillTables()
         {
             if (_hostEnvironment.IsProduction()) return BadRequest("Only in development");

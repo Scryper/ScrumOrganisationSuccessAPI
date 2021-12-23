@@ -79,11 +79,11 @@ namespace WebAPI.Controllers
         // Post requests
         [HttpPost]
         [ProducesResponseType(201)]
-        [ProducesResponseType(400)]
+        [ProducesResponseType(409)]
         public ActionResult<OutputDtoUserStory> Create([FromBody] InputDtoUserStory inputDtoUserStory)
         {
             var result = _useCaseCreateUserStory.Execute(inputDtoUserStory);
-            return result == null ? null : StatusCode(201, result);
+            return result == null ? StatusCode(409, null) : StatusCode(201, result);
         }
 
         // Put requests
