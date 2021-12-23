@@ -7,9 +7,9 @@ namespace Infrastructure.SqlServer.Repositories.ProjectTechnology
         // Get Requests
         List<Domain.ProjectTechnology> GetAll();
 
-        List<Domain.ProjectTechnology> GetByProjectId(int projectId);
+        List<Domain.ProjectTechnology> GetByIdProject(int idProject);
 
-        List<Domain.ProjectTechnology> getByTechnologyId(int technologyId);
+        List<Domain.ProjectTechnology> getByIdTechnology(int idTechnology);
 
         
         // Post Requests

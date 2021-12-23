@@ -50,7 +50,7 @@
                                                                         {ColIsAppliance} = 0";
         
         //use to get the devs on a project
-        private static readonly string ReqGetDevsByIdProject = $@"select {ColIdUser}, {ColIdProject}, {ColIsAppliance}  from {TableName} 
+        private static readonly string ReqGetDevelopersByIdProject = $@"select {ColIdUser}, {ColIdProject}, {ColIsAppliance}  from {TableName} 
                                                                         inner join  {TableUser} on {TableName}.{ColIdUser} = {TableUser}.{ColIdProjectFromUser} 
                                                                         where {ColIdProject} = @{ColIdProject} and 
                                                                         {ColUserRole} = 1 and 

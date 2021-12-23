@@ -16,7 +16,7 @@ namespace Application.UseCases.ProjectTechnology.Get
 
         public List<OutputDtoProjectTechnology> Execute(int filter)
         {
-            var projectTechnology = _projectTechnologyRepository.GetByProjectId(filter);
+            var projectTechnology = _projectTechnologyRepository.GetByIdProject(filter);
 
             return Mapper.GetInstance().Map<List<OutputDtoProjectTechnology>>(projectTechnology);
         }

@@ -17,7 +17,7 @@ namespace Application.UseCases.UserProject.Get
         
         public List<OutputDtoUserProject> Execute(int filter)
         {
-            var developerProjectsFromDb = _userProjectRepository.GetByIdDeveloperifIsWorking(filter);
+            var developerProjectsFromDb = _userProjectRepository.GetByIdDeveloperIfIsWorking(filter);
 
             return Mapper.GetInstance().Map<List<OutputDtoUserProject>>(developerProjectsFromDb);
         }

@@ -10,10 +10,10 @@
         
         private static readonly string ReqGetAll = $"select * from {TableName}";
 
-        private static readonly string ReqGetByUserId = $@"select * from {TableName} 
+        private static readonly string ReqGetByIdUser = $@"select * from {TableName} 
                                                         where {ColIdUser} = @{ColIdUser}";
 
-        private static readonly string ReqGetByMeetingId = $@"select * from {TableName} 
+        private static readonly string ReqGetByIdMeeting = $@"select * from {TableName} 
                                                             where {ColIdMeeting} = @{ColIdMeeting}";
 
         private static readonly string ReqCreate = $@"insert into {TableName}({ColIdUser},{ColIdMeeting}) 

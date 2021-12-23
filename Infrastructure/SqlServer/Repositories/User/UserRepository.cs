@@ -25,29 +25,44 @@ namespace Infrastructure.SqlServer.Repositories.User
             return users;
         }
 
-        // TODO : factorisation
-        public List<Domain.User> GetByIdProject(int idProject)
+        // Utils for GetByIdSprint and GetByIdUserStory
+        // Both return a list of projects, the only changing parameters are the request and the column on which 
+        // the request base its verification
+        private List<Domain.User> GetByIdHelper(int id, string request)
         {
-            var users = new List<Domain.User>();
-
-            var command = Database.GetCommand(ReqGetByIdProject);
+            var projectTechnologies = new List<Domain.User>();
             
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColId, idProject);
-
+            var command = Database.GetCommand(request);
+            
+            command.Parameters.AddWithValue("@" + ColId, id);
+            
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
-            // Add all users
-            while(reader.Read()) users.Add(_userFactory.CreateFromSqlReader(reader));
-
-            return users;
+            while(reader.Read()) projectTechnologies.Add(_userFactory.CreateFromSqlReader(reader));
+            
+            return projectTechnologies;
+        }
+        
+        public List<Domain.User> GetByIdProject(int idProject)
+        {
+            return GetByIdHelper(idProject, ReqGetByIdProject);
         }
 
         public List<Domain.User> GetByIdProjectIsWorking(int idProject)
         {
+            return GetByIdHelper(idProject, ReqGetByIdProjectIsWorking);
+        }
+
+        public List<Domain.User> GetByIdMeeting(int idMeeting)
+        {
+            return GetByIdHelper(idMeeting, ReqGetByIdMeeting);
+        }
+
+        public List<Domain.User> GetByIdProjectIsApplying(int idProject)
+        {
             var users = new List<Domain.User>();
 
-            var command = Database.GetCommand(ReqGetByIdProjectIsWorking);
+            var command = Database.GetCommand(ReqGetUserApplyingByIdProject);
             
             // Parametrize the command
             command.Parameters.AddWithValue("@" + ColId, idProject);
@@ -59,25 +74,7 @@ namespace Infrastructure.SqlServer.Repositories.User
 
             return users;
         }
-
-        // TODO : factorisation
-        public List<Domain.User> GetByIdMeeting(int idMeeting)
-        {
-            var users = new List<Domain.User>();
-
-            var command = Database.GetCommand(ReqGetByIdMeeting);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColId, idMeeting);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all users
-            while(reader.Read()) users.Add(_userFactory.CreateFromSqlReader(reader));
-
-            return users;
-        }
-
+        
         public Domain.User GetById(int id)
         {
             var command = Database.GetCommand(ReqGetById);
@@ -102,23 +99,6 @@ namespace Infrastructure.SqlServer.Repositories.User
 
             // Return user if found, null if not
             return reader.Read() ? _userFactory.CreateFromSqlReader(reader) : null;
-        }
-
-        public List<Domain.User> GetByIdProjectIsApplying(int idProject)
-        {
-            var users = new List<Domain.User>();
-
-            var command = Database.GetCommand(ReqGetUserApplyingByIdProject);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColId, idProject);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all users
-            while(reader.Read()) users.Add(_userFactory.CreateFromSqlReader(reader));
-
-            return users;
         }
 
         // Post requests

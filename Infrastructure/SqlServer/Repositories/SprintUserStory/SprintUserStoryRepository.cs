@@ -23,39 +23,33 @@ namespace Infrastructure.SqlServer.Repositories.SprintUserStory
 
             return sprintUserStories;
         }
-
-        // TODO : factorisation
-        public List<Domain.SprintUserStory> GetByIdSprint(int idSprint)
+        
+        // Utils for GetByIdSprint and GetByIdUserStory
+        // Both return a list of projects, the only changing parameters are the request and the column on which 
+        // the request base its verification
+        private List<Domain.SprintUserStory> GetByIdHelper(int id, string column, string request)
         {
-            var sprintUserStories = new List<Domain.SprintUserStory>();
-
-            var command = Database.GetCommand(ReqGetByIdSprint);
-
-            command.Parameters.AddWithValue("@" + ColIdSprint, idSprint);
-
+            var projectTechnologies = new List<Domain.SprintUserStory>();
+            
+            var command = Database.GetCommand(request);
+            
+            command.Parameters.AddWithValue("@" + column, id);
+            
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
-            // Add all sprint links to user stories
-            while(reader.Read()) sprintUserStories.Add(_sprintUserStoryFactory.CreateFromSqlReader(reader));
-
-            return sprintUserStories;
+            while(reader.Read()) projectTechnologies.Add(_sprintUserStoryFactory.CreateFromSqlReader(reader));
+            
+            return projectTechnologies;
         }
 
-        // TODO : factorisation
+        public List<Domain.SprintUserStory> GetByIdSprint(int idSprint)
+        {
+            return GetByIdHelper(idSprint, ColIdSprint, ReqGetByIdSprint);
+        }
+
         public List<Domain.SprintUserStory> GetByIdUserStory(int idUserStory)
         {
-            var sprintUserStories = new List<Domain.SprintUserStory>();
-
-            var command = Database.GetCommand(ReqGetByIdUserStory);
-
-            command.Parameters.AddWithValue("@" + ColIdUserStory, idUserStory);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all sprint links to user stories
-            while(reader.Read()) sprintUserStories.Add(_sprintUserStoryFactory.CreateFromSqlReader(reader));
-
-            return sprintUserStories;
+            return GetByIdHelper(idUserStory, ColIdUserStory, ReqGetByIdUserStory);
         }
 
         // Post requests

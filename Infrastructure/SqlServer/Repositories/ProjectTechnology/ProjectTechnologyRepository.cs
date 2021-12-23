@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Infrastructure.SqlServer.Utils;
-using NotImplementedException = System.NotImplementedException;
 
 namespace Infrastructure.SqlServer.Repositories.ProjectTechnology
 {
@@ -15,7 +13,9 @@ namespace Infrastructure.SqlServer.Repositories.ProjectTechnology
         public List<Domain.ProjectTechnology> GetAll()
         {
             var projectTechnologies = new List<Domain.ProjectTechnology>();
+            
             var command = Database.GetCommand(ReqGetAll);
+            
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
             while(reader.Read()) projectTechnologies.Add(_projectTechnologyFactory.CreateFromSqlReader(reader));
@@ -23,28 +23,32 @@ namespace Infrastructure.SqlServer.Repositories.ProjectTechnology
             return projectTechnologies;
         }
 
-        public List<Domain.ProjectTechnology> GetByProjectId(int projectId)
+        // Utils for GetActiveProjectByUser and GetProjectByIdUserNotFinishedIsLinked
+        // Both return a list of projects, the only changing parameters are the request and the column on which 
+        // the request base its verification
+        private List<Domain.ProjectTechnology> GetByIdHelper(int id, string column, string request)
         {
             var projectTechnologies = new List<Domain.ProjectTechnology>();
-            var command = Database.GetCommand(ReqGetByIdProject);
-            command.Parameters.AddWithValue("@" + ColIdProject,projectId);
+            
+            var command = Database.GetCommand(request);
+            
+            command.Parameters.AddWithValue("@" + column, id);
+            
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
             while(reader.Read()) projectTechnologies.Add(_projectTechnologyFactory.CreateFromSqlReader(reader));
             
             return projectTechnologies;
         }
-
-        public List<Domain.ProjectTechnology> getByTechnologyId(int technologyId)
+        
+        public List<Domain.ProjectTechnology> GetByIdProject(int idProject)
         {
-            var projectTechnologies = new List<Domain.ProjectTechnology>();
-            var command = Database.GetCommand(ReqGetByIdTechnology);
-            command.Parameters.AddWithValue("@" + ColIdTechnology,technologyId);
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) projectTechnologies.Add(_projectTechnologyFactory.CreateFromSqlReader(reader));
-            
-            return projectTechnologies;
+            return GetByIdHelper(idProject, ColIdProject, ReqGetByIdProject);
+        }
+
+        public List<Domain.ProjectTechnology> getByIdTechnology(int idTechnology)
+        {
+            return GetByIdHelper(idTechnology, ColIdTechnology, ReqGetByIdTechnology);
         }
 
         // Post requests

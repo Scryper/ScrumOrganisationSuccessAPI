@@ -10,10 +10,10 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
         List<Domain.UserProject> GetByIdProject(int idProject);
         List<Domain.UserProject> GetByIdDeveloperIsAppliance(int idDeveloper);
         Domain.UserProject GetByIdDeveloperIdProject(int idDeveloper, int idProject);
-        List<Domain.UserProject> GetByIdDeveloperifIsWorking(int idDeveloper);
-        List<Domain.UserProject> GetByIdDeveloperifIsNotWorking(int idDeveloper);
+        List<Domain.UserProject> GetByIdDeveloperIfIsWorking(int idDeveloper);
+        List<Domain.UserProject> GetByIdDeveloperIfIsNotWorking(int idDeveloper);
         List<Domain.UserProject> GetScrumMasterByIdProject(int idDeveloper);
-        List<Domain.UserProject> GetDevsByIdProject(int idDeveloper);
+        List<Domain.UserProject> GetDevelopersByIdProject(int idDeveloper);
         
         // Post requests
         Domain.UserProject Create(Domain.UserProject userProject);

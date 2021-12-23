@@ -28,58 +28,12 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
 
             return developerProjects;
         }
-
-        public List<Domain.UserProject> GetByIdDeveloper(int idDeveloper)
-        {
-            var developerProjects = new List<Domain.UserProject>();
-
-            var command = Database.GetCommand(ReqGetByDeveloperId);
-
-            command.Parameters.AddWithValue("@" + ColIdUser, idDeveloper);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) developerProjects.Add(_developerProjectFactory.CreateFromSqlReader(reader));
-
-            return developerProjects;
-        }
-
-        public List<Domain.UserProject> GetByIdProject(int idProject)
-        {
-            var developerProjects = new List<Domain.UserProject>();
-
-            var command = Database.GetCommand(ReqGetByProjectId);
-
-            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) developerProjects.Add(_developerProjectFactory.CreateFromSqlReader(reader));
-
-            return developerProjects;
-        }
-
-        public List<Domain.UserProject> GetByIdDeveloperIsAppliance(int idDeveloper)
-        {
-            var developerProjects = new List<Domain.UserProject>();
-            
-            var command = Database.GetCommand(ReqByIdDeveloperIsAppliance);
-
-            command.Parameters.AddWithValue("@" + ColIdUser, idDeveloper);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) developerProjects.Add(_developerProjectFactory.CreateFromSqlReader(reader));
-
-            return developerProjects;
-        }
-
+        
         public Domain.UserProject GetByIdDeveloperIdProject(int idDeveloper, int idProject)
         {
-            var developerProjects = new Domain.UserProject();
-
             var command = Database.GetCommand(ReqGetByIdDeveloperIdProject);
             
+            // Parametrize the command
             command.Parameters.AddWithValue("@" + ColIdUser, idDeveloper);
             command.Parameters.AddWithValue("@" + ColIdProject, idProject);
             
@@ -89,64 +43,58 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
             return reader.Read() ? _developerProjectFactory.CreateFromSqlReader(reader) : null;
         }
 
-        public List<Domain.UserProject> GetByIdDeveloperifIsWorking(int idDeveloper)
+        // Utils for GetByIdDeveloper, GetByIdProject, GetByIdDeveloperIsAppliance, GetByIdDeveloperIfIsWorking
+        // GetByIdDeveloperIfIsNotWorking, GetScrumMasterByIdProject, GetDevelopersByIdProject
+        // Both return a list of projects, the only changing parameters are the request and the column on which 
+        // the request base its verification
+        private List<Domain.UserProject> GetByIdHelper(int id, string column, string request)
         {
-            var developerProjects = new List<Domain.UserProject>();
+            var projectTechnologies = new List<Domain.UserProject>();
             
-            var command = Database.GetCommand(ReqDeveloperProjectByIdDeveloperIfIsWorking);
-
-            command.Parameters.AddWithValue("@" + ColIdUser, idDeveloper);
+            var command = Database.GetCommand(request);
+            
+            command.Parameters.AddWithValue("@" + column, id);
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
-            while(reader.Read()) developerProjects.Add(_developerProjectFactory.CreateFromSqlReader(reader));
-
-            return developerProjects;
+            while(reader.Read()) projectTechnologies.Add(_developerProjectFactory.CreateFromSqlReader(reader));
+            
+            return projectTechnologies;
+        }
+        
+        public List<Domain.UserProject> GetByIdDeveloper(int idDeveloper)
+        {
+            return GetByIdHelper(idDeveloper, ColIdUser, ReqGetByDeveloperId);
         }
 
-        public List<Domain.UserProject> GetByIdDeveloperifIsNotWorking(int idDeveloper)
+        public List<Domain.UserProject> GetByIdProject(int idProject)
         {
-            var developerProjects = new List<Domain.UserProject>();
-            
-            var command = Database.GetCommand(ReqDeveloperProjectByIdDeveloperifIsNotWorking);
+            return GetByIdHelper(idProject, ColIdProject, ReqGetByProjectId);
+        }
 
-            command.Parameters.AddWithValue("@" + ColIdUser, idDeveloper);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) developerProjects.Add(_developerProjectFactory.CreateFromSqlReader(reader));
+        public List<Domain.UserProject> GetByIdDeveloperIsAppliance(int idDeveloper)
+        {
+            return GetByIdHelper(idDeveloper, ColIdUser, ReqByIdDeveloperIsAppliance);
+        }
 
-            return developerProjects;
+        public List<Domain.UserProject> GetByIdDeveloperIfIsWorking(int idDeveloper)
+        {
+            return GetByIdHelper(idDeveloper, ColIdUser, ReqDeveloperProjectByIdDeveloperIfIsWorking);
+        }
+
+        public List<Domain.UserProject> GetByIdDeveloperIfIsNotWorking(int idDeveloper)
+        {
+            return GetByIdHelper(idDeveloper, ColIdUser, ReqDeveloperProjectByIdDeveloperifIsNotWorking);
         }
 
         public List<Domain.UserProject> GetScrumMasterByIdProject(int idProject)
         {
-            var developerProjects = new List<Domain.UserProject>();
-            
-            var command = Database.GetCommand(ReqGetScrumMasterByIdProject);
-
-            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) developerProjects.Add(_developerProjectFactory.CreateFromSqlReader(reader));
-
-            return developerProjects;
+            return GetByIdHelper(idProject, ColIdProject, ReqGetScrumMasterByIdProject);
         }
 
-        public List<Domain.UserProject> GetDevsByIdProject(int idProject)
+        public List<Domain.UserProject> GetDevelopersByIdProject(int idProject)
         {
-            var developerProjects = new List<Domain.UserProject>();
-            
-            var command = Database.GetCommand(ReqGetDevsByIdProject);
-
-            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) developerProjects.Add(_developerProjectFactory.CreateFromSqlReader(reader));
-
-            return developerProjects;
+            return GetByIdHelper(idProject, ColIdProject, ReqGetDevelopersByIdProject);
         }
         
         // Post requests

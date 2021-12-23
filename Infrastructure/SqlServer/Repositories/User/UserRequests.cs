@@ -19,8 +19,6 @@
         
         public const string UserProjectColIdUser = "user_project.id_user";
         public const string UserProjectColIdProject = "user_project.id_project";
-        public const string UserProjectColIsAppliance = "user_project.is_appliance";
-        public const string UserProject_ProjectId = "id_project";
         public const string ProjectColId = "project.id";
         public const string ParticipationColIdUser = "participation.id_user";
         public const string ParticipationColIdMeeting = "participation.id_meeting";

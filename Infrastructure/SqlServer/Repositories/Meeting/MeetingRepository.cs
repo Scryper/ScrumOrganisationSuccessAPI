@@ -38,14 +38,17 @@ namespace Infrastructure.SqlServer.Repositories.Meeting
             return reader.Read() ? _meetingFactory.CreateFromSqlReader(reader) : null;
         }
 
-        public List<Domain.Meeting> GetByIdUser(int idUser)
+        // Utils for GetByIdUser and GetByIdSprint
+        // Both return a list of meetings, the only changing parameters are the request and the column on which 
+        // the request base its verification
+        private List<Domain.Meeting> GetByIdHelper(int id, string column, string request)
         {
             var meetings = new List<Domain.Meeting>();
 
-            var command = Database.GetCommand(ReqGetByIdUser);
+            var command = Database.GetCommand(request);
             
             // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColId, idUser);
+            command.Parameters.AddWithValue("@" + column, id);
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             
@@ -55,28 +58,20 @@ namespace Infrastructure.SqlServer.Repositories.Meeting
             return meetings;
         }
 
-        // TODO : factorisation with get by id user
+        public List<Domain.Meeting> GetByIdUser(int idUser)
+        {
+            return GetByIdHelper(idUser, ColId, ReqGetByIdUser);
+        }
+
         public List<Domain.Meeting> GetByIdSprint(int idSprint)
         {
-            var meetings = new List<Domain.Meeting>();
-            
-            var command = Database.GetCommand(ReqGetByIdSprint);
-
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColIdSprint, idSprint);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all meetings
-            while(reader.Read()) meetings.Add(_meetingFactory.CreateFromSqlReader(reader));
-
-            return meetings;
+            return GetByIdHelper(idSprint, ColIdSprint, ReqGetByIdSprint);
         }
 
         // Post requests
         public Domain.Meeting Create(Domain.Meeting meeting)
         {
-            if (Exists(meeting)) return null;
+            if (Exists(meeting)) return null; // Avoid duplication
             
             var command = Database.GetCommand(ReqCreate);
 
@@ -101,7 +96,7 @@ namespace Infrastructure.SqlServer.Repositories.Meeting
         {
             var meetings = GetAll();
 
-            return Enumerable.Contains(meetings, meeting);
+            return Enumerable.Contains(meetings, meeting); // Verify if the meeting already exists in database
         }
 
         // Put requests

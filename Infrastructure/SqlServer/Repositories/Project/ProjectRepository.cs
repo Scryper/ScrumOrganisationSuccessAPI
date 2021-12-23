@@ -2,7 +2,6 @@
 using System.Data;
 using System.Linq;
 using Infrastructure.SqlServer.Utils;
-using NotImplementedException = System.NotImplementedException;
 
 namespace Infrastructure.SqlServer.Repositories.Project
 {
@@ -65,14 +64,17 @@ namespace Infrastructure.SqlServer.Repositories.Project
             return projects;
         }
 
-        public List<Domain.Project> GetActiveProjectByUser(int idUser)
+        // Utils for GetActiveProjectByUser and GetProjectByIdUserNotFinishedIsLinked
+        // Both return a list of projects, the only changing parameters are the request and the column on which 
+        // the request base its verification
+        private List<Domain.Project> GetHelper(int id, string column, string request)
         {
             var projects = new List<Domain.Project>();
             
-            var command = Database.GetCommand(ReqGetActiveProjectByUser);
+            var command = Database.GetCommand(request);
             
             // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColIdUser, idUser);
+            command.Parameters.AddWithValue("@" + column, id);
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
 
@@ -81,22 +83,15 @@ namespace Infrastructure.SqlServer.Repositories.Project
             
             return projects;
         }
+        
+        public List<Domain.Project> GetActiveProjectByUser(int idUser)
+        {
+            return GetHelper(idUser, ColIdUser, ReqGetActiveProjectByUser);
+        }
 
         public List<Domain.Project> GetProjectByIdUserNotFinishedIsLinked(int idUser)
         {
-            var projects = new List<Domain.Project>();
-            
-            var command = Database.GetCommand(ReqGetProjectNotFinishedIsLinked);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColIdUser, idUser);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the project if found, null if not
-            while(reader.Read()) projects.Add(_projectFactory.CreateFromSqlReader(reader));
-            
-            return projects;
+            return GetHelper(idUser, ColIdUser, ReqGetProjectNotFinishedIsLinked);
         }
 
         // Post requests
