@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using Infrastructure.SqlServer.Utils;
 
@@ -9,50 +8,22 @@ namespace Infrastructure.SqlServer.Repositories.Sprint
     public partial class SprintRepository : ISprintRepository
     {
         private readonly IDomainFactory<Domain.Sprint> _sprintFactory = new SprintFactory();
+        private readonly RequestHelper<Domain.Sprint> _requestHelper = new RequestHelper<Domain.Sprint>();
 
         // Get requests
         public List<Domain.Sprint> GetAll()
         {
-            var sprints = new List<Domain.Sprint>();
-
-            var command = Database.GetCommand(ReqGetAll);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all sprints
-            while(reader.Read()) sprints.Add(_sprintFactory.CreateFromSqlReader(reader));
-            
-            return sprints;
+            return _requestHelper.GetAll(ReqGetAll, _sprintFactory);
         }
 
         public List<Domain.Sprint> GetByIdProject(int idProject)
         {
-            var sprints = new List<Domain.Sprint>();
-
-            var command = Database.GetCommand(ReqGetByIdProject);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColIdProject, idProject);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all sprints
-            while(reader.Read()) sprints.Add(_sprintFactory.CreateFromSqlReader(reader));
-            
-            return sprints;
+            return _requestHelper.GetByIdHelper(idProject, ColIdProject, ReqGetByIdProject, _sprintFactory);
         }
 
         public Domain.Sprint GetById(int id)
         {
-            var command = Database.GetCommand(ReqGetById);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColId, id);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the sprint if found, null if not
-            return reader.Read() ? _sprintFactory.CreateFromSqlReader(reader) : null;
+            return _requestHelper.GetById(id, ColId, ReqGetById, _sprintFactory);
         }
 
         // Post requests

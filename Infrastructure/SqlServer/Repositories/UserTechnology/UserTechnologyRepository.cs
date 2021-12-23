@@ -2,54 +2,28 @@
 using System.Data;
 using System.Linq;
 using Infrastructure.SqlServer.Utils;
-using NotImplementedException = System.NotImplementedException;
 
 namespace Infrastructure.SqlServer.Repositories.UserTechnology
 {
     public partial class UserTechnologyRepository : IUserTechnologyRepository
     {
         private readonly IDomainFactory<Domain.UserTechnology> _userTechnologyFactory = new UserTechnologyFactory();
+        private readonly RequestHelper<Domain.UserTechnology> _requestHelper = new RequestHelper<Domain.UserTechnology>();
         
         // Get requests
         public List<Domain.UserTechnology> GetAll()
         {
-            var userTechnologies = new List<Domain.UserTechnology>();
-
-            var command = Database.GetCommand(ReqGetAll);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) userTechnologies.Add(_userTechnologyFactory.CreateFromSqlReader(reader));
-            
-            return userTechnologies;
-        }
-        
-        // Utils for GetByIdUser, GetByIdTechnology
-        // Both return a list of user technologies, the only changing parameters are the request and the column on which 
-        // the request base its verification
-        private List<Domain.UserTechnology> GetByIdHelper(int id, string column, string request)
-        {
-            var userTechnologies = new List<Domain.UserTechnology>();
-            
-            var command = Database.GetCommand(request);
-            
-            command.Parameters.AddWithValue("@" + column, id);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) userTechnologies.Add(_userTechnologyFactory.CreateFromSqlReader(reader));
-            
-            return userTechnologies;
+            return _requestHelper.GetAll(ReqGetAll, _userTechnologyFactory);
         }
 
         public List<Domain.UserTechnology> GetByIdUser(int idUser)
         {
-            return GetByIdHelper(idUser, ColIdUser, ReqGetByUserId);
+            return _requestHelper.GetByIdHelper(idUser, ColIdUser, ReqGetByUserId, _userTechnologyFactory);
         }
 
         public List<Domain.UserTechnology> GetByIdTechnology(int idTechnology)
         {
-            return GetByIdHelper(idTechnology, ColIdTechnology, ReqGetByTechnology);
+            return _requestHelper.GetByIdHelper(idTechnology, ColIdTechnology, ReqGetByTechnology, _userTechnologyFactory);
         }
 
         public List<Domain.UserTechnology> GetByIdTechnologyIdUser(int idTechnology, int idUser)

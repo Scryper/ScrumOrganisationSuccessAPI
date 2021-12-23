@@ -2,9 +2,7 @@
 using System.Data;
 using System.Linq;
 using Infrastructure.SqlServer.Repositories.DeveloperProject;
-using Infrastructure.SqlServer.Repositories.Sprint;
 using Infrastructure.SqlServer.Utils;
-using NotImplementedException = System.NotImplementedException;
 
 namespace Infrastructure.SqlServer.Repositories.UserProject
 {
@@ -13,20 +11,47 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
         private readonly IDomainFactory<Domain.UserProject> _userProjectFactory =
             new UserProjectFactory();
 
-        private readonly IDomainFactory<Domain.Sprint> _sprintFactory = new SprintFactory();
+        private readonly RequestHelper<Domain.UserProject> _requestHelper = new RequestHelper<Domain.UserProject>();
 
         // Get requests
         public List<Domain.UserProject> GetAll()
         {
-            var developerProjects = new List<Domain.UserProject>();
+            return _requestHelper.GetAll(ReqGetAll, _userProjectFactory);
+        }
+        
+        public List<Domain.UserProject> GetByIdDeveloper(int idDeveloper)
+        {
+            return _requestHelper.GetByIdHelper(idDeveloper, ColIdUser, ReqGetByDeveloperId, _userProjectFactory);
+        }
 
-            var command = Database.GetCommand(ReqGetAll);
+        public List<Domain.UserProject> GetByIdProject(int idProject)
+        {
+            return  _requestHelper.GetByIdHelper(idProject, ColIdProject, ReqGetByProjectId, _userProjectFactory);
+        }
 
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) developerProjects.Add(_userProjectFactory.CreateFromSqlReader(reader));
+        public List<Domain.UserProject> GetByIdDeveloperIsAppliance(int idDeveloper)
+        {
+            return  _requestHelper.GetByIdHelper(idDeveloper, ColIdUser, ReqByIdDeveloperIsAppliance, _userProjectFactory);
+        }
 
-            return developerProjects;
+        public List<Domain.UserProject> GetByIdDeveloperIfIsWorking(int idDeveloper)
+        {
+            return  _requestHelper.GetByIdHelper(idDeveloper, ColIdUser, ReqDeveloperProjectByIdDeveloperIfIsWorking, _userProjectFactory);
+        }
+
+        public List<Domain.UserProject> GetByIdDeveloperIfIsNotWorking(int idDeveloper)
+        {
+            return  _requestHelper.GetByIdHelper(idDeveloper, ColIdUser, ReqDeveloperProjectByIdDeveloperifIsNotWorking, _userProjectFactory);
+        }
+
+        public List<Domain.UserProject> GetScrumMasterByIdProject(int idProject)
+        {
+            return  _requestHelper.GetByIdHelper(idProject, ColIdProject, ReqGetScrumMasterByIdProject, _userProjectFactory);
+        }
+
+        public List<Domain.UserProject> GetDevelopersByIdProject(int idProject)
+        {
+            return  _requestHelper.GetByIdHelper(idProject, ColIdProject, ReqGetDevelopersByIdProject, _userProjectFactory);
         }
         
         public Domain.UserProject GetByIdDeveloperIdProject(int idDeveloper, int idProject)
@@ -41,60 +66,6 @@ namespace Infrastructure.SqlServer.Repositories.UserProject
             
             // Return the project if found, null if not
             return reader.Read() ? _userProjectFactory.CreateFromSqlReader(reader) : null;
-        }
-
-        // Utils for GetByIdDeveloper, GetByIdProject, GetByIdDeveloperIsAppliance, GetByIdDeveloperIfIsWorking
-        // GetByIdDeveloperIfIsNotWorking, GetScrumMasterByIdProject, GetDevelopersByIdProject
-        // Both return a list of user projects, the only changing parameters are the request and the column on which 
-        // the request base its verification
-        private List<Domain.UserProject> GetByIdHelper(int id, string column, string request)
-        {
-            var userProjects = new List<Domain.UserProject>();
-            
-            var command = Database.GetCommand(request);
-            
-            command.Parameters.AddWithValue("@" + column, id);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) userProjects.Add(_userProjectFactory.CreateFromSqlReader(reader));
-            
-            return userProjects;
-        }
-        
-        public List<Domain.UserProject> GetByIdDeveloper(int idDeveloper)
-        {
-            return GetByIdHelper(idDeveloper, ColIdUser, ReqGetByDeveloperId);
-        }
-
-        public List<Domain.UserProject> GetByIdProject(int idProject)
-        {
-            return GetByIdHelper(idProject, ColIdProject, ReqGetByProjectId);
-        }
-
-        public List<Domain.UserProject> GetByIdDeveloperIsAppliance(int idDeveloper)
-        {
-            return GetByIdHelper(idDeveloper, ColIdUser, ReqByIdDeveloperIsAppliance);
-        }
-
-        public List<Domain.UserProject> GetByIdDeveloperIfIsWorking(int idDeveloper)
-        {
-            return GetByIdHelper(idDeveloper, ColIdUser, ReqDeveloperProjectByIdDeveloperIfIsWorking);
-        }
-
-        public List<Domain.UserProject> GetByIdDeveloperIfIsNotWorking(int idDeveloper)
-        {
-            return GetByIdHelper(idDeveloper, ColIdUser, ReqDeveloperProjectByIdDeveloperifIsNotWorking);
-        }
-
-        public List<Domain.UserProject> GetScrumMasterByIdProject(int idProject)
-        {
-            return GetByIdHelper(idProject, ColIdProject, ReqGetScrumMasterByIdProject);
-        }
-
-        public List<Domain.UserProject> GetDevelopersByIdProject(int idProject)
-        {
-            return GetByIdHelper(idProject, ColIdProject, ReqGetDevelopersByIdProject);
         }
         
         // Post requests

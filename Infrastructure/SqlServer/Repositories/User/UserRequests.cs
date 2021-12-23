@@ -24,8 +24,8 @@
         public const string ParticipationColIdUser = "participation.id_user";
         public const string ParticipationColIdMeeting = "participation.id_meeting";
         public const string MeetingColId = "meeting.id";
-        public const string UserId = "id_user";
-        public const string UserStoryId = "id_user_story";
+        public const string ColIdUser = "id_user";
+        public const string ColIdUserStory = "id_user_story";
         
         // Get requests
         private static readonly string ReqGetAll = $"select * from {TableName}";
@@ -59,9 +59,9 @@
                                         left join {ProjectTableName} on {UserProjectColIdProject} = {ProjectColId} 
                                         where {ProjectColId} = @{ColId} and {UserProjectTableName}.is_appliance = 1";
         
-        private static readonly string ReqGetUserByCommentOnUserStory = $@"select distinct {TableName}.* from {TableName} left join {CommentTableName} 
-                                                                        on {TableName}.{ColId} = {CommentTableName}.{UserId}  
-                                                                        where {CommentTableName}.{UserStoryId} = @{UserStoryId}";
+        private static readonly string ReqGetUserByCommentOnUserStory = $@"select {TableName}.* from {TableName} inner join {CommentTableName} 
+                                                                        on {TableName}.{ColId} = {CommentTableName}.{ColIdUser}  
+                                                                        where {CommentTableName}.{ColIdUserStory} = @{ColIdUserStory}";
 
         // Post requests
         private static readonly string ReqCreate = 

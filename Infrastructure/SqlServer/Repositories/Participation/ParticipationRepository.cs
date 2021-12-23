@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using Infrastructure.SqlServer.Utils;
 
@@ -9,48 +8,22 @@ namespace Infrastructure.SqlServer.Repositories.Participation
     {
 
         private readonly IDomainFactory<Domain.Participation> _participationFactory = new ParticipationFactory();
+        private readonly RequestHelper<Domain.Participation> _requestHelper = new RequestHelper<Domain.Participation>();
         
         // Get requests
         public List<Domain.Participation> GetAll()
         {
-            var participations = new List<Domain.Participation>();
-
-            var command = Database.GetCommand(ReqGetAll);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) participations.Add(_participationFactory.CreateFromSqlReader(reader));
-            
-            return participations;
+            return _requestHelper.GetAll(ReqGetAll, _participationFactory);
         }
 
-        // Utils for GetByIdUser and GetByIdMeeting
-        // Both return a list of participations, the only changing parameters are the request and the column on which 
-        // the request base its verification
-        private List<Domain.Participation> GetByIdHelper(int id, string column, string request)
-        {
-            var participations = new List<Domain.Participation>();
-            
-            var command = Database.GetCommand(request);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + column, id);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) participations.Add(_participationFactory.CreateFromSqlReader(reader));
-            
-            return participations;
-        }
-        
         public List<Domain.Participation> GetByIdUser(int idUser)
         {
-            return GetByIdHelper(idUser, ColIdUser, ReqGetByIdUser);
+            return _requestHelper.GetByIdHelper(idUser, ColIdUser, ReqGetByIdUser, _participationFactory);
         }
 
         public List<Domain.Participation> GetByIdMeeting(int idMeeting)
         {
-            return GetByIdHelper(idMeeting, ColIdMeeting, ReqGetByIdMeeting);
+            return _requestHelper.GetByIdHelper(idMeeting, ColIdMeeting, ReqGetByIdMeeting, _participationFactory);
         }
 
         // Post requests

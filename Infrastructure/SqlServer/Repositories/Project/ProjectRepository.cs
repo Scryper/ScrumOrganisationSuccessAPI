@@ -8,46 +8,32 @@ namespace Infrastructure.SqlServer.Repositories.Project
     public partial class ProjectRepository : IProjectRepository
     {
         private readonly IDomainFactory<Domain.Project> _projectFactory = new ProjectFactory();
+        private readonly RequestHelper<Domain.Project> _requestHelper = new RequestHelper<Domain.Project>();
         
         // Get requests
         public List<Domain.Project> GetAll()
         {
-            var projects = new List<Domain.Project>();
-
-            var command = Database.GetCommand(ReqGetAll);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all projects
-            while(reader.Read()) projects.Add(_projectFactory.CreateFromSqlReader(reader));
-
-            return projects;
+            return _requestHelper.GetAll(ReqGetAll, _projectFactory);
         }
 
         public Domain.Project GetById(int id)
         {
-            var command = Database.GetCommand(ReqGetById);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColId, id);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the project if found, null if not
-            return reader.Read() ? _projectFactory.CreateFromSqlReader(reader) : null;
+            return _requestHelper.GetById(id, ColId, ReqGetById, _projectFactory);
+        }
+        
+        public List<Domain.Project> GetActiveProjectByUser(int idUser)
+        {
+            return _requestHelper.GetByIdHelper(idUser, ColIdUser, ReqGetActiveProjectByUser, _projectFactory);
         }
 
+        public List<Domain.Project> GetProjectByIdUserNotFinishedIsLinked(int idUser)
+        {
+            return _requestHelper.GetByIdHelper(idUser, ColIdUser, ReqGetProjectNotFinishedIsLinked, _projectFactory);
+        }
+        
         public Domain.Project GetByName(string name)
         {
-            var command = Database.GetCommand(ReqGetByName);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColName, name);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the project if found, null if not
-            return reader.Read() ? _projectFactory.CreateFromSqlReader(reader) : null;
+            return _requestHelper.GetByName(name, ColName, ReqGetByName, _projectFactory);
         }
 
         public List<Domain.Project> GetActiveProject()
@@ -63,37 +49,7 @@ namespace Infrastructure.SqlServer.Repositories.Project
             
             return projects;
         }
-
-        // Utils for GetActiveProjectByUser and GetProjectByIdUserNotFinishedIsLinked
-        // Both return a list of projects, the only changing parameters are the request and the column on which 
-        // the request base its verification
-        private List<Domain.Project> GetHelper(int id, string column, string request)
-        {
-            var projects = new List<Domain.Project>();
-            
-            var command = Database.GetCommand(request);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + column, id);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the project if found, null if not
-            while(reader.Read()) projects.Add(_projectFactory.CreateFromSqlReader(reader));
-            
-            return projects;
-        }
         
-        public List<Domain.Project> GetActiveProjectByUser(int idUser)
-        {
-            return GetHelper(idUser, ColIdUser, ReqGetActiveProjectByUser);
-        }
-
-        public List<Domain.Project> GetProjectByIdUserNotFinishedIsLinked(int idUser)
-        {
-            return GetHelper(idUser, ColIdUser, ReqGetProjectNotFinishedIsLinked);
-        }
-
         // Post requests
         public Domain.Project Create(Domain.Project project)
         {

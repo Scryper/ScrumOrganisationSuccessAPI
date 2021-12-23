@@ -9,63 +9,27 @@ namespace Infrastructure.SqlServer.Repositories.Meeting
     public partial class MeetingRepository : IMeetingRepository
     {
         private readonly IDomainFactory<Domain.Meeting> _meetingFactory = new MeetingFactory();
+        private readonly RequestHelper<Domain.Meeting> _requestHelper = new RequestHelper<Domain.Meeting>();
 
         // Get requests
         public List<Domain.Meeting> GetAll()
         {
-            var comments = new List<Domain.Meeting>();
-            
-            var command = Database.GetCommand(ReqGetAll);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all comments
-            while(reader.Read()) comments.Add(_meetingFactory.CreateFromSqlReader(reader));
-
-            return comments;
+            return _requestHelper.GetAll(ReqGetAll, _meetingFactory);
         }
         
         public Domain.Meeting GetById(int id)
         {
-            var command = Database.GetCommand(ReqGetById);
-
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColId, id);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the meeting if found, null if not
-            return reader.Read() ? _meetingFactory.CreateFromSqlReader(reader) : null;
-        }
-
-        // Utils for GetByIdUser and GetByIdSprint
-        // Both return a list of meetings, the only changing parameters are the request and the column on which 
-        // the request base its verification
-        private List<Domain.Meeting> GetByIdHelper(int id, string column, string request)
-        {
-            var meetings = new List<Domain.Meeting>();
-
-            var command = Database.GetCommand(request);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + column, id);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all meetings
-            while(reader.Read()) meetings.Add(_meetingFactory.CreateFromSqlReader(reader));
-
-            return meetings;
+            return _requestHelper.GetById(id, ColId, ReqGetById, _meetingFactory);
         }
 
         public List<Domain.Meeting> GetByIdUser(int idUser)
         {
-            return GetByIdHelper(idUser, ColId, ReqGetByIdUser);
+            return _requestHelper.GetByIdHelper(idUser, ColId, ReqGetByIdUser, _meetingFactory);
         }
 
         public List<Domain.Meeting> GetByIdSprint(int idSprint)
         {
-            return GetByIdHelper(idSprint, ColIdSprint, ReqGetByIdSprint);
+            return _requestHelper.GetByIdHelper(idSprint, ColIdSprint, ReqGetByIdSprint, _meetingFactory);
         }
 
         // Post requests
