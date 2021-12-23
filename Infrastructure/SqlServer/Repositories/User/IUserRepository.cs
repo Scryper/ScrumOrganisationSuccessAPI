@@ -7,9 +7,13 @@ namespace Infrastructure.SqlServer.Repositories.User
         // Get requests
         List<Domain.User> GetAll();
         List<Domain.User> GetByIdProject(int idProject);
+        
+        List<Domain.User> GetByIdProjectIsWorking(int idProject);
         List<Domain.User> GetByIdMeeting(int idMeeting);
         Domain.User GetById(int id);
         Domain.User GetByEmail(string email);
+
+        List<Domain.User> GetByIdProjectIsApplying(int idProject);
 
         // Post requests
         Domain.User Create(Domain.User user);

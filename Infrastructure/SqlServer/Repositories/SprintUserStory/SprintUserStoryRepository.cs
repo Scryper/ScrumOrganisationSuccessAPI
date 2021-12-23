@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Infrastructure.SqlServer.Utils;
 
 namespace Infrastructure.SqlServer.Repositories.SprintUserStory
@@ -60,6 +61,8 @@ namespace Infrastructure.SqlServer.Repositories.SprintUserStory
         // Post requests
         public Domain.SprintUserStory Create(Domain.SprintUserStory sprintUserStory)
         {
+            if (Exists(sprintUserStory)) return null;
+            
             var command = Database.GetCommand(ReqCreate);
 
             command.Parameters.AddWithValue("@" + ColIdSprint, sprintUserStory.IdSprint);
@@ -72,6 +75,13 @@ namespace Infrastructure.SqlServer.Repositories.SprintUserStory
                 IdSprint = sprintUserStory.IdSprint,
                 IdUserStory = sprintUserStory.IdUserStory
             };
+        }
+        
+        // Utils for post request
+        private bool Exists(Domain.SprintUserStory sprintUserStory)
+        {
+            var sprintUserStories = GetAll();
+            return Enumerable.Contains(sprintUserStories, sprintUserStory);
         }
 
         // Delete requests

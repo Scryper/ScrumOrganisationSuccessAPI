@@ -8,6 +8,7 @@ namespace Infrastructure.SqlServer.Repositories.Technology
     {
         private readonly IDomainFactory<Domain.Technology> _technologyFactory = new TechnologyFactory();
         
+        // Get requests
         public List<Domain.Technology> GetAll()
         {
             var technologies = new List<Domain.Technology>();

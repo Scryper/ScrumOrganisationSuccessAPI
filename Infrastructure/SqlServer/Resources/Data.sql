@@ -16,7 +16,7 @@ insert into sos_user(firstname, lastname, password, email, role, birthdate, prof
 
 /*myneck*/
 insert into sos_user(firstname, lastname, password, email, role, birthdate, profile_picture)
-    values('Floran', 'Houdart', '$2a$11$zZ9V3CPBRH5BXiAmf70TNOvhCJLG/bt0GN2V6aUtSzoaYHZzG6UMq', 'la199788@student.helha.be', 1, convert(date, '11-01-2001', 103)
+    values('Floran', 'Houdart', '$2a$11$zZ9V3CPBRH5BXiAmf70TNOvhCJLG/bt0GN2V6aUtSzoaYHZzG6UMq', 'floran.houdart@gmail.com', 1, convert(date, '11-01-2001', 103)
         , './assets/images/profilePictures/floran_houdart.jpg');
 
 /*zuck*/
@@ -27,21 +27,46 @@ insert into sos_user(firstname, lastname, password, email, role, birthdate)
 insert into sos_user(firstname, lastname, password, email, role, birthdate)
     values('Elon', 'Musk', '$2a$11$4dZxukSdA1p8g.Q1Pj4H7eMTRSVNgG8c7fzzR0TEbX1x9TOidc4W6', 'elon.musk@tesla.com', 1, convert(date, '28-06-1971', 103));
 
-/*laref*/
+/*bertin*/
 insert into sos_user(firstname, lastname, password, email, role, birthdate)
-    values('Patrick', 'Onatenpa', '$2a$11$GEUFBYTcGFqZECEoz849reToY5.oa7EhYFuyVGCHfryECxOHJuDQy', 'onatenpa.patrick@camping.fr', 1, convert(date, '24-10-1994', 103));
+    values('John', 'Bertin', '$2a$11$3inFr2oGXFHRYL.IrBwkoeGOftc7Cw2LDp/fDrUTcbxKirpicIE52', 'john.bertin@gmail.com', 1, convert(date, '24-10-1994', 103));
 
-/*choisi*/
+/*guyot*/
 insert into sos_user(firstname, lastname, password, email, role, birthdate)
-    values('Vouza', 'Vaibien', '$2a$11$umlGXv4DwE.QEfQ6BP3nk.52MX6MyaRQseFvh7pGjqj2xnW9lJs.G', 'techniquecellela@vandenborre.be', 2, convert(date, '14-08-2000', 103));
+    values('Pierre', 'Guyot', '$2a$11$B9L6A6U39zy.WsjrGbJwyuqo2kxfeFk4EVRj/RUapeGFinOIGtXhe', 'pierre.guyot@gmail.com', 2, convert(date, '14-08-2000', 103));
 
 /*squeezie*/
 insert into sos_user(firstname, lastname, password, email, role, birthdate)
     values('Lucas', 'Hauchard', '$2a$11$lP0oA3.lnMV6yd69sgwqZ.HbhyEOGrHtf8a/2tTTTPO1ko5iak5li', 'lucas.hauchard@squeezie.industries.fr', 2, convert(date, '27-01-1996', 103));
 
+/*comedian*/
+insert into sos_user(firstname, lastname, password, email, role, birthdate)
+values('Dane', 'Cook', '$2a$11$Re4CmL8wzytLprJQktRDxe7aSe5siwipz12qQ.AcgpNZgOb3TBi6.', 'dane.cook@gmail.com', 1, convert(date, '18-03-1972', 103));
+
+/*swimmer*/
+insert into sos_user(firstname, lastname, password, email, role, birthdate)
+values('Lynne', 'Cox', '$2a$11$4HReK1PJ9O9l9z1AMucWe.ldnCiJOejv.HplD.Tlw6ZdE.GkzunU6', 'lynne.cox@gmail.com', 2, convert(date, '02-01-1957', 103));
+
+/*corporation*/
+insert into sos_user(firstname, lastname, password, email, role, birthdate)
+values('Richard', 'Egan', '$2a$11$V9fMyF.1BKJ1QD.ePeIQ0.TTq5kikREgZ22j2GN2W8lX/72CA/Zt.', 'richard.egan@gmail.com', 3, convert(date, '20-07-1987', 103));
+
+/*serie*/
+insert into sos_user(firstname, lastname, password, email, role, birthdate)
+values('Paul', 'Glaser', '$2a$11$vlgmNlLMbE/sQgOPw8cNE.ypbdzuVXZqWkeSmFbV6M35OyXzFCfO.', 'paul.glaser@gmail.com', 1, convert(date, '25-03-1943', 103));
+
+/*hockey*/
+insert into sos_user(firstname, lastname, password, email, role, birthdate)
+values('Bill', 'Guerin', '$2a$11$7bn240sAmq5wUR5V21gT4.D/CoC7gM1utm8IfYzoy87EyyO7CiwNy', 'bill.guerin@gmail.com', 1, convert(date, '09-11-1970', 103));
+
+/*football*/
+insert into sos_user(firstname, lastname, password, email, role, birthdate)
+values('Darin', 'Jordan', '$2a$11$r41cISQ6tMIJDXWDFL02VuSAKgSwsfr30T7n0uONBmx7OrRUeJ.E2', 'darin.jordan@gmail.com', 1, convert(date, '04-12-1964', 103));
+
+
 /*Init projects*/
 insert into project( name, deadline, description, repository_url, sos_status)
-    values( 'ScrumOrganisationSuccess API', convert(datetime, '24-12-2021 12:00:00', 103), 'Serveur pour réussir son année',
+    values( 'ScrumOrganisationSuccess API', convert(datetime, '24-02-2022 12:00:00', 103), 'Serveur pour réussir son année',
     'https://github.com/Scryper/ScrumOrganisationSuccessAPI', 2);
 
 insert into project( name, deadline, description, repository_url, sos_status)
@@ -102,13 +127,13 @@ insert into technology(name)
 
 /*Init sprints*/
 insert into sprint(id_project, sprint_number, start_date, deadline, description)
-    values(1, 1, convert(date, '01-11-2021', 103), convert(date, '14-11-2021', 103), 'Création basique du serveur');
+    values(1, 1, convert(date, '01-11-2021', 103), convert(date, '31-12-2021', 103), 'Création basique du serveur');
    
 insert into sprint(id_project, sprint_number, start_date, deadline, description)
-    values(1, 2, convert(date, '15-11-2021', 103), convert(date, '15-12-2021', 103), 'Ajout des dernières fonctionnalités nécessaires');
+    values(1, 2, convert(date, '01-01-2022', 103), convert(date, '31-01-2022', 103), 'Liens entre API, application internet et application android');
 
 insert into sprint(id_project, sprint_number, start_date, deadline, description)
-    values(1, 3, convert(date, '19-12-2021', 103), convert(date, '24-12-2021', 103), 'Ajout des vraies dernières fonctionnalités nécessaires');
+    values(1, 3, convert(date, '01-02-2022', 103), convert(date, '24-02-2022', 103), 'Derniers réglages en fonctions des demandes du client');
     
 insert into sprint(id_project, sprint_number, start_date, deadline, description)
     values(2, 1, convert(date, '06-11-2021', 103), convert(date, '19-11-2021', 103), 'Premier jet des pages du site');
@@ -133,16 +158,16 @@ insert into sprint(id_project, sprint_number, start_date, deadline, description)
 
 /*Init user stories*/
 insert into user_story(id_project, name, description, priority)
-    values(1, 'User story pour réussir son année.', 'On va réussir wola.', 1);
+    values(1, 'Database en SQL', 'Créer une base de données en SQL server pour l''API.', 1);
     
 insert into user_story(id_project, name, description, priority)
-    values(1, 'Encore une user story.', 'On va réussir vraiment.', 2);
+    values(1, 'Création des uses cases', 'Création de chaque user case pour le serveur.', 2);
 
 insert into user_story(id_project, name, description, priority)
-    values(1, 'Encore une user story mais pas la même.', 'On va réussir vraiment pour de vrai.', 3);
+    values(1, 'Tests unitaires', 'Vérifier chaque calcul effectué ainsi que le format des données entrées.', 3);
 
 insert into user_story(id_project, name, description, priority)
-    values(1, 'Encore une user story mais différente.', 'Bugounet est vaincu.', 3);
+    values(1, 'Sécurité pour le login', 'Créer la sécurité pour le login d''un utilisateur.', 4);
     
 insert into user_story(id_project, name, description, priority)
     values(2, 'En  tant que visiteur, je peux m''inscrire.', 'Un visiteur sur le site peut s''inscrire si son adresse mail n''est pas déjà présente dans la base de donnée.', 1);
@@ -173,22 +198,22 @@ insert into user_story(id_project, name, description, priority)
 
 /*Init meetings*/
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(1, convert(datetime, '01-11-2021 12:00:00', 103), 'Meeting pour réussir son année.','PrivateHelhaRoom1');
+    values(1, convert(datetime, '25-12-2021 22:00:00', 103), 'Meeting pour réussir son année.','PrivateHelhaRoom1');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(1, convert(datetime, '05-11-2021 12:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom7');
+    values(1, convert(datetime, '27-12-2022 12:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom7');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
     values(1, convert(datetime, '12-11-2021 12:00:00', 103), 'Partage des tâches restantes.','PrivateHelhaRoom2');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(2, convert(datetime, '20-11-2021 12:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom3');
+    values(2, convert(datetime, '05-01-2022 12:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom3');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(2, convert(datetime, '14-12-2021 15:00:00', 103), 'Partage des tâches restantes.','PrivateHelhaRoom4');
+    values(2, convert(datetime, '10-01-2022 15:00:00', 103), 'Partage des tâches restantes.','PrivateHelhaRoom4');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(3, convert(datetime, '08-11-2021 15:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom5');
+    values(3, convert(datetime, '02-02-2022 15:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom5');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
     values(3, convert(datetime, '14-11-2021 15:00:00', 103), 'Partage des tâches restantes.','PrivateHelhaRoom6');
@@ -200,44 +225,50 @@ insert into meeting(id_sprint, schedule, description, meeting_url)
     values(4, convert(datetime, '01-12-2021 15:00:00', 103), 'Partage des tâches.','PrivateHelhaRoom9');
     
 insert into meeting(id_sprint, schedule, description, meeting_url)
-    values(4, convert(datetime, '19-12-2021 15:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom10');
+    values(4, convert(datetime, '21-12-2021 15:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom10');
 
 insert into meeting(id_sprint, schedule, description, meeting_url)
-values(5, convert(datetime, '20-12-2021 15:00:00', 103), 'Partage des tâches.','PrivateHelhaRoom11');
+values(5, convert(datetime, '22-12-2021 15:00:00', 103), 'Partage des tâches.','PrivateHelhaRoom11');
 
 insert into meeting(id_sprint, schedule, description, meeting_url)
-values(5, convert(datetime, '19-12-2021 15:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom12');
+values(5, convert(datetime, '21-12-2021 15:00:00', 103), 'Mise en commun des branches.','PrivateHelhaRoom12');
+
+insert into meeting(id_sprint, schedule, description, meeting_url)
+values(5, convert(datetime, '21-12-2021 15:00:00', 103), 'Mise en commun des branches21.','PrivateHelhaRoom1221');
+
+insert into meeting(id_sprint, schedule, description, meeting_url)
+values(5, convert(datetime, '22-12-2021 15:00:00', 103), 'Mise en commun des branches22.','PrivateHelhaRoom1222');
 
 /*Init comments*/
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(1, 1, convert(datetime, '26-11-2021 12:00:00', 103), 'Commentaire pour réussir son année.');
+    values(1, 1, convert(datetime, '26-11-2021 12:00:00', 103), 'Bug sur cette User story, quelqu''un de dispo ?');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(1, 2, convert(datetime, '26-11-2021 12:30:00', 103), 'Tu as raison.');
+    values(1, 2, convert(datetime, '26-11-2021 12:30:00', 103), 'Je suis disponible, on se rejoint sur Discord');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(1, 6, convert(datetime, '26-11-2021 12:30:00', 103), 'Tu es embauché.');
+    values(1, 6, convert(datetime, '27-11-2021 12:30:00', 103), 'Vous en êtes où ?');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(3, 6, convert(datetime, '02-12-2021 12:30:00', 103), 'Eeeeh vous me copiez la.');
+    values(3, 6, convert(datetime, '02-12-2021 12:30:00', 103), 'Les tests sont finis ?');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(3, 2, convert(datetime, '02-12-2021 13:30:00', 103), 'Mais pas du tout ????!!!! C''est quand même normal de pouvoir s''inscrire sur un site!!!');
+    values(3, 2, convert(datetime, '02-12-2021 13:30:00', 103), 'Absolument pas, c''est en retard même');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(3, 3, convert(datetime, '03-12-2021 13:34:00', 103), 'De fou détends toi le zuck.');
+    values(3, 3, convert(datetime, '03-12-2021 13:34:00', 103), 'Qui a push dans la branche master ?');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(10, 3, convert(datetime, '10-10-2021 13:34:00', 103), 'Le bateeeauuu naviiiigueeeee.');
+    values(10, 3, convert(datetime, '10-10-2021 13:34:00', 103), 'Je viens de rejoindre, une petite explication ?');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(10, 1, convert(datetime, '10-10-2021 13:35:00', 103), 'T''es ravagé toi.');
+    values(10, 1, convert(datetime, '10-10-2021 13:35:00', 103), 'On s''attaque au back-end de l''application');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(7, 8, convert(datetime, '10-12-2021 13:35:00', 103), 'Je veux voir vos têtes vous dateeeeeez!');
+    values(7, 8, convert(datetime, '10-12-2021 13:35:00', 103), 'Tu peux faire les calculs de masques si tu n''as pas encore de tâches');
 
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(7, 9, convert(datetime, '10-12-2021 13:35:00', 103), 'Oh non pas lui....');
+    values(7, 9, convert(datetime, '10-12-2021 13:35:00', 103), 'J''ai finis ma partie, qu''est ce qu''il reste encore ?');
 
 /*Init project_user link table*/
 insert into user_project(id_project, id_user, is_appliance)
@@ -272,6 +303,9 @@ insert into user_project(id_project, id_user, is_appliance)
 
 insert into user_project(id_project, id_user, is_appliance)
     values(5, 3, 0);
+
+insert into user_project(id_project, id_user, is_appliance)
+    values(2, 4, 0);
 
 /*Init participation link table*/
 insert into participation(id_meeting, id_user)

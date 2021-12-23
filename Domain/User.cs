@@ -27,5 +27,18 @@ namespace Domain
             }
             return tmp.Days;
         }
+
+        protected bool Equals(User other)
+        {
+            return Email == other.Email;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((User) obj);
+        }
     }
 }

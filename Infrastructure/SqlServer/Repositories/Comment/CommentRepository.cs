@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using Infrastructure.SqlServer.Utils;
 
 namespace Infrastructure.SqlServer.Repositories.Comment
@@ -74,13 +72,13 @@ namespace Infrastructure.SqlServer.Repositories.Comment
             command.Parameters.AddWithValue("@" + ColPostedAt, comment.PostedAt);
             command.Parameters.AddWithValue("@" + ColContent, comment.Content);
 
-            int returnID = (int)command.ExecuteScalar();
+            var returnId = (int) command.ExecuteScalar();
             
             command.Connection.Close();
             
             return new Domain.Comment
             {
-                Id = returnID,
+                Id = returnId,
                 IdUserStory = comment.IdUserStory,
                 IdUser = comment.IdUser,
                 PostedAt = comment.PostedAt,

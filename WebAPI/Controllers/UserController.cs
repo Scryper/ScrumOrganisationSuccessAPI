@@ -22,6 +22,8 @@ namespace WebAPI.Controllers
         private readonly UseCaseGetUsersByIdMeeting _useCaseGetUsersByIdMeeting;
         private readonly UseCaseGetUsersByIdProject _useCaseGetUsersByIdProject;
         private readonly UseCaseGetUserDaysOfXP _useCaseGetUserDaysOfXp;
+        private readonly UseCaseGetUsersByIdProjectIsWorking _useCaseGetUsersByIdProjectIsWorking;
+        private readonly UseCaseGetUserByIdProjectIsApplying _useCaseGetUserByIdProjectIsApplying;
 
         private readonly UseCaseCreateUser _useCaseCreateUser;
 
@@ -48,7 +50,9 @@ namespace WebAPI.Controllers
             UseCaseDeleteUser useCaseDeleteUser,
             UseCaseAuthenticateUser useCaseAuthenticateUser,
             UseCaseUpdateUserFirstNameLastName useCaseUpdateUserFirstNameLastName,
-            UseCaseGetUserDaysOfXP useCaseUserDaysOfXp)
+            UseCaseGetUserDaysOfXP useCaseUserDaysOfXp,
+            UseCaseGetUsersByIdProjectIsWorking useCaseGetUsersByIdProjectIsWorking,
+            UseCaseGetUserByIdProjectIsApplying useCaseGetUserByIdProjectIsApplying)
         {
             _useCaseGetAllUsers = useCaseGetAllUsers;
             _useCaseGetUserById = useCaseGetUserById;
@@ -56,6 +60,8 @@ namespace WebAPI.Controllers
             _useCaseGetUsersByIdMeeting = useCaseGetUsersByIdMeeting;
             _useCaseGetUsersByIdProject = useCaseGetUsersByIdProject;
             _useCaseGetUserDaysOfXp = useCaseUserDaysOfXp;
+            _useCaseGetUsersByIdProjectIsWorking = useCaseGetUsersByIdProjectIsWorking;
+            _useCaseGetUserByIdProjectIsApplying = useCaseGetUserByIdProjectIsApplying;
             
             _useCaseCreateUser = useCaseCreateUser;
 
@@ -83,6 +89,13 @@ namespace WebAPI.Controllers
         public ActionResult<List<OutputDtoUser>> GetByIdProject(int idProject)
         {
             return _useCaseGetUsersByIdProject.Execute(idProject);
+        }
+        
+        [HttpGet]
+        [Route("byProjectIsWorking/{idProject:int}")]
+        public ActionResult<List<OutputDtoUser>> GetByIdProjectIsWorking(int idProject)
+        {
+            return _useCaseGetUsersByIdProjectIsWorking.Execute(idProject);
         }
         
         [HttpGet]
@@ -114,13 +127,21 @@ namespace WebAPI.Controllers
             return _useCaseGetUserDaysOfXp.Execute(idUser);
         }
 
+        [HttpGet]
+        [Route("byProjectIsApplying/{idProject:int}")]
+        public ActionResult<List<OutputDtoUser>> GetByIdProjectIsApplying(int idProject)
+        {
+            return _useCaseGetUserByIdProjectIsApplying.Execute(idProject);
+        }
+        
         // Post requests
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         public ActionResult<OutputDtoUser> Create([FromBody] InputDtoUser inputDtoUser)
         {
-            return StatusCode(201, _useCaseCreateUser.Execute(inputDtoUser));
+            var result = _useCaseCreateUser.Execute(inputDtoUser);
+            return result == null ? null : StatusCode(201, result);
         }
         
         // Post requests : authentication

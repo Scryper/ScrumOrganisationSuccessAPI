@@ -63,7 +63,8 @@ namespace WebAPI.Controllers
         [ProducesResponseType(400)]
         public ActionResult<OutputDtoParticipation> Create([FromBody] InputDtoParticipation inputDtoParticipation)
         {
-            return StatusCode(201, _useCaseCreateParticipation.Execute(inputDtoParticipation));
+            var result = _useCaseCreateParticipation.Execute(inputDtoParticipation);
+            return result == null ? null : StatusCode(201, result);
         }
         
         // Delete requests

@@ -47,7 +47,7 @@
                                                                         inner join  {TableUser} on {TableName}.{ColIdUser} = {TableUser}.{ColIdProjectFromUser} 
                                                                         where {ColIdProject} = @{ColIdProject} and 
                                                                         {ColUserRole} = 2 and 
-                                                                        {ColIsAppliance} = 1";
+                                                                        {ColIsAppliance} = 0";
         
         //use to get the devs on a project
         private static readonly string ReqGetDevsByIdProject = $@"select {ColIdUser}, {ColIdProject}, {ColIsAppliance}  from {TableName} 

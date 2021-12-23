@@ -128,14 +128,13 @@ namespace WebAPI.Controllers
             return _useCaseGetUserByIdProject.Execute(idProject);
         }
         
-        
-        
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         public ActionResult<OutputDtoUserProject> Create([FromBody] InputDtoUserProject inputDtoUserProject)
         {
-            return StatusCode(201, _useCaseCreateDeveloperProject.Execute(inputDtoUserProject));
+            var result = _useCaseCreateDeveloperProject.Execute(inputDtoUserProject);
+            return result == null ? null : StatusCode(201, result);
         }
 
         [HttpPut]

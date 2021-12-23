@@ -19,6 +19,11 @@ namespace WebAPI.Controllers
         private readonly UseCaseGetAllProjects _useCaseGetAllProjects;
         private readonly UseCaseGetProjectById _useCaseGetProjectById;
         private readonly UseCaseGetProjectByName _useCaseGetProjectByName;
+        private readonly UseCaseGetByIdUserActiveProject _useCaseGetByIdUserActiveProject;
+        private readonly UseCaseGetActiveProjects _useCaseGetActiveProjects;
+
+        private readonly UseCaseGetProjectByIdUserNotFinishedIsLinkedToUser
+            _useCaseGetProjectByIdUserNotFinishedIsLinkedToUser;
 
         private readonly UseCaseCreateProject _useCaseCreateProject;
 
@@ -35,11 +40,19 @@ namespace WebAPI.Controllers
             UseCaseCreateProject useCaseCreateProject,
             UseCaseUpdateProjectRepositoryUrl useCaseUpdateProjectRepositoryUrl,
             UseCaseDeleteProject useCaseDeleteProject,
-            UseCaseUpdateProjectStatus useCaseUpdateProjectStatus)
+            UseCaseUpdateProjectStatus useCaseUpdateProjectStatus,
+            UseCaseGetByIdUserActiveProject caseGetByIdUserActiveProject,
+            UseCaseGetProjectByIdUserNotFinishedIsLinkedToUser
+                useCaseGetProjectByIdUserNotFinishedIsLinkedToUser,
+            UseCaseGetActiveProjects useCaseGetActiveProjects)
         {
             _useCaseGetAllProjects = useCaseGetAllProjects;
             _useCaseGetProjectById = useCaseGetProjectById;
             _useCaseGetProjectByName = useCaseGetProjectByName;
+            _useCaseGetByIdUserActiveProject = caseGetByIdUserActiveProject;
+            _useCaseGetProjectByIdUserNotFinishedIsLinkedToUser
+                = useCaseGetProjectByIdUserNotFinishedIsLinkedToUser;
+            _useCaseGetActiveProjects = useCaseGetActiveProjects;
             
             _useCaseCreateProject = useCaseCreateProject;
 
@@ -73,13 +86,39 @@ namespace WebAPI.Controllers
             return _useCaseGetProjectByName.Execute(correctName);
         }
         
+        // Get requests
+        [HttpGet]
+        [Route("activeByIdUser/{idUser:int}")]
+        public ActionResult<List<OutputDtoProject>> GetActiveProject(int idUser)
+        {
+            return _useCaseGetByIdUserActiveProject.Execute(idUser);
+        }
+        
+        // Get requests
+        [HttpGet]
+        [Route("active/")]
+        public ActionResult<List<OutputDtoProject>> GetActiveProject()
+        {
+            return _useCaseGetActiveProjects.Execute();
+        }
+        
+        
+        // Get requests
+        [HttpGet]
+        [Route("byIdUserNotFinishedIsLinked/{idUser:int}")]
+        public ActionResult<List<OutputDtoProject>> GetIdUserNotFinishedIsLinked(int idUser)
+        {
+            return _useCaseGetProjectByIdUserNotFinishedIsLinkedToUser.Execute(idUser);
+        }
+        
         // Post requests
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         public ActionResult<OutputDtoProject> Create([FromBody] InputDtoProject inputDtoProject)
         {
-            return StatusCode(201,_useCaseCreateProject.Execute(inputDtoProject));
+            var result = _useCaseCreateProject.Execute(inputDtoProject);
+            return result == null ? null : StatusCode(201, result);
         }
 
         // Put requests

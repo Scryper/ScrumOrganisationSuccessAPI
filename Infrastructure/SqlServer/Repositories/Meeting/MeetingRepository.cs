@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Infrastructure.SqlServer.Utils;
 
 namespace Infrastructure.SqlServer.Repositories.Meeting
@@ -72,11 +73,11 @@ namespace Infrastructure.SqlServer.Repositories.Meeting
             return meetings;
         }
 
-        
-
         // Post requests
         public Domain.Meeting Create(Domain.Meeting meeting)
         {
+            if (Exists(meeting)) return null;
+            
             var command = Database.GetCommand(ReqCreate);
 
             // Parametrize the command
@@ -93,6 +94,14 @@ namespace Infrastructure.SqlServer.Repositories.Meeting
                 Description = meeting.Description,
                 MeetingUrl = meeting.MeetingUrl
             };
+        }
+        
+        // Utils for post request
+        private bool Exists(Domain.Meeting meeting)
+        {
+            var meetings = GetAll();
+
+            return Enumerable.Contains(meetings, meeting);
         }
 
         // Put requests

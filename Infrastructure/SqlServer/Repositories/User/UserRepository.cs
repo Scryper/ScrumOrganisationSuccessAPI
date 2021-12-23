@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Infrastructure.SqlServer.Utils;
 using NotImplementedException = System.NotImplementedException;
 
@@ -30,6 +31,23 @@ namespace Infrastructure.SqlServer.Repositories.User
             var users = new List<Domain.User>();
 
             var command = Database.GetCommand(ReqGetByIdProject);
+            
+            // Parametrize the command
+            command.Parameters.AddWithValue("@" + ColId, idProject);
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            
+            // Add all users
+            while(reader.Read()) users.Add(_userFactory.CreateFromSqlReader(reader));
+
+            return users;
+        }
+
+        public List<Domain.User> GetByIdProjectIsWorking(int idProject)
+        {
+            var users = new List<Domain.User>();
+
+            var command = Database.GetCommand(ReqGetByIdProjectIsWorking);
             
             // Parametrize the command
             command.Parameters.AddWithValue("@" + ColId, idProject);
@@ -86,9 +104,28 @@ namespace Infrastructure.SqlServer.Repositories.User
             return reader.Read() ? _userFactory.CreateFromSqlReader(reader) : null;
         }
 
+        public List<Domain.User> GetByIdProjectIsApplying(int idProject)
+        {
+            var users = new List<Domain.User>();
+
+            var command = Database.GetCommand(ReqGetUserApplyingByIdProject);
+            
+            // Parametrize the command
+            command.Parameters.AddWithValue("@" + ColId, idProject);
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            
+            // Add all users
+            while(reader.Read()) users.Add(_userFactory.CreateFromSqlReader(reader));
+
+            return users;
+        }
+
         // Post requests
         public Domain.User Create(Domain.User user)
         {
+            if (Exists(user)) return null;
+            
             var command = Database.GetCommand(ReqCreate);
             var hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
@@ -109,6 +146,13 @@ namespace Infrastructure.SqlServer.Repositories.User
                 Role = user.Role,
                 Birthdate = user.Birthdate
             };
+        }
+        
+        // Utils for post requests
+        private bool Exists(Domain.User user)
+        {
+            var users = GetAll();
+            return Enumerable.Contains(users, user);
         }
 
         // Put requests

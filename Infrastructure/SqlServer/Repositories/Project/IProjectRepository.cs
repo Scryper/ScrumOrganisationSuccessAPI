@@ -8,8 +8,11 @@ namespace Infrastructure.SqlServer.Repositories.Project
         List<Domain.Project> GetAll();
         Domain.Project GetById(int id);
         Domain.Project GetByName(string name);
-
-        // Post requests
+        List<Domain.Project> GetActiveProject();
+        List<Domain.Project> GetActiveProjectByUser(int idUser);
+        List<Domain.Project> GetProjectByIdUserNotFinishedIsLinked(int idUser);
+        
+            // Post requests
         Domain.Project Create(Domain.Project project);
         
         // Put requests

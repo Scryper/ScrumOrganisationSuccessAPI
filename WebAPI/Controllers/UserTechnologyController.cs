@@ -60,7 +60,8 @@ namespace WebAPI.Controllers
         [ProducesResponseType(400)]
         public ActionResult<OutputDtoUserTechnology> Create([FromBody] InputDtoUserTechnology inputDtoUserTechnology)
         {
-            return StatusCode(201, _useCaseCreateUserTechnology.Execute(inputDtoUserTechnology));
+            var result = _useCaseCreateUserTechnology.Execute(inputDtoUserTechnology);
+            return result == null ? null : StatusCode(201, result);
         }
         
         // Delete requests
