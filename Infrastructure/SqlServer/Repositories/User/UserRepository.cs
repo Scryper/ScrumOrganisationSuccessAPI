@@ -2,13 +2,13 @@
 using System.Data;
 using System.Linq;
 using Infrastructure.SqlServer.Utils;
-using NotImplementedException = System.NotImplementedException;
 
 namespace Infrastructure.SqlServer.Repositories.User
 {
     public partial class UserRepository : IUserRepository
     {
         private readonly IDomainFactory<Domain.User> _userFactory = new UserFactory();
+        private readonly RequestHelper<Domain.User> _requestHelper = new RequestHelper<Domain.User>();
         
         // Get requests
         public List<Domain.User> GetAll()
@@ -25,70 +25,29 @@ namespace Infrastructure.SqlServer.Repositories.User
             return users;
         }
 
-        // Utils for GetByIdSprint and GetByIdUserStory
-        // Both return a list of projects, the only changing parameters are the request and the column on which 
-        // the request base its verification
-        private List<Domain.User> GetByIdHelper(int id, string request)
-        {
-            var projectTechnologies = new List<Domain.User>();
-            
-            var command = Database.GetCommand(request);
-            
-            command.Parameters.AddWithValue("@" + ColId, id);
-            
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            while(reader.Read()) projectTechnologies.Add(_userFactory.CreateFromSqlReader(reader));
-            
-            return projectTechnologies;
-        }
-        
         public List<Domain.User> GetByIdProject(int idProject)
         {
-            return GetByIdHelper(idProject, ReqGetByIdProject);
+            return _requestHelper.GetByIdHelper(idProject, ColId, ReqGetByIdProject, _userFactory);
         }
 
         public List<Domain.User> GetByIdProjectIsWorking(int idProject)
         {
-            return GetByIdHelper(idProject, ReqGetByIdProjectIsWorking);
+            return _requestHelper.GetByIdHelper(idProject, ColId, ReqGetByIdProjectIsWorking, _userFactory);
         }
 
         public List<Domain.User> GetByIdMeeting(int idMeeting)
         {
-            return GetByIdHelper(idMeeting, ReqGetByIdMeeting);
+            return _requestHelper.GetByIdHelper(idMeeting, ColId, ReqGetByIdMeeting, _userFactory);
         }
 
         public List<Domain.User> GetUserByCommentOnUserStory(int idUserStory)
         {
-            var users = new List<Domain.User>();
-
-            var command = Database.GetCommand(ReqGetUserByCommentOnUserStory);
-            
-            command.Parameters.AddWithValue("@" + UserStoryId, idUserStory);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all users
-            while(reader.Read()) users.Add(_userFactory.CreateFromSqlReader(reader));
-
-            return users;
+            return _requestHelper.GetByIdHelper(idUserStory, ColIdUserStory, ReqGetUserByCommentOnUserStory, _userFactory);
         }
 
         public List<Domain.User> GetByIdProjectIsApplying(int idProject)
         {
-            var users = new List<Domain.User>();
-
-            var command = Database.GetCommand(ReqGetUserApplyingByIdProject);
-            
-            // Parametrize the command
-            command.Parameters.AddWithValue("@" + ColId, idProject);
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            
-            // Add all users
-            while(reader.Read()) users.Add(_userFactory.CreateFromSqlReader(reader));
-
-            return users;
+            return _requestHelper.GetByIdHelper(idProject, ColId, ReqGetUserApplyingByIdProject, _userFactory);
         }
         
         public Domain.User GetById(int id)
