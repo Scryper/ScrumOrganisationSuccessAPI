@@ -24,6 +24,7 @@ namespace WebAPI.Controllers
         private readonly UseCaseGetUserDaysOfXP _useCaseGetUserDaysOfXp;
         private readonly UseCaseGetUsersByIdProjectIsWorking _useCaseGetUsersByIdProjectIsWorking;
         private readonly UseCaseGetUserByIdProjectIsApplying _useCaseGetUserByIdProjectIsApplying;
+        private readonly UseCaseGetUsersByCommentOnUserStory _useCaseGetUsersByCommentOnUserStory;
 
         private readonly UseCaseCreateUser _useCaseCreateUser;
 
@@ -52,7 +53,8 @@ namespace WebAPI.Controllers
             UseCaseUpdateUserFirstNameLastName useCaseUpdateUserFirstNameLastName,
             UseCaseGetUserDaysOfXP useCaseUserDaysOfXp,
             UseCaseGetUsersByIdProjectIsWorking useCaseGetUsersByIdProjectIsWorking,
-            UseCaseGetUserByIdProjectIsApplying useCaseGetUserByIdProjectIsApplying)
+            UseCaseGetUserByIdProjectIsApplying useCaseGetUserByIdProjectIsApplying,
+            UseCaseGetUsersByCommentOnUserStory usecaseGetUsersByCommentOnUserStory)
         {
             _useCaseGetAllUsers = useCaseGetAllUsers;
             _useCaseGetUserById = useCaseGetUserById;
@@ -62,6 +64,7 @@ namespace WebAPI.Controllers
             _useCaseGetUserDaysOfXp = useCaseUserDaysOfXp;
             _useCaseGetUsersByIdProjectIsWorking = useCaseGetUsersByIdProjectIsWorking;
             _useCaseGetUserByIdProjectIsApplying = useCaseGetUserByIdProjectIsApplying;
+            _useCaseGetUsersByCommentOnUserStory = usecaseGetUsersByCommentOnUserStory;
             
             _useCaseCreateUser = useCaseCreateUser;
 
@@ -132,6 +135,13 @@ namespace WebAPI.Controllers
         public ActionResult<List<OutputDtoUser>> GetByIdProjectIsApplying(int idProject)
         {
             return _useCaseGetUserByIdProjectIsApplying.Execute(idProject);
+        }
+        
+        [HttpGet]
+        [Route("byCommentOnUserStory/{idUserStory:int}")]
+        public ActionResult<List<OutputDtoUser>> GetByCommentOnUserStory(int idUserStory)
+        {
+            return _useCaseGetUsersByCommentOnUserStory.Execute(idUserStory);
         }
         
         // Post requests
