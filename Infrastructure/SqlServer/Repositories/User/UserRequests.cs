@@ -59,7 +59,7 @@
                                         left join {ProjectTableName} on {UserProjectColIdProject} = {ProjectColId} 
                                         where {ProjectColId} = @{ColId} and {UserProjectTableName}.is_appliance = 1";
         
-        private static readonly string ReqGetUserByCommentOnUserStory = $@"select {TableName}.* from {TableName} inner join {CommentTableName} 
+        private static readonly string ReqGetUserByCommentOnUserStory = $@"select distinct {TableName}.* from {TableName} left join {CommentTableName} 
                                                                         on {TableName}.{ColId} = {CommentTableName}.{UserId}  
                                                                         where {CommentTableName}.{UserStoryId} = @{UserStoryId}";
 

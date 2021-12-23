@@ -17,7 +17,7 @@
         
         private static readonly string ReqGetByIdUserStory = $@"select * from {TableName} 
                                                              where {ColIdUserStory} = @{ColIdUserStory} 
-                                                             order by convert(date, {ColPostedAt}) desc";
+                                                             order by convert(datetime, {ColPostedAt},103) asc";
 
         // Post requests
         private static readonly string ReqCreate = 
