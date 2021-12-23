@@ -24,7 +24,6 @@ using Application.UseCases.Project.Put;
 using Application.UseCases.ProjectTechnology.Delete;
 using Application.UseCases.ProjectTechnology.Get;
 using Application.UseCases.ProjectTechnology.Post;
-using Application.UseCases.Sprint;
 using Application.UseCases.Sprint.Delete;
 using Application.UseCases.Sprint.Get;
 using Application.UseCases.Sprint.Post;
@@ -137,6 +136,9 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetAllProjects>();
             services.AddSingleton<UseCaseGetProjectById>();
             services.AddSingleton<UseCaseGetProjectByName>();
+            services.AddSingleton<UseCaseGetByIdUserActiveProject>();
+            services.AddSingleton<UseCaseGetActiveProjects>();
+            services.AddSingleton<UseCaseGetProjectByIdUserNotFinishedIsLinkedToUser>();
 
             services.AddSingleton<UseCaseCreateProject>();
             
@@ -163,6 +165,7 @@ namespace WebAPI
             services.AddSingleton<UseCaseGetUsersByIdProjectIsWorking>();
             services.AddSingleton<UseCaseGetUsersByIdMeeting>();
             services.AddSingleton<UseCaseGetUserDaysOfXP>();
+            services.AddSingleton<UseCaseGetUserByIdProjectIsApplying>();
 
             services.AddSingleton<UseCaseCreateUser>();
             services.AddSingleton<UseCaseAuthenticateUser>();
@@ -259,9 +262,13 @@ namespace WebAPI
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "ScrumOrganisationSuccessAPI v1");
                 });
             }
+            else
+            {
+                app.UseHttpsRedirection();
 
-            app.UseHttpsRedirection();
+            }
 
+            
             app.UseRouting();
 
             app.UseAuthorization();

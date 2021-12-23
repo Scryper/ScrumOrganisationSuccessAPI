@@ -51,6 +51,54 @@ namespace Infrastructure.SqlServer.Repositories.Project
             return reader.Read() ? _projectFactory.CreateFromSqlReader(reader) : null;
         }
 
+        public List<Domain.Project> GetActiveProject()
+        {
+            var projects = new List<Domain.Project>();
+            
+            var command = Database.GetCommand(ReqGetActiveProject);
+            
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            // Return the project if found, null if not
+            while(reader.Read()) projects.Add(_projectFactory.CreateFromSqlReader(reader));
+            
+            return projects;
+        }
+
+        public List<Domain.Project> GetActiveProjectByUser(int idUser)
+        {
+            var projects = new List<Domain.Project>();
+            
+            var command = Database.GetCommand(ReqGetActiveProjectByUser);
+            
+            // Parametrize the command
+            command.Parameters.AddWithValue("@" + ColIdUser, idUser);
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            // Return the project if found, null if not
+            while(reader.Read()) projects.Add(_projectFactory.CreateFromSqlReader(reader));
+            
+            return projects;
+        }
+
+        public List<Domain.Project> GetProjectByIdUserNotFinishedIsLinked(int idUser)
+        {
+            var projects = new List<Domain.Project>();
+            
+            var command = Database.GetCommand(ReqGetProjectNotFinishedIsLinked);
+            
+            // Parametrize the command
+            command.Parameters.AddWithValue("@" + ColIdUser, idUser);
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            // Return the project if found, null if not
+            while(reader.Read()) projects.Add(_projectFactory.CreateFromSqlReader(reader));
+            
+            return projects;
+        }
+
         // Post requests
         public Domain.Project Create(Domain.Project project)
         {

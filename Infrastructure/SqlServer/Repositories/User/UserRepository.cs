@@ -104,6 +104,23 @@ namespace Infrastructure.SqlServer.Repositories.User
             return reader.Read() ? _userFactory.CreateFromSqlReader(reader) : null;
         }
 
+        public List<Domain.User> GetByIdProjectIsApplying(int idProject)
+        {
+            var users = new List<Domain.User>();
+
+            var command = Database.GetCommand(ReqGetUserApplyingByIdProject);
+            
+            // Parametrize the command
+            command.Parameters.AddWithValue("@" + ColId, idProject);
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            
+            // Add all users
+            while(reader.Read()) users.Add(_userFactory.CreateFromSqlReader(reader));
+
+            return users;
+        }
+
         // Post requests
         public Domain.User Create(Domain.User user)
         {

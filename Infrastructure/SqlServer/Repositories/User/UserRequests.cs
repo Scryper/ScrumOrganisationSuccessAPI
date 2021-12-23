@@ -17,8 +17,10 @@
         public const string ColBirthdate = "birthdate";
         public const string ColProfilePicture = "profile_picture";
         
-        public const string ProjectUserColIdUser = "user_project.id_user";
-        public const string ProjectUserColIdProject = "user_project.id_project";
+        public const string UserProjectColIdUser = "user_project.id_user";
+        public const string UserProjectColIdProject = "user_project.id_project";
+        public const string UserProjectColIsAppliance = "user_project.is_appliance";
+        public const string UserProject_ProjectId = "id_project";
         public const string ProjectColId = "project.id";
         public const string ParticipationColIdUser = "participation.id_user";
         public const string ParticipationColIdMeeting = "participation.id_meeting";
@@ -35,14 +37,14 @@
 
         private static readonly string ReqGetByIdProject = 
                                         $@"select * from {TableName} 
-                                        left join {UserProjectTableName} on {ColId} = {ProjectUserColIdUser} 
-                                        left join {ProjectTableName} on {ProjectUserColIdProject} = {ProjectColId} 
+                                        left join {UserProjectTableName} on {ColId} = {UserProjectColIdUser} 
+                                        left join {ProjectTableName} on {UserProjectColIdProject} = {ProjectColId} 
                                         where {ProjectColId} = @{ColId}";
         
         private static readonly string ReqGetByIdProjectIsWorking = 
                                         $@"select * from {TableName} 
-                                        left join {UserProjectTableName} on {ColId} = {ProjectUserColIdUser} 
-                                        left join {ProjectTableName} on {ProjectUserColIdProject} = {ProjectColId} 
+                                        left join {UserProjectTableName} on {ColId} = {UserProjectColIdUser} 
+                                        left join {ProjectTableName} on {UserProjectColIdProject} = {ProjectColId} 
                                         where {ProjectColId} = @{ColId} and {UserProjectTableName}.is_appliance = 0";
         
         private static readonly string ReqGetByIdMeeting = 
@@ -50,6 +52,11 @@
                                     left join {ParticipationTableName} on {ColId} = {ParticipationColIdUser} 
                                     left join {MeetingTableName} on {ParticipationColIdMeeting} = {MeetingColId} 
                                     where {MeetingColId} = @{ColId}";
+
+        private static readonly string ReqGetUserApplyingByIdProject = $@"select * from {TableName} 
+                                        left join {UserProjectTableName} on {ColId} = {UserProjectColIdUser} 
+                                        left join {ProjectTableName} on {UserProjectColIdProject} = {ProjectColId} 
+                                        where {ProjectColId} = @{ColId} and {UserProjectTableName}.is_appliance = 1";
 
         // Post requests
         private static readonly string ReqCreate = 
