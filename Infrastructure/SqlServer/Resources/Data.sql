@@ -247,7 +247,7 @@ insert into comment(id_user_story, id_user, posted_at, content)
     values(1, 2, convert(datetime, '20-01-2022 12:30:00', 103), 'Je suis disponible, on se rejoint sur Discord');
     
 insert into comment(id_user_story, id_user, posted_at, content)
-    values(1, 6, convert(datetime, '21-01-2022 12:30:00', 103), 'Vous en êtes où ?');
+    values(1, 5, convert(datetime, '21-01-2022 12:30:00', 103), 'Vous en êtes où ?');
     
 insert into comment(id_user_story, id_user, posted_at, content)
     values(3, 6, convert(datetime, '02-12-2021 12:30:00', 103), 'Les tests sont finis ?');
