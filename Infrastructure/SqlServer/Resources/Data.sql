@@ -67,7 +67,7 @@ values('Darin', 'Jordan', '$2a$11$r41cISQ6tMIJDXWDFL02VuSAKgSwsfr30T7n0uONBmx7Or
 /*Init projects*/
 insert into project( name, deadline, description, repository_url, sos_status)
     values( 'ScrumOrganisationSuccess API', convert(datetime, '24-02-2022 12:00:00', 103), 'Serveur pour réussir son année',
-    'https://github.com/Scryper/ScrumOrganisationSuccessAPI', 2);
+    'https://github.com/Scryper/ScrumOrganisationSuccessAPI', 3);
 
 insert into project( name, deadline, description, repository_url, sos_status)
     values( 'ScrumOrganisationSuccess Web App', convert(datetime, '24-02-2022 12:00:00', 103), 'Site pour réussir son année',
@@ -308,11 +308,11 @@ insert into user_project(id_project, id_user, is_appliance)
     values(2, 4, 0);
 
 /*Init participation link table*/
-insert into participation(id_meeting, id_user)
-    values(1, 1);
+-- insert into participation(id_meeting, id_user)
+--     values(1, 1);
 
-insert into participation(id_meeting, id_user)
-    values(1, 2);
+-- insert into participation(id_meeting, id_user)
+--     values(1, 2);
 
 insert into participation(id_meeting, id_user)
     values(1, 3);
@@ -320,11 +320,11 @@ insert into participation(id_meeting, id_user)
 insert into participation(id_meeting, id_user)
     values(1, 4);
     
-insert into participation(id_meeting, id_user)
-    values(2, 1);
+-- insert into participation(id_meeting, id_user)
+--     values(2, 1);
 
-insert into participation(id_meeting, id_user)
-    values(2, 2);
+-- insert into participation(id_meeting, id_user)
+--     values(2, 2);
 
 insert into participation(id_meeting, id_user)
     values(2, 3);
@@ -332,11 +332,11 @@ insert into participation(id_meeting, id_user)
 insert into participation(id_meeting, id_user)
     values(2, 4);
     
-insert into participation(id_meeting, id_user)
-    values(3, 1);
+-- insert into participation(id_meeting, id_user)
+--     values(3, 1);
 
-insert into participation(id_meeting, id_user)
-    values(3, 2);
+-- insert into participation(id_meeting, id_user)
+--     values(3, 2);
 
 insert into participation(id_meeting, id_user)
     values(3, 3);
@@ -344,11 +344,11 @@ insert into participation(id_meeting, id_user)
 insert into participation(id_meeting, id_user)
     values(3, 4);
     
-insert into participation(id_meeting, id_user)
-    values(4, 1);
+-- insert into participation(id_meeting, id_user)
+--     values(4, 1);
 
-insert into participation(id_meeting, id_user)
-    values(4, 2);
+-- insert into participation(id_meeting, id_user)
+--     values(4, 2);
 
 insert into participation(id_meeting, id_user)
     values(4, 3);
@@ -356,11 +356,11 @@ insert into participation(id_meeting, id_user)
 insert into participation(id_meeting, id_user)
     values(4, 4);
     
-insert into participation(id_meeting, id_user)
-    values(5, 1);
+-- insert into participation(id_meeting, id_user)
+--     values(5, 1);
 
-insert into participation(id_meeting, id_user)
-    values(5, 2);
+-- insert into participation(id_meeting, id_user)
+--     values(5, 2);
 
 insert into participation(id_meeting, id_user)
     values(5, 3);
